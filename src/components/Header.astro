@@ -1,0 +1,104 @@
+---
+// @ts-ignore
+import logoSrc from "../assets/logo.png?format=webp&width=64";
+---
+
+<header class="bg-gradient-to-r from-background-10 to-background-50 text-text shadow-lg">
+  <div class="max-w-6xl mx-auto flex justify-between items-center p-[var(--space-4)]">
+    <!-- Logo -->
+    <a href="/">
+      <h1 class="flex items-center text-xl leading-xl font-sans font-[700] gap-2">
+        <img src={logoSrc} alt="Logo" class="h-[1.35em] w-auto" />
+        BaggelMC
+      </h1>
+    </a>
+
+    <!-- Navigation -->
+    <nav>
+      <ul class="flex space-x-[var(--space-6)] items-center relative">
+        <!-- Home -->
+        <li><a href="/" class="hover:text-accent transition">Home</a></li>
+
+        <!-- Projects Dropdown -->
+        <li class="dropdown relative">
+          <button class="hover:text-accent transition flex items-center gap-1 cursor-pointer">
+            Projects
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <ul class="dropdown-menu absolute left-0 mt-2 rounded-2xl opacity-0 -translate-y-2 pointer-events-none transition-all duration-200 ease-in-out
+           p-[1px] bg-gradient-to-br from-background via-background-50 to-background">
+            <div class="bg-background rounded-[inherit]">
+              <li><a href="/projects/baggel" class="block px-4 py-2 hover:bg-accent-light hover:text-accent transition">Baggel.de</a></li>
+              <li><a href="/projects/buildmc" class="block px-4 py-2 hover:bg-accent-light hover:text-accent transition">BuildMC</a></li>
+              <li><a href="/projects/nations" class="block px-4 py-2 hover:bg-accent-light hover:text-accent transition">Nations</a></li>
+            </div>
+          </ul>
+
+        </li>
+
+        <!-- Plugins Dropdown -->
+        <li class="dropdown relative">
+          <button class="hover:text-accent transition flex items-center gap-1 cursor-pointer">
+            Plugins
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <ul class="dropdown-menu absolute left-0 mt-2 rounded-2xl opacity-0 -translate-y-2 pointer-events-none transition-all duration-200 ease-in-out
+           p-[1px] bg-gradient-to-br from-background via-background-50 to-background">
+            <div class="bg-background rounded-[inherit]">
+              <li><a href="/plugins/core" class="block px-4 py-2 hover:bg-accent-light hover:text-accent transition">Core</a></li>
+            </div>
+          </ul>
+        </li>
+
+        <!-- Static Pages -->
+        <li><a href="/gallery" class="hover:text-accent transition">Gallery</a></li>
+        <li><a href="/team" class="hover:text-accent transition">Team</a></li>
+        <li><a href="/about" class="hover:text-accent transition">About</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <script>
+    const dropdowns = document.querySelectorAll<HTMLElement>('.dropdown');
+
+  dropdowns.forEach((dropdown) => {
+    const menu = dropdown.querySelector<HTMLElement>('.dropdown-menu');
+    if (!menu) return;
+
+    let timeoutId: number | undefined;
+
+    const closeMenu = () => {
+      menu.classList.remove('opacity-100', 'translate-y-0');
+      menu.classList.add('opacity-0', '-translate-y-2', 'pointer-events-none');
+    };
+
+    const openMenu = () => {
+      // Close all dropdowns
+      dropdowns.forEach((otherDropdown) => {
+        if (otherDropdown === dropdown) return;
+        const otherMenu = otherDropdown.querySelector<HTMLElement>('.dropdown-menu');
+        if (otherMenu) {
+          otherMenu.classList.remove('opacity-100', 'translate-y-0');
+          otherMenu.classList.add('opacity-0', '-translate-y-2', 'pointer-events-none');
+        }
+      });
+
+      clearTimeout(timeoutId);
+      menu.classList.add('opacity-100', 'translate-y-0');
+      menu.classList.remove('opacity-0', '-translate-y-2', 'pointer-events-none');
+    };
+
+    dropdown.addEventListener('mouseenter', openMenu);
+
+    dropdown.addEventListener('mouseleave', () => {
+      timeoutId = window.setTimeout(() => {
+        closeMenu();
+      }, 1000); // 1s delay
+    });
+  });
+  </script>
+</header>
