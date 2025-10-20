@@ -1,5 +1,13 @@
+---
+import { LINKS } from "../config";
+import Separator from "./Separator.astro";
+---
+
 <footer class="bg-background py-6 mt-12">
-  <div class="container mx-auto flex flex-col md:flex-row items-center justify-between text-text-50 px-6">
+
+  <Separator />
+  
+  <div class="container mx-auto flex flex-col md:flex-row items-center justify-between text-text-50 px-5">
     <div class="flex space-x-6 mb-4 md:mb-0">
       <a href="/imprint" class="hover:underline">Imprint</a>
       <a href="/contact" class="hover:underline">Contact</a>
@@ -11,7 +19,7 @@
 
     <div class="flex space-x-4">
       <a 
-        href="https://discord.gg/p8wBMZXAfb" 
+        href={LINKS.discord}
         aria-label="Discord" 
         class="hover:text-primary transition"
         target="_blank" 
@@ -22,7 +30,7 @@
         </svg>
       </a>
       <a 
-        href="https://github.com/BaggelMC" 
+        href={LINKS.github}
         aria-label="GitHub" 
         class="hover:text-primary transition"
         target="_blank" 

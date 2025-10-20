@@ -1,53 +1,49 @@
 ---
-// @ts-ignore
-import logoSrc from "../assets/logo.png?format=webp&width=64";
+ // @ts-ignore
+ import logoSrc from "../assets/logo.png?format=webp&width=64";
 ---
 
 <header class="bg-gradient-to-r from-background-10 to-background-50 text-text shadow-lg">
   <div class="max-w-6xl mx-auto flex justify-between items-center p-[var(--space-4)]">
     <!-- Logo -->
-    <a href="/">
-      <h1 class="flex items-center text-xl leading-xl font-sans font-[700] gap-2">
-        <img src={logoSrc} alt="Logo" class="h-[1.35em] w-auto" />
-        BaggelMC
-      </h1>
+    <a href="/" class="flex items-center gap-2 text-xl font-[700] font-sans">
+      <img src={logoSrc} alt="Logo" class="h-[1.35em] w-auto" />
+      BaggelMC
     </a>
 
-    <!-- Navigation -->
-    <nav>
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:block">
       <ul class="flex space-x-[var(--space-6)] items-center relative">
-        <!-- Home -->
         <li><a href="/" class="hover:text-accent transition">Home</a></li>
 
         <!-- Projects Dropdown -->
-        <li class="dropdown relative">
-          <button class="hover:text-accent transition flex items-center gap-1 cursor-pointer">
+        <li class="dropdown relative group">
+          <button class="hover:text-accent transition flex items-center gap-1">
             Projects
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
           <ul class="dropdown-menu absolute left-0 mt-2 rounded-2xl opacity-0 -translate-y-2 pointer-events-none transition-all duration-200 ease-in-out
-           p-[1px] bg-gradient-to-br from-background via-background-50 to-background">
+            p-[1px] bg-gradient-to-br from-background via-background-50 to-background group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto">
             <div class="bg-background rounded-[inherit]">
               <li><a href="/projects/baggel" class="block px-4 py-2 hover:bg-accent-light hover:text-accent transition">Baggel.de</a></li>
               <li><a href="/projects/buildmc" class="block px-4 py-2 hover:bg-accent-light hover:text-accent transition">BuildMC</a></li>
               <li><a href="/projects/nations" class="block px-4 py-2 hover:bg-accent-light hover:text-accent transition">Nations</a></li>
             </div>
           </ul>
-
         </li>
 
         <!-- Plugins Dropdown -->
-        <li class="dropdown relative">
-          <button class="hover:text-accent transition flex items-center gap-1 cursor-pointer">
+        <li class="dropdown relative group">
+          <button class="hover:text-accent transition flex items-center gap-1">
             Plugins
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
           <ul class="dropdown-menu absolute left-0 mt-2 rounded-2xl opacity-0 -translate-y-2 pointer-events-none transition-all duration-200 ease-in-out
-           p-[1px] bg-gradient-to-br from-background via-background-50 to-background">
+            p-[1px] bg-gradient-to-br from-background via-background-50 to-background group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto">
             <div class="bg-background rounded-[inherit]">
               <li><a href="/plugins/core" class="block px-4 py-2 hover:bg-accent-light hover:text-accent transition">Core</a></li>
             </div>
@@ -60,45 +56,54 @@ import logoSrc from "../assets/logo.png?format=webp&width=64";
         <li><a href="/about" class="hover:text-accent transition">About</a></li>
       </ul>
     </nav>
+
+    <!-- Mobile Menu Button -->
+    <button id="mobile-menu-toggle" class="md:hidden flex flex-col gap-1 p-2 hover:text-accent transition">
+      <span class="block w-6 h-[2px] bg-current"></span>
+      <span class="block w-6 h-[2px] bg-current"></span>
+      <span class="block w-6 h-[2px] bg-current"></span>
+    </button>
   </div>
 
-  <script>
-    const dropdowns = document.querySelectorAll<HTMLElement>('.dropdown');
+  <!-- Mobile Navigation -->
+  <nav id="mobile-menu" class="md:hidden max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-background/95 backdrop-blur-md">
+    <ul class="flex flex-col p-4 space-y-2 border-t border-background-50">
+      <li><a href="/" class="block py-2 hover:text-accent transition">Home</a></li>
 
-  dropdowns.forEach((dropdown) => {
-    const menu = dropdown.querySelector<HTMLElement>('.dropdown-menu');
-    if (!menu) return;
+      <!-- Projects -->
+      <li>
+        <button class="w-full text-left flex justify-between items-center py-2 hover:text-accent transition" data-toggle="projects">
+          Projects
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <ul class="hidden pl-4 space-y-1" id="projects">
+          <li><a href="/projects/baggel" class="block py-1 hover:text-accent">Baggel.de</a></li>
+          <li><a href="/projects/buildmc" class="block py-1 hover:text-accent">BuildMC</a></li>
+          <li><a href="/projects/nations" class="block py-1 hover:text-accent">Nations</a></li>
+        </ul>
+      </li>
 
-    let timeoutId: number | undefined;
+      <!-- Plugins -->
+      <li>
+        <button class="w-full text-left flex justify-between items-center py-2 hover:text-accent transition" data-toggle="plugins">
+          Plugins
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <ul class="hidden pl-4 space-y-1" id="plugins">
+          <li><a href="/plugins/core" class="block py-1 hover:text-accent">Core</a></li>
+        </ul>
+      </li>
 
-    const closeMenu = () => {
-      menu.classList.remove('opacity-100', 'translate-y-0');
-      menu.classList.add('opacity-0', '-translate-y-2', 'pointer-events-none');
-    };
+      <!-- Static -->
+      <li><a href="/gallery" class="block py-2 hover:text-accent transition">Gallery</a></li>
+      <li><a href="/team" class="block py-2 hover:text-accent transition">Team</a></li>
+      <li><a href="/about" class="block py-2 hover:text-accent transition">About</a></li>
+    </ul>
+  </nav>
 
-    const openMenu = () => {
-      // Close all dropdowns
-      dropdowns.forEach((otherDropdown) => {
-        if (otherDropdown === dropdown) return;
-        const otherMenu = otherDropdown.querySelector<HTMLElement>('.dropdown-menu');
-        if (otherMenu) {
-          otherMenu.classList.remove('opacity-100', 'translate-y-0');
-          otherMenu.classList.add('opacity-0', '-translate-y-2', 'pointer-events-none');
-        }
-      });
-
-      clearTimeout(timeoutId);
-      menu.classList.add('opacity-100', 'translate-y-0');
-      menu.classList.remove('opacity-0', '-translate-y-2', 'pointer-events-none');
-    };
-
-    dropdown.addEventListener('mouseenter', openMenu);
-
-    dropdown.addEventListener('mouseleave', () => {
-      timeoutId = window.setTimeout(() => {
-        closeMenu();
-      }, 1000); // 1s delay
-    });
-  });
-  </script>
+  <script src="./Header.ts"></script>
 </header>

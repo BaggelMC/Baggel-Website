@@ -8,5 +8,7 @@ import { imagetools } from 'vite-imagetools';
 export default defineConfig({
   vite: {
     plugins: [tailwindcss(), imagetools()]
-  }
+  },
+  site: "https://baggel.de",
+  compressHTML: true
 });
