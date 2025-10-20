@@ -4,11 +4,14 @@
   /* Colors */
   --color-text: #f1e4db;
   --color-text-50: #928A85;
+  --color-text-100: #514D4B;
+
   --color-background: #0b0a09;
   --color-background-gradient: #121212;
   --color-background-10: #25211E;
   --color-background-50: #3E3933;
   --color-background-100: #8B7E72;
+
   --color-primary: #dfc798;
   --color-secondary: #8b4d25;
   --color-accent: #d6904f;
@@ -57,4 +60,42 @@
   --space-24: 6rem;
   --space-32: 8rem;
   --space-40: 10rem;
+
+  /* Transitions */
+  --transition-duration-base: 800ms;
+  --transition-duration-fast: 300ms;
+  --transition-timing-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-timing-soft: cubic-bezier(0,.34,.15,.99);
+}
+
+.transition-smooth {
+  transition-duration: var(--transition-duration-base);
+  transition-timing-function: var(--transition-timing-soft);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 9999px;
+  border: 2px solid var(--color-background);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* Firefox has to be extra ofc */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) var(--color-background);
 }
