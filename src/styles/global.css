@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: MinecraftStandard;
+  src: url(../assets/fonts/minecraft_standard/MinecraftStandard.otf)
+}
+
+@font-face {
+  font-family: MinecraftStandardBold;
+  src: url(../assets/fonts/minecraft_standard/MinecraftStandardBold.otf)
+}
+
 @theme {
   /* Colors */
   --color-text: #f1e4db;
@@ -18,6 +28,7 @@
 
   /* Font Family */
   --font-sans: "Cascadia Code", monospace;
+  --font-minecraft: "MinecraftStandard";
 
   /* Font Sizes (Perfect Fourth Type Scale) */
   --text-xs: 0.75rem;
