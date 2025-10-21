@@ -1,14 +1,19 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 
-import tailwindcss from '@tailwindcss/vite';
 import { imagetools } from 'vite-imagetools';
+
+import tailwindcss from '@tailwindcss/vite';
+
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
   vite: {
-    plugins: [tailwindcss(), imagetools()]
+    plugins: [imagetools(), tailwindcss()]
   },
+
   site: "https://baggel.de",
-  compressHTML: true
+  compressHTML: true,
+  integrations: [sitemap()]
 });

@@ -1,19 +1,19 @@
 ---
  // @ts-ignore
- import logoSrc from "../assets/logo.png?format=webp&width=64";
+ import logoSrc from "../assets/logo.png?format=webp&w=64&h=64";
 ---
 
-<header class="bg-gradient-to-r from-background-10 to-background-50 text-text shadow-lg">
-  <div class="max-w-6xl mx-auto flex justify-between items-center p-[var(--space-4)]">
+<header class="bg-linear-to-r from-background-10 to-background-50 text-text shadow-lg">
+  <div class="max-w-6xl mx-auto flex justify-between items-center p-(--space-4)">
     <!-- Logo -->
-    <a href="/" class="flex items-center gap-2 text-xl font-[700] font-sans">
+    <a href="/" class="flex items-center gap-2 text-xl font-bold font-sans">
       <img src={logoSrc} alt="Logo" class="h-[1.35em] w-auto" />
       BaggelMC
     </a>
 
     <!-- Desktop Navigation -->
     <nav class="hidden md:block">
-      <ul class="flex space-x-[var(--space-6)] items-center relative">
+      <ul class="flex space-x-6 items-center relative">
         <li><a href="/" class="hover:text-accent transition">Home</a></li>
 
         <!-- Projects Dropdown -->
@@ -25,7 +25,7 @@
             </svg>
           </button>
           <ul class="dropdown-menu absolute left-0 mt-2 rounded-2xl opacity-0 -translate-y-2 pointer-events-none transition-all duration-200 ease-in-out
-            p-[1px] bg-gradient-to-br from-background via-background-50 to-background group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto">
+            p-px bg-linear-to-br from-background via-background-50 to-background group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto">
             <div class="bg-background rounded-[inherit]">
               <li><a href="/projects/baggel" class="block px-4 py-2 hover:bg-accent-light hover:text-accent transition">Baggel.de</a></li>
               <li><a href="/projects/buildmc" class="block px-4 py-2 hover:bg-accent-light hover:text-accent transition">BuildMC</a></li>
@@ -43,7 +43,7 @@
             </svg>
           </button>
           <ul class="dropdown-menu absolute left-0 mt-2 rounded-2xl opacity-0 -translate-y-2 pointer-events-none transition-all duration-200 ease-in-out
-            p-[1px] bg-gradient-to-br from-background via-background-50 to-background group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto">
+            p-px bg-linear-to-br from-background via-background-50 to-background group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto">
             <div class="bg-background rounded-[inherit]">
               <li><a href="/plugins/core" class="block px-4 py-2 hover:bg-accent-light hover:text-accent transition">Core</a></li>
             </div>

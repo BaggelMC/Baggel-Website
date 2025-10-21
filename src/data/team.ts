@@ -10,7 +10,10 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
   const modules = import.meta.glob("../assets/team/*/data.json", { eager: true });
 
   // Import all images in all team folders
-  const imageModules = import.meta.glob("../assets/team/*/*.{png,jpg,jpeg,gif}", { eager: true, as: "url" });
+  const imageModules = import.meta.glob(
+    "../assets/team/*/*.{png,jpg,jpeg,gif}",
+    { eager: true, query: "?url", import: "default" }
+  );
 
   const members: TeamMember[] = [];
 
