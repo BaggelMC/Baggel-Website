@@ -19,7 +19,7 @@
         <!-- Projects Dropdown -->
         <li class="dropdown relative group">
           <button class="hover:text-accent transition flex items-center gap-1">
-            Projects
+            Projekte
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
@@ -51,9 +51,9 @@
         </li>
 
         <!-- Static Pages -->
-        <li><a href="/gallery" class="hover:text-accent transition">Gallery</a></li>
+        <li><a href="/gallery" class="hover:text-accent transition">Gallerie</a></li>
         <li><a href="/team" class="hover:text-accent transition">Team</a></li>
-        <li><a href="/about" class="hover:text-accent transition">About</a></li>
+        <li><a href="/about" class="hover:text-accent transition">Über Uns</a></li>
       </ul>
     </nav>
 
@@ -73,7 +73,7 @@
       <!-- Projects -->
       <li>
         <button class="w-full text-left flex justify-between items-center py-2 hover:text-accent transition" data-toggle="projects">
-          Projects
+          Projekte
           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
           </svg>
@@ -99,13 +99,30 @@
       </li>
 
       <!-- Static -->
-      <li><a href="/gallery" class="block py-2 hover:text-accent transition">Gallery</a></li>
+      <li><a href="/gallery" class="block py-2 hover:text-accent transition">Gallerie</a></li>
       <li><a href="/team" class="block py-2 hover:text-accent transition">Team</a></li>
-      <li><a href="/about" class="block py-2 hover:text-accent transition">About</a></li>
+      <li><a href="/about" class="block py-2 hover:text-accent transition">Über uns</a></li>
     </ul>
   </nav>
 
   <script src="./Header.ts"></script>
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+    const root = document.documentElement;
+
+    function toggleTheme() {
+      if (root.dataset.theme === 'light') {
+        root.removeAttribute('data-theme'); // back to dark
+      } else {
+        root.dataset.theme = 'light';
+      }
+    }
+
+    themeToggle?.addEventListener('click', toggleTheme);
+    themeToggleMobile?.addEventListener('click', toggleTheme);
+  </script>
+
   <script>
     const dropdowns = document.querySelectorAll<HTMLElement>('.dropdown');
 

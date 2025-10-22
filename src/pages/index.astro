@@ -1,11 +1,22 @@
 ---
 import DefaultLayout from "../layouts/DefaultLayout.astro";
+import Headline from "../components/Headline.astro";
+import "../styles/index.css";
 ---
 
 <DefaultLayout title="Home">
+  <section class="mt-8 max-w-6xl mx-auto rounded-[4rem] flex flex-col items-center justify-center text-center py-20 bg-linear-to-br from-background to-background-gradient relative z-[-1]">
+  <div class="space-y-6">
+    <Headline text="Willkommen auf Baggel.de" class="mb-12 text-center" />
+    <p class="text-lg text-text-50 max-w-2xl mx-auto">
+      Spiele spannende Minigames, trete gegen Freunde an und hab Spaß auf unserem Minecraft-Server.
+    </p>
 
-    <div class="content-center max-w-6xl mx-auto h-dvh text-center">
-        <h1 class="text-2xl font-bold">Find out what to put here.</h1>
+    <div class="relative inline-block group">
+      <button class="copy-button" id="copyButton">Kopiere Server-Adresse</button>
     </div>
+  </div>
+</section>
+
 
 </DefaultLayout>

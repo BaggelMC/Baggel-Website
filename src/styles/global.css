@@ -79,6 +79,23 @@
   --transition-timing-soft: cubic-bezier(0,.34,.15,.99);
 }
 
+@theme[data-theme="light"] {
+  /* Colors */
+  --color-text: #25180e;
+  --color-text-50: #5A4E47;
+  --color-text-100: #A9A29E;
+
+  --color-background: #f6f5f4;
+  --color-background-gradient: #E3E3E3;
+  --color-background-10: #C1B2A1;
+  --color-background-50: #93887B;
+  --color-background-100: #675F57;
+
+  --color-primary: #AD7632;
+  --color-secondary: #8b4d25;
+  --color-accent: #d6904f;
+}
+
 .transition-smooth {
   transition-duration: var(--transition-duration-base);
   transition-timing-function: var(--transition-timing-soft);

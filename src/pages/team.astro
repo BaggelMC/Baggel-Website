@@ -1,13 +1,14 @@
 ---
 import DefaultLayout from "../layouts/DefaultLayout.astro";
 import { getTeamMembers } from "../data/team";
+import Headline from "../components/Headline.astro";
 
 const teamMembers = await getTeamMembers();
 ---
 
 <DefaultLayout title="Team">
   <section class="py-20 max-w-6xl mx-auto px-4">
-    <h1 class="text-primary text-lg sm:text-xl md:text-2xl font-minecraft text-center mb-8 sm:mb-12">Meet the Baggel Team</h1>
+    <Headline text="Das Baggel Team:"></Headline>
     
     <div class="flex flex-wrap justify-center gap-8">
       {teamMembers.map((member, i) => (
@@ -24,9 +25,13 @@ const teamMembers = await getTeamMembers();
             </div>
           </button>
 
-          <div id={`info-${i}`} class="hidden absolute z-10 mt-2 w-full bg-background-50 p-3 rounded-lg shadow text-text overflow-hidden">
-            <div set:html={member.bio}></div>
-          </div>
+          <div 
+          id={`info-${i}`} 
+          class="hidden absolute left-1/2 -translate-x-1/2 z-10 mt-2 w-80 bg-background-50 p-3 rounded-lg shadow text-text overflow-hidden"
+        >
+          <div set:html={member.bio}></div>
+        </div>
+
         </div>
       ))}
     </div>
