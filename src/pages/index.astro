@@ -1,6 +1,7 @@
 ---
 import DefaultLayout from "../layouts/DefaultLayout.astro";
 import Headline from "../components/Headline.astro";
+import Pronounciation from "../assets/audio/baggel.mp3"
 import "../styles/index.css";
 ---
 
@@ -22,45 +23,116 @@ import "../styles/index.css";
     </div>
   </section>
 
+  <section class="definition-section max-w-xl mx-auto px-6 sm:px-8 md:px-10 text-left text-text rounded-4xl bg-linear-to-br from-background to-background-gradient">
+    <div class="flex items-center gap-4">
+      <h2 class="text-xl sm:text-2xl font-bold italic tracking-wide text-primary mb-4">
+        Ba·ggel
+      </h2>
+      <button
+        id="playAudioButton"
+        class="audio-button text-text-50 hover:text-primary transition-all duration-300"
+        aria-label="Play pronunciation"
+      >
+        <svg
+          id="speakerIcon"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          viewBox="0 0 32 32"
+          class="w-10 h-10 sm:w-15 sm:h-15"
+        >
+          <path xmlns="http://www.w3.org/2000/svg" d="M20.4,2.9c-0.3-0.2-0.7-0.1-1,0.1L9.7,10H3c-0.6,0-1,0.4-1,1v10c0,0.6,0.4,1,1,1h6.7l9.7,7.1c0.2,0.1,0.4,0.2,0.6,0.2   c0.2,0,0.3,0,0.5-0.1c0.3-0.2,0.5-0.5,0.5-0.9V3.8C21,3.4,20.8,3,20.4,2.9z"/>
+          <path xmlns="http://www.w3.org/2000/svg" d="M27.1,9.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4C27.2,12.1,28,14,28,16s-0.8,3.9-2.3,5.3c-0.4,0.4-0.4,1,0,1.4   c0.2,0.2,0.5,0.3,0.7,0.3c0.2,0,0.5-0.1,0.7-0.3C29,20.9,30,18.6,30,16S29,11.1,27.1,9.3z"/>
+          <path xmlns="http://www.w3.org/2000/svg" d="M24.7,12.7c-0.4-0.4-1-0.4-1.4,0.1c-0.4,0.4-0.3,1,0.1,1.4c0.5,0.5,0.8,1.2,0.8,1.9s-0.3,1.4-0.8,1.9   c-0.4,0.4-0.4,1-0.1,1.4c0.2,0.2,0.5,0.3,0.7,0.3c0.2,0,0.5-0.1,0.7-0.3c1-0.9,1.5-2.1,1.5-3.3S25.6,13.5,24.7,12.7z"/>
+        </svg>
+      </button>
+    </div>
+
+    <p class="text-text-50 text-lg italic mb-2">noun</p>
+    <p class="text-text-100 text-base mb-4">/ˈbeɪɡl̩/</p>
+    <p class="text-lg text-text-50">
+      a <span class="text-accent">Minecraft server community</span>
+    </p>
+
+    <audio id="pronunciationAudio" src={Pronounciation}></audio>
+  </section>
+
   <script>
     import { LINKS } from "../config";
 
     document.addEventListener("DOMContentLoaded", () => {
-      const copyButton = document.getElementById("copyButton");
-      if (!copyButton) return;
+      const copyButton = document.getElementById("copyButton") as HTMLButtonElement | null;
+      if (copyButton) {
+        const serverAddress = LINKS.server_address;
+        let isFlashing = false;
 
-      const serverAddress = LINKS.server_address;
-      let isFlashing = false;
+        copyButton.addEventListener("click", async () => {
+          if (isFlashing) return;
 
-      copyButton.addEventListener("click", async () => {
-        if (isFlashing) return;
+          try {
+            await navigator.clipboard.writeText(serverAddress);
+            isFlashing = true;
+            copyButton.classList.add("flash-success");
 
-        try {
-          await navigator.clipboard.writeText(serverAddress);
+            setTimeout(() => {
+              copyButton.classList.remove("flash-success");
+              isFlashing = false;
+            }, 1000);
+          } catch (err) {
+            isFlashing = true;
+            copyButton.textContent = "Fehler beim Kopieren";
+            copyButton.classList.add("flash-error");
 
-          isFlashing = true;
-          copyButton.classList.add("flash-success");
+            setTimeout(() => {
+              copyButton.classList.remove("flash-error");
+              copyButton.textContent = "Kopiere Server-Adresse";
+              isFlashing = false;
+            }, 1000);
+            console.error("Clipboard copy failed:", err);
+          }
+        });
+      }
+    });
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const playButton = document.getElementById("playAudioButton") as HTMLButtonElement | null;
+    const audio = document.getElementById("pronunciationAudio") as HTMLAudioElement | null;
+    const speakerIcon = document.getElementById("speakerIcon") as SVGSVGElement | null;
 
-          setTimeout(() => {
-            copyButton.classList.remove("flash-success");
-            isFlashing = false;
-          }, 1000);
-        } catch (err) {
-          isFlashing = true;
-          copyButton.textContent = "Fehler beim Kopieren";
-          copyButton.classList.add("flash-error");
+    if (playButton && audio && speakerIcon) {
+      const speakerSvg = `
+        <path xmlns="http://www.w3.org/2000/svg" d="M20.4,2.9c-0.3-0.2-0.7-0.1-1,0.1L9.7,10H3c-0.6,0-1,0.4-1,1v10c0,0.6,0.4,1,1,1h6.7l9.7,7.1
+        c0.2,0.1,0.4,0.2,0.6,0.2c0.2,0,0.3,0,0.5-0.1c0.3-0.2,0.5-0.5,0.5-0.9V3.8C21,3.4,20.8,3,20.4,2.9z"/>
+        <path xmlns="http://www.w3.org/2000/svg" d="M27.1,9.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4C27.2,12.1,28,14,28,16s-0.8,3.9-2.3,5.3
+        c-0.4,0.4-0.4,1,0,1.4c0.2,0.2,0.5,0.3,0.7,0.3c0.2,0,0.5-0.1,0.7-0.3C29,20.9,30,18.6,30,16S29,11.1,27.1,9.3z"/>
+        <path xmlns="http://www.w3.org/2000/svg" d="M24.7,12.7c-0.4-0.4-1-0.4-1.4,0.1c-0.4,0.4-0.3,1,0.1,1.4c0.5,0.5,0.8,1.2,0.8,1.9
+        s-0.3,1.4-0.8,1.9c-0.4,0.4-0.4,1-0.1,1.4c0.2,0.2,0.5,0.3,0.7,0.3c0.2,0,0.5-0.1,0.7-0.3c1-0.9,1.5-2.1,1.5-3.3
+        S25.6,13.5,24.7,12.7z"/>
+      `;
 
-          setTimeout(() => {
-            copyButton.classList.remove("flash-error");
-            copyButton.textContent = "Kopiere Server-Adresse";
-            isFlashing = false;
-          }, 1000);
+      const stopSvg = `<rect x="8" y="8" width="16" height="16" rx="2" />`;
 
-          console.error("Clipboard copy failed:", err);
+      let isPlaying = false;
+
+      playButton.addEventListener("click", () => {
+        if (!isPlaying) {
+          audio.play();
+          isPlaying = true;
+          speakerIcon.innerHTML = stopSvg;
+        } else {
+          audio.pause();
+          audio.currentTime = 0;
+          isPlaying = false;
+          speakerIcon.innerHTML = speakerSvg;
         }
       });
-    });
-  </script>
-
+      
+      audio.addEventListener("ended", () => {
+        isPlaying = false;
+        speakerIcon.innerHTML = speakerSvg;
+      });
+      }
+  });
+</script>
 
 </DefaultLayout>
