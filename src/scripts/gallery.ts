@@ -3,11 +3,26 @@ export interface GallerySection {
   images: Record<string, ImageMetadata>;
 }
 
+const isDev = import.meta.env.DEV;
+let query = {};
+if (isDev) {
+  query = { format: 'webp', w: '1200',}
+}
+
 export async function loadGallery(): Promise<GallerySection[]> {
-  const imageModules = import.meta.glob<{ default: ImageMetadata }>(
-    "/src/assets/gallery/**/*.{png,jpg,jpeg,webp,gif,avif}",
-    { eager: true }
-  );
+
+
+  let imageModules;
+
+  if (!isDev) {
+    imageModules = import.meta.glob<{ default: ImageMetadata }>("../assets/gallery/**/*.{png,jpg,jpeg,webp,gif,avif}", {
+      query: { format: 'webp', w: '1200',},
+      eager: true
+    });
+  } else {
+    imageModules = import.meta.glob<{ default: ImageMetadata }>( "/src/assets/gallery/**/*.{png,jpg,jpeg,webp,gif,avif}", { eager: true } );
+  }
+  
 
   const sections: Record<string, GallerySection> = {};
 

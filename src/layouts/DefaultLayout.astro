@@ -13,6 +13,7 @@ const { title } = Astro.props;
     <title>{title ? `${title} | BaggelMC` : "BaggelMC"}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href={RESOURCES.fontURL} rel="stylesheet" />
+    <script src="https://unpkg.com/alpinejs" defer></script>
   </head>
   <body class="min-h-screen bg-background text-text font-sans flex flex-col">
     <Header title="BaggelMC" />

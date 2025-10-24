@@ -1,7 +1,7 @@
 ---
 import DefaultLayout from "../layouts/DefaultLayout.astro";
 import Headline from "../components/Headline.astro";
-import GallerySection from "../components/GallerySection.astro";
+import GalleryCarousel from "../components/GalleryCarousel.tsx";
 import { loadGallery } from "../scripts/gallery";
 import Separator from "../components/Separator.astro";
 
@@ -15,7 +15,7 @@ const sections = await loadGallery();
     <Separator margin_sides="0"></Separator>
 
     {sections.map((section) => (
-      <GallerySection section={section} />
+      <GalleryCarousel section={section} client:load />
       <Separator margin_sides="0"></Separator>
     ))}
   </div>
