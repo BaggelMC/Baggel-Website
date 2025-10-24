@@ -26,6 +26,11 @@
   --color-secondary: #8b4d25;
   --color-accent: #d6904f;
 
+  --color-success: #22c55e;
+  --color-success-gradient: #16a34a;
+  --color-error: #ef4444;
+  --color-error-gradient: #b91c1c;
+
   /* Font Family */
   --font-sans: "Cascadia Code", monospace;
   --font-minecraft: "MinecraftStandard";

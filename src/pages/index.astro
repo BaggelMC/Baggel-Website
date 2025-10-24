@@ -5,18 +5,62 @@ import "../styles/index.css";
 ---
 
 <DefaultLayout title="Home">
-  <section class="mt-8 max-w-6xl mx-auto rounded-[4rem] flex flex-col items-center justify-center text-center py-20 bg-linear-to-br from-background to-background-gradient relative z-[-1]">
-  <div class="space-y-6">
-    <Headline text="Willkommen auf Baggel.de" class="mb-12 text-center" />
-    <p class="text-lg text-text-50 max-w-2xl mx-auto">
-      Spiele spannende Minigames, trete gegen Freunde an und hab Spaß auf unserem Minecraft-Server.
-    </p>
+  <section
+    class="mt-8 max-w-6xl mx-auto rounded-[4rem] flex flex-col items-center justify-center text-center py-16 px-4 sm:px-6 md:px-8 bg-linear-to-br from-background to-background-gradient relative"
+  >
+    <div class="space-y-6">
+      <Headline text="Willkommen auf Baggel.de" class="mb-12 text-center" />
+      <p class="text-lg text-text-50 max-w-2xl mx-auto">
+        Spiele spannende Minigames, trete gegen Freunde an und hab Spaß auf unserem Minecraft-Server.
+      </p>
 
-    <div class="relative inline-block group">
-      <button class="copy-button" id="copyButton">Kopiere Server-Adresse</button>
+      <div class="relative inline-block group">
+        <button class="copy-button" id="copyButton">
+          Kopiere Server-Adresse
+        </button>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <script>
+    import { LINKS } from "../config";
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const copyButton = document.getElementById("copyButton");
+      if (!copyButton) return;
+
+      const serverAddress = LINKS.server_address;
+      let isFlashing = false;
+
+      copyButton.addEventListener("click", async () => {
+        if (isFlashing) return;
+
+        try {
+          await navigator.clipboard.writeText(serverAddress);
+
+          isFlashing = true;
+          copyButton.classList.add("flash-success");
+
+          setTimeout(() => {
+            copyButton.classList.remove("flash-success");
+            isFlashing = false;
+          }, 1000);
+        } catch (err) {
+          isFlashing = true;
+          copyButton.textContent = "Fehler beim Kopieren";
+          copyButton.classList.add("flash-error");
+
+          setTimeout(() => {
+            copyButton.classList.remove("flash-error");
+            copyButton.textContent = "Kopiere Server-Adresse";
+            isFlashing = false;
+          }, 1000);
+
+          console.error("Clipboard copy failed:", err);
+        }
+      });
+    });
+  </script>
 
 
 </DefaultLayout>

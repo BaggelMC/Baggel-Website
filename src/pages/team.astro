@@ -1,6 +1,6 @@
 ---
 import DefaultLayout from "../layouts/DefaultLayout.astro";
-import { getTeamMembers } from "../data/team";
+import { getTeamMembers } from "../scripts/team";
 import Headline from "../components/Headline.astro";
 
 const teamMembers = await getTeamMembers();

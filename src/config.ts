@@ -1,6 +1,7 @@
 export const LINKS = {
     discord: "https://discord.gg/p8wBMZXAfb",
     github: "https://github.com/BaggelMC",
+    server_address: "baggel.de",
     email: "mail@baggel.de",
     phone: "+49 123 4567890"
 }

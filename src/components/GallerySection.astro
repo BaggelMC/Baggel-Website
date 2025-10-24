@@ -1,0 +1,22 @@
+---
+import type { GallerySection } from "../scripts/gallery";
+
+const { section } = Astro.props as { section: GallerySection };
+---
+
+<section class="mb-20">
+  <h2 class="text-xl font-minecraft text-accent mb-8 text-center capitalize">
+    {section.name}
+  </h2>
+
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    {Object.entries(section.images).map(([path, img]) => (
+      <img
+        src={img.src}
+        alt={section.name}
+        loading="lazy"
+        class="rounded-2xl shadow-lg hover:scale-[1.03] transition-transform duration-(--transition-duration-fast)"
+      />
+    ))}
+  </div>
+</section>

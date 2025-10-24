@@ -1,12 +1,22 @@
 ---
 import DefaultLayout from "../layouts/DefaultLayout.astro";
 import Headline from "../components/Headline.astro";
+import GallerySection from "../components/GallerySection.astro";
+import { loadGallery } from "../scripts/gallery";
+import Separator from "../components/Separator.astro";
+
+const sections = await loadGallery();
 ---
 
 <DefaultLayout title="Gallerie">
+  <div class="max-w-6xl mx-auto px-8 py-20 text-text font-sans">
+    <Headline text="Gallerie" class="mb-12 text-center" />
 
-    <div class="max-w-6xl mx-auto px-8 py-20 text-text font-sans">
-        <Headline text="Gallerie" class="mb-12 text-center"></Headline>
-    </div>
+    <Separator margin_sides="0"></Separator>
 
+    {sections.map((section) => (
+      <GallerySection section={section} />
+      <Separator margin_sides="0"></Separator>
+    ))}
+  </div>
 </DefaultLayout>

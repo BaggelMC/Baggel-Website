@@ -1,9 +1,11 @@
 ---
 const { 
-  color = "border-text-50", 
+  color = "text-100", 
   thickness = "1px", 
-  margin = "my-4"
+  margin = "my-4",
+  margin_sides="6",
+  width = "w-full"
 } = Astro.props;
 ---
 
-<hr class={`${margin} mr-6 ml-6 border-t-[${thickness}] border-${color}`} />
+<hr class={`${margin} ${width} mr-${margin_sides} ml-${margin_sides} border-t-[${thickness}] border-${color}`} />
