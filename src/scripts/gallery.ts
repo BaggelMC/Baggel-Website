@@ -4,14 +4,8 @@ export interface GallerySection {
 }
 
 const isDev = import.meta.env.DEV;
-let query = {};
-if (isDev) {
-  query = { format: 'webp', w: '1200',}
-}
 
 export async function loadGallery(): Promise<GallerySection[]> {
-
-
   let imageModules;
 
   if (!isDev) {
