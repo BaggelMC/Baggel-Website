@@ -1,0 +1,57 @@
+---
+import Headline from "../../../../components/Headline.astro";
+import DefaultLayout from "../../../../layouts/DefaultLayout.astro";
+---
+
+<DefaultLayout title="Core Plugin">
+
+  <div class="max-w-5xl mx-auto px-8 py-20 text-text font-sans">
+
+    <Headline text="BuildMC-Core" class="mb-12 text-center"></Headline>
+
+    <div class="space-y-8 text-base leading-base text-text/90">
+
+      <p class="text-lg leading-lg text-text">
+        <strong class="text-primary">BuildMC-Core</strong> is the heart of the 
+        <span class="text-accent">BuildMC-SMP</span> project. A custom plugin built to 
+        replace a patchwork of third-party solutions with one cohesive, reliable system. 
+        Over time, we encountered limitations, bugs, and mismatched features in the 
+        plugins we relied on. To address this, we developed an in-house solution that 
+        perfectly matches our server’s needs.
+      </p>
+
+      <p>
+        <strong class="text-primary">BuildMC-Core</strong> brings together essential gameplay and administrative tools, 
+        wrapped in a single, high-performance plugin with multilingual support, rich configuration options, 
+        and an extensible API for developers.
+      </p>
+
+      <h2 class="text-xl leading-xl text-primary mt-12 mb-6 font-minecraft">Core Features</h2>
+
+      <ul class="space-y-4 list-disc list-inside text-text-50">
+        <li class="mb-6"><strong class="text-accent">Spawn Elytra:</strong> Allows players to glide from spawn, even without an elytra equipped, perfect for exploration. Includes a one-time boost feature.</span></li>
+        <li class="mb-6"><strong class="text-accent">Player Heads:</strong> Players drop their heads upon death, adding a trophy-style collectible system.</span></li>
+        <li class="mb-6"><strong class="text-accent">End Event:</strong> The End dimension starts locked and can be unlocked by admins, triggering an in-game announcement.</span></li>
+        <li class="mb-6"><strong class="text-accent">Claim System:</strong> A robust chunk-based claiming system with a UI for managing permissions and protections, supporting both players and teams.</span></li>
+        <li class="mb-6"><strong class="text-accent">Translations:</strong> Full German and English support out of the box.</span></li>
+        <li class="mb-6"><strong class="text-accent">Detailed Configuration:</strong> Every system can be fine-tuned to match your server’s gameplay and administrative preferences.</span></li>
+        <li class="mb-6"><strong class="text-accent">Developer API:</strong> Extend and integrate BuildMC-Core with your own plugins through a clean, documented API.</span></li>
+      </ul>
+
+      <div class="mt-16 flex flex-col sm:flex-row items-center justify-center gap-6">
+        <a href="./core/docs/user" class="px-6 py-3 rounded-2xl bg-primary text-background font-bold transition duration-300 hover:bg-accent hover:scale-105">
+          User Documentation
+        </a>
+        <a href="./core/docs/admin" class="px-6 py-3 rounded-2xl bg-secondary text-text font-bold transition duration-300 hover:bg-accent hover:text-background hover:scale-105">
+          Admin Documentation
+        </a>
+        <a href="./core/docs/dev" class="px-6 py-3 rounded-2xl bg-accent text-background font-bold transition duration-300 hover:bg-primary hover:scale-105">
+          Dev Documentation
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+</DefaultLayout>

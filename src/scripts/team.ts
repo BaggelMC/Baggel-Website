@@ -22,7 +22,7 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
     imageModules = import.meta.glob<
       Record<string, { url: string }>
     >("../assets/team/*/*.{png,jpg,jpeg,gif}", {
-      query: { format: "webp", w: "800" },
+      query: { format: "webp", lossless: true },
       eager: true,
     });
   } else {
