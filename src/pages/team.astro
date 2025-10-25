@@ -29,7 +29,7 @@ const teamMembers = await getTeamMembers();
           id={`info-${i}`} 
           class="hidden absolute left-1/2 -translate-x-1/2 z-10 mt-2 w-80 bg-background-50 p-3 rounded-lg shadow text-text overflow-hidden"
         >
-          <div set:html={member.bio}></div>
+          <div set:html={member.bio ?? ""}></div>
         </div>
 
         </div>
