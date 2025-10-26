@@ -2,15 +2,83 @@
 import Headline from "../../../../../../../../components/Headline.astro";
 import DefaultLayout from "../../../../../../../../layouts/DefaultLayout.astro";
 import SelectorBar from "../../../../../../../../components/SelectorBar.tsx";
+
+// @ts-ignore
+import showcase from "../../../../../../../../assets/images/docs/spawn-elytra/showcase.png?format=webp";
+// @ts-ignore
+import boost_key from "../../../../../../../../assets/images/docs/spawn-elytra/boost-key.png?format=webp";
+// @ts-ignore
+import stuck_example from "../../../../../../../../assets/images/docs/spawn-elytra/stuck-example.png?format=webp";
 ---
 
-<DefaultLayout title="Spawn Eyltra Docs">
+<DefaultLayout title="Spawn Elytra Docs">
 
   <div class="max-w-5xl mx-auto px-8 py-20 text-text font-sans">
 
-    <div class="flex justify-end mb-8"> <SelectorBar client:load /> </div>
+    <div class="flex justify-end mb-8">
+      <SelectorBar client:load />
+    </div>
 
-    <Headline text="Spawn Eyltra" class="mb-12 text-center"></Headline>
+    <Headline text="Spawn Elytra System" class="mb-12 text-center"></Headline>
+
+    <div class="mb-12">
+      <img src={showcase} alt="Elytra Zone Overview" class="rounded-xl shadow-lg max-w-full mx-auto" />
+    </div>
+
+    <p class="mb-6 text-base leading-relaxed">
+      The <strong>Spawn Elytra System</strong> gives players temporary elytra flight inside a defined <strong>elytra zone</strong>. An area set up by server administrators, usually around spawn or the starting island. 
+      The feature helps players <strong>comfortably spread out across a larger area</strong> at the beginning of a season or event, without needing to equip their own elytra.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      This system was inspired by the <strong>Craft Attack</strong> series and is designed to make the early-game experience smoother and more dynamic. 
+      It allows everyone to take off and glide quickly from the starting area without granting long-term flight advantages.
+    </p>
+
+    <h2 class="text-xl font-semibold mb-4 mt-10">How It Works</h2>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Inside the elytra zone, you can <strong>activate flight by double jumping</strong>, just like with a regular elytra. 
+      Once in the air, the spawn elytra behaves almost exactly like a normal one.
+    </p>
+
+    <div class="mb-8">
+      <img src={boost_key} alt="Elytra Boost Key (F)" class="rounded-xl shadow-md max-w-full mx-auto" />
+    </div>
+
+    <p class="mb-6 text-base leading-relaxed">
+      While gliding, you can press the <strong>Swap Item With Off Hand</strong> key (<kbd>F</kbd> by default) to receive a one-time <strong>boost</strong>. 
+      This helps you gain a bit of altitude or reach distant areas more easily.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      The spawn elytra can only be <strong>activated inside the elytra zone</strong>. Once you’ve taken off, you can glide beyond the zone’s boundaries until you land. 
+      However, you cannot start flying again unless you re-enter the defined zone.
+    </p>
+
+    <h2 class="text-xl font-semibold mb-4 mt-10">Landing Rules & Improvements</h2>
+
+    <p class="mb-6 text-base leading-relaxed">
+      In older versions of this system (from third-party plugins), players occasionally got stuck in the flying state after landing. 
+      Our implementation improves <strong>landing detection</strong> and <strong>state management</strong>, making it very unlikely to remain stuck in flight.
+    </p>
+
+    <div class="mb-6">
+      <img src={stuck_example} alt="Flying State Example" class="rounded-xl shadow-md max-w-full mx-auto" />
+    </div>
+
+    <p class="mb-6 text-base leading-relaxed">
+      In the rare event that it does happen, simply <strong>logging out and back in</strong> will always fix it. 
+      However, it’s <strong>not recommended to log out mid-flight</strong>.
+    </p>
+
+    <h2 class="text-xl font-semibold mb-4 mt-10">Restrictions</h2>
+
+    <ul class="list-disc pl-8 mb-6 text-base leading-relaxed">
+      <li>The spawn elytra is only available in <strong>Survival</strong> and <strong>Adventure</strong> modes.</li>
+      <li><strong>Firework rockets</strong> cannot be used with the spawn elytra (this can be changed in the config).</li>
+      <li>If you have an actual elytra equipped, using the spawn elytra will <strong>drain durability</strong> from it.</li>
+    </ul>
 
   </div>
 

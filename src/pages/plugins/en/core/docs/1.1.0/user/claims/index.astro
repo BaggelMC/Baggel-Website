@@ -2,15 +2,173 @@
 import Headline from "../../../../../../../../components/Headline.astro";
 import DefaultLayout from "../../../../../../../../layouts/DefaultLayout.astro";
 import SelectorBar from "../../../../../../../../components/SelectorBar.tsx";
+
+// @ts-ignore
+import claim_showcase from "../../../../../../../../assets/images/docs/claims/claim-showcase.png?format=webp";
+// @ts-ignore
+import claimtool_demo from "../../../../../../../../assets/images/docs/claims/claimtool-demo.png?format=webp";
+// @ts-ignore
+import claim_ui from "../../../../../../../../assets/images/docs/claims/claim-ui.png?format=webp";
+// @ts-ignore
+import protections_ui from "../../../../../../../../assets/images/docs/claims/protections-ui.png?format=webp";
+// @ts-ignore
+import whitelist_ui from "../../../../../../../../assets/images/docs/claims/whitelist-ui.png?format=webp";
 ---
 
 <DefaultLayout title="Claims Docs">
 
   <div class="max-w-5xl mx-auto px-8 py-20 text-text font-sans">
 
-    <div class="flex justify-end mb-8"> <SelectorBar client:load /> </div>
+    <div class="flex justify-end mb-8">
+      <SelectorBar client:load />
+    </div>
 
-    <Headline text="Claims" class="mb-12 text-center"></Headline>
+    <Headline text="Claim System" class="mb-12 text-center"></Headline>
+
+    <!-- Showcase Image -->
+    <div class="mb-12">
+      <img src={claim_showcase} alt="Claim System Showcase" class="rounded-xl shadow-lg max-w-full mx-auto" />
+    </div>
+
+    <!-- Introduction -->
+    <h2 class="text-2xl font-bold mb-4">Introduction</h2>
+    <p class="mb-6 text-base leading-relaxed">
+      The <strong>Claim System</strong> exists to protect your builds and prevent griefing. 
+      In previous BuildMC servers, griefing was a recurring issue. To ensure fair play and preserve creativity, 
+      BuildMC introduced a powerful claim system that allows <strong>players</strong> and <strong>teams</strong> 
+      to claim areas of chunks that others cannot access or modify.
+    </p>
+
+    <!-- Types of Claims -->
+    <h2 class="text-2xl font-bold mb-4 mt-12">Types of Claims</h2>
+    <p class="mb-6 text-base leading-relaxed">
+      There are four types of claims in the BuildMC claim system, each serving a different purpose:
+    </p>
+
+    <ul class="list-disc ml-8 mb-8 space-y-4">
+      <li>
+        <strong>Team Claim:</strong> Created by a team member and shared with all members of the same team. 
+        Everyone on the team can access, manage, and delete the claim.
+      </li>
+      <li>
+        <strong>Player Claim:</strong> Created by an individual player and owned solely by them. 
+        Only that player can access, modify, or delete the claim.
+      </li>
+      <li>
+        <strong>Server Claim:</strong> Created by administrators to protect important or global areas. 
+        These areas cannot be accessed by anyone except admins, who control their settings.
+      </li>
+      <li>
+        <strong>Placeholder Claim:</strong> Used by admins to prevent others from claiming a certain area 
+        (e.g., shopping districts). It doesn’t protect the land but simply reserves it.
+      </li>
+    </ul>
+
+    <!-- Creating a Claim -->
+    <h2 class="text-2xl font-bold mb-4 mt-12">Creating a Claim</h2>
+    <p class="mb-6 text-base leading-relaxed">
+      To create a claim, you first need to define the area to be claimed. Use the 
+      <code class="bg-background-10 px-1 rounded">/claim claimtool</code> command to obtain the <strong>Claim Tool</strong>.
+    </p>
+
+    <div class="mb-8">
+      <img src={claimtool_demo} alt="Using the Claim Tool" class="rounded-xl shadow-md max-w-full mx-auto" />
+    </div>
+
+    <p class="mb-6 text-base leading-relaxed">
+      With the claim tool in hand:
+    </p>
+    <ul class="list-disc ml-8 mb-6 space-y-3">
+      <li>Left-click to mark the <strong>first corner chunk</strong> of your selection.</li>
+      <li>Right-click to mark the <strong>second corner chunk</strong>.</li>
+    </ul>
+
+    <p class="mb-6 text-base leading-relaxed">
+      The selection size is limited (default: 10×10 chunks). Once your area is selected, use:
+    </p>
+
+    <pre class="mb-6 p-4 bg-background-10 rounded-xl overflow-x-auto text-sm mx-auto">claim create &lt;type&gt; &lt;name&gt;</pre>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Replace <code>&lt;type&gt;</code> with one of <code>team</code>, <code>player</code>, or <code>server</code>, 
+      and <code>&lt;name&gt;</code> with your chosen claim name.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      After creation, your claim is immediately protected using the default settings. 
+      Players and teams both have limits on how many chunks they can claim (defaults: 
+      <strong>256 chunks for players</strong> and <strong>1024 chunks for teams</strong>).
+    </p>
+
+    <!-- UI Section -->
+    <h2 class="text-2xl font-bold mb-4 mt-12">Claim Management UI</h2>
+    <p class="mb-6 text-base leading-relaxed">
+      The claim system includes an easy-to-use graphical interface for editing your claims.
+      Open it with <code class="bg-background-10 px-1 rounded">/claim</code> or 
+      <code class="bg-background-10 px-1 rounded">/claim edit</code>.
+    </p>
+
+    <div class="mb-8">
+      <img src={claim_ui} alt="Claim System UI" class="rounded-xl shadow-md max-w-full mx-auto" />
+    </div>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Through the UI you can:
+    </p>
+    <ul class="list-disc ml-8 mb-8 space-y-3">
+      <li>View all your claims</li>
+      <li>Edit claim protections</li>
+      <li>Manage whitelisted players</li>
+      <li>Delete claims you no longer need</li>
+    </ul>
+
+    <!-- Protections -->
+    <h2 class="text-2xl font-bold mb-4 mt-12">Protections</h2>
+    <p class="mb-6 text-base leading-relaxed">
+      Protections define what parts of your claim are secured. 
+      You can modify them via command:
+    </p>
+
+    <pre class="mb-6 p-4 bg-background-10 rounded-xl overflow-x-auto text-sm mx-auto">/claim protections &lt;type&gt; &lt;name&gt; &lt;protection&gt; &lt;true/false&gt;</pre>
+
+    <p class="mb-6 text-base leading-relaxed">
+      However, it’s recommended to use the UI for this. 
+      Inside the Protections menu, toggle protections using the green (enabled) 
+      and red (disabled) glass panes. Each option comes with a short description.
+    </p>
+
+    <div class="mb-8">
+      <img src={protections_ui} alt="Protections UI" class="rounded-xl shadow-md max-w-full mx-auto" />
+    </div>
+
+    <!-- Whitelist -->
+    <h2 class="text-2xl font-bold mb-4 mt-12">Whitelist</h2>
+    <p class="mb-6 text-base leading-relaxed">
+      The whitelist lets you define which players can bypass your claim’s protections.
+    </p>
+
+    <pre class="mb-6 p-4 bg-background-10 rounded-xl overflow-x-auto text-sm mx-auto">/claim whitelist add &lt;type&gt; &lt;name&gt; &lt;player&gt;
+/claim whitelist remove &lt;type&gt; &lt;name&gt; &lt;player&gt;</pre>
+
+    <p class="mb-6 text-base leading-relaxed">
+      You can also manage the whitelist directly through the UI:
+    </p>
+
+    <div class="mb-8">
+      <img src={whitelist_ui} alt="Whitelist UI" class="rounded-xl shadow-md max-w-full mx-auto" />
+    </div>
+
+    <!-- Other Commands -->
+    <h2 class="text-2xl font-bold mb-4 mt-12">Other Commands</h2>
+    <p class="mb-6 text-base leading-relaxed">
+      Use <code class="bg-background-10 px-1 rounded">/claim who</code> to check who owns the claim 
+      in the area you are currently standing in.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Claims are an essential part of keeping the BuildMC world safe and organized, 
+      so use them wisely and protect what you create!
+    </p>
 
   </div>
 
