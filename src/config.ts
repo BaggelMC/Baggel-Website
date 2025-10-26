@@ -3,7 +3,6 @@ export const LINKS = {
     github: "https://github.com/BaggelMC",
     server_address: "baggel.de",
     email: "mail@baggel.de",
-    phone: "+49 123 4567890",
 
     core_plugin_github: "https://github.com/BaggelMC/BuildMC-Core-Plugin",
     core_plugin_download_github: "https://github.com/BaggelMC/BuildMC-Core-Plugin/releases",

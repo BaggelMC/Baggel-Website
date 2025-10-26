@@ -1,0 +1,101 @@
+---
+import { LINKS } from "../../../../config";
+import Headline from "../../../../components/Headline.astro";
+import DefaultLayout from "../../../../layouts/DefaultLayout.astro";
+import SelectorBar from "../../../../components/SelectorBar.tsx";
+import Separator from "../../../../components/Separator.astro";
+
+// @ts-ignore
+import logoSrc from "../../../../assets/images/buildmc-core.png?format=webp&w=800";
+---
+
+<DefaultLayout title="Core Plugin">
+
+  <div class="max-w-5xl mx-auto px-8 py-20 text-text font-sans">
+
+    <div class="flex justify-end mb-8">
+      <SelectorBar
+        showVersion={false}
+        client:load
+      />
+    </div>
+
+    <div class="flex justify-center mb-6">
+      <img src={logoSrc} alt="BuildMC-Core Logo" class="w-160 h-auto" />
+    </div>
+
+    <div class="space-y-8 text-base leading-base text-text/90">
+
+      <p class="md:text-lg md:leading-lg sm:text-base text-text">
+        <strong class="text-primary">BuildMC-Core</strong> ist das Herzstück des 
+        <a class="text-accent" href="../../../projects/buildmc/">BuildMC-SMP</a>-Projekts. 
+        Ein eigenes Plugin, das eine Vielzahl von Drittanbieter-Lösungen durch ein einziges, zuverlässiges und einheitliches System ersetzt. 
+        Mit der Zeit stießen wir bei den verwendeten Plugins auf Einschränkungen, Fehler und unpassende Funktionen. 
+        Um diese Probleme zu beheben, haben wir eine interne Lösung entwickelt, die perfekt auf die Bedürfnisse unseres Servers abgestimmt ist.
+      </p>
+
+      <p>
+        <strong class="text-primary">BuildMC-Core</strong> vereint wichtige Gameplay- und Administrationsfunktionen 
+        in einem einzigen, leistungsstarken Plugin. Mit Mehrsprachigkeit, umfangreichen Konfigurationsmöglichkeiten 
+        und einer erweiterbaren API für Entwickler.
+      </p>
+
+      <h2 class="text-xl leading-xl text-primary mt-12 mb-6 font-minecraft">Kernfunktionen</h2>
+
+      <ul class="space-y-4 list-disc list-inside text-text-50">
+        <li class="mb-6"><strong class="text-accent">Claim-System:</strong> Ein robustes, chunk-basiertes Claim-System mit Benutzeroberfläche zur Verwaltung von Berechtigungen und Schutz. Unterstützt sowohl Spieler als auch Teams.</li>
+        <li class="mb-6"><strong class="text-accent">Spawn-Elytra:</strong> Ermöglicht es Spielern, vom Spawn aus zu gleiten, auch ohne Elytra im Inventar. Perfekt für Erkundung. Enthält eine einmalige Boost-Funktion.</li>
+        <li class="mb-6"><strong class="text-accent">End-Event:</strong> Die End-Dimension ist anfangs gesperrt und kann von Administratoren freigeschaltet werden, was eine globale Ingame-Ankündigung auslöst.</li>
+        <li class="mb-6"><strong class="text-accent">Spielerköpfe:</strong> Spieler lassen beim Tod ihre Köpfe fallen, ein sammelbares Trophäensystem.</li>
+        <li class="mb-6"><strong class="text-accent">Status:</strong> Weise Spielern Status zu, mit Regeln, welche Spieler auf welche Funktionen Zugriff haben.</li>
+        <li class="mb-6"><strong class="text-accent">Übersetzungen:</strong> Vollständige Unterstützung für Deutsch und Englisch direkt integriert.</li>
+        <li class="mb-6"><strong class="text-accent">Detaillierte Konfiguration:</strong> Jedes System kann individuell angepasst werden, um das Gameplay und die Verwaltungspräferenzen deines Servers perfekt abzustimmen.</li>
+        <li class="mb-6"><strong class="text-accent">Entwickler-API:</strong> Erweitere und integriere BuildMC-Core in deine eigenen Plugins über eine saubere, dokumentierte API.</li>
+      </ul>
+
+      <!-- Open Source Section -->
+      <h2 class="text-xl leading-xl text-primary mt-12 mb-6 font-minecraft">Open Source</h2>
+      <p>
+        <strong class="text-primary">BuildMC-Core</strong> ist zu 100% Open Source! Du kannst das Projekt auf GitHub erkunden, dazu beitragen oder es forken:
+        <a class="text-accent font-bold" href={LINKS.core_plugin_github} target="_blank" rel="noopener noreferrer">
+          GitHub-Repository
+        </a>
+      </p>
+
+      <!-- Download Section -->
+      <h2 class="text-xl leading-xl text-primary mt-12 mb-6 font-minecraft">Download</h2>
+      <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-6">
+        <a href={LINKS.core_plugin_download_github} class="px-6 py-3 rounded-2xl bg-primary text-background font-bold transition duration-300 hover:bg-accent hover:scale-105" target="_blank" rel="noopener noreferrer">
+          Alle Versionen (GitHub)
+        </a>
+        <a href={LINKS.core_plugin_download_spigot} class="px-6 py-3 rounded-2xl bg-secondary text-text font-bold transition duration-300 hover:bg-accent hover:text-background hover:scale-105" target="_blank" rel="noopener noreferrer">
+          Spigot-Version
+        </a>
+        <a href={LINKS.core_plugin_download_modrinth} class="px-6 py-3 rounded-2xl bg-accent text-background font-bold transition duration-300 hover:bg-primary hover:scale-105" target="_blank" rel="noopener noreferrer">
+          Alle Versionen (Modrinth)
+        </a>
+        <a href={LINKS.core_plugin_download_hangar} class="px-6 py-3 rounded-2xl bg-secondary text-text font-bold transition duration-300 hover:bg-accent hover:text-background hover:scale-105" target="_blank" rel="noopener noreferrer">
+          Paper-Version
+        </a>
+      </div>
+
+      <Separator margin_sides="0"/>
+
+      <!-- Documentation Buttons -->
+      <div class="mt-16 flex flex-col sm:flex-row items-center justify-center gap-6">
+        <a href="./core/docs/1.1.0/user" class="px-6 py-3 rounded-2xl bg-primary text-background font-bold transition duration-300 hover:bg-accent hover:scale-105">
+          Benutzer-Dokumentation
+        </a>
+        <a href="./core/docs/1.1.0/admin" class="px-6 py-3 rounded-2xl bg-secondary text-text font-bold transition duration-300 hover:bg-accent hover:text-background hover:scale-105">
+          Admin-Dokumentation
+        </a>
+        <a href="./core/docs/1.1.0/dev" class="px-6 py-3 rounded-2xl bg-accent text-background font-bold transition duration-300 hover:bg-primary hover:scale-105">
+          Entwickler-Dokumentation
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+</DefaultLayout>

@@ -97,6 +97,7 @@ import "../styles/index.css";
   document.addEventListener("DOMContentLoaded", () => {
     const playButton = document.getElementById("playAudioButton") as HTMLButtonElement | null;
     const audio = document.getElementById("pronunciationAudio") as HTMLAudioElement | null;
+    if (!audio) return; audio.volume = 0.25;
     const speakerIcon = document.getElementById("speakerIcon") as SVGSVGElement | null;
 
     if (playButton && audio && speakerIcon) {

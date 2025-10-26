@@ -1,0 +1,176 @@
+---
+import Headline from "../../../../../../../../components/Headline.astro";
+import DefaultLayout from "../../../../../../../../layouts/DefaultLayout.astro";
+import SelectorBar from "../../../../../../../../components/SelectorBar.tsx";
+
+// @ts-ignore
+import claim_showcase from "../../../../../../../../assets/images/docs/claims/claim-showcase.png?format=webp";
+// @ts-ignore
+import claimtool_demo from "../../../../../../../../assets/images/docs/claims/claimtool-demo.png?format=webp";
+// @ts-ignore
+import claim_ui from "../../../../../../../../assets/images/docs/claims/claim-ui.png?format=webp";
+// @ts-ignore
+import protections_ui from "../../../../../../../../assets/images/docs/claims/protections-ui.png?format=webp";
+// @ts-ignore
+import whitelist_ui from "../../../../../../../../assets/images/docs/claims/whitelist-ui.png?format=webp";
+---
+
+<DefaultLayout title="Claims Dokumentation">
+
+  <div class="max-w-5xl mx-auto px-8 py-20 text-text font-sans">
+
+    <div class="flex justify-end mb-8">
+      <SelectorBar client:load />
+    </div>
+
+    <Headline text="Claim-System" class="mb-12 text-center"></Headline>
+
+    <!-- Showcase Image -->
+    <div class="mb-12">
+      <img src={claim_showcase} alt="Claim-System Übersicht" class="rounded-xl shadow-lg max-w-full mx-auto" />
+    </div>
+
+    <!-- Introduction -->
+    <h2 class="text-xl font-bold mb-4">Einführung</h2>
+    <p class="mb-6 text-base leading-relaxed">
+      Das <strong>Claim-System</strong> dient dazu, deine Bauten zu schützen und Griefing zu verhindern. 
+      In früheren BuildMC-Servern war Griefing ein wiederkehrendes Problem. Um faires Spielen und kreative Freiheit zu gewährleisten, 
+      führte BuildMC ein leistungsstarkes Claim-System ein, das es <strong>Spielern</strong> und <strong>Teams</strong> ermöglicht, 
+      Bereiche von Chunks zu beanspruchen, auf die andere keinen Zugriff haben oder die sie nicht verändern können.
+    </p>
+
+    <!-- Types of Claims -->
+    <h2 class="text-xl font-bold mb-4 mt-12">Arten von Claims</h2>
+    <p class="mb-6 text-base leading-relaxed">
+      Im BuildMC-Claim-System gibt es vier Arten von Claims, die jeweils unterschiedliche Zwecke erfüllen:
+    </p>
+
+    <ul class="list-disc ml-8 mb-8 space-y-4">
+      <li>
+        <strong>Team-Claim:</strong> Wird von einem Teammitglied erstellt und mit allen Mitgliedern desselben Teams geteilt. 
+        Jeder im Team kann auf den Claim zugreifen, ihn verwalten und löschen.
+      </li>
+      <li>
+        <strong>Spieler-Claim:</strong> Wird von einem einzelnen Spieler erstellt und gehört ausschließlich ihm. 
+        Nur dieser Spieler kann darauf zugreifen, es verändern oder löschen.
+      </li>
+      <li>
+        <strong>Server-Claim:</strong> Wird von Administratoren erstellt, um wichtige oder globale Bereiche zu schützen. 
+        Nur Admins können auf diese Bereiche zugreifen und deren Einstellungen ändern.
+      </li>
+      <li>
+        <strong>Platzhalter-Claim:</strong> Wird von Admins verwendet, um zu verhindern, dass andere einen bestimmten Bereich beanspruchen 
+        (z. B. Einkaufsviertel). Dieser Claim schützt das Land nicht aktiv, sondern reserviert es lediglich.
+      </li>
+    </ul>
+
+    <!-- Creating a Claim -->
+    <h2 class="text-xl font-bold mb-4 mt-12">Einen Claim erstellen</h2>
+    <p class="mb-6 text-base leading-relaxed">
+      Um einen Claim zu erstellen, musst du zuerst den Bereich definieren, der beansprucht werden soll. 
+      Verwende den Befehl 
+      <code class="bg-background-10 px-1 rounded">/claim claimtool</code>, um das <strong>Claim-Tool</strong> zu erhalten.
+    </p>
+
+    <div class="mb-8">
+      <img src={claimtool_demo} alt="Verwendung des Claim-Tools" class="rounded-xl shadow-md max-w-full mx-auto" />
+    </div>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Mit dem Claim-Tool in der Hand:
+    </p>
+    <ul class="list-disc ml-8 mb-6 space-y-3">
+      <li>Linksklick, um die <strong>erste Eck-Chunk</strong> deiner Auswahl zu markieren.</li>
+      <li>Rechtsklick, um die <strong>zweite Eck-Chunk</strong> zu markieren.</li>
+    </ul>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Die Größe der Auswahl ist begrenzt (Standard: 10×10 Chunks). Sobald dein Bereich ausgewählt ist, verwende:
+    </p>
+
+    <pre class="mb-6 p-4 bg-background-10 rounded-xl overflow-x-auto text-sm mx-auto">/claim create &lt;typ&gt; &lt;name&gt;</pre>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Ersetze <code>&lt;typ&gt;</code> durch <code>team</code>, <code>player</code> oder <code>server</code> 
+      und <code>&lt;name&gt;</code> durch den gewünschten Claim-Namen.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Nach der Erstellung ist dein Claim sofort mit den Standardeinstellungen geschützt. 
+      Spieler und Teams haben jeweils Limits, wie viele Chunks sie beanspruchen dürfen (Standard: 
+      <strong>256 Chunks für Spieler</strong> und <strong>1024 Chunks für Teams</strong>).
+    </p>
+
+    <!-- UI Section -->
+    <h2 class="text-xl font-bold mb-4 mt-12">Claim-Verwaltungsoberfläche</h2>
+    <p class="mb-6 text-base leading-relaxed">
+      Das Claim-System enthält eine benutzerfreundliche grafische Oberfläche, um Claims zu bearbeiten.  
+      Öffne sie mit <code class="bg-background-10 px-1 rounded">/claim</code> oder 
+      <code class="bg-background-10 px-1 rounded">/claim edit</code>.
+    </p>
+
+    <div class="mb-8">
+      <img src={claim_ui} alt="Claim-System Benutzeroberfläche" class="rounded-xl shadow-md max-w-full mx-auto" />
+    </div>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Über die Benutzeroberfläche kannst du:
+    </p>
+    <ul class="list-disc ml-8 mb-8 space-y-3">
+      <li>Alle deine Claims anzeigen</li>
+      <li>Claim-Schutzoptionen bearbeiten</li>
+      <li>Spieler auf die Whitelist setzen oder entfernen</li>
+      <li>Claims löschen, die du nicht mehr benötigst</li>
+    </ul>
+
+    <!-- Protections -->
+    <h2 class="text-xl font-bold mb-4 mt-12">Schutzoptionen</h2>
+    <p class="mb-6 text-base leading-relaxed">
+      Schutzoptionen bestimmen, welche Teile deines Claims gesichert sind.  
+      Du kannst sie über den folgenden Befehl ändern:
+    </p>
+
+    <pre class="mb-6 p-4 bg-background-10 rounded-xl overflow-x-auto text-sm mx-auto">/claim protections &lt;typ&gt; &lt;name&gt; &lt;schutz&gt; &lt;true/false&gt;</pre>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Es wird jedoch empfohlen, die Benutzeroberfläche dafür zu verwenden.  
+      Im Menü „Protections“ kannst du Schutzoptionen mit grünen (aktiviert) 
+      und roten (deaktiviert) Glasscheiben umschalten. Jede Option hat eine kurze Beschreibung.
+    </p>
+
+    <div class="mb-8">
+      <img src={protections_ui} alt="Schutzoptionen Benutzeroberfläche" class="rounded-xl shadow-md max-w-full mx-auto" />
+    </div>
+
+    <!-- Whitelist -->
+    <h2 class="text-xl font-bold mb-4 mt-12">Whitelist</h2>
+    <p class="mb-6 text-base leading-relaxed">
+      Die Whitelist ermöglicht es dir festzulegen, welche Spieler die Schutzmechanismen deines Claims umgehen dürfen.
+    </p>
+
+    <pre class="mb-6 p-4 bg-background-10 rounded-xl overflow-x-auto text-sm mx-auto">/claim whitelist add &lt;typ&gt; &lt;name&gt; &lt;spieler&gt;
+/claim whitelist remove &lt;typ&gt; &lt;name&gt; &lt;spieler&gt;</pre>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Du kannst die Whitelist auch direkt über die Benutzeroberfläche verwalten:
+    </p>
+
+    <div class="mb-8">
+      <img src={whitelist_ui} alt="Whitelist Benutzeroberfläche" class="rounded-xl shadow-md max-w-full mx-auto" />
+    </div>
+
+    <!-- Other Commands -->
+    <h2 class="text-xl font-bold mb-4 mt-12">Weitere Befehle</h2>
+    <p class="mb-6 text-base leading-relaxed">
+      Verwende <code class="bg-background-10 px-1 rounded">/claim who</code>, um zu prüfen, wem der Claim gehört, 
+      in dem du dich gerade befindest.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Claims sind ein wesentlicher Bestandteil, um die BuildMC-Welt sicher und organisiert zu halten.  
+      Verwende sie also mit Bedacht und schütze, was du erschaffst!
+    </p>
+
+  </div>
+
+</DefaultLayout>
