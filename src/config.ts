@@ -3,7 +3,13 @@ export const LINKS = {
     github: "https://github.com/BaggelMC",
     server_address: "baggel.de",
     email: "mail@baggel.de",
-    phone: "+49 123 4567890"
+    phone: "+49 123 4567890",
+
+    core_plugin_github: "https://github.com/BaggelMC/BuildMC-Core-Plugin",
+    core_plugin_download_github: "https://github.com/BaggelMC/BuildMC-Core-Plugin/releases",
+    core_plugin_download_spigot: "https://www.spigotmc.org/resources/buildmc-core-spigot.127607/",
+    core_plugin_download_modrinth: "https://modrinth.com/plugin/buildmc-core/versions",
+    core_plugin_download_hangar: "https://hangar.papermc.io/BuildMC/BuildMC-Core"
 }
 
 export const RESOURCES = {
