@@ -1,0 +1,71 @@
+---
+import Headline from "../../../../../../../../components/Headline.astro";
+import DefaultLayout from "../../../../../../../../layouts/DefaultLayout.astro";
+import SelectorBar from "../../../../../../../../components/SelectorBar.tsx";
+
+// @ts-ignore
+import showcase from "../../../../../../../../assets/images/docs/status/showcase.png?format=webp";
+// @ts-ignore
+import console from "../../../../../../../../assets/images/docs/status/console.png?format=webp";
+// @ts-ignore
+import no_reset_example from "../../../../../../../../assets/images/docs/status/no-reset-example.png?format=webp";
+---
+
+<DefaultLayout title="Status Docs">
+
+  <div class="max-w-5xl mx-auto px-8 py-20 text-text font-sans">
+
+    <div class="flex justify-end mb-8">
+      <SelectorBar client:load />
+    </div>
+
+    <Headline text="Status System" class="mb-12 text-center"></Headline>
+
+    <!-- Showcase Image -->
+    <div class="mb-12">
+      <img src={showcase} alt="Status Showcase" class="rounded-xl shadow-lg max-w-full mx-auto" />
+    </div>
+
+    <p class="mb-6 text-base leading-relaxed">
+      A <strong>Status</strong> is a small piece of text that appears in front of your name in the game. 
+      You can assign yourself a status using <code class="bg-background-10">/status set &lt;status&gt;</code> and remove it using <code class="bg-background-10">/status remove</code>.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Statuses are added by administrators in the config file. In BuildMC events, players are often allowed to submit their own statuses. 
+      A status is defined using the <strong>MiniMessage format</strong>. Tools like the <a href="https://webui.advntr.dev" class="text-accent underline" target="_blank" rel="noopener noreferrer">official MiniMessage Viewer</a> or <a href="https://www.birdflop.com/resources/rgb/" class="text-accent underline" target="_blank" rel="noopener noreferrer">Birdflop</a> can help you design your status (set Color Format to MiniMessage).
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Example status:
+    </p>
+
+    <pre class="mb-6 p-4 bg-background-10 rounded-xl overflow-x-auto text-sm mx-auto">&lt;b&gt;&lt;gradient:#5e4fa2:#f79459&gt;[Example Status]&lt;/gradient&gt;&lt;/b&gt;&lt;reset&gt; </pre>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Make sure to include a <code>&lt;reset&gt;</code> tag and a whitespace character at the end. Without it, your formatting might bleed into your name:
+    </p>
+
+    <div class="mb-6">
+      <img src={no_reset_example} alt="Malformed status example" class="rounded-xl shadow-md max-w-full mx-auto" />
+    </div>
+
+    <p class="mb-6 text-base leading-relaxed">
+      <strong>Note:</strong> Not all statuses may be available to you. The admins control which tags can be used by everyone, by specific teams, or by players with certain permissions. You will only see and be able to use the statuses allowed for your account.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      <strong>Fun fact:</strong> admins can see all of the beautiful status tags in the console as well:
+    </p>
+
+    <div class="mb-12">
+      <img src={console} alt="Status in console" class="rounded-xl shadow-md max-w-full mx-auto" />
+    </div>
+
+    <p class="mb-6 text-base leading-relaxed">
+      A good status is short, recognizable, and visually appealing.
+    </p>
+
+  </div>
+
+</DefaultLayout>

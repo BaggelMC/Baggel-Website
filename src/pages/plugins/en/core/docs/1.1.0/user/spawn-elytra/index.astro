@@ -1,0 +1,17 @@
+---
+import Headline from "../../../../../../../../components/Headline.astro";
+import DefaultLayout from "../../../../../../../../layouts/DefaultLayout.astro";
+import SelectorBar from "../../../../../../../../components/SelectorBar.tsx";
+---
+
+<DefaultLayout title="Spawn Eyltra Docs">
+
+  <div class="max-w-5xl mx-auto px-8 py-20 text-text font-sans">
+
+    <div class="flex justify-end mb-8"> <SelectorBar client:load /> </div>
+
+    <Headline text="Spawn Eyltra" class="mb-12 text-center"></Headline>
+
+  </div>
+
+</DefaultLayout>

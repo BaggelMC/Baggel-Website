@@ -2,19 +2,47 @@
 import Headline from "../../../../../../../components/Headline.astro";
 import DefaultLayout from "../../../../../../../layouts/DefaultLayout.astro";
 import SelectorBar from "../../../../../../../components/SelectorBar.tsx";
+import Separator from "../../../../../../../components/Separator.astro";
 ---
 
 <DefaultLayout title="User Docs">
 
   <div class="max-w-5xl mx-auto px-8 py-20 text-text font-sans">
 
-    <div class="flex justify-end mb-8">
-      <SelectorBar
-        client:load
-      />
+    <div class="flex justify-end mb-8"> <SelectorBar client:load /> </div>
+
+    <Headline text="User Documentation" class="mb-12 text-center" />
+
+    <!-- Category buttons -->
+    <div class="flex justify-center space-x-6 mb-16">
+      <a 
+        href="/plugins/en/core/docs/1.1.0/user/claims" 
+        class="px-6 py-3 rounded-lg bg-background-50 text-text hover:bg-primary transition-colors duration-base"
+      >
+        Claims
+      </a>
+      <a 
+        href="/plugins/en/core/docs/1.1.0/user/status" 
+        class="px-6 py-3 rounded-lg bg-background-50 text-text hover:bg-primary transition-colors duration-base"
+      >
+        Status
+      </a>
+      <a 
+        href="/plugins/en/core/docs/1.1.0/user/spawn-elytra" 
+        class="px-6 py-3 rounded-lg bg-background-50 text-text hover:bg-primary transition-colors duration-base"
+      >
+        Spawn Elytra
+      </a>
     </div>
+
+    <div class="flex justify-center space-x-6 mb-16">
+      <div>
+        <p>Select a category above to view its documentation.</p>
+      </div>
+    </div>
+
+    <Separator/>
     
-    <Headline text="User Documentation" class="mb-12 text-center"></Headline>
 
   </div>
 
