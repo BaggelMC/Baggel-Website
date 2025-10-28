@@ -1,0 +1,84 @@
+---
+import Headline from "../../../../../../../../components/Headline.astro";
+import DefaultLayout from "../../../../../../../../layouts/DefaultLayout.astro";
+import SelectorBar from "../../../../../../../../components/SelectorBar.tsx";
+import Separator from "../../../../../../../../components/Separator.astro";
+import CoreDownload from "../../../../../../../../components/Core-Download.astro";
+---
+
+<DefaultLayout title="Install Docs">
+
+  <div class="max-w-5xl mx-auto px-8 py-20 text-text font-sans">
+
+    <div class="flex justify-end mb-8">
+      <SelectorBar client:load />
+    </div>
+
+    <Headline text="Install Documentation" class="mb-12 text-center" />
+
+    <Separator margin_sides="0" />
+
+    <CoreDownload />
+
+    <Separator margin_sides="0" />
+
+    <p class="mt-12 mb-6 text-base leading-relaxed">
+      The <strong>BuildMC Core</strong> plugin is available in two versions: one for <strong>Spigot</strong> and one for <strong>Paper</strong> servers. 
+      We recommend using the <strong>Paper</strong> version for better performance and compatibility. 
+      However, the Spigot version remains available if you prefer or require it.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      <strong>Note:</strong> BuildMC Core does <em>not</em> currently support <strong>Folia</strong>.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Installation is simple, just like any other plugin:
+    </p>
+
+    <ol class="list-decimal list-inside mb-6 space-y-2 text-base leading-relaxed">
+      <li>Download the correct <code class="bg-background-10 px-1 rounded">.jar</code> file for your server type.</li>
+      <li>Place it inside your server’s <code class="bg-background-10 px-1 rounded">plugins</code> folder.</li>
+      <li>Restart your server.</li>
+    </ol>
+
+    <p class="mb-6 text-base leading-relaxed">
+      On first startup, BuildMC Core will automatically generate a <code class="bg-background-10 px-1 rounded">BuildMC-Core</code> folder 
+      inside your <code class="bg-background-10 px-1 rounded">plugins</code> directory. This folder contains all configuration files and data used by the plugin.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      By default, BuildMC Core blocks certain commands like <code class="bg-background-10 px-1 rounded">/reload</code>. 
+      Always perform a <strong>full server restart</strong> after making changes to the configuration.
+      Using reload commands will cause unexpected behavior and plugin errors.
+    </p>
+
+    <Separator margin_sides="0" />
+
+    <Headline text="Database Configuration" class="mb-6 mt-12 text-center" />
+
+    <p class="mb-6 text-base leading-relaxed">
+      Before diving in, it’s a good idea to consider how your database will be used. 
+      BuildMC Core supports the <strong>H2 database</strong> out of the box and stores its settings in 
+      <code class="bg-background-10 px-1 rounded">database.yml</code>.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      You’ll find the option <code class="bg-background-10 px-1 rounded">useServerMode</code> in this file. 
+      By default, it’s set to <code class="bg-background-10 px-1 rounded">false</code>, which means the plugin runs H2 in <strong>embedded mode</strong>. 
+      In this mode, only one process can access the database.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      If multiple processes need access, for example, when using <strong>BungeeCord</strong>, <strong>Velocity</strong>, 
+      or plugin extensions, you should enable <strong>TCP mode</strong> by setting 
+      <code class="bg-background-10 px-1 rounded">useServerMode: true</code>.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      For most BuildMC servers, the default embedded mode is perfectly fine and requires no changes.
+    </p>
+
+  </div>
+
+</DefaultLayout>

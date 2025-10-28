@@ -1,0 +1,117 @@
+--- 
+import Headline from "../../../../../../../../components/Headline.astro";
+import DefaultLayout from "../../../../../../../../layouts/DefaultLayout.astro";
+import SelectorBar from "../../../../../../../../components/SelectorBar.tsx";
+
+// @ts-ignore
+import elytra_zone_example from "../../../../../../../../assets/images/docs/spawn-elytra/showcase.png?format=webp";
+// @ts-ignore
+import boost_example from "../../../../../../../../assets/images/docs/spawn-elytra/boost-key.png?format=webp";
+---
+
+<DefaultLayout title="Spawn Elytra Docs">
+  <div class="max-w-5xl mx-auto px-8 py-20 text-text font-sans">
+    <div class="flex justify-end mb-8">
+      <SelectorBar client:load />
+    </div>
+
+    <Headline text="Spawn Elytra System" class="mb-12 text-center" />
+
+    <p class="mb-6 text-base leading-relaxed">
+      The <strong>Spawn Elytra System</strong> gives players temporary elytra flight
+      inside a defined <strong>Elytra Zone</strong>, an area usually located around
+      spawn or a starting island. It helps players quickly spread out at the beginning
+      of a season or event, without needing their own elytra.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      This feature was inspired by the <strong>Craft Attack</strong> series and is designed
+      to make the early-game experience smoother and more dynamic. It allows everyone
+      to take off and glide easily from the spawn area without providing permanent flight.
+    </p>
+
+    <!-- Example Image -->
+    <div class="mb-12">
+      <img src={elytra_zone_example} alt="Elytra Zone Example" class="rounded-xl shadow-lg max-w-full mx-auto" />
+    </div>
+
+    <h2 class="text-xl font-bold mb-4 mt-12">Setting Up the Elytra Zone</h2>
+    <p class="mb-6 text-base leading-relaxed">
+      You can set up an Elytra Zone directly in-game using the following command:
+    </p>
+
+    <pre class="mb-6 p-4 bg-background-10 rounded-xl overflow-x-auto text-sm mx-auto">
+/buildmc elytrazone setup &lt;pos1/pos2&gt; &lt;coordinates&gt;</pre>
+
+    <p class="mb-6 text-base leading-relaxed">
+      After running this command, the Elytra Zone will be immediately available.
+      Alternatively, you can define the coordinates manually in your configuration file:
+    </p>
+
+    <pre class="mb-6 p-4 bg-background-10 rounded-xl overflow-x-auto text-sm mx-auto">
+spawn-elytra:
+  zone:
+    pos1:
+      x:
+      y:
+      z:
+    pos2:
+      x:
+      y:
+      z:
+    world:</pre>
+
+    <p class="mb-6 text-base leading-relaxed">
+      You must <strong>restart the server</strong> for any configuration changes to take effect.
+    </p>
+
+    <h2 class="text-xl font-bold mb-4 mt-12">Configuration Options</h2>
+
+    <p class="mb-6 text-base leading-relaxed">
+      The configuration for the <code class="bg-background-10">spawn-elytra</code> section allows you to fine-tune
+      how the system behaves:
+    </p>
+
+    <ul class="list-disc pl-8 mb-6 text-base leading-relaxed">
+      <li><strong>enabled:</strong> Toggle the system on or off.</li>
+      <li><strong>boost-strength:</strong> Adjusts the vertical boost applied when players start flying (default: <code>5</code>).</li>
+      <li><strong>allow-fireworks:</strong> Controls whether players can use rockets while flying with the spawn elytra.</li>
+      <li><strong>disable-on-join:</strong> Determines if flight is disabled immediately when a player joins the server.</li>
+    </ul>
+
+    <pre class="mb-8 p-4 bg-background-10 rounded-xl overflow-x-auto text-sm mx-auto">
+spawn-elytra:
+  enabled: true
+  boost-strength: 5
+  allow-fireworks: false
+  disable-on-join: true
+  zone:
+    pos1:
+      x: 100
+      y: 64
+      z: 100
+    pos2:
+      x: 200
+      y: 90
+      z: 200
+    world: world
+    </pre>
+
+    <div class="mb-12">
+      <img src={boost_example} alt="Boost Example" class="rounded-xl shadow-lg max-w-full mx-auto" />
+    </div>
+
+    <h2 class="text-xl font-bold mb-4 mt-12">Tips & Best Practices</h2>
+
+    <ul class="list-disc pl-8 text-base leading-relaxed mb-6">
+      <li>Keep your Elytra Zone boundaries clearly defined. Keep in mind the bounds are invisible to players.</li>
+      <li>Use <code>/buildmc elytrazone setup</code> in creative mode for easier placement.</li>
+      <li>Restart the server after editing the config to ensure proper loading.</li>
+    </ul>
+
+    <p class="mt-8 text-base leading-relaxed">
+      The <strong>Spawn Elytra System</strong> helps make early exploration smoother,
+      reducing crowding at spawn and improving the flow of new seasons or events.
+    </p>
+  </div>
+</DefaultLayout>

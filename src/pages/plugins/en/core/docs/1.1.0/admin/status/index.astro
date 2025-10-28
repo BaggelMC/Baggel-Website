@@ -1,0 +1,115 @@
+---
+import Headline from "../../../../../../../../components/Headline.astro";
+import DefaultLayout from "../../../../../../../../layouts/DefaultLayout.astro";
+import SelectorBar from "../../../../../../../../components/SelectorBar.tsx";
+
+// @ts-ignore
+import showcase from "../../../../../../../../assets/images/docs/status/showcase.png?format=webp";
+// @ts-ignore
+import no_reset_example from "../../../../../../../../assets/images/docs/status/no-reset-example.png?format=webp";
+---
+
+<DefaultLayout title="Status Docs">
+
+  <div class="max-w-5xl mx-auto px-8 py-20 text-text font-sans">
+
+    <div class="flex justify-end mb-8">
+      <SelectorBar client:load />
+    </div>
+
+    <Headline text="Status System" class="mb-12 text-center"></Headline>
+
+    <!-- Showcase Image -->
+    <div class="mb-12">
+      <img src={showcase} alt="Status Showcase" class="rounded-xl shadow-lg max-w-full mx-auto" />
+    </div>
+
+    <p class="mb-6 text-base leading-relaxed">
+      The <strong>Status System</strong> allows players to display short, colorful tags in front of their names.
+      This page explains how to configure and manage statuses as an administrator.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Players can set and remove their status using:
+    </p>
+
+    <pre class="mb-6 p-4 bg-background-10 rounded-xl overflow-x-auto text-sm mx-auto">/status set &lt;status-id&gt;
+/status remove</pre>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Statuses are defined in your configuration file. A basic status entry looks like this:
+    </p>
+
+    <pre class="mb-6 p-4 bg-background-10 rounded-xl overflow-x-auto text-sm mx-auto">
+example:
+  display-name: "&lt;b&gt;&lt;gradient:#5e4fa2:#f79459&gt;[Example Status]&lt;/gradient&gt;&lt;/b&gt;&lt;reset&gt; "</pre>
+
+    <p class="mb-6 text-base leading-relaxed">
+      The key (<code class="bg-background-10">example</code> in this case) is the <strong>ID</strong> of the status. 
+      It’s the value players use in their command (e.g. <code class="bg-background-10">/status set example</code>). 
+      IDs can contain uppercase letters and numbers, but <strong>cannot include spaces</strong> or characters that can’t be typed in Minecraft chat.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      The <code>display-name</code> is written in <strong>MiniMessage format</strong>. You can design these visually using tools like:
+      <a href="https://webui.advntr.dev" class="text-accent underline" target="_blank" rel="noopener noreferrer">MiniMessage Viewer</a> 
+      or 
+      <a href="https://www.birdflop.com/resources/rgb/" class="text-accent underline" target="_blank" rel="noopener noreferrer">Birdflop</a> 
+      (set Color Format to MiniMessage).
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Always remember to include a <code>&lt;reset&gt;</code> tag and a trailing space at the end of the <code>display-name</code>.
+      Without them, the status color or formatting may leak into player names:
+    </p>
+
+    <div class="mb-6">
+      <img src={no_reset_example} alt="Malformed status example" class="rounded-xl shadow-md max-w-full mx-auto" />
+    </div>
+
+    <h2 class="text-xl font-bold mb-4 mt-12">Restricting Access</h2>
+
+    <p class="mb-6 text-base leading-relaxed">
+      You can limit who can use specific statuses by adding either a <code>permissions</code> key or a <code>teams</code> key. 
+      Both accept a list of values, so you can specify multiple entries if needed.
+    </p>
+
+    <p class="mb-4 text-base leading-relaxed font-semibold">Example: Permission-based Status</p>
+
+    <pre class="mb-8 p-4 bg-background-10 rounded-xl overflow-x-auto text-sm mx-auto">
+admin:
+  display-name: "&lt;bold&gt;&lt;red&gt;[&lt;/red&gt;&lt;/bold&gt;&lt;gradient:#ff0020:#dd0010&gt;Admin&lt;/gradient&gt;&lt;bold&gt;&lt;red&gt;]&lt;/red&gt;&lt;/bold&gt;&lt;reset&gt; "
+  permissions:
+    - buildmc.admin</pre>
+
+    <p class="mb-4 text-base leading-relaxed font-semibold">Example: Team-based Status</p>
+
+    <pre class="mb-8 p-4 bg-background-10 rounded-xl overflow-x-auto text-sm mx-auto">
+red-team:
+  display-name: "&lt;color:#ff0505&gt;[Red]&lt;/color&gt;&lt;reset&gt; "
+  teams:
+    - red</pre>
+
+    <p class="mb-6 text-base leading-relaxed">
+      You can find more information about teams on the 
+      <a href="https://minecraft.wiki/w/Commands/team" class="text-accent underline" target="_blank" rel="noopener noreferrer">Minecraft Wiki</a>.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      When a player tries to set a status, the system will automatically check whether they have the required permission or belong to one of the allowed teams.
+    </p>
+
+    <h2 class="text-xl font-bold mb-4 mt-12">Reloading Statuses</h2>
+
+    <p class="mb-6 text-base leading-relaxed">
+      After modifying or adding statuses in the configuration file, 
+      youcan use <code class="bg-background-10">/buildmc status reload</code> for changes to take effect.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      A well-configured status setup keeps things visually appealing, organized, and fair for all players.
+    </p>
+
+  </div>
+
+</DefaultLayout>

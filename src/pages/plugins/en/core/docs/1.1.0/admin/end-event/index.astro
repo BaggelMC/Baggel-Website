@@ -1,0 +1,109 @@
+---
+import Headline from "../../../../../../../../components/Headline.astro";
+import DefaultLayout from "../../../../../../../../layouts/DefaultLayout.astro";
+import SelectorBar from "../../../../../../../../components/SelectorBar.tsx";
+
+// @ts-ignore
+import broadcast from "../../../../../../../../assets/images/docs/end-event/broadcast.png?format=webp";
+// @ts-ignore
+import end_portal from "../../../../../../../../assets/images/docs/end-event/end-portal.png?format=webp";
+// @ts-ignore
+import config_example from "../../../../../../../../assets/images/docs/end-event/config-example.png?format=webp";
+---
+
+<DefaultLayout title="End Event Docs">
+
+  <div class="max-w-5xl mx-auto px-8 py-20 text-text font-sans">
+
+    <div class="flex justify-end mb-8">
+      <SelectorBar client:load />
+    </div>
+
+    <Headline text="End Event System" class="mb-12 text-center"></Headline>
+
+    <!-- Showcase Image -->
+    <div class="mb-12">
+      <img src={end_portal} alt="End Portal Preview" class="rounded-xl shadow-lg max-w-full mx-auto" />
+    </div>
+
+    <p class="mb-6 text-base leading-relaxed">
+      In most BuildMC events, the <strong>End Dimension</strong> is closed at the beginning of the project. 
+      A specific date is later chosen for the community to open the End and fight the Ender Dragon together.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Previously, this was managed manually through the <code class="bg-background-10">server.properties</code> file, requiring a full server restart, a tedious process. 
+      The <strong>End Event System</strong> automates this, allowing real-time control of the End portal state directly in-game.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      By default, the End is <strong>blocked</strong> and players cannot enter End Portals. 
+      Administrators can open it instantly with:
+    </p>
+
+    <pre class="mb-6 p-4 bg-background-10 rounded-xl overflow-x-auto text-sm mx-auto">/buildmc endevent open</pre>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Executing this command broadcasts a global announcement and immediately allows access to the End.
+      The current End state can also be modified in the config file, but using the command is recommended,  
+      as it updates instantly without requiring a restart.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      <strong>Note:</strong> In newer Minecraft versions, this feature overlaps with the built-in gamerule that 
+      controls End portal access. The BuildMC system still adds value through its integrated broadcast 
+      and event management features.
+    </p>
+
+    <!-- Broadcast Image -->
+    <div class="mb-12">
+      <img src={broadcast} alt="End Event Broadcast Message" class="rounded-xl shadow-lg max-w-full mx-auto" />
+    </div>
+
+    <Headline text="Configuration" class="mb-8 text-center"></Headline>
+
+    <p class="mb-6 text-base leading-relaxed">
+      The End Event settings can be found in the plugin’s configuration file:
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      By default, explosive entities are blocked from entering End portals to prevent destruction near spawn. 
+      It is still strongly recommended to protect the spawn area with a claim or region that blocks explosions entirely.
+    </p>
+
+    <div class="mb-12">
+      <img src={config_example} alt="End Event Config Example" class="rounded-xl shadow-md max-w-full mx-auto" />
+    </div>
+
+    <Headline text="Customizing Messages" class="mb-8 text-center"></Headline>
+
+    <p class="mb-6 text-base leading-relaxed">
+      The broadcast message shown when the End is opened or closed is stored in the language files. 
+      These are located at:
+    </p>
+
+    <pre class="mb-6 p-4 bg-background-10 rounded-xl overflow-x-auto text-sm mx-auto">
+plugins/BuildMC-Core/lang</pre>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Within each language file (e.g., <code>en-US.yml</code>), find and modify these keys:
+    </p>
+
+    <pre class="mb-6 p-4 bg-background-10 rounded-xl overflow-x-auto text-sm mx-auto">
+messages:
+  end-event:
+    broadcast-opened: "&lt;green&gt;The End has been opened! Prepare for the fight!"
+    broadcast-closed: "&lt;red&gt;The End has been closed!"</pre>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Update all relevant language files to ensure consistency across client languages. 
+      Restart the server after editing to apply changes.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      <strong>Tip:</strong> Keep your broadcast short and clear, it’s a moment everyone will see.
+    </p>
+
+  </div>
+
+</DefaultLayout>
