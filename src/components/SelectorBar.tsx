@@ -7,6 +7,7 @@ interface SelectorBarProps {
   availableVersions?: string[];
   showLang?: boolean;
   showVersion?: boolean;
+  showBack?: boolean;
   path?: string;
 }
 
@@ -17,6 +18,7 @@ export default function SelectorBar({
   availableVersions = ["1.1.0"],
   showLang = true,
   showVersion = true,
+  showBack = true,
   path: propPath,
 }: SelectorBarProps) {
   const [currentLang, setLang] = useState(propLang ?? "en");
@@ -30,21 +32,23 @@ export default function SelectorBar({
     de: "Deutsch",
   };
 
-  // Auto-detect language, version, and path
   useEffect(() => {
     const pathname = window.location.pathname;
     const parts = pathname.split("/").filter(Boolean);
-
     const detectedLang = parts[1];
-    const detectedVersionIndex = parts.findIndex((p) => p === "docs") + 1;
+    const docsIndex = parts.findIndex((p) => p === "docs");
     const detectedVersion =
-      detectedVersionIndex > 0 ? parts[detectedVersionIndex] : undefined;
+      docsIndex >= 0 && parts[docsIndex + 1] ? parts[docsIndex + 1] : undefined;
 
-    const remainingPath = parts.slice(2).join("/");
+    const pluginPath =
+      docsIndex > 0
+        ? parts.slice(2, docsIndex).concat(parts.slice(docsIndex + 2))
+        : parts.slice(2);
+    const remainingPath = pluginPath.join("/");
 
-    if (!propLang) setLang(detectedLang);
+    if (!propLang && detectedLang) setLang(detectedLang);
     if (!propVersion && detectedVersion) setVersion(detectedVersion);
-    if (!propPath) setPath(remainingPath);
+    if (!propPath && remainingPath) setPath(remainingPath);
 
     const handleClickOutside = (e: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
@@ -55,19 +59,43 @@ export default function SelectorBar({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  function buildUrl(lang: string, version?: string) {
-    const base = `/plugins/${lang}/${path}`;
+  function buildUrl(lang: string, version?: string, customPath?: string) {
+    const targetPath = customPath ?? path;
+    const base = `/plugins/${lang}/${targetPath}`;
     return version
-      ? base.replace(/docs\/[^/]+\//, `docs/${version}/`)
+      ? base.replace(/(\/core)(?:\/docs\/[^/]+)?\//, `$1/docs/${version}/`)
       : base;
   }
 
-  function safeRedirect(lang: string, version?: string) {
-    window.location.assign(buildUrl(lang, version));
+  function safeRedirect(lang: string, version?: string, customPath?: string) {
+    window.location.assign(buildUrl(lang, version, customPath));
+  }
+  function buildBackUrl(lang: string, version: string | undefined, currentPath: string) {
+    const parts = currentPath.split("/").filter(Boolean);
+
+    if (parts.length <= 1) {
+      // Already at plugin root
+      return `/plugins/${lang}/${parts[0] ?? ""}/`;
+    }
+
+    // Split path into [plugin, ...rest]
+    const [plugin, ...rest] = parts;
+
+    if (rest.length > 1) {
+      // Still deeper inside docs stay in docs/version
+      const parentDocsPath = rest.slice(0, -1).join("/");
+      return `/plugins/${lang}/${plugin}/docs/${version}/${parentDocsPath}`;
+    } else {
+      // We're at top of docs (e.g. plugin/admin) jump out of docs/version
+      return `/plugins/${lang}/${plugin}/`;
+    }
   }
 
+  const pathParts = path.split("/").filter(Boolean);
+  const isBackDisabled = pathParts.length <= 1;
+
   const buttonClass =
-    "flex items-center gap-1 px-4 py-2 rounded-2xl bg-background border border-text/20 text-text font-medium hover:text-accent transition";
+    "flex items-center gap-1 px-4 py-2 rounded-2xl bg-background border border-text/20 text-text font-medium hover:text-accent transition disabled:opacity-40 disabled:cursor-not-allowed";
 
   const menuClass =
     "absolute mt-2 z-50 rounded-2xl p-px bg-linear-to-br from-background via-background-50 to-background shadow-lg transition-all duration-200";
@@ -76,12 +104,33 @@ export default function SelectorBar({
     "bg-background rounded-[inherit] overflow-hidden divide-y divide-background-50";
 
   return (
-    <div ref={menuRef} className="flex flex-wrap gap-4 items-center justify-end relative">
+    <div
+      ref={menuRef}
+      className="flex flex-wrap gap-4 items-center justify-end relative"
+    >
+      {/* Back Button */}
+      {showBack && (
+        <button
+          className={buttonClass}
+          disabled={isBackDisabled}
+          onClick={() => {
+            if (isBackDisabled) return;
+            const backUrl = buildBackUrl(currentLang, currentVersion, path);
+            window.location.assign(backUrl);
+          }}
+        >
+          ← Back
+        </button>
+      )}
+
+      {/* Language Selector */}
       {showLang && (
         <div className="relative dropdown">
           <button
             className={buttonClass}
-            onClick={() => setOpenMenu(openMenu === "lang" ? null : "lang")}
+            onClick={() =>
+              setOpenMenu(openMenu === "lang" ? null : "lang")
+            }
           >
             {langNames[currentLang] ?? currentLang.toUpperCase()}
             <svg
@@ -93,7 +142,12 @@ export default function SelectorBar({
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
             </svg>
           </button>
 
@@ -104,7 +158,9 @@ export default function SelectorBar({
                   <button
                     key={lang}
                     className={`block w-full text-left px-4 py-2 hover:bg-accent-light hover:text-accent transition ${
-                      lang === currentLang ? "text-accent font-semibold" : ""
+                      lang === currentLang
+                        ? "text-accent font-semibold"
+                        : ""
                     }`}
                     onClick={() => safeRedirect(lang, currentVersion)}
                   >
@@ -117,11 +173,14 @@ export default function SelectorBar({
         </div>
       )}
 
+      {/* Version Selector */}
       {showVersion && (
         <div className="relative dropdown">
           <button
             className={buttonClass}
-            onClick={() => setOpenMenu(openMenu === "version" ? null : "version")}
+            onClick={() =>
+              setOpenMenu(openMenu === "version" ? null : "version")
+            }
           >
             {currentVersion ? `v${currentVersion}` : "Version"}
             <svg
@@ -133,7 +192,12 @@ export default function SelectorBar({
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
             </svg>
           </button>
 
@@ -144,7 +208,9 @@ export default function SelectorBar({
                   <button
                     key={v}
                     className={`block w-full text-left px-4 py-2 hover:bg-accent-light hover:text-accent transition ${
-                      v === currentVersion ? "text-accent font-semibold" : ""
+                      v === currentVersion
+                        ? "text-accent font-semibold"
+                        : ""
                     }`}
                     onClick={() => safeRedirect(currentLang, v)}
                   >
