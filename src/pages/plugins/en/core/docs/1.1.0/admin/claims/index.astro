@@ -8,9 +8,150 @@ import SelectorBar from "../../../../../../../../components/SelectorBar.tsx";
 
   <div class="max-w-5xl mx-auto px-8 py-20 text-text font-sans">
 
-    <div class="flex justify-end mb-8"> <SelectorBar client:load /> </div>
+    <div class="flex justify-end mb-8">
+      <SelectorBar client:load />
+    </div>
 
     <Headline text="Claims Documentation" class="mb-12 text-center"></Headline>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Before reading this documentation, make sure you’ve read the 
+      <a href="../user/claims/" class="text-accent hover:underline font-semibold">User Claims Documentation</a>. 
+      It covers the basic concepts of claims and how players can use them.
+    </p>
+
+    <h2 class="text-xl font-semibold mb-4 mt-10">Admin & Server Claims</h2>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Instead of relying on plugins like <strong>WorldGuard</strong>, administrators can use the built-in 
+      <strong>Claim System</strong> to protect server areas as well. Server claims can be managed by all operators or 
+      by anyone with the <code>buildmc.admin</code> permission.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Creating a server claim works just like creating any other claim, simply using the <strong>server type</strong>:
+    </p>
+
+    <pre class="bg-background-10 text-gray-100 rounded-xl p-4 mb-6 overflow-x-auto text-sm">/claim create server testserver</pre>
+
+    <p class="mb-6 text-base leading-relaxed">
+      The selected area will now be protected by default, even from administrators. 
+      To modify the area, use the <strong>whitelisting</strong> feature to grant yourself access.
+      Server claim settings appear alongside all other claims in the claim UI.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      If you want to bypass all claim protections entirely, you can grant yourself (or someone else) the 
+      <code>buildmc.bypass-claims</code> permission.
+    </p>
+
+    <h2 class="text-xl font-semibold mb-4 mt-10">Placeholder Claims</h2>
+
+    <p class="mb-6 text-base leading-relaxed">
+      A <strong>Placeholder Claim</strong> is a special claim type that does <strong>not provide any protections</strong>.
+      This is useful for areas like <strong>shopping districts</strong>, where you don’t want players to create new claims 
+      but still want them to be able to build or modify freely.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Whitelisting and protection rules are <strong>disabled</strong> for placeholder claims by design.
+    </p>
+
+    <h2 class="text-xl font-semibold mb-4 mt-10">Configuration Options</h2>
+
+    <p class="mb-6 text-base leading-relaxed">
+      The configuration file offers detailed control over claim behavior. Below are the most common settings:
+    </p>
+
+    <h3 class="text-lg font-semibold mb-3 mt-8">Maximum Claim Amounts</h3>
+
+    <pre class="bg-background-10 text-gray-100 rounded-xl p-4 mb-6 overflow-x-auto text-sm">
+claims:
+  # The amount of chunks each player can claim
+  player-max-chunk-claim-amount: 256 # Default: 256
+
+  # The amount of chunks each team can claim
+  team-max-chunk-claim-amount: 1024 # Default: 1024</pre>
+
+    <h3 class="text-lg font-semibold mb-3 mt-8">Claim Tool Item</h3>
+
+    <pre class="bg-background-10 text-gray-100 rounded-xl p-4 mb-6 overflow-x-auto text-sm">
+claims:
+  tool:
+    # The item used for the claim tool
+    tool-item: "carrot_on_a_stick" # Default: "carrot_on_a_stick"</pre>
+
+    <p class="mb-6 text-base leading-relaxed">
+      The <strong>Carrot on a Stick</strong> was chosen because it’s one of the least useful survival items, 
+      making it a good choice for a free and non-invasive tool item.
+    </p>
+
+    <h3 class="text-lg font-semibold mb-3 mt-8">Selection Size Limit</h3>
+
+    <pre class="bg-background-10 text-gray-100 rounded-xl p-4 mb-6 overflow-x-auto text-sm">
+claims:
+  tool:
+    # Limits the maximum size in chunks of the selection
+    # If smaller than 0, the limit will be disabled
+    limit-selection: 10 # Default: 10</pre>
+
+    <p class="mb-6 text-base leading-relaxed">
+      A limit of 10 means you can’t claim an area larger than 10 chunks on a side.
+    </p>
+
+    <h3 class="text-lg font-semibold mb-3 mt-8">Default Protections</h3>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Each individual protection type can have a <strong>default value</strong> and can be <strong>hidden from the UI</strong> 
+      if you don’t want players to modify it.
+    </p>
+
+    <pre class="bg-background-10 text-gray-100 rounded-xl p-4 mb-6 overflow-x-auto text-sm">
+claims:
+  protections:
+    # Players cannot break blocks
+    player-break:
+      default: true
+      is-hidden: false
+
+    # Players cannot place blocks
+    player-place:
+      default: true
+      is-hidden: false</pre>
+
+    <h2 class="text-xl font-semibold mb-4 mt-10">Claim Logs</h2>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Most claim-related actions are logged automatically. You can find these logs in:
+    </p>
+
+    <pre class="bg-background-10 text-gray-100 rounded-xl p-4 mb-6 overflow-x-auto text-sm">
+plugins/BuildMC-Core/logs/claims</pre>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Example log entries:
+    </p>
+
+    <pre class="bg-background-10 text-gray-100 rounded-xl p-4 mb-6 overflow-x-auto text-sm">
+[2025-10-28 23:04:13] [CLAIM CREATED] Darkylt (d2d1385c-d33a-4d92-a544-020dc67ce7de) created claim 'testblue'
+[2025-10-28 23:06:03] [PROTECTION CHANGE] Darkylt (d2d1385c-d33a-4d92-a544-020dc67ce7de) changed 'buildmc:bells' to 'disabled' in claim 'testblue'</pre>
+
+    <p class="mb-6 text-base leading-relaxed">
+      These logs can be useful for moderation and investigation. You can also configure their behavior:
+    </p>
+
+    <pre class="bg-background-10 text-gray-100 rounded-xl p-4 mb-6 overflow-x-auto text-sm">
+claims:
+  # Settings for claim logs
+  logs:
+    enabled: true
+    rotation-time: "00:00"      # When to rotate logs (24h format)
+    retention-days: 14          # How many days of logs to keep (-1 to disable)
+    mirror-to-console: false    # Whether to print events to the console</pre>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Log rotation helps keep file sizes manageable, and retention ensures old entries are periodically cleared.
+    </p>
 
   </div>
 

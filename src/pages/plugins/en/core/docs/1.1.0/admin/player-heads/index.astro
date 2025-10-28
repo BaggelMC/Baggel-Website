@@ -2,15 +2,49 @@
 import Headline from "../../../../../../../../components/Headline.astro";
 import DefaultLayout from "../../../../../../../../layouts/DefaultLayout.astro";
 import SelectorBar from "../../../../../../../../components/SelectorBar.tsx";
+
+// @ts-ignore
+import showcase from "../../../../../../../../assets/images/docs/player-heads/showcase.png?format=webp";
 ---
 
 <DefaultLayout title="Player Heads Docs">
 
   <div class="max-w-5xl mx-auto px-8 py-20 text-text font-sans">
 
-    <div class="flex justify-end mb-8"> <SelectorBar client:load /> </div>
+    <div class="flex justify-end mb-8">
+      <SelectorBar client:load />
+    </div>
 
-    <Headline text="Player Heads Documentation" class="mb-12 text-center"></Headline>
+    <Headline text="Player Heads" class="mb-12 text-center"></Headline>
+
+    <!-- Showcase Image -->
+    <div class="mb-12">
+      <img src={showcase} alt="Player Head Showcase" class="rounded-xl shadow-lg max-w-full mx-auto" />
+    </div>
+
+    <p class="mb-6 text-base leading-relaxed">
+      When a player is killed by another player, the victim will drop their <strong>Player Head</strong>. 
+      The head uses the player’s skin at the time of their death, displays their username as the item name, 
+      and includes the death message as the <em>lore</em>.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Note that the lore is lost when the head is placed and then broken again as a block. 
+      This feature will not work if <code class="bg-background-10">keepInventory</code> is enabled.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      You can disable this feature in the config file:
+    </p>
+
+    <pre class="mb-12 p-4 bg-background-10 rounded-xl overflow-x-auto text-sm mx-auto">
+player-head:
+  # When true, players will drop their head on death.
+  on-death: true # Default: true</pre>
+
+    <p class="text-base leading-relaxed">
+      That’s all there is to it. A simple but fun feature that rewards PvP encounters with a collectible memento.
+    </p>
 
   </div>
 
