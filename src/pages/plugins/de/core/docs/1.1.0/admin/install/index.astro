@@ -1,0 +1,90 @@
+---
+import Headline from "../../../../../../../../components/Headline.astro";
+import DefaultLayout from "../../../../../../../../layouts/DefaultLayout.astro";
+import SelectorBar from "../../../../../../../../components/SelectorBar.tsx";
+import Separator from "../../../../../../../../components/Separator.astro";
+import CoreDownload from "../../../../../../../../components/Core-Download.astro";
+---
+
+<DefaultLayout title="Installationsanleitung">
+
+  <div class="max-w-5xl mx-auto px-8 py-20 text-text font-sans">
+
+    <div class="flex justify-end mb-8">
+      <SelectorBar client:load />
+    </div>
+
+    <Headline text="Installationsanleitung" class="mb-12 text-center" />
+
+    <Separator margin_sides="0" />
+
+    <CoreDownload />
+
+    <Separator margin_sides="0" />
+
+    <p class="mt-12 mb-6 text-base leading-relaxed">
+      Das Plugin <strong>BuildMC Core</strong> ist in zwei Versionen verfügbar: 
+      eine für <strong>Spigot</strong> und eine für <strong>Paper</strong> Server. 
+      Wir empfehlen die <strong>Paper</strong>-Version, da sie eine bessere Leistung und Kompatibilität bietet. 
+      Die Spigot-Version bleibt jedoch verfügbar, falls du sie bevorzugst oder benötigst.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      <strong>Hinweis:</strong> BuildMC Core unterstützt derzeit <strong>Folia</strong> <em>nicht</em>.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Die Installation ist einfach und erfolgt wie bei jedem anderen Plugin:
+    </p>
+
+    <ol class="list-decimal list-inside mb-6 space-y-2 text-base leading-relaxed">
+      <li>Lade die passende <code class="bg-background-10 px-1 rounded">.jar</code>-Datei für deinen Servertyp herunter.</li>
+      <li>Lege sie in den <code class="bg-background-10 px-1 rounded">plugins</code>-Ordner deines Servers.</li>
+      <li>Starte deinen Server neu.</li>
+    </ol>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Beim ersten Start erstellt BuildMC Core automatisch einen Ordner namens 
+      <code class="bg-background-10 px-1 rounded">BuildMC-Core</code> im 
+      <code class="bg-background-10 px-1 rounded">plugins</code>-Verzeichnis. 
+      Dieser Ordner enthält alle Konfigurationsdateien und Daten, die vom Plugin verwendet werden.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Standardmäßig blockiert BuildMC Core bestimmte Befehle wie 
+      <code class="bg-background-10 px-1 rounded">/reload</code>. 
+      Führe nach Änderungen an der Konfiguration immer einen <strong>vollständigen Serverneustart</strong> durch. 
+      Die Verwendung von Reload-Befehlen kann zu unerwartetem Verhalten und Plugin-Fehlern führen.
+    </p>
+
+    <Separator margin_sides="0" />
+
+    <Headline text="Datenbankkonfiguration" class="mb-6 mt-12 text-center" />
+
+    <p class="mb-6 text-base leading-relaxed">
+      Bevor du beginnst, ist es sinnvoll, darüber nachzudenken, wie deine Datenbank verwendet wird. 
+      BuildMC Core unterstützt standardmäßig die <strong>H2-Datenbank</strong> und speichert deren Einstellungen in 
+      <code class="bg-background-10 px-1 rounded">database.yml</code>.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      In dieser Datei findest du die Option <code class="bg-background-10 px-1 rounded">useServerMode</code>. 
+      Standardmäßig ist sie auf <code class="bg-background-10 px-1 rounded">false</code> gesetzt, 
+      was bedeutet, dass das Plugin H2 im <strong>eingebetteten Modus</strong> ausführt. 
+      In diesem Modus kann nur ein Prozess auf die Datenbank zugreifen.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Wenn mehrere Prozesse Zugriff benötigen, zum Beispiel bei der Verwendung von <strong>BungeeCord</strong>, 
+      <strong>Velocity</strong> oder Plugin-Erweiterungen, solltest du den 
+      <strong>TCP-Modus</strong> aktivieren, indem du 
+      <code class="bg-background-10 px-1 rounded">useServerMode: true</code> einstellst.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Für die meisten BuildMC-Server ist der Standardmodus (eingebettet) völlig ausreichend und erfordert keine Änderungen.
+    </p>
+
+  </div>
+
+</DefaultLayout>

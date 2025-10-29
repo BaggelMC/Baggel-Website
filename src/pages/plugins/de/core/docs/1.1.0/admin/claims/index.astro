@@ -1,0 +1,158 @@
+---
+import Headline from "../../../../../../../../components/Headline.astro";
+import DefaultLayout from "../../../../../../../../layouts/DefaultLayout.astro";
+import SelectorBar from "../../../../../../../../components/SelectorBar.tsx";
+---
+
+<DefaultLayout title="Claims-Dokumentation">
+
+  <div class="max-w-5xl mx-auto px-8 py-20 text-text font-sans">
+
+    <div class="flex justify-end mb-8">
+      <SelectorBar client:load />
+    </div>
+
+    <Headline text="Claims-Dokumentation" class="mb-12 text-center"></Headline>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Bevor Sie diese Dokumentation lesen, stellen Sie sicher, dass Sie die 
+      <a href="../user/claims/" class="text-accent hover:underline font-semibold">Benutzer-Claims-Dokumentation</a> gelesen haben. 
+      Diese behandelt die grundlegenden Konzepte von Claims und wie Spieler diese verwenden können.
+    </p>
+
+    <h2 class="text-xl font-semibold mb-4 mt-10">Admin- & Server-Claims</h2>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Anstatt auf Plugins wie <strong>WorldGuard</strong> angewiesen zu sein, können Administratoren das integrierte 
+      <strong>Claim-System</strong> verwenden, um Serverbereiche zu schützen. Server-Claims können von allen Operatoren oder 
+      von jedem mit der Berechtigung <code class="bg-background-10">buildmc.admin</code> verwaltet werden.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Einen Server-Claim zu erstellen funktioniert genauso wie bei jedem anderen Claim, einfach den <strong>Server-Typ</strong> verwenden:
+    </p>
+
+    <pre class="bg-background-10 text-gray-100 rounded-xl p-4 mb-6 overflow-x-auto text-sm">/claim create server testserver</pre>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Der ausgewählte Bereich ist nun standardmäßig geschützt, selbst vor Administratoren. 
+      Um den Bereich zu bearbeiten, verwenden Sie die <strong>Whitelist-Funktion</strong>, um sich selbst Zugriff zu gewähren.
+      Die Server-Claim-Einstellungen erscheinen zusammen mit allen anderen Claims in der Claim-Benutzeroberfläche.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Wenn Sie alle Claim-Schutzmaßnahmen vollständig umgehen möchten, können Sie sich selbst (oder jemand anderem) die 
+      Berechtigung <code>buildmc.bypass-claims</code> erteilen.
+    </p>
+
+    <h2 class="text-xl font-semibold mb-4 mt-10">Platzhalter-Claims</h2>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Ein <strong>Platzhalter-Claim</strong> ist ein spezieller Claim-Typ, der <strong>keinen Schutz bietet</strong>.
+      Dies ist nützlich für Bereiche wie <strong>Einkaufsviertel</strong>, wo Spieler keine neuen Claims erstellen sollen, 
+      aber trotzdem frei bauen oder ändern können.
+    </p>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Whitelisting- und Schutzregeln sind für Platzhalter-Claims <strong>absichtlich deaktiviert</strong>.
+    </p>
+
+    <h2 class="text-xl font-semibold mb-4 mt-10">Konfigurationsoptionen</h2>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Die Konfigurationsdatei bietet detaillierte Kontrolle über das Verhalten von Claims. Im Folgenden die gebräuchlichsten Einstellungen:
+    </p>
+
+    <h3 class="text-lg font-semibold mb-3 mt-8">Maximale Claim-Anzahl</h3>
+
+    <pre class="bg-background-10 text-gray-100 rounded-xl p-4 mb-6 overflow-x-auto text-sm">
+claims:
+  # Die Anzahl der Chunks, die jeder Spieler beanspruchen kann
+  player-max-chunk-claim-amount: 256 # Standard: 256
+
+  # Die Anzahl der Chunks, die jedes Team beanspruchen kann
+  team-max-chunk-claim-amount: 1024 # Standard: 1024</pre>
+
+    <h3 class="text-lg font-semibold mb-3 mt-8">Claim-Werkzeug</h3>
+
+    <pre class="bg-background-10 text-gray-100 rounded-xl p-4 mb-6 overflow-x-auto text-sm">
+claims:
+  tool:
+    # Das Item, das als Claim-Werkzeug verwendet wird
+    tool-item: "carrot_on_a_stick" # Standard: "carrot_on_a_stick"</pre>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Der <strong>Karottenstab</strong> wurde gewählt, da er eines der am wenigsten nützlichen Überlebens-Items ist 
+      und sich daher gut als kostenloses, nicht aufdringliches Werkzeug eignet.
+    </p>
+
+    <h3 class="text-lg font-semibold mb-3 mt-8">Limit der Auswahlgröße</h3>
+
+    <pre class="bg-background-10 text-gray-100 rounded-xl p-4 mb-6 overflow-x-auto text-sm">
+claims:
+  tool:
+    # Begrenzung der maximalen Größe der Auswahl in Chunks
+    # Wenn kleiner als 0, wird das Limit deaktiviert
+    limit-selection: 10 # Standard: 10</pre>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Ein Limit von 10 bedeutet, dass Sie keinen Bereich größer als 10 Chunks pro Seite beanspruchen können.
+    </p>
+
+    <h3 class="text-lg font-semibold mb-3 mt-8">Standard-Schutzfunktionen</h3>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Jeder einzelne Schutztyp kann einen <strong>Standardwert</strong> haben und kann <strong>im UI ausgeblendet</strong> werden, 
+      wenn Sie nicht möchten, dass Spieler ihn ändern.
+    </p>
+
+    <pre class="bg-background-10 text-gray-100 rounded-xl p-4 mb-6 overflow-x-auto text-sm">
+claims:
+  protections:
+    # Spieler können keine Blöcke abbauen
+    player-break:
+      default: true
+      is-hidden: false
+
+    # Spieler können keine Blöcke platzieren
+    player-place:
+      default: true
+      is-hidden: false</pre>
+
+    <h2 class="text-xl font-semibold mb-4 mt-10">Claim-Protokolle</h2>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Die meisten claim-bezogenen Aktionen werden automatisch protokolliert. Sie finden diese Protokolle unter:
+    </p>
+
+    <pre class="bg-background-10 text-gray-100 rounded-xl p-4 mb-6 overflow-x-auto text-sm">
+plugins/BuildMC-Core/logs/claims</pre>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Beispielhafte Log-Einträge:
+    </p>
+
+    <pre class="bg-background-10 text-gray-100 rounded-xl p-4 mb-6 overflow-x-auto text-sm">
+[2025-10-28 23:04:13] [CLAIM ERSTELLT] Darkylt (d2d1385c-d33a-4d92-a544-020dc67ce7de) hat Claim 'testblue' erstellt
+[2025-10-28 23:06:03] [SCHUTZ GEÄNDERT] Darkylt (d2d1385c-d33a-4d92-a544-020dc67ce7de) hat 'buildmc:bells' auf 'deaktiviert' in Claim 'testblue' geändert</pre>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Diese Protokolle sind nützlich für Moderation und Untersuchungen. Sie können auch das Verhalten konfigurieren:
+    </p>
+
+    <pre class="bg-background-10 text-gray-100 rounded-xl p-4 mb-6 overflow-x-auto text-sm">
+claims:
+  # Einstellungen für Claim-Protokolle
+  logs:
+    enabled: true
+    rotation-time: "00:00"      # Zeitpunkt der Protokolldrehung (24h-Format)
+    retention-days: 14          # Anzahl der Tage, wie lange Protokolle aufbewahrt werden (-1 zum Deaktivieren)
+    mirror-to-console: false    # Ob Ereignisse in der Konsole ausgegeben werden</pre>
+
+    <p class="mb-6 text-base leading-relaxed">
+      Die Protokolldrehung hilft, die Dateigröße überschaubar zu halten, und die Aufbewahrung stellt sicher, dass alte Einträge regelmäßig gelöscht werden.
+    </p>
+
+  </div>
+
+</DefaultLayout>

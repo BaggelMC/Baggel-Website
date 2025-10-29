@@ -1,13 +1,65 @@
 ---
 import Headline from "../../../../../../../components/Headline.astro";
 import DefaultLayout from "../../../../../../../layouts/DefaultLayout.astro";
+import SelectorBar from "../../../../../../../components/SelectorBar.tsx";
+import Separator from "../../../../../../../components/Separator.astro";
 ---
 
-<DefaultLayout title="Admin Docs">
+<DefaultLayout title="Admin-Dokumentation">
 
   <div class="max-w-5xl mx-auto px-8 py-20 text-text font-sans">
 
-    <Headline text="Not available yet" class="mb-12 text-center"></Headline>
+    <div class="flex justify-end mb-8"> <SelectorBar client:load /> </div>
+
+    <Headline text="Admin-Dokumentation" class="mb-12 text-center" />
+
+    <!-- Kategorie-Buttons -->
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-6 justify-items-center mb-16">
+      <a 
+        href="/plugins/de/core/docs/1.1.0/admin/install" 
+        class="flex items-center justify-center px-6 py-3 w-full text-center rounded-lg bg-background-50 text-text hover:bg-primary transition-colors duration-base"
+      >
+        Installation
+      </a>
+      <a 
+        href="/plugins/de/core/docs/1.1.0/admin/claims" 
+        class="flex items-center justify-center px-6 py-3 w-full text-center rounded-lg bg-background-50 text-text hover:bg-primary transition-colors duration-base"
+      >
+        Claims
+      </a>
+      <a 
+        href="/plugins/de/core/docs/1.1.0/admin/status" 
+        class="flex items-center justify-center px-6 py-3 w-full text-center rounded-lg bg-background-50 text-text hover:bg-primary transition-colors duration-base"
+      >
+        Status
+      </a>
+      <a 
+        href="/plugins/de/core/docs/1.1.0/admin/spawn-elytra" 
+        class="flex items-center justify-center px-6 py-3 w-full text-center rounded-lg bg-background-50 text-text hover:bg-primary transition-colors duration-base"
+      >
+        Spawn Elytra
+      </a>
+      <a 
+        href="/plugins/de/core/docs/1.1.0/admin/end-event" 
+        class="flex items-center justify-center px-6 py-3 w-full text-center rounded-lg bg-background-50 text-text hover:bg-primary transition-colors duration-base"
+      >
+        End-Event
+      </a>
+      <a 
+        href="/plugins/de/core/docs/1.1.0/admin/player-heads" 
+        class="flex items-center justify-center px-6 py-3 w-full text-center rounded-lg bg-background-50 text-text hover:bg-primary transition-colors duration-base"
+      >
+        Spielerköpfe
+      </a>
+    </div>
+
+    <div class="flex justify-center space-x-6 mb-16">
+      <div>
+        <p>Wähle oben eine Kategorie aus, um die entsprechende Dokumentation anzuzeigen.</p>
+      </div>
+    </div>
+
+    <Separator/>
 
   </div>
 
