@@ -1,0 +1,14 @@
+net.mathias2246.buildmc
+net.mathias2246.buildmc.api
+net.mathias2246.buildmc.api.claims
+net.mathias2246.buildmc.api.endEvent
+net.mathias2246.buildmc.api.event
+net.mathias2246.buildmc.api.event.claims
+net.mathias2246.buildmc.api.event.endevent
+net.mathias2246.buildmc.api.event.lifecycle
+net.mathias2246.buildmc.api.event.player
+net.mathias2246.buildmc.api.item
+net.mathias2246.buildmc.api.item.abstractTypes
+net.mathias2246.buildmc.api.spawnEyltra
+net.mathias2246.buildmc.api.ui
+net.mathias2246.buildmc.util
