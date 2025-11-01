@@ -1,0 +1,50 @@
+---
+import "../styles/CopyServerAdressButton.css";
+import { LINKS } from "../config";
+
+const buttonLabel = Astro.props.text || "Kopiere Server-Adresse";
+const copyText = Astro.props.copyText || LINKS.server_address;
+---
+
+<button class="copy-button" data-copy={copyText}>
+  {buttonLabel}
+</button>
+
+<script type="module">
+  document.querySelectorAll(".copy-button").forEach((button) => {
+    if (button.dataset.listenerAttached) return;
+    button.dataset.listenerAttached = "true";
+
+    const originalText = button.textContent;
+    const textToCopy = button.dataset.copy;
+
+    let isFlashing = false;
+
+    button.addEventListener("click", async () => {
+      if (isFlashing) return;
+
+      try {
+        await navigator.clipboard.writeText(textToCopy);
+        isFlashing = true;
+        button.classList.add("flash-success");
+
+        setTimeout(() => {
+          button.classList.remove("flash-success");
+          isFlashing = false;
+        }, 1000);
+      } catch (err) {
+        isFlashing = true;
+        button.textContent = "Fehler beim Kopieren";
+        button.classList.add("flash-error");
+
+        setTimeout(() => {
+          button.classList.remove("flash-error");
+          button.textContent = originalText;
+          isFlashing = false;
+        }, 1000);
+
+        console.error("Clipboard copy failed:", err);
+      }
+    });
+  });
+</script>

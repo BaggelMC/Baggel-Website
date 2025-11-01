@@ -1,16 +1,198 @@
 ---
 import Headline from "../../../components/Headline.astro";
 import DefaultLayout from "../../../layouts/DefaultLayout.astro";
-
 import Separator from "../../../components/Separator.astro";
+import CopyServerAddressButton from "../../../components/CopyServerAddressButton.astro";
+
+import { LINKS } from "../../../config";
+
+//@ts-ignore
+import ImageDuels from "../../../assets/images/gamemodes/1v1.png?format=webp&w=800";
+//@ts-ignore
+import ImageFFA from "../../../assets/images/gamemodes/FFA.png?format=webp&w=800";
+//@ts-ignore
+import ImageFireball from "../../../assets/images/gamemodes/fireball.png?format=webp&w=800";
+
+const statsAPI = `https://api.mcsrvstat.us/3/${LINKS.server_address}`
+
+let serverStats = {
+  online: false,
+  players: 0,
+  maxPlayers: 0
+};
+
+try {
+  // const res = 0;
+  const res = await fetch(statsAPI, {
+    headers: {
+      "User-Agent": "Baggel Server Stats Page - https://baggel.de/projects/baggel"
+    }
+  
+  });
+
+  if (res.ok) {
+    const data = await res.json();
+    serverStats = {
+      online: data.online,
+      players: data.players?.online ?? 0,
+      maxPlayers: data.players?.max ?? 0
+    };
+  } else {
+    console.warn("Failed to fetch server stats:", res.status, res.statusText);
+  }
+} catch (err) {
+  console.error("Error fetching server stats:", err);
+}
+
+const finishedGames = [
+  {
+    name: "Duels 1v1",
+    description:
+      "Face off against another player in intense, fast-paced PvP duels. Choose your kit, sharpen your reflexes, and fight to claim victory in our arenas! Only the best will stand tall.",
+    image: ImageDuels,
+  },
+  {
+    name: "Knockback FFA",
+    description:
+      "No teams, no mercy! It’s every player for themselves! Jump into chaotic free-for-all combat where quick thinking and skill decide who dominates the battlefield.",
+    image: ImageFFA,
+  },
+  {
+    name: "Fireball Fight",
+    description:
+      "Launch, dodge, and blast your way to victory in this explosive game! Use precision and timing to knock your opponents off the map with well-aimed fireballs. One hit can change everything.",
+    image: ImageFireball,
+  },
+];
+
+const unfinishedGames = [
+  {
+    name: "Pillars of Fortune",
+    description:
+      "You’re stranded on a tiny pillar floating in the void. Every few seconds, fate gives you random items, sometimes helpful, sometimes deadly. Outlast everyone else in this game of pure chaos and luck!",
+  },
+  {
+    name: "Chess",
+    description:
+      "The classic game of strategy, Minecraft style. Move your army across the board, plan every attack, and checkmate your opponent!",
+  },
+  {
+    name: "TNT Run",
+    description:
+      "Keep moving or fall! The floor disappears beneath your feet as you run. One wrong step and it’s game over. Outlast everyone in this explosive test of reflexes and control.",
+  },
+  {
+    name: "Baggel Clicker",
+    description:
+      "Every click counts! Gather coins, buy upgrades, and climb the leaderboard in this addicting idle-clicker experience inspired by Cookie Clicker, but with that Baggel flair.",
+  },
+  {
+    name: "Replica",
+    description:
+      "Pay close attention! A structure appears and it’s up to you to rebuild it perfectly. Speed and precision decide who reigns as the master builder.",
+  },
+  {
+    name: "SpeedCrafter",
+    description:
+      "Craft or be crafted! Race to complete random recipes as fast as you can. The faster your hands and your memory, the higher your score and bragging rights.",
+  },
+  {
+    name: "Cow Pong",
+    description:
+      "Classic Pong... but with cows! Moo-ving fast is key! (I swear the cows like it!)",
+  },
+];
 ---
+
 
 <DefaultLayout title="Baggel">
 
-  <div class="max-w-5xl mx-auto px-4 sm:px-8 py-16 sm:py-20 text-text font-sans">
+  <div class="max-w-5xl mx-auto px-4 sm:px-8 py-16 sm:py-20 text-text font-sans space-y-20">
 
     <Headline text="Baggel.de" class="mb-8 sm:mb-12 text-center text-3xl sm:text-4xl"></Headline>
+
+    <!-- Server Stats Section -->
+    <section class="stats-section max-w-xl mx-auto px-6 sm:px-8 md:px-10 text-left text-text rounded-4xl bg-linear-to-br from-background to-background-gradient shadow-lg border-b-4 border-background-50 py-8 transition-all duration-500 hover:shadow-2xl">
+      <h2 class="text-xl sm:text-xl font-bold italic tracking-wide text-primary mb-4">Server Status</h2>
+      <ul class="space-y-2 text-base">
+        <li><strong>Status:</strong> 
+          <span class={serverStats.online ? "text-success" : "text-error"}>
+            {serverStats.online ? "Online" : "Offline"}
+          </span>
+        </li>
+        <li><strong>Players:</strong> {serverStats.players} / {serverStats.maxPlayers}</li>
+      </ul>
+
+      <div class="mt-4 flex justify-center">
+        <CopyServerAddressButton text="Kopiere Server-Adresse" copyText={LINKS.server_address} />
+      </div>
+</section>
+
+
+    <!-- Finished Games Section -->
+    <section class="finished-games text-center">
+      <h2 class="text-2xl font-bold mb-8 text-primary">Available Games</h2>
+
+      <div class="flex flex-wrap justify-center gap-8">
+        {finishedGames.map((game) => (
+          <div class="w-full sm:w-[45%] lg:w-[45%] max-w-xl group relative rounded-2xl overflow-hidden bg-background-10 border border-background-50 hover:border-accent transition-all duration-500 shadow-md hover:shadow-lg">
+            <img
+              src={game.image}
+              alt={game.name}
+              class="w-full h-48 object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+            />
+            <div class="p-6 text-left space-y-2">
+              <h3 class="text-xl font-bold text-primary">{game.name}</h3>
+              <p class="text-text-50">{game.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <Separator/>
+
+    <!-- Coming Soon Section -->
+    <section class="unfinished-games text-center">
+      <h2 class="text-2xl font-bold mb-8 text-primary">Coming Soon</h2>
+
+      <div class="flex flex-wrap justify-center gap-8">
+        {unfinishedGames.map((game) => (
+          <div class="w-full sm:w-[45%] lg:w-[45%] max-w-xl group relative rounded-2xl overflow-hidden bg-background-10 border border-background-50 hover:border-accent transition-all duration-500 shadow-md hover:shadow-lg">
+            <div class="absolute bottom-4 right-4 bg-accent/20 text-accent text-xs font-semibold px-2 py-1 rounded-md backdrop-blur-sm border border-accent/30">
+              In Development
+            </div>
+
+            <div class="p-6 text-left space-y-2 mb-8">
+              <h3 class="text-xl font-bold text-primary">{game.name}</h3>
+              <p class="text-text-50">{game.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Development Notice -->
+    <section class="text-center max-w-2xl mx-auto">
+      <Separator/>
+      <p class="text-text-50 text-base">
+        Our server is currently in <span class="text-accent font-semibold">active development</span>.<br />
+        New game modes and features are being added all the time. Stay tuned!
+      </p>
+    </section>
 
   </div>
 
 </DefaultLayout>
+
+<style>
+.stats-section {
+  border-bottom: 4px solid var(--color-background-50);
+  padding-left: var(--space-6);
+  margin-top: var(--space-16);
+}
+.stats-section h2 {
+  font-family: var(--font-minecraft);
+  line-height: var(--leading-3xl);
+}
+</style>

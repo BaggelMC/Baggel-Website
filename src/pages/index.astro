@@ -2,6 +2,9 @@
 import DefaultLayout from "../layouts/DefaultLayout.astro";
 import Headline from "../components/Headline.astro";
 import Pronounciation from "../assets/audio/baggel.mp3"
+import CopyServerAddressButton from "../components/CopyServerAddressButton.astro";
+import { LINKS } from "../config";
+
 import "../styles/index.css";
 ---
 
@@ -16,9 +19,7 @@ import "../styles/index.css";
       </p>
 
       <div class="relative inline-block group">
-        <button class="copy-button" id="copyButton">
-          Kopiere Server-Adresse
-        </button>
+        <CopyServerAddressButton text="Kopiere Server-Adresse" copyText={LINKS.server_address} />
       </div>
     </div>
   </section>

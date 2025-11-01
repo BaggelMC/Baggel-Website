@@ -1,0 +1,108 @@
+:root {
+  --m: 2rem;
+}
+
+.copy-button {
+  border: calc(0.08 * var(--m)) solid transparent;
+  position: relative;
+  font-size: var(--m);
+  border-radius: calc(0.7 * var(--m));
+  padding: calc(0.5 * var(--m)) calc(1 * var(--m));
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+
+  background: 
+    radial-gradient(var(--color-background), var(--color-background)),
+    linear-gradient(
+      var(--color-background) 50%, 
+      rgba(18, 18, 19, 0.6) 80%, 
+      rgba(18, 18, 19, 0)
+    ),
+    linear-gradient(90deg, var(--color-accent), var(--color-secondary));
+    
+  background-origin: border-box;
+  background-clip: padding-box, border-box, border-box;
+  background-size: 200%;
+  animation: animate 2s infinite linear;
+
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+
+  transition: transform var(--transition-duration-base) var(--transition-timing-soft);
+}
+
+.copy-button:hover {
+  transform: scale(1.05);
+}
+
+@keyframes animate {
+  0% { background-position: 0; }
+  100% { background-position: 200%; }
+}
+
+@media screen and (max-width: 1000px) {
+  :root {
+    --m: 1.5rem;
+  }
+}
+
+.copy-button:hover {
+  transform: scale(1.05);
+}
+
+@keyframes animate {
+  0% {background-position: 0}
+  100% {background-position: 200%}
+}
+
+@media screen and (max-width: 1000px) {
+  :root {
+    --m: 1.5rem;
+  }
+}
+
+/* Success flash */
+@keyframes flashGreen {
+  0% {
+    /*background: linear-gradient(90deg, var(--color-success), var(--color-success-gradient));*/
+    box-shadow: 0 0 20px var(--color-secondary);
+  }
+  100% {
+    /*background: 
+      radial-gradient(var(--color-background), var(--color-background)),
+      linear-gradient(
+        var(--color-background) 50%, 
+        rgba(18, 18, 19, 0.6) 80%, 
+        rgba(18, 18, 19, 0)
+      ),
+      linear-gradient(90deg, var(--color-accent), var(--color-secondary));*/
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.flash-success {
+  animation: flashGreen 0.6s ease-in-out;
+}
+
+/* Error flash */
+@keyframes flashRed {
+  0% {
+    background: linear-gradient(90deg, var(--color-error), var(--color-error-gradient));
+    box-shadow: 0 0 20px var(--color-error);
+  }
+  100% {
+    background: 
+      radial-gradient(var(--color-background), var(--color-background)),
+      linear-gradient(
+        var(--color-background) 50%, 
+        rgba(18, 18, 19, 0.6) 80%, 
+        rgba(18, 18, 19, 0)
+      ),
+      linear-gradient(90deg, var(--color-accent), var(--color-secondary));
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.flash-error {
+  animation: flashRed 0.6s ease-in-out;
+}
