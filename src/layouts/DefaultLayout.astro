@@ -4,9 +4,11 @@ import Footer from "../components/Footer.astro";
 import { RESOURCES } from "../config";
 import "../styles/global.css";
 
+//@ts-ignore
+import Background from "../assets/background_dark.png?format=webp";
+
 const { title } = Astro.props;
 ---
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -15,9 +17,19 @@ const { title } = Astro.props;
     <link href={RESOURCES.fontURL} rel="stylesheet" />
     <script src="https://unpkg.com/alpinejs" defer></script>
   </head>
-  <body class="min-h-screen bg-background text-text font-sans flex flex-col">
+  <body
+    class="min-h-screen text-text font-sans flex flex-col relative overflow-x-hidden bg-background"
+    style={`--page-bg: url(${Background});`}
+  >
+
+    <div
+      class="fixed top-0 left-1/2 -translate-x-1/2 w-screen h-screen bg-cover bg-center bg-no-repeat blur-xl scale-105"
+      style="background-image: var(--page-bg); z-index: -1;"
+      aria-hidden="true"
+    ></div>
+
     <Header title="BaggelMC" />
-    <main class="grow">
+    <main class="grow relative z-10">
       <slot />
     </main>
     <Footer />

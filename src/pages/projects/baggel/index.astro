@@ -4,6 +4,9 @@ import DefaultLayout from "../../../layouts/DefaultLayout.astro";
 import Separator from "../../../components/Separator.astro";
 import CopyServerAddressButton from "../../../components/CopyServerAddressButton.astro";
 
+//@ts-ignore
+import TextLogo from "../../../assets/largehero.png?format=webp";
+
 import { LINKS } from "../../../config";
 
 //@ts-ignore
@@ -13,12 +16,15 @@ import ImageFFA from "../../../assets/images/gamemodes/FFA.png?format=webp&w=800
 //@ts-ignore
 import ImageFireball from "../../../assets/images/gamemodes/fireball.png?format=webp&w=800";
 
+import "../../../styles/baggel.css"
+
 const statsAPI = `https://api.mcsrvstat.us/3/${LINKS.server_address}`
 
 let serverStats = {
   online: false,
   players: 0,
-  maxPlayers: 0
+  maxPlayers: 0,
+  motd: ""
 };
 
 try {
@@ -35,7 +41,8 @@ try {
     serverStats = {
       online: data.online,
       players: data.players?.online ?? 0,
-      maxPlayers: data.players?.max ?? 0
+      maxPlayers: data.players?.max ?? 0,
+      motd: data.motd?.html?.join("<br>") ?? "<span style=\"color: #FF5555\">Ever<\/span><span style=\"color: #5555FF\">PvP <\/span><span style=\"color: #AAAAAA\">- <\/span><span style=\"color: #00AA00\">\u00c9n server, for alle<\/span>"
     };
   } else {
     console.warn("Failed to fetch server stats:", res.status, res.statusText);
@@ -109,25 +116,33 @@ const unfinishedGames = [
 
   <div class="max-w-5xl mx-auto px-4 sm:px-8 py-16 sm:py-20 text-text font-sans space-y-20">
 
-    <Headline text="Baggel.de" class="mb-8 sm:mb-12 text-center text-3xl sm:text-4xl"></Headline>
+    
+    <img src={TextLogo} class="mx-auto h-30 md:h-80 object-cover" alt="Baggel Logo" />
+
 
     <!-- Server Stats Section -->
-    <section class="stats-section max-w-xl mx-auto px-6 sm:px-8 md:px-10 text-left text-text rounded-4xl bg-linear-to-br from-background to-background-gradient shadow-lg border-b-4 border-background-50 py-8 transition-all duration-500 hover:shadow-2xl">
-      <h2 class="text-xl sm:text-xl font-bold italic tracking-wide text-primary mb-4">Server Status</h2>
+    <section class="stats-section max-w-xl mx-auto px-6 sm:px-8 md:px-10 text-left text-text rounded-4xl bg-linear-to-br from-background-10 to-background-10 shadow-lg border-b-4 border-background-50 py-8 transition-all duration-500 hover:shadow-2xl">
+      <h2 class="text-xl sm:text-xl font-bold tracking-wide text-primary text-center mb-4">Server Status</h2>
       <ul class="space-y-2 text-base">
-        <li><strong>Status:</strong> 
+        <li>
+          <strong>Status:</strong> 
           <span class={serverStats.online ? "text-success" : "text-error"}>
             {serverStats.online ? "Online" : "Offline"}
           </span>
         </li>
         <li><strong>Players:</strong> {serverStats.players} / {serverStats.maxPlayers}</li>
+        <li class="mt-4 text-center">
+          <div class="motd-box mt-2 p-4 inline-block font-minecraft text-xs">
+            <span set:html={serverStats.motd}></span>
+          </div>
+        </li>
+
       </ul>
 
       <div class="mt-4 flex justify-center">
         <CopyServerAddressButton text="Kopiere Server-Adresse" copyText={LINKS.server_address} />
       </div>
-</section>
-
+    </section>
 
     <!-- Finished Games Section -->
     <section class="finished-games text-center">
@@ -135,7 +150,7 @@ const unfinishedGames = [
 
       <div class="flex flex-wrap justify-center gap-8">
         {finishedGames.map((game) => (
-          <div class="w-full sm:w-[45%] lg:w-[45%] max-w-xl group relative rounded-2xl overflow-hidden bg-background-10 border border-background-50 hover:border-accent transition-all duration-500 shadow-md hover:shadow-lg">
+          <div class="w-full sm:w-[45%] lg:w-[45%] max-w-xl group relative rounded-2xl overflow-hidden bg-background-10 border border-background-50 hover:border-accent transition-all duration-500 shadow-lg hover:shadow-2xl">
             <img
               src={game.image}
               alt={game.name}
@@ -158,7 +173,7 @@ const unfinishedGames = [
 
       <div class="flex flex-wrap justify-center gap-8">
         {unfinishedGames.map((game) => (
-          <div class="w-full sm:w-[45%] lg:w-[45%] max-w-xl group relative rounded-2xl overflow-hidden bg-background-10 border border-background-50 hover:border-accent transition-all duration-500 shadow-md hover:shadow-lg">
+          <div class="w-full sm:w-[45%] lg:w-[45%] max-w-xl group relative rounded-2xl overflow-hidden bg-background-10 border border-background-50 hover:border-accent transition-all duration-500 shadow-lg hover:shadow-2xl">
             <div class="absolute bottom-4 right-4 bg-accent/20 text-accent text-xs font-semibold px-2 py-1 rounded-md backdrop-blur-sm border border-accent/30">
               In Development
             </div>

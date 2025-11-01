@@ -14,7 +14,7 @@ const teamMembers = await getTeamMembers();
       {teamMembers.map((member, i) => (
         <div class="w-64 relative group">
           <button 
-            class="w-full bg-background-10 rounded-xl overflow-hidden shadow transform transition-smooth hover:scale-105 hover:shadow-lg"
+            class="w-full bg-background-10 rounded-xl overflow-hidden shadow-lg transform transition-smooth hover:scale-105 hover:shadow-2xl"
             onclick={`toggleInfo(${i})`}
           >
 
