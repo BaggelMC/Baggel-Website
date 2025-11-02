@@ -7,16 +7,9 @@ import "../styles/global.css";
 //@ts-ignore
 import Background from "../assets/background_dark.png?format=webp";
 
-const { title } = Astro.props;
-
-const pathname = new URL(Astro.request.url).pathname;
-
-const segments = pathname.split("/").filter(Boolean);
-
-// Determine language: second segment is 'en' -> 'en', otherwise 'de'
-const lang = segments[1] === "en" ? "en" : "de";
+const { title, lang } = Astro.props;
 ---
-<html lang={lang}>
+<html lang={lang?lang : "de"} >
   <head>
     <meta charset="UTF-8" />
     <title>{title ? `${title} | BaggelMC` : "BaggelMC"}</title>
