@@ -5,7 +5,11 @@ import Separator from "../../../components/Separator.astro";
 import CopyServerAddressButton from "../../../components/CopyServerAddressButton.astro";
 
 //@ts-ignore
-import TextLogo from "../../../assets/largehero.png?format=webp";
+import TextLogo from "../../../assets/largehero.png?format=webp&w=1000";
+
+import DirtTexture from "../../../assets/images/textures/dirt.png";
+import PlayButtonTexture from "../../../assets/images/textures/play.png";
+import PlayButtonHoverTexture from "../../../assets/images/textures/play_hover.png";
 
 import { LINKS } from "../../../config";
 
@@ -16,15 +20,22 @@ import ImageFFA from "../../../assets/images/gamemodes/FFA.png?format=webp&w=800
 //@ts-ignore
 import ImageFireball from "../../../assets/images/gamemodes/fireball.png?format=webp&w=800";
 
-import "../../../styles/baggel.css"
-
 const statsAPI = `https://api.mcsrvstat.us/3/${LINKS.server_address}`
+
+
+let defaultMotd = "";
+
+// Debugging when server is down
+if (import.meta.env.DEV) {
+  defaultMotd = "test"
+}
 
 let serverStats = {
   online: false,
   players: 0,
   maxPlayers: 0,
-  motd: ""
+  motd: "",
+  icon: ""
 };
 
 try {
@@ -42,7 +53,8 @@ try {
       online: data.online,
       players: data.players?.online ?? 0,
       maxPlayers: data.players?.max ?? 0,
-      motd: data.motd?.html?.join("<br>") ?? "<span style=\"color: #FF5555\">Ever<\/span><span style=\"color: #5555FF\">PvP <\/span><span style=\"color: #AAAAAA\">- <\/span><span style=\"color: #00AA00\">\u00c9n server, for alle<\/span>"
+      motd: data.motd?.html?.join("<br>") ?? defaultMotd,
+      icon: data.icon ?? ""
     };
   } else {
     console.warn("Failed to fetch server stats:", res.status, res.statusText);
@@ -132,9 +144,13 @@ const unfinishedGames = [
         </li>
         <li><strong>Players:</strong> {serverStats.players} / {serverStats.maxPlayers}</li>
         <li class="mt-4 text-center">
-          <div class="motd-box mt-2 p-4 inline-block font-minecraft text-xs">
+          <div
+            class="motd-box mt-2 p-4 inline-block font-minecraft text-xs"
+            style={`background-image: url('${DirtTexture.src}');`}
+          >
             <span set:html={serverStats.motd}></span>
           </div>
+
         </li>
 
       </ul>
@@ -210,4 +226,33 @@ const unfinishedGames = [
   font-family: var(--font-minecraft);
   line-height: var(--leading-3xl);
 }
+
+.motd-box {
+  position: relative;
+  background-repeat: repeat;
+  background-size: 64px 64px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  border: 2px solid #fff;
+  padding: 1rem;
+  display: inline-block;
+  line-height: 1.5;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.motd-box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.motd-box > * {
+  position: relative;
+  z-index: 2;
+}
+
 </style>
