@@ -10,6 +10,7 @@ import TextLogo from "../../../assets/largehero.png?format=webp&w=1000";
 import DirtTexture from "../../../assets/images/textures/dirt.png";
 import PlayButtonTexture from "../../../assets/images/textures/play.png";
 import PlayButtonHoverTexture from "../../../assets/images/textures/play_hover.png";
+import Click from "../../../assets/audio/click.ogg"
 
 import { LINKS } from "../../../config";
 
@@ -20,7 +21,7 @@ import ImageFFA from "../../../assets/images/gamemodes/FFA.png?format=webp&w=800
 //@ts-ignore
 import ImageFireball from "../../../assets/images/gamemodes/fireball.png?format=webp&w=800";
 
-const statsAPI = `https://api.mcsrvstat.us/3/${LINKS.server_address}`
+const serverInfoAPI = `https://api.mcsrvstat.us/3/${LINKS.server_address}`
 
 
 let defaultMotd = "";
@@ -32,7 +33,7 @@ if (import.meta.env.DEV) {
   defaultIcon = "data:image/png;base64,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";
 }
 
-let serverStats = {
+let serverInfo = {
   online: false,
   players: 0,
   maxPlayers: 0,
@@ -42,16 +43,18 @@ let serverStats = {
 
 try {
   // const res = 0;
-  const res = await fetch(statsAPI, {
+
+  // FIXME: This blocks page loading. Defer this to after the loading.
+  const res = await fetch(serverInfoAPI, {
     headers: {
-      "User-Agent": "Baggel Server Stats Page - https://baggel.de/projects/baggel"
+      "User-Agent": "Baggel Server Info Page - https://baggel.de/projects/baggel"
     }
   
   });
 
   if (res.ok) {
     const data = await res.json();
-    serverStats = {
+    serverInfo = {
       online: data.online,
       players: data.players?.online ?? 0,
       maxPlayers: data.players?.max ?? 0,
@@ -59,10 +62,10 @@ try {
       icon: data.icon ?? defaultIcon,
     };
   } else {
-    console.warn("Failed to fetch server stats:", res.status, res.statusText);
+    console.warn("Failed to fetch server info:", res.status, res.statusText);
   }
 } catch (err) {
-  console.error("Error fetching server stats:", err);
+  console.error("Error fetching server info:", err);
 }
 
 const finishedGames = [
@@ -125,7 +128,6 @@ const unfinishedGames = [
 ];
 ---
 
-
 <DefaultLayout title="Baggel">
 
   <div class="max-w-5xl mx-auto px-4 sm:px-8 py-16 sm:py-20 text-text font-sans space-y-20">
@@ -134,26 +136,26 @@ const unfinishedGames = [
     <img src={TextLogo} class="mx-auto h-30 md:h-80 object-cover" alt="Baggel Logo" />
 
 
-    <!-- Server Stats Section -->
-    <section class="stats-section max-w-xl mx-auto px-6 sm:px-8 md:px-10 text-left text-text rounded-4xl bg-linear-to-br from-background-10 to-background-10 shadow-lg border-b-4 border-background-50 py-8 transition-all duration-500 hover:shadow-2xl">
+    <!-- Server Info Section -->
+    <section class="info-section max-w-xl mx-auto px-6 sm:px-8 md:px-10 text-left text-text rounded-4xl bg-linear-to-br from-background-10 to-background-10 shadow-lg border-b-4 border-background-50 py-8 transition-all duration-500 hover:shadow-2xl">
       <h2 class="text-xl sm:text-xl font-bold tracking-wide text-primary text-center mb-4">Server Status</h2>
       <ul class="space-y-2 text-base">
         <li>
           <strong>Status:</strong> 
-          <span class={serverStats.online ? "text-success" : "text-error"}>
-            {serverStats.online ? "Online" : "Offline"}
+          <span class={serverInfo.online ? "text-success" : "text-error"}>
+            {serverInfo.online ? "Online" : "Offline"}
           </span>
         </li>
-        <li><strong>Players:</strong> {serverStats.players} / {serverStats.maxPlayers}</li>
-        <li class="mt-4 text-center">
+        <li><strong>Players:</strong> {serverInfo.players} / {serverInfo.maxPlayers}</li>
+        <li class="mt-4 text-center hidden md:block">
           <div
-            class="motd-box mt-2 inline-flex items-center gap-4 font-minecraft text-xs group"
+            class="motd-box mt-2 items-center gap-4 font-minecraft text-xs group inline-flex"
             style={`background-image: url('${DirtTexture.src}');`}
           >
-            {serverStats.icon && (
-              <div class="icon-container relative w-16 h-16 shrink-0">
+            {serverInfo.icon && (
+              <div class="icon-container relative w-16 h-16 shrink-0" id="serverIcon">
                 <img
-                  src={serverStats.icon}
+                  src={serverInfo.icon}
                   alt="Server Icon"
                   class="icon-image w-full h-full object-cover"
                 />
@@ -167,9 +169,10 @@ const unfinishedGames = [
                   alt="Play Button Hover Overlay"
                   class="icon-overlay-hover absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100"
                 />
+                <audio id="clickAudio" src={Click}></audio>
               </div>
             )}
-            <span set:html={serverStats.motd}></span>
+            <span set:html={serverInfo.motd}></span>
           </div>
 
         </li>
@@ -334,6 +337,16 @@ const unfinishedGames = [
 .group:hover .icon-container:hover .icon-overlay-hover {
   opacity: 1;
 }
-
-
 </style>
+
+<script>
+  const serverIcon = document.getElementById("serverIcon") as HTMLButtonElement | null;
+
+  const audio = document.getElementById("clickAudio") as HTMLAudioElement | null;
+
+  if (audio && serverIcon) {
+    audio.volume = 0.3
+    serverIcon.addEventListener("click", () => {audio.play()});
+  }
+
+</script>

@@ -24,7 +24,8 @@ const copyText = Astro.props.copyText || LINKS.server_address;
       if (isFlashing) return;
 
       try {
-        await navigator.clipboard.writeText(textToCopy);
+        await copyTextToClipboard(textToCopy);
+
         isFlashing = true;
         button.classList.add("flash-success");
 
@@ -47,4 +48,23 @@ const copyText = Astro.props.copyText || LINKS.server_address;
       }
     });
   });
+
+  async function copyTextToClipboard(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text);
+    } else {
+      // hack for unsupported scenarios
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.style.position = "fixed";
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand("copy");
+      } finally {
+        document.body.removeChild(textarea);
+      }
+    }
+  }
+
 </script>
