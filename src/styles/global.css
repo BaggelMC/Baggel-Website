@@ -132,10 +132,3 @@
   scrollbar-width: thin;
   scrollbar-color: var(--color-primary) var(--color-background);
 }
-
-body {
-  background-image: var(--page-bg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
