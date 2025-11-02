@@ -8,8 +8,15 @@ import "../styles/global.css";
 import Background from "../assets/background_dark.png?format=webp";
 
 const { title } = Astro.props;
+
+const pathname = new URL(Astro.request.url).pathname;
+
+const segments = pathname.split("/").filter(Boolean);
+
+// Determine language: second segment is 'en' -> 'en', otherwise 'de'
+const lang = segments[1] === "en" ? "en" : "de";
 ---
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <title>{title ? `${title} | BaggelMC` : "BaggelMC"}</title>
@@ -21,7 +28,6 @@ const { title } = Astro.props;
     class="min-h-screen text-text font-sans flex flex-col relative overflow-x-hidden bg-background"
     style={`--page-bg: url(${Background});`}
   >
-
     <div
       class="fixed top-0 left-1/2 -translate-x-1/2 w-screen h-screen bg-cover bg-center bg-no-repeat blur-xl scale-105"
       style="background-image: var(--page-bg); z-index: -1;"
