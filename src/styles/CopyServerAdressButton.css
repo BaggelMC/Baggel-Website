@@ -14,11 +14,6 @@
 
   background: 
     radial-gradient(var(--color-background), var(--color-background)),
-    linear-gradient(
-      var(--color-background) 50%, 
-      rgba(18, 18, 19, 0.6) 80%, 
-      rgba(18, 18, 19, 0)
-    ),
     linear-gradient(90deg, var(--color-accent), var(--color-secondary));
     
   background-origin: border-box;
@@ -26,7 +21,7 @@
   background-size: 200%;
   animation: animate 2s infinite linear;
 
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 0px rgba(0, 0, 0, 0.4);
 
   transition: transform var(--transition-duration-base) var(--transition-timing-soft);
 }
@@ -76,7 +71,7 @@
         rgba(18, 18, 19, 0)
       ),
       linear-gradient(90deg, var(--color-accent), var(--color-secondary));*/
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 00px rgba(0, 0, 0, 0.4);
   }
 }
 
@@ -93,13 +88,8 @@
   100% {
     background: 
       radial-gradient(var(--color-background), var(--color-background)),
-      linear-gradient(
-        var(--color-background) 50%, 
-        rgba(18, 18, 19, 0.6) 80%, 
-        rgba(18, 18, 19, 0)
-      ),
       linear-gradient(90deg, var(--color-accent), var(--color-secondary));
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 00px rgba(0, 0, 0, 0.4);
   }
 }
 

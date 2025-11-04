@@ -4,6 +4,7 @@ import Headline from "../../../../components/Headline.astro";
 import DefaultLayout from "../../../../layouts/DefaultLayout.astro";
 import SelectorBar from "../../../../components/SelectorBar.tsx";
 import Separator from "../../../../components/Separator.astro";
+import CoreDownload from "../../../../components/Core-Download.astro";
 
 // @ts-ignore
 import logoSrc from "../../../../assets/images/buildmc-core.png?format=webp&w=800";
@@ -63,22 +64,9 @@ import logoSrc from "../../../../assets/images/buildmc-core.png?format=webp&w=80
         </a>
       </p>
 
-      <!-- Download Section -->
-      <h2 class="text-xl leading-xl text-primary mt-12 mb-6 font-minecraft">Download</h2>
-      <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-6">
-        <a href={LINKS.core_plugin_download_github} class="px-6 py-3 rounded-2xl bg-primary text-background font-bold transition duration-300 hover:bg-accent hover:scale-105" target="_blank" rel="noopener noreferrer">
-          Alle Versionen (GitHub)
-        </a>
-        <a href={LINKS.core_plugin_download_spigot} class="px-6 py-3 rounded-2xl bg-secondary text-text font-bold transition duration-300 hover:bg-accent hover:text-background hover:scale-105" target="_blank" rel="noopener noreferrer">
-          Spigot-Version
-        </a>
-        <a href={LINKS.core_plugin_download_modrinth} class="px-6 py-3 rounded-2xl bg-accent text-background font-bold transition duration-300 hover:bg-primary hover:scale-105" target="_blank" rel="noopener noreferrer">
-          Alle Versionen (Modrinth)
-        </a>
-        <a href={LINKS.core_plugin_download_hangar} class="px-6 py-3 rounded-2xl bg-secondary text-text font-bold transition duration-300 hover:bg-accent hover:text-background hover:scale-105" target="_blank" rel="noopener noreferrer">
-          Paper-Version
-        </a>
-      </div>
+      <Separator margin_sides="0"/>
+
+      <CoreDownload lang="de"/>
 
       <Separator margin_sides="0"/>
 

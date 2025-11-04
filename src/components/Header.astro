@@ -2,13 +2,18 @@
 // @ts-ignore
 import logoSrc from "../assets/logo.png?format=webp&w=64&h=64";
 // @ts-ignore
-import NewTitle from "../assets/header.png?format=webp"
+import texture from "../assets/header-texture.png?format=webp&h=200"
 ---
 
-<header class="bg-linear-to-r from-background-10 to-background-50 text-text shadow-lg">
+<header
+  class="relative text-text shadow-lg"
+  style={`background-image: url(${texture}); background-size: cover; background-position: center;`}
+>
+  <div class="absolute inset-0 bg-linear-to-r from-primary/20 to-accent/20 pointer-events-none"></div>
+
   <div class="max-w-6xl mx-auto flex justify-between items-center p-(--space-4)">
     <!-- Logo -->
-    <a href="/" class="flex items-center gap-2 text-lg font-bold font-minecraft">
+    <a href="/" class="flex items-center gap-2 text-lg font-bold font-minecraft z-2">
       <img src={logoSrc} alt="Logo" class="h-[2em] w-auto" />
       Baggel
       <!-- <img src={NewTitle} alt="Logo" class="h-[2em] w-auto hidden md:block" /> -->
@@ -30,7 +35,6 @@ import NewTitle from "../assets/header.png?format=webp"
           <ul class="dropdown-menu z-9999 absolute left-0 mt-2 rounded-2xl opacity-0 -translate-y-2 pointer-events-none transition-all duration-200 ease-in-out
             p-px bg-linear-to-br from-background via-background-50 to-background group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto">
             <div class="bg-background rounded-[inherit]">
-              <li><a href="/projects/baggel" class="block px-4 py-2 hover:bg-accent-light hover:text-accent transition">Baggel.de</a></li>
               <li><a href="/projects/buildmc" class="block px-4 py-2 hover:bg-accent-light hover:text-accent transition">BuildMC</a></li>
             </div>
           </ul>
@@ -80,7 +84,6 @@ import NewTitle from "../assets/header.png?format=webp"
           </svg>
         </button>
         <ul class="hidden pl-4 space-y-1" id="projects">
-          <li><a href="/projects/baggel" class="block py-1 hover:text-accent">Baggel.de</a></li>
           <li><a href="/projects/buildmc" class="block py-1 hover:text-accent">BuildMC</a></li>
         </ul>
       </li>
