@@ -10,6 +10,35 @@
   src: url(../assets/fonts/minecraft_standard/MinecraftStandardBold.otf)
 }
 
+@font-face {
+    font-family: "MinecraftMiniMessage";
+    src: url("../assets/fonts/minecraft_minimessage_editor/1_Minecraft-Regular.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "MinecraftMiniMessage";
+    src: url("../assets/fonts/minecraft_minimessage_editor/2_Minecraft-Italic.woff") format("woff");
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: "MinecraftMiniMessage";
+    src: url("../assets/fonts/minecraft_minimessage_editor/3_Minecraft-Bold.woff") format("woff");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "MinecraftMiniMessage";
+    src: url("../assets/fonts/minecraft_minimessage_editor/4_Minecraft-BoldItalic.woff") format("woff");
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
 @theme {
   /* Colors */
   --color-text: #f1e4db;
@@ -34,6 +63,7 @@
   /* Font Family */
   --font-sans: "Fragment Mono", monospace;
   --font-minecraft: "MinecraftStandard";
+  --font-minecraft-minimessage: "MinecraftMiniMessage";
 
   /* Font Sizes (Perfect Fourth Type Scale) */
   --text-xs: 0.75rem;
