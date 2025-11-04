@@ -98,10 +98,10 @@ export default function SelectorBar({
     "flex items-center gap-1 px-4 py-2 rounded-2xl bg-background border border-text/20 text-text font-medium hover:text-accent transition disabled:opacity-40 disabled:cursor-not-allowed";
 
   const menuClass =
-    "absolute mt-2 z-50 rounded-2xl p-px bg-linear-to-br from-background via-background-50 to-background shadow-lg transition-all duration-200";
+    "absolute mt-2 z-50 rounded-2xl p-px bg-linear-to-br from-background via-accent to-background shadow-lg transition-all duration-200";
 
   const innerMenuClass =
-    "bg-background rounded-[inherit] overflow-hidden divide-y divide-background-50";
+    "bg-background rounded-[inherit] overflow-hidden divide-y divide-background";
 
   return (
     <div
