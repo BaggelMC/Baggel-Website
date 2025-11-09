@@ -24,53 +24,7 @@ import ImageFFA from "../assets/images/gamemodes/FFA.png?format=webp&w=800";
 import ImageFireball from "../assets/images/gamemodes/fireball.png?format=webp&w=800";
 
 import Pronounciation from "../assets/audio/baggel.mp3"
-
-const serverInfoAPI = `https://api.mcsrvstat.us/3/${LINKS.server_address}`
-
-
-let defaultMotd = "";
-let defaultIcon = "";
-
-// Debugging when server is down
-if (import.meta.env.DEV) {
-  defaultMotd = "             \u003Cspan style=\"color: #AAAAAA;\"\u003E&gt;&gt;---&gt;&gt; \u003C/span\u003E\u003Cspan style=\"color: #AAAAAA;\"\u003E\u003C/span\u003E\u003Cspan style=\"color: #FF0000;\"\u003E\u003Cspan style=\"font-weight: bold;\"\u003EB\u003C/span\u003E\u003C/span\u003E\u003Cspan style=\"color: #FF0A00;\"\u003E\u003Cspan style=\"font-weight: bold;\"\u003Ea\u003C/span\u003E\u003C/span\u003E\u003Cspan style=\"color: #FF1300;\"\u003E\u003Cspan style=\"font-weight: bold;\"\u003Eg\u003C/span\u003E\u003C/span\u003E\u003Cspan style=\"color: #FF1D00;\"\u003E\u003Cspan style=\"font-weight: bold;\"\u003Eg\u003C/span\u003E\u003C/span\u003E\u003Cspan style=\"color: #FF2700;\"\u003E\u003Cspan style=\"font-weight: bold;\"\u003Ee\u003C/span\u003E\u003C/span\u003E\u003Cspan style=\"color: #FF3000;\"\u003E\u003Cspan style=\"font-weight: bold;\"\u003El\u003C/span\u003E\u003C/span\u003E\u003Cspan style=\"color: #FF3A00;\"\u003E\u003Cspan style=\"font-weight: bold;\"\u003E.\u003C/span\u003E\u003C/span\u003E\u003Cspan style=\"color: #FF4300;\"\u003E\u003Cspan style=\"font-weight: bold;\"\u003Ed\u003C/span\u003E\u003C/span\u003E\u003Cspan style=\"color: #FF4D00;\"\u003E\u003Cspan style=\"font-weight: bold;\"\u003Ee\u003C/span\u003E\u003C/span\u003E\u003Cspan style=\"color: #AAAAAA;\"\u003E \u003C/span\u003E\u003Cspan style=\"color: #AAAAAA;\"\u003E&lt;&lt;---&lt;&lt;\u003C/span\u003E";
-  defaultIcon = "data:image/png;base64,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";
-}
-
-let serverInfo = {
-  online: false,
-  players: 0,
-  maxPlayers: 0,
-  motd: "",
-  icon: ""
-};
-
-try {
-  // const res = 0;
-
-  // FIXME: This blocks page loading. Defer this to after the loading.
-  const res = await fetch(serverInfoAPI, {
-    headers: {
-      "User-Agent": "Baggel Server Info Page - https://baggel.de/projects/baggel"
-    }
-  
-  });
-
-  if (res.ok) {
-    const data = await res.json();
-    serverInfo = {
-      online: data.online,
-      players: data.players?.online ?? 0,
-      maxPlayers: data.players?.max ?? 0,
-      motd: data.motd?.html?.join("<br>") ?? defaultMotd,
-      icon: data.icon ?? defaultIcon,
-    };
-  } else {
-    console.warn("Failed to fetch server info:", res.status, res.statusText);
-  }
-} catch (err) {
-  console.error("Error fetching server info:", err);
-}
+import SecretPronounciation from "../assets/audio/baggel_remix.mp3"
 
 const finishedGames = [
   {
@@ -159,11 +113,12 @@ const unfinishedGames = [
         <ul class="space-y-2 text-base">
           <li>
             <strong>Status:</strong> 
-            <span class={serverInfo.online ? "text-success" : "text-error"}>
-              {serverInfo.online ? "Online" : "Offline"}
-            </span>
+            <span id="server-status" class="text-neutral-400">Loading...</span>
           </li>
-          <li><strong>Players:</strong> {serverInfo.players} / {serverInfo.maxPlayers}</li>
+          <li>
+            <strong>Players:</strong>
+            <span id="server-players" class="text-neutral-400">0 / 0</span>
+          </li>
         </ul>
 
         <div class="mt-4 text-center hidden md:block">
@@ -171,27 +126,22 @@ const unfinishedGames = [
             class="motd-box mt-2 items-center gap-4 font-minecraft text-xs group inline-flex"
             style={`background-image: url('${DirtTexture.src}');`}
           >
-            {serverInfo.icon && (
-              <div class="icon-container relative w-16 h-16 shrink-0" id="serverIcon">
-                <img
-                  src={serverInfo.icon}
-                  alt="Server Icon"
-                  class="icon-image w-full h-full object-cover"
-                />
-                <img
-                  src={PlayButtonTexture.src}
-                  alt="Play Button Overlay"
-                  class="icon-overlay absolute inset-0 w-full h-full object-cover"
-                />
-                <img
-                  src={PlayButtonHoverTexture.src}
-                  alt="Play Button Hover Overlay"
-                  class="icon-overlay-hover absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100"
-                />
-                <audio id="clickAudio" src={Click}></audio>
-              </div>
-            )}
-            <span set:html={serverInfo.motd}></span>
+            <div class="icon-container relative w-16 h-16 shrink-0 hidden" id="serverIconContainer">
+              <img id="server-icon" alt="Server Icon" class="icon-image w-full h-full object-cover" />
+              <img
+                src={PlayButtonTexture.src}
+                alt="Play Button Overlay"
+                class="icon-overlay absolute inset-0 w-full h-full object-cover"
+              />
+              <img
+                src={PlayButtonHoverTexture.src}
+                alt="Play Button Hover Overlay"
+                class="icon-overlay-hover absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100"
+              />
+              <audio id="clickAudio" src={Click}></audio>
+            </div>
+
+            <span id="server-motd" class="text-text-50">Loading MOTD...</span>
           </div>
         </div>
 
@@ -233,6 +183,7 @@ const unfinishedGames = [
       </p>
 
       <audio id="pronunciationAudio" src={Pronounciation}></audio>
+      <audio id="secretPronunciationAudio" src={SecretPronounciation}></audio>
     </section>
 
     <!-- Finished Games Section -->
@@ -423,6 +374,19 @@ const unfinishedGames = [
   transform: scale(0.95);
 }
 
+@keyframes hueRotate {
+  from { filter: hue-rotate(0deg); }
+  to { filter: hue-rotate(360deg); }
+}
+
+.hue-shift {
+  animation: hueRotate 1s linear infinite;
+}
+
+.hue-shift * {
+  animation: hueRotate 1s linear infinite;
+}
+
 
 </style>
 
@@ -439,44 +403,205 @@ const unfinishedGames = [
 </script>
 
 <script>
+  const chance = 0.1;
+  const speedMultiplier = 16;
+  const volume = 0.25;
+
   document.addEventListener("DOMContentLoaded", () => {
     const playButton = document.getElementById("playAudioButton") as HTMLButtonElement | null;
-    const audio = document.getElementById("pronunciationAudio") as HTMLAudioElement | null;
-    if (!audio) return; audio.volume = 0.25;
-    const speakerIcon = document.getElementById("speakerIcon") as SVGSVGElement | null;
+    const normalAudio = document.getElementById("pronunciationAudio") as HTMLAudioElement | null;
+    const secretAudio = document.getElementById("secretPronunciationAudio") as HTMLAudioElement | null;
 
-    if (playButton && audio && speakerIcon) {
-      const speakerSvg = `
-        <path xmlns="http://www.w3.org/2000/svg" d="M20.4,2.9c-0.3-0.2-0.7-0.1-1,0.1L9.7,10H3c-0.6,0-1,0.4-1,1v10c0,0.6,0.4,1,1,1h6.7l9.7,7.1
-        c0.2,0.1,0.4,0.2,0.6,0.2c0.2,0,0.3,0,0.5-0.1c0.3-0.2,0.5-0.5,0.5-0.9V3.8C21,3.4,20.8,3,20.4,2.9z"/>
-        <path xmlns="http://www.w3.org/2000/svg" d="M27.1,9.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4C27.2,12.1,28,14,28,16s-0.8,3.9-2.3,5.3
-        c-0.4,0.4-0.4,1,0,1.4c0.2,0.2,0.5,0.3,0.7,0.3c0.2,0,0.5-0.1,0.7-0.3C29,20.9,30,18.6,30,16S29,11.1,27.1,9.3z"/>
-        <path xmlns="http://www.w3.org/2000/svg" d="M24.7,12.7c-0.4-0.4-1-0.4-1.4,0.1c-0.4,0.4-0.3,1,0.1,1.4c0.5,0.5,0.8,1.2,0.8,1.9
-        s-0.3,1.4-0.8,1.9c-0.4,0.4-0.4,1-0.1,1.4c0.2,0.2,0.5,0.3,0.7,0.3c0.2,0,0.5-0.1,0.7-0.3c1-0.9,1.5-2.1,1.5-3.3
-        S25.6,13.5,24.7,12.7z"/>
-      `;
+    if (!playButton || !normalAudio || !secretAudio) return;
 
-      const stopSvg = `<rect x="8" y="8" width="16" height="16" rx="2" />`;
+    normalAudio.volume = volume;
+    secretAudio.volume = volume;
 
-      let isPlaying = false;
+    let animationFrameId: number | null = null;
+    let hue = 0;
+    let activeAudio: HTMLAudioElement | null = null;
 
-      playButton.addEventListener("click", () => {
-        if (!isPlaying) {
-          audio.play();
-          isPlaying = true;
-          speakerIcon.innerHTML = stopSvg;
-        } else {
-          audio.pause();
-          audio.currentTime = 0;
-          isPlaying = false;
-          speakerIcon.innerHTML = speakerSvg;
+    // List of CSS variables to rotate
+    const colorVars = [
+      "--color-text",
+      "--color-text-50",
+      "--color-text-100",
+      "--color-background",
+      "--color-background-gradient",
+      "--color-background-10",
+      "--color-background-50",
+      "--color-background-100",
+      "--color-primary",
+      "--color-secondary",
+      "--color-accent",
+      "--color-success",
+      "--color-success-gradient",
+      "--color-error",
+      "--color-error-gradient",
+    ];
+
+    // Convert hex to HSL
+    const hexToHSL = (hex: string) => {
+      hex = hex.replace("#", "");
+      const r = parseInt(hex.substring(0, 2), 16) / 255;
+      const g = parseInt(hex.substring(2, 4), 16) / 255;
+      const b = parseInt(hex.substring(4, 6), 16) / 255;
+
+      const max = Math.max(r, g, b), min = Math.min(r, g, b);
+      let h = 0, s = 0, l = (max + min) / 2;
+
+      if (max !== min) {
+        const d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch (max) {
+          case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+          case g: h = (b - r) / d + 2; break;
+          case b: h = (r - g) / d + 4; break;
         }
-      });
-      
-      audio.addEventListener("ended", () => {
-        isPlaying = false;
-        speakerIcon.innerHTML = speakerSvg;
-      });
+        h *= 60;
       }
+
+      return { h, s, l };
+    };
+
+    // Convert HSL back to hex
+    const hslToHex = ({h, s, l}: {h:number,s:number,l:number}) => {
+      const c = (1 - Math.abs(2*l - 1)) * s;
+      const x = c * (1 - Math.abs((h/60)%2 - 1));
+      const m = l - c/2;
+      let r=0,g=0,b=0;
+      if (h>=0 && h<60) { r=c; g=x; b=0 }
+      else if (h<120) { r=x; g=c; b=0 }
+      else if (h<180) { r=0; g=c; b=x }
+      else if (h<240) { r=0; g=x; b=c }
+      else if (h<300) { r=x; g=0; b=c }
+      else { r=c; g=0; b=x }
+
+      const toHex = (v:number) =>
+        Math.round((v+m)*255).toString(16).padStart(2,"0");
+
+      return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+    };
+
+    // Store original colors
+    const originalColors = colorVars.map(v =>
+      getComputedStyle(document.documentElement).getPropertyValue(v).trim() || "#000000"
+    );
+
+    const updateColors = () => {
+      hue = (hue + speedMultiplier) % 360;
+      colorVars.forEach((v, i) => {
+        const hsl = hexToHSL(originalColors[i]);
+        hsl.h = (hsl.h + hue) % 360;
+        document.documentElement.style.setProperty(v, hslToHex(hsl));
+      });
+      animationFrameId = requestAnimationFrame(updateColors);
+    };
+
+    const startPartyMode = () => {
+      if (!animationFrameId) updateColors();
+    };
+
+    const stopPartyMode = () => {
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+      animationFrameId = null;
+
+      colorVars.forEach((v, i) =>
+        document.documentElement.style.setProperty(v, originalColors[i])
+      );
+    };
+
+    secretAudio.addEventListener("ended", stopPartyMode);
+    normalAudio.addEventListener("ended", stopPartyMode);
+
+    playButton.addEventListener("click", () => {
+      const isSecret = Math.random() < chance;
+
+      if (activeAudio) {
+        activeAudio.pause();
+        activeAudio.currentTime = 0;
+      }
+
+      activeAudio = isSecret ? secretAudio : normalAudio;
+
+      activeAudio.currentTime = 0;
+      activeAudio.play();
+
+      if (isSecret) startPartyMode();
+      else stopPartyMode();
+    });
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", async () => {
+    const SERVER_ADDRESS = "baggel.de";
+    const API_URL = `https://api.mcsrvstat.us/3/${SERVER_ADDRESS}`;
+
+    const statusEl = document.getElementById("server-status");
+    const playersEl = document.getElementById("server-players");
+    const motdEl = document.getElementById("server-motd");
+    const iconContainer = document.getElementById("serverIconContainer");
+    const iconImg = document.getElementById("server-icon");
+    const clickAudio = document.getElementById("clickAudio");
+
+    if (!statusEl || !playersEl || !motdEl) {
+      console.warn("Server status elements not found in DOM.");
+      return;
+    }
+
+    statusEl.textContent = "Loading...";
+    statusEl.className = "text-neutral-400";
+
+    try {
+      const res = await fetch(API_URL, {
+        headers: { "User-Agent": "Baggel Server Info Page - https://baggel.de/projects/baggel" },
+      });
+
+      if (!res.ok) {
+        throw new Error(`HTTP error ${res.status}`);
+      }
+
+      const data = await res.json();
+
+      // Status
+      if (data.online) {
+        statusEl.textContent = "Online";
+        statusEl.className = "text-success";
+        playersEl.textContent = `${data.players?.online ?? 0} / ${data.players?.max ?? 0}`;
+      } else {
+        statusEl.textContent = "Offline";
+        statusEl.className = "text-error";
+        playersEl.textContent = "-";
+      }
+
+      // MOTD
+      if (data.motd?.html && Array.isArray(data.motd.html)) {
+        motdEl.innerHTML = data.motd.html.join("<br>");
+      } else {
+        motdEl.textContent = "No MOTD available.";
+      }
+
+      // Icon
+      if (data.icon && iconContainer && iconImg) {
+        iconContainer.classList.remove("hidden");
+        iconImg.setAttribute("src", data.icon);
+
+        if (clickAudio instanceof HTMLAudioElement) {
+          iconContainer.addEventListener("click", () => {
+            clickAudio.volume = 0.3;
+            clickAudio.play().catch(() => {});
+          });
+        }
+      } else if (iconContainer) {
+        iconContainer.classList.add("hidden");
+      }
+    } catch (err) {
+      console.error("Error fetching server info:", err);
+      statusEl.textContent = "Error";
+      statusEl.className = "text-error";
+      playersEl.textContent = "-";
+      motdEl.textContent = "Could not load server info.";
+    }
   });
 </script>

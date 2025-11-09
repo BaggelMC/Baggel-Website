@@ -13,5 +13,5 @@ export const LINKS = {
 
 export const RESOURCES = {
     globalCSS: "/src/styles/global.css",
-    fontURL: "https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&display=swap",
+    fontURL: "https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=Fragment+Mono:ital@0;1&display=swap",
 }
