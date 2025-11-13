@@ -1,17 +1,92 @@
 ---
 import Headline from "../../../components/Headline.astro";
-import ToolLayout from "../../../layouts/ToolLayout.astro";
-import Message from "../../../components/MiniMessage";
-
+import ToolLayout from "../../../layouts/MiniMessageToolLayout.astro";
+import "../../../styles/MiniMessageTool.css"
 ---
 
 <ToolLayout title="MiniMessage Editor">
+  <div class="max-w-5xl mx-auto px-8 py-20 text-text font-sans space-y-12">
+    <Headline text="MiniMessage Editor" class="text-center" />
 
-  <div class="max-w-5xl mx-auto px-8 py-20 text-text font-sans">
+    <div class="flex flex-col relative">
+      <label id="input-label" class="text-text-50 mb-2 text-sm uppercase tracking-wide">Input</label>
 
-    <Headline text="BuildMC" class="mb-12 text-center"></Headline>
+      <div
+        data-simplebar 
+        data-simplebar-auto-hide="false" 
+        class="w-full min-h-[200px] rounded-2xl bg-background-10 focus-within:ring-2 focus-within:ring-primary transition duration-300"
+        style="overflow: hidden;"
+      >
+        <textarea
+          id="input"
+          class="min-h-[200px] w-full h-full p-4 bg-transparent text-text font-sans focus:outline-none transition duration-300 resize-none"
+          placeholder="Type MiniMessage text here..."
+        ></textarea>
 
-    <Message input="<green>Hello <bold>World</bold> from MiniMessage!</green>" />
+        <div
+          id="resizer"
+          class="absolute bottom-3.5 right-2.5 w-4 h-4 cursor-n-resize"
+          title="Resize"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg" 
+            fill="var(--color-primary)" 
+            viewBox="0 0 384.792 384.792" 
+            class="w-full h-full"
+          >
+            <path d="M116.783,281.339c-4.74-4.704-12.439-4.704-17.179,0c-4.74,4.704-4.74,12.319,0,17.011
+              l84.2,82.997c4.644,4.559,12.512,4.632,17.191-0.012l84.188-82.997c4.74-4.704,4.74-12.319,0-17.011
+              c-4.752-4.692-12.439-4.704-17.191,0l-63.448,62.558V40.89l63.46,62.558c4.752,4.704,12.439,4.692,17.179,0
+              c4.752-4.704,4.752-12.319,0-17.011l-84.2-82.997c-4.812-4.776-12.367-4.391-17.191,0L99.604,86.436
+              c-4.752,4.704-4.74,12.319,0,17.011c4.74,4.704,12.439,4.704,17.179,0l63.46-62.558v303.007L116.783,281.339z"/>
+          </svg>
+        </div>
+      </div>
+    </div>
 
 
+    <div class="flex flex-col io">
+      <label id="output-dom-label" class="text-text-50 mb-2 text-sm uppercase tracking-wide">Output</label>
+      <div
+        id="output-dom"
+        class="content w-full min-h-[200px] p-4 bg-background-gradient text-text font-minecraft-minimessage rounded-2xl border border-background-50 wrap-break-word whitespace-pre-wrap"
+      ></div>
+
+    </div>
+  </div>
+
+  <script>
+    const textarea = document.getElementById("input") as HTMLTextAreaElement | null;
+    const resizer = document.getElementById("resizer") as HTMLDivElement | null;
+
+    if (textarea && resizer) {
+      let startY: number;
+      let startHeight: number;
+
+      resizer.addEventListener("mousedown", (e: MouseEvent) => {
+        e.preventDefault();
+        startY = e.clientY;
+        startHeight = textarea.offsetHeight;
+
+        const onMouseMove = (e: MouseEvent) => {
+          const newHeight = startHeight + (e.clientY - startY);
+          if (newHeight >= 100) {
+            textarea.style.height = `${newHeight}px`;
+
+            const simplebarEl = textarea.closest("[data-simplebar]") as HTMLElement | null;
+            const simplebarInstance = simplebarEl && (simplebarEl as any).SimpleBar;
+            simplebarInstance?.recalculate();
+          }
+        };
+
+        const onMouseUp = () => {
+          window.removeEventListener("mousemove", onMouseMove);
+          window.removeEventListener("mouseup", onMouseUp);
+        };
+
+        window.addEventListener("mousemove", onMouseMove);
+        window.addEventListener("mouseup", onMouseUp);
+      });
+    }
+  </script>
 </ToolLayout>

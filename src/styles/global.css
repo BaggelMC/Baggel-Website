@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+@import "simplebar/dist/simplebar.css";
+
+
 @font-face {
   font-family: MinecraftStandard;
   src: url(../assets/fonts/minecraft_standard/MinecraftStandard.otf)
@@ -134,6 +137,17 @@
 .transition-smooth {
   transition-duration: var(--transition-duration-base);
   transition-timing-function: var(--transition-timing-soft);
+}
+
+.simplebar-track.simplebar-vertical {
+  width: 8px;
+  background: var(--color-background-10);
+  border-radius: 12px;
+}
+
+.simplebar-scrollbar::before {
+  background-color: var(--color-primary);
+  border-radius: 12px;
 }
 
 /* Scrollbar */

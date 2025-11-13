@@ -1,16 +1,20 @@
-import React from "react";
-import MiniMessage from "minimessage-js";
+import React, { useEffect, useState } from "react";
 
 interface MessageProps {
   input: string;
 }
 
 export default function Message({ input }: MessageProps) {
-  const mm = MiniMessage.miniMessage();
+  const [html, setHtml] = useState<string>("");
 
-  const component = mm.deserialize(input);
+  useEffect(() => {
+    const MiniMessage = (window as any).MiniMessage;
+    if (!MiniMessage) return;
 
-  const html = mm.toHTML(component);
+    const mm = MiniMessage.miniMessage();
+    const component = mm.deserialize(input);
+    setHtml(mm.toHTML(component));
+  }, [input]);
 
   return (
     <div

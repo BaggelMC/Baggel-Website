@@ -1,0 +1,28 @@
+#output-dom * {
+  display: inline;
+  vertical-align: middle;
+}
+
+#output-dom br {
+  display: block;
+}
+
+#output-dom img {
+  display: inline;
+  image-rendering: pixelated;
+}
+
+textarea {
+  resize: vertical;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) var(--color-background-10);
+}
+
+textarea::-moz-resizer {
+  display: none;
+}
+
+textarea::-webkit-resizer {
+  display: none;
+}

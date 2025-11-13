@@ -16,6 +16,27 @@ const { title, lang } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href={RESOURCES.fontURL} rel="stylesheet" />
     <script src="https://unpkg.com/alpinejs" defer></script>
+    <script src="/minimessage.min.js" is:inline></script>
+    <script src="/minimessage-fetch-translations.min.js" is:inline></script>
+    <script src="/minimessage.io.js" is:inline></script>
+    <noscript>
+      <style>
+        /**
+        * Reinstate scrolling for non-JS clients
+        */
+        .simplebar-content-wrapper {
+          scrollbar-width: auto;
+          -ms-overflow-style: auto;
+        }
+
+        .simplebar-content-wrapper::-webkit-scrollbar,
+        .simplebar-hide-scrollbar::-webkit-scrollbar {
+          display: initial;
+          width: initial;
+          height: initial;
+        }
+      </style>
+    </noscript>
   </head>
   <body
     class="min-h-screen text-text font-sans flex flex-col relative overflow-x-hidden bg-background"
