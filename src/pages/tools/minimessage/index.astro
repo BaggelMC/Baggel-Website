@@ -11,6 +11,8 @@ import "../../../styles/MiniMessageTool.css"
     <div class="flex flex-col relative">
       <label id="input-label" class="text-text-50 mb-2 text-sm uppercase tracking-wide">Input</label>
 
+      <div id="tag-toolbar" class="flex flex-wrap gap-2 mb-3"></div>
+
       <div
         data-simplebar 
         data-simplebar-auto-hide="false" 
@@ -89,4 +91,6 @@ import "../../../styles/MiniMessageTool.css"
       });
     }
   </script>
+  <script type="module" src="/src/scripts/tags.ts"></script>
+
 </ToolLayout>
