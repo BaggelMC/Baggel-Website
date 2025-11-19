@@ -1,0 +1,13 @@
+---
+import React from "react";
+import ToolLayout from "../../../layouts/BunnySuitToolLayout.astro";
+import BunnySuitConverter from "../../../components/bunnysuit";
+import Headline from "../../../components/Headline.astro";
+---
+
+<ToolLayout title="BunnySuit Converter">
+  <div class="max-w-5xl mx-auto px-8 py-20">
+    <Headline text="BunnySuit Converter"></Headline>
+    <BunnySuitConverter client:load />
+  </div>
+</ToolLayout>

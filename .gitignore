@@ -1,2 +1,11 @@
 node_modules/
 .env
+
+build.bat
+dev.bat
+.dcignore
+
+webserver_build.bat
+
+.astro/
+.vscode/
