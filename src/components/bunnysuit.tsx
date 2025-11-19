@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 export default function BunnySuitConverter() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [skinFile, setSkinFile] = useState<File | null>(null);
-  const [overlay, setOverlay] = useState<string>("bunny/overlays/1.png");
+  const [overlay, setOverlay] = useState<string>("overlays/1.png");
   const [baseImg, setBaseImg] = useState<HTMLImageElement | null>(null);
   const [overlayImg, setOverlayImg] = useState<HTMLImageElement | null>(null);
   const [maskImg, setMaskImg] = useState<HTMLImageElement | null>(null);
@@ -145,9 +145,9 @@ export default function BunnySuitConverter() {
           value={overlay}
           onChange={(e) => setOverlay(e.target.value)}
         >
-          <option value="bunny/overlays/1.png">Bunny Suit Classic</option>
-          <option value="bunny/overlays/2.png">Bunny Suit White</option>
-          <option value="bunny/overlays/3.png">Bunny Suit Black</option>
+          <option value="overlays/1.png">Bunny Suit Classic</option>
+          <option value="overlays/2.png">Bunny Suit White</option>
+          <option value="overlays/3.png">Bunny Suit Black</option>
         </select>
       </div>
 

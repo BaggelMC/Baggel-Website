@@ -9,3 +9,4 @@ webserver_build.bat
 
 .astro/
 .vscode/
+dist/
