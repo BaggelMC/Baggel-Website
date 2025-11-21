@@ -1,15 +1,116 @@
 ---
-import Headline from "../../../components/Headline.astro";
 import DefaultLayout from "../../../layouts/DefaultLayout.astro";
+import Separator from "../../../components/Separator.astro";
 
 // @ts-ignore
 import BuildmcLogo from "../../../assets/images/buildmc-logo.png?format=webp"
+// @ts-ignore
+import WinterMCBanner from "../../../assets/images/wintermc.png?format=webp&w=1200"
 ---
 
-<DefaultLayout title="BuildMC">
+<DefaultLayout title="BuildMC" lang="de">
 
-  <div class="max-w-5xl mx-auto px-8 py-20 text-text font-sans">
+  <div class="max-w-5xl mx-auto px-4 sm:px-8 py-16 sm:py-20 text-text font-sans space-y-12">
 
-    <Headline text="BuildMC" class="mb-12 text-center"></Headline>
+    <!-- Logo Section -->
+    <div class="flex justify-center mb-8">
+      <img src={BuildmcLogo} alt="BuildMC Logo" class="w-full max-w-md h-auto" />
+    </div>
+
+    <!-- About Section -->
+    <section class="info-section bg-background-10 relative max-w-4xl mx-auto text-left text-text rounded-4xl shadow-lg border border-background-50 hover:border-accent transition-all duration-500 overflow-hidden">
+      <div class="relative z-10 px-6 sm:px-8 md:px-10 py-10 space-y-6">
+        <h2 class="text-xl sm:text-2xl font-bold tracking-wide text-primary text-center font-minecraft">Über BuildMC</h2>
+        
+        <div class="space-y-4 text-base leading-base text-text/90">
+          <p>
+            <strong class="text-primary">BuildMC</strong> ist ein kollaboratives Minecraft Survival Multiplayer (SMP) Projekt, 
+            das Baumeister, Entdecker und Kreative in einer gemeinsamen Welt zusammenbringt. Unser Server konzentriert sich auf 
+            gemeinschaftliches Bauen, kreative Zusammenarbeit und langfristige Weltenentwicklung.
+          </p>
+          
+          <p>
+            Jede Saison von BuildMC bietet einen Neustart mit neuen Herausforderungen, Themen und Möglichkeiten für Spieler, 
+            ihre Spuren in der Welt zu hinterlassen. Wir legen Wert auf faires Spiel, Respekt und die Freude am gemeinsamen Bauen.
+          </p>
+
+          <p>
+            Alle BuildMC-Server werden von <strong class="text-accent">BuildMC-Core</strong> angetrieben, unserem benutzerdefinierten Plugin, 
+            das wichtige Funktionen wie Claim-Systeme, Spielerköpfe, Spawn-Elytra und vieles mehr bereitstellt. Diese einheitliche 
+            Grundlage sorgt für ein konsistentes und poliertes Erlebnis in allen unseren Projekten.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8 pt-6 border-t border-background-50">
+          <a 
+            href="/projects/buildmc/rules" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3 rounded-2xl bg-primary text-background font-bold transition duration-300 hover:bg-accent hover:scale-105 text-center w-full sm:w-auto"
+          >
+            Projektregeln
+          </a>
+          <a 
+            href="/plugins/de/core" 
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-6 py-3 rounded-2xl bg-secondary text-text font-bold transition duration-300 hover:bg-accent hover:text-background hover:scale-105 text-center w-full sm:w-auto"
+          >
+            BuildMC-Core Plugin
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <Separator />
+
+    <!-- WinterMC Section -->
+    <section class="wintermc-section bg-background-10 relative max-w-4xl mx-auto text-left text-text rounded-4xl shadow-lg border border-background-50 hover:border-accent transition-all duration-500 overflow-hidden">
+      <span class="absolute top-4 right-4 bg-accent/20 text-accent text-xs font-semibold px-3 py-1 rounded-md backdrop-blur-sm border border-accent/30 z-20">
+        Demnächst
+      </span>
+      
+      <!-- Banner Image -->
+      <div class="w-full">
+        <img 
+          src={WinterMCBanner} 
+          alt="WinterMC Banner" 
+          class="w-full h-auto rounded-t-4xl object-cover"
+        />
+      </div>
+      
+      <div class="relative z-10 px-6 sm:px-8 md:px-10 py-10 space-y-6">
+        
+        
+        <div class="space-y-4 text-base leading-base text-text/90">
+          <p>
+            <strong class="text-primary">WinterMC</strong> ist die nächste aufregende Saison von BuildMC und bringt ein 
+            winterliches Survival-Erlebnis in unsere Community. Bereite dich auf eine gefrorene Landschaft, einzigartige Herausforderungen 
+            und saisonale Bauprojekte vor.
+          </p>
+          
+          <div class="bg-background-50/50 rounded-2xl p-6 space-y-3 border border-background-100">
+            <h3 class="text-lg font-bold text-primary font-minecraft">Projektdetails</h3>
+            <ul class="space-y-2 text-text-50 list-disc list-inside">
+              <li><strong class="text-text">Startdatum:</strong> <span class="text-primary">13. Dezember 2025</span></li>
+              <li><strong class="text-text">Thema:</strong> <span class="text-primary">Winter & Feiertagszeit</span></li>
+            </ul>
+          </div>
+
+          <p>
+            Begleite uns auf diesem Winterabenteuer! Ob du ein erfahrener Baumeister bist oder neu in der Community, 
+            WinterMC bietet für jeden etwas. Baue gemütliche Winterhütten, erstelle festliche Dekorationen und erkunde 
+            gemeinsam die gefrorene Wildnis.
+          </p>
+
+          <p class="text-text-50 italic">
+            Weitere Details zu WinterMC werden näher am Starttermin bekannt gegeben. Bleib dran für Updates!
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </div>
 
 </DefaultLayout>
