@@ -22,6 +22,8 @@ import ImageDuels from "../assets/images/gamemodes/1v1.png?format=webp&w=800";
 import ImageFFA from "../assets/images/gamemodes/FFA.png?format=webp&w=800";
 //@ts-ignore
 import ImageFireball from "../assets/images/gamemodes/fireball.png?format=webp&w=800";
+//@ts-ignore
+import ImageTNTTag from "../assets/images/gamemodes/tnttag.png?format=webp&w=800";
 
 import Pronounciation from "../assets/audio/baggel.mp3"
 import SecretPronounciation from "../assets/audio/baggel_remix.mp3"
@@ -30,20 +32,26 @@ const finishedGames = [
   {
     name: "Duels 1v1",
     description:
-      "Face off against another player in intense, fast-paced PvP duels. Choose your kit, sharpen your reflexes, and fight to claim victory in our arenas! Only the best will stand tall.",
+      "Tritt gegen einen anderen Spieler in intensiven, schnellen PvP-Duellen an. Wähle dein Kit, schärfe deine Reflexe und kämpfe um den Sieg in unseren Arenen! Nur die Besten werden bestehen.",
     image: ImageDuels,
   },
   {
     name: "Knockback FFA",
     description:
-      "No teams, no mercy! It’s every player for themselves! Jump into chaotic free-for-all combat where quick thinking and skill decide who dominates the battlefield.",
+      "Keine Teams, keine Gnade! Jeder Spieler für sich selbst! Springe in chaotische Free-for-All-Kämpfe, bei denen schnelles Denken und Geschick entscheiden, wer das Schlachtfeld dominiert.",
     image: ImageFFA,
   },
   {
     name: "Fireball Fight",
     description:
-      "Launch, dodge, and blast your way to victory in this explosive game! Use precision and timing to knock your opponents off the map with well-aimed fireballs. One hit can change everything.",
+      "Schieße, weiche aus und kämpfe dich mit Explosionen zum Sieg! Nutze Präzision und Timing, um deine Gegner mit gut gezielten Feuerbällen von der Karte zu befördern. Ein Treffer kann alles ändern.",
     image: ImageFireball,
+  },
+  {
+    name: "Hot Potato",
+    description:
+      "Du hast eine tickende Zeitbombe! Gib sie schnell weiter, bevor sie explodiert! Wer am Ende die Bombe hat, verliert. Geschwindigkeit und Strategie entscheiden über Sieg oder Niederlage.",
+    image: ImageTNTTag,
   },
 ];
 
@@ -51,37 +59,37 @@ const unfinishedGames = [
   {
     name: "Pillars of Fortune",
     description:
-      "You’re stranded on a tiny pillar floating in the void. Every few seconds, fate gives you random items, sometimes helpful, sometimes deadly. Outlast everyone else in this game of pure chaos and luck!",
+      "Du bist auf einer winzigen Säule gestrandet, die im Nichts schwebt. Alle paar Sekunden gibt dir das Schicksal zufällige Gegenstände, manchmal hilfreich, manchmal tödlich. Überlebe alle anderen in diesem Spiel aus purem Chaos und Glück!",
   },
   {
     name: "Chess",
     description:
-      "The classic game of strategy, Minecraft style. Move your army across the board, plan every attack, and checkmate your opponent!",
+      "Das klassische Strategiespiel im Minecraft-Stil. Bewege deine Armee über das Brett, plane jeden Angriff und setze deinen Gegner schachmatt!",
   },
   {
     name: "TNT Run",
     description:
-      "Keep moving or fall! The floor disappears beneath your feet as you run. One wrong step and it’s game over. Outlast everyone in this explosive test of reflexes and control.",
+      "Beweg dich oder falle! Der Boden verschwindet unter deinen Füßen, während du rennst. Ein falscher Schritt und das Spiel ist vorbei. Überlebe alle anderen in diesem explosiven Test für Reflexe und Kontrolle.",
   },
   {
     name: "Baggel Clicker",
     description:
-      "Every click counts! Gather coins, buy upgrades, and climb the leaderboard in this addicting idle-clicker experience inspired by Cookie Clicker, but with that Baggel flair.",
+      "Jeder Klick zählt! Sammle Münzen, kaufe Upgrades und klettere die Bestenliste hinauf in diesem süchtig machenden Idle-Clicker-Erlebnis, inspiriert von Cookie Clicker, aber mit diesem Baggel-Flair.",
   },
   {
     name: "Replica",
     description:
-      "Pay close attention! A structure appears and it’s up to you to rebuild it perfectly. Speed and precision decide who reigns as the master builder.",
+      "Pass genau auf! Eine Struktur erscheint und es liegt an dir, sie perfekt nachzubauen. Geschwindigkeit und Präzision entscheiden, wer als Meisterbauer herrscht.",
   },
   {
     name: "SpeedCrafter",
     description:
-      "Craft or be crafted! Race to complete random recipes as fast as you can. The faster your hands and your memory, the higher your score and bragging rights.",
+      "Bastele oder werde gebastelt! Rase darum, zufällige Rezepte so schnell wie möglich zu vervollständigen. Je schneller deine Hände und dein Gedächtnis, desto höher deine Punktzahl und dein Recht zu prahlen.",
   },
   {
     name: "Cow Pong",
     description:
-      "Classic Pong... but with cows! Moo-ving fast is key! (I swear the cows like it!)",
+      "Klassisches Pong... aber mit Kühen! Schnell zu sein ist der Schlüssel! (Ich schwöre, die Kühe mögen es!)",
   },
 ];
 ---
@@ -108,15 +116,15 @@ const unfinishedGames = [
 
       <!-- Content Overlay -->
       <div class="relative z-10 px-6 sm:px-8 md:px-10 py-10 text-center space-y-4 bg-transparent">
-        <h2 class="text-xl sm:text-2xl font-bold tracking-wide text-primary text-center">Server Status</h2>
+        <h2 class="text-xl sm:text-2xl font-bold tracking-wide text-primary text-center">Server-Status</h2>
 
         <ul class="space-y-2 text-base">
           <li>
             <strong>Status:</strong> 
-            <span id="server-status" class="text-neutral-400">Loading...</span>
+            <span id="server-status" class="text-neutral-400">Lädt...</span>
           </li>
           <li>
-            <strong>Players:</strong>
+            <strong>Spieler:</strong>
             <span id="server-players" class="text-neutral-400">0 / 0</span>
           </li>
         </ul>
@@ -141,7 +149,7 @@ const unfinishedGames = [
               <audio id="clickAudio" src={Click}></audio>
             </div>
 
-            <span id="server-motd" class="text-text-50">Loading MOTD...</span>
+            <span id="server-motd" class="text-text-50">Lädt MOTD...</span>
           </div>
         </div>
 
@@ -188,7 +196,7 @@ const unfinishedGames = [
 
     <!-- Finished Games Section -->
     <section class="finished-games text-center">
-      <h2 class="text-2xl font-bold mb-8 text-primary">Available Games</h2>
+      <h2 class="text-2xl font-bold mb-8 text-primary">Verfügbare Spiele</h2>
 
       <div class="flex flex-wrap justify-center gap-8">
         {finishedGames.map((game) => (
@@ -211,13 +219,13 @@ const unfinishedGames = [
 
     <!-- Coming Soon Section -->
     <section class="unfinished-games text-center">
-      <h2 class="text-2xl font-bold mb-8 text-primary">Coming Soon</h2>
+      <h2 class="text-2xl font-bold mb-8 text-primary">Demnächst</h2>
 
       <div class="flex flex-wrap justify-center gap-8">
         {unfinishedGames.map((game) => (
           <div class="w-full sm:w-[45%] lg:w-[45%] max-w-xl group relative rounded-2xl overflow-hidden bg-background-10 border border-background-50 hover:border-accent transition-all duration-500 shadow-lg hover:shadow-2xl">
             <div class="absolute bottom-4 right-4 bg-accent/20 text-accent text-xs font-semibold px-2 py-1 rounded-md backdrop-blur-sm border border-accent/30">
-              In Development
+              In Entwicklung
             </div>
 
             <div class="p-6 text-left space-y-2 mb-8">
@@ -233,8 +241,8 @@ const unfinishedGames = [
     <section class="text-center max-w-2xl mx-auto">
       <Separator/>
       <p class="text-text-50 text-base">
-        Our server is currently in <span class="text-accent font-semibold">active development</span>.<br />
-        New game modes and features are being added all the time. Stay tuned!
+        Unser Server befindet sich derzeit in <span class="text-accent font-semibold">aktiver Entwicklung</span>.<br />
+        Neue Spielmodi und Funktionen werden ständig hinzugefügt. Bleib dran!
       </p>
     </section>
 
@@ -404,11 +412,9 @@ const unfinishedGames = [
 
 <script>
   const chance = 0.1;
-
-  // TODO: Make not depend on FPS
-  const speedMultiplier = 16;
-  
+  const rotationSpeed = 360; // degrees per second
   const volume = 0.25;
+  const minClicksForSecret = 3;
 
   document.addEventListener("DOMContentLoaded", () => {
     const playButton = document.getElementById("playAudioButton") as HTMLButtonElement | null;
@@ -423,6 +429,8 @@ const unfinishedGames = [
     let animationFrameId: number | null = null;
     let hue = 0;
     let activeAudio: HTMLAudioElement | null = null;
+    let clickCount = 0;
+    let lastFrameTime: number | null = null;
 
     // List of CSS variables to rotate
     const colorVars = [
@@ -491,8 +499,15 @@ const unfinishedGames = [
       getComputedStyle(document.documentElement).getPropertyValue(v).trim() || "#000000"
     );
 
-    const updateColors = () => {
-      hue = (hue + speedMultiplier) % 360;
+    const updateColors = (currentTime: number) => {
+      if (lastFrameTime === null) {
+        lastFrameTime = currentTime;
+      }
+
+      const deltaTime = (currentTime - lastFrameTime) / 1000; // Convert to seconds
+      lastFrameTime = currentTime;
+
+      hue = (hue + rotationSpeed * deltaTime) % 360;
       colorVars.forEach((v, i) => {
         const hsl = hexToHSL(originalColors[i]);
         hsl.h = (hsl.h + hue) % 360;
@@ -502,12 +517,16 @@ const unfinishedGames = [
     };
 
     const startPartyMode = () => {
-      if (!animationFrameId) updateColors();
+      if (!animationFrameId) {
+        lastFrameTime = null;
+        animationFrameId = requestAnimationFrame(updateColors);
+      }
     };
 
     const stopPartyMode = () => {
       if (animationFrameId) cancelAnimationFrame(animationFrameId);
       animationFrameId = null;
+      lastFrameTime = null;
 
       colorVars.forEach((v, i) =>
         document.documentElement.style.setProperty(v, originalColors[i])
@@ -518,7 +537,11 @@ const unfinishedGames = [
     normalAudio.addEventListener("ended", stopPartyMode);
 
     playButton.addEventListener("click", () => {
-      const isSecret = Math.random() < chance;
+      clickCount++;
+      
+      // Only allow secret audio if user has clicked at least 3 times
+      const canTriggerSecret = clickCount >= minClicksForSecret;
+      const isSecret = canTriggerSecret && Math.random() < chance;
 
       if (activeAudio) {
         activeAudio.pause();
@@ -553,7 +576,7 @@ const unfinishedGames = [
       return;
     }
 
-    statusEl.textContent = "Loading...";
+    statusEl.textContent = "Lädt...";
     statusEl.className = "text-neutral-400";
 
     try {
@@ -580,7 +603,7 @@ const unfinishedGames = [
       if (data.motd?.html && Array.isArray(data.motd.html)) {
         motdEl.innerHTML = data.motd.html.join("<br>");
       } else {
-        motdEl.textContent = "No MOTD available.";
+        motdEl.textContent = "Kein MOTD verfügbar.";
       }
 
       // Icon
@@ -599,10 +622,10 @@ const unfinishedGames = [
       }
     } catch (err) {
       console.error("Error fetching server info:", err);
-      statusEl.textContent = "Error";
+      statusEl.textContent = "Fehler";
       statusEl.className = "text-error";
       playersEl.textContent = "-";
-      motdEl.textContent = "Could not load server info.";
+      motdEl.textContent = "Server-Informationen konnten nicht geladen werden.";
     }
   });
 </script>
