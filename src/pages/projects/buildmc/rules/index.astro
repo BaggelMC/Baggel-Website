@@ -1,0 +1,569 @@
+---
+import DefaultLayout from "../../../../layouts/DefaultLayout.astro";
+import Headline from "../../../../components/Headline.astro";
+
+const sections = [
+  { id: "allgemeines", title: "Allgemeines" },
+  { id: "regeln", title: "Regeln" },
+  { id: "konsequenzen", title: "Erklärung der Konsequenzen" },
+  { id: "verwarnungen", title: "Konsequenzen bei zu vielen Verwarnungen" },
+  { id: "spieler-rechte", title: "Spieler Rechte" },
+  { id: "sonstiges", title: "Sonstiges" },
+  { id: "team", title: "BuildMC Team" },
+];
+---
+
+<DefaultLayout title="BuildMC – Regeln & Rechte" lang="de">
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-20 text-text font-sans">
+    <!-- Header -->
+    <div class="mb-6 sm:mb-8 lg:mb-12 text-center mt-8 sm:mt-12">
+        <Headline text="BuildMC" />
+        <Headline text="Regeln & Rechte" />
+      <p class="text-text-50 text-sm sm:text-base">
+        Von Mathias2246, Darkyl & BeastQuestTS im Juni 2025
+      </p>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8">
+      <!-- Sidebar Navigation -->
+      <aside class="lg:w-64 shrink-0 lg:sticky lg:self-start lg:top-24 hidden lg:block">
+        <nav class="bg-background-10 rounded-2xl border border-background-50 p-4 space-y-2">
+          <h2 class="text-base sm:text-lg font-bold text-primary font-minecraft mb-4 px-2">Navigation</h2>
+          <ul class="space-y-1">
+            {sections.map((section) => (
+              <li>
+                <a
+                  href={`#${section.id}`}
+                  class="sidebar-link block px-3 py-2 rounded-lg text-text hover:bg-background-50 hover:text-accent transition-colors duration-200"
+                  data-section={section.id}
+                >
+                  {section.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="flex-1 min-w-0">
+        <div class="space-y-6 sm:space-y-8">
+          <!-- Allgemeines -->
+          <section id="allgemeines" class="scroll-mt-24 bg-background-10 rounded-2xl border border-background-50 p-4 sm:p-6 lg:p-8">
+            <h2 class="text-primary text-md md:text-2xl font-minecraft text-center mb-8 sm:mb-12">Allgemeines</h2>
+            <div class="space-y-3 sm:space-y-4 text-sm sm:text-base leading-snug sm:leading-base text-text/90">
+              <p>
+                Jeder Spieler muss diese Regeln gelesen, verstanden und akzeptiert haben, ansonsten kann derjenige nicht an BuildMC teilnehmen.
+              </p>
+              <p class="font-semibold text-accent">
+                Die Regeln nicht gelesen zu haben ist automatisch ein Verstoß der Regeln.
+              </p>
+              <p>
+                Jedes Mitglied hat einen respektvollen Umgang mit anderen und deren Besitz zu demonstrieren.
+              </p>
+              <p>
+                Ohne Zustimmung von jedem Betroffenen und allen Admins/Moderatoren wird es nie, egal weshalb, Ausnahmen bei Regeln geben.
+                <span class="font-semibold text-accent"> Keine Ausnahmen und kein Diskutieren.</span>
+              </p>
+              <p>
+                Jeder muss sich an alle Regeln halten. Es ist jederzeit erlaubt, Fragen zu stellen oder um Hilfe zu bitten, jedoch nur, wenn dies der Klärung von Unklarheiten dient. Anfragen, die nur der Belästigung oder wiederholten Betteln um eine Sonderbehandlung dienen, werden nicht unterstützt oder toleriert.
+              </p>
+              <p>
+                Diese Regeln gelten allgemein für alle BuildMC Projekte. Sie können explizit in den projektspezifischen Regeln überschrieben, geändert oder entfernt werden.
+              </p>
+              <p>
+                Das Mindestalter für die Teilnahme an BuildMC beträgt <strong class="text-primary">13 Jahre</strong>. Jüngere Spieler können leider nicht aufgenommen werden.
+              </p>
+            </div>
+          </section>
+
+          <!-- Regeln -->
+          <section id="regeln" class="scroll-mt-24 bg-background-10 rounded-2xl border border-background-50 p-4 sm:p-6 lg:p-8">
+            <h2 class="text-primary text-md md:text-2xl font-minecraft text-center mb-8 sm:mb-12">Regeln</h2>
+            <div class="space-y-4 sm:space-y-6">
+              <!-- Rule 1 -->
+              <div class="bg-background-50/30 rounded-xl p-4 sm:p-5 lg:p-6 border border-background-100">
+                <h3 class="text-base sm:text-lg md:text-xl font-bold text-accent mb-2 sm:mb-3">1. Unerlaubte Ausdrucksweise</h3>
+                <div class="space-y-2 sm:space-y-3">
+                  <div>
+                    <h4 class="text-sm sm:text-base font-semibold text-text mb-1 sm:mb-2">Beschreibung:</h4>
+                    <p class="text-sm sm:text-base leading-snug sm:leading-normal text-text/90">
+                      Jegliche Form von Belästigung, Beleidigung, Rassismus, Antisemitismus, Radikalität oder Sexismus - auch als „Witz" - ist strengstens untersagt. Weder im Spiel noch im Discord.
+                    </p>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-text mb-2">Konsequenzen:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-text/90">
+                      <li>Verwarnung</li>
+                      <li>Mute</li>
+                      <li>Timeout</li>
+                      <li>Timeout im Discord</li>
+                      <li>In besonders schweren Fällen: Bann</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Rule 2 -->
+              <div class="bg-background-50/30 rounded-xl p-4 sm:p-5 lg:p-6 border border-background-100">
+                <h3 class="text-base sm:text-lg md:text-xl font-bold text-accent mb-2 sm:mb-3">2. Griefing</h3>
+                <div class="space-y-2 sm:space-y-3">
+                  <div>
+                    <h4 class="text-sm sm:text-base font-semibold text-text mb-1 sm:mb-2">Beschreibung:</h4>
+                    <p class="text-sm sm:text-base leading-snug sm:leading-normal text-text/90">
+                      Das mutwillige Zerstören, Verunstalten oder Manipulieren fremden Eigentums, Gebäuden, Gebieten oder Entities ist verboten.
+                    </p>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-text mb-2">Konsequenzen:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-text/90">
+                      <li>Projekt-Bann bei schwerwiegendem Griefing (z.B. Zerstörung des Spawns)</li>
+                      <li>1-14 Tage Timeout</li>
+                      <li>Wiederherstellung oder Erstattung des Schadens</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Rule 3 -->
+              <div class="bg-background-50/30 rounded-xl p-4 sm:p-5 lg:p-6 border border-background-100">
+                <h3 class="text-base sm:text-lg md:text-xl font-bold text-accent mb-2 sm:mb-3">3. Cheating / Verbotene Mods & Hack-Clients</h3>
+                <div class="space-y-2 sm:space-y-3">
+                  <div>
+                    <h4 class="text-sm sm:text-base font-semibold text-text mb-1 sm:mb-2">Beschreibung:</h4>
+                    <p class="text-sm sm:text-base leading-snug sm:leading-normal text-text/90">
+                      Verwendung unerlaubter Modifikationen des Spiels oder unfaire Vorteile durch externe Software (z.B. Autoclicker) ist verboten.
+                    </p>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-text mb-2">Konsequenzen:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-text/90">
+                      <li>Verwarnung</li>
+                      <li>2 bis 4 Tage Timeout</li>
+                      <li>Bei wiederholten Verstoß: Bann / Projekt-Bann</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Rule 4 -->
+              <div class="bg-background-50/30 rounded-xl p-4 sm:p-5 lg:p-6 border border-background-100">
+                <h3 class="text-base sm:text-lg md:text-xl font-bold text-accent mb-2 sm:mb-3">4. Admin-Abuse</h3>
+                <div class="space-y-2 sm:space-y-3">
+                  <div>
+                    <h4 class="text-sm sm:text-base font-semibold text-text mb-1 sm:mb-2">Beschreibung:</h4>
+                    <p class="text-sm sm:text-base leading-snug sm:leading-normal text-text/90">
+                      Missbrauch von Rechten durch Teammitglieder, z.B. durch das Ausnutzen vertrauter Commands für einen unfairen Vorteil, Creative-Mode-Ausnutzung oder ungerechtfertigtes Erheben von Strafen ist verboten. Spieler können und sollen Regelverstöße von Teammitgliedern jederzeit melden.
+                    </p>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-text mb-2">Konsequenzen:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-text/90">
+                      <li>Entzug aller Rechte und eventueller Ausschluss aus dem BuildMC Team</li>
+                      <li>Je nach Fall: Projekt-Bann, Löschen des Inventars, Timeout</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Rule 5 -->
+              <div class="bg-background-50/30 rounded-xl p-4 sm:p-5 lg:p-6 border border-background-100">
+                <h3 class="text-base sm:text-lg md:text-xl font-bold text-accent mb-2 sm:mb-3">5. Duplizieren</h3>
+                <div class="space-y-2 sm:space-y-3">
+                  <div>
+                    <h4 class="text-sm sm:text-base font-semibold text-text mb-1 sm:mb-2">Beschreibung:</h4>
+                    <p class="text-sm sm:text-base leading-snug sm:leading-normal text-text/90">
+                      Jegliche Art des Duplizieren von Items oder Ressourcen ist verboten. In den projektspezifischen Regeln dürfen Ausnahmen für bestimmte Ressourcen erhoben werden.
+                    </p>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-text mb-2">Konsequenzen:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-text/90">
+                      <li>Löschen des kompletten Besitzes</li>
+                      <li>2 bis 7 Tage Timeout</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Rule 6 -->
+              <div class="bg-background-50/30 rounded-xl p-4 sm:p-5 lg:p-6 border border-background-100">
+                <h3 class="text-base sm:text-lg md:text-xl font-bold text-accent mb-2 sm:mb-3">6. Zugriff auf den Seed</h3>
+                <div class="space-y-2 sm:space-y-3">
+                  <div>
+                    <h4 class="text-sm sm:text-base font-semibold text-text mb-1 sm:mb-2">Beschreibung:</h4>
+                    <p class="text-sm sm:text-base leading-snug sm:leading-normal text-text/90">
+                      Das Verwenden von Seed-Crackern jeglicher Art oder Kenntnis des Seeds zur Gewinnung unlauterer Vorteile ist verboten.
+                    </p>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-text mb-2">Konsequenzen:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-text/90">
+                      <li>Bann</li>
+                      <li>Mute und Timeout im Discord, um die Verbreitung des Seeds zu verhindern</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Rule 7 -->
+              <div class="bg-background-50/30 rounded-xl p-4 sm:p-5 lg:p-6 border border-background-100">
+                <h3 class="text-base sm:text-lg md:text-xl font-bold text-accent mb-2 sm:mb-3">7. Chunk-Banning</h3>
+                <div class="space-y-2 sm:space-y-3">
+                  <div>
+                    <h4 class="text-sm sm:text-base font-semibold text-text mb-1 sm:mb-2">Beschreibung:</h4>
+                    <p class="text-sm sm:text-base leading-snug sm:leading-normal text-text/90">
+                      Das bewusste Überschreiten der Minecraft Paket Ratenbegrenzung, um Spielern Zugriff zum Server zu verhindern, ist verboten.
+                    </p>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-text mb-2">Konsequenzen:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-text/90">
+                      <li>Löschen der verursachenden Vorrichtung</li>
+                      <li>Löschen des Inventars</li>
+                      <li>Bann</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Rule 8 -->
+              <div class="bg-background-50/30 rounded-xl p-4 sm:p-5 lg:p-6 border border-background-100">
+                <h3 class="text-base sm:text-lg md:text-xl font-bold text-accent mb-2 sm:mb-3">8. Serverbeeinträchtigung</h3>
+                <div class="space-y-2 sm:space-y-3">
+                  <div>
+                    <h4 class="text-sm sm:text-base font-semibold text-text mb-1 sm:mb-2">Beschreibung:</h4>
+                    <p class="text-sm sm:text-base leading-snug sm:leading-normal text-text/90">
+                      Bewusstes Erzeugen von Lag oder Überlastung des Servers (z.B. durch Redstone-Schaltungen, übermäßige Entities) ist verboten.
+                    </p>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-text mb-2">Konsequenzen:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-text/90">
+                      <li>Löschen der verursachenden Vorrichtung</li>
+                      <li>Projekt-Bann</li>
+                      <li>Verwarnung</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Rule 9 -->
+              <div class="bg-background-50/30 rounded-xl p-4 sm:p-5 lg:p-6 border border-background-100">
+                <h3 class="text-base sm:text-lg md:text-xl font-bold text-accent mb-2 sm:mb-3">9. Töten</h3>
+                <div class="space-y-2 sm:space-y-3">
+                  <div>
+                    <h4 class="text-sm sm:text-base font-semibold text-text mb-1 sm:mb-2">Beschreibung:</h4>
+                    <p class="text-sm sm:text-base leading-snug sm:leading-normal text-text/90">
+                      Spieler ohne triftigen Grund oder belegbares Einverständnis zu töten ist verboten.
+                    </p>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-text mb-2">Konsequenzen:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-text/90">
+                      <li>Item-Rückerstattung für das Opfer</li>
+                      <li>Verwarnung</li>
+                      <li>Timeout</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Erklärung der Konsequenzen -->
+          <section id="konsequenzen" class="scroll-mt-24 bg-background-10 rounded-2xl border border-background-50 p-4 sm:p-6 lg:p-8">
+            <h2 class="text-primary text-md md:text-2xl font-minecraft text-center mb-8 sm:mb-12">Erklärung der Konsequenzen</h2>
+            <div class="space-y-3 sm:space-y-4 text-sm sm:text-base leading-snug sm:leading-base text-text/90 mb-4 sm:mb-6">
+              <p>
+                Zur Durchsetzung der Regeln kann das BuildMC-Team je nach Schwere und Art des Verstoßes unterschiedliche Maßnahmen ergreifen. Die in den Regeln genannten Konsequenzen gelten hierbei nur als Maßstab, und das Team darf von diesen abweichen. Im Folgenden sind die möglichen Konsequenzen beschrieben:
+              </p>
+            </div>
+            <div class="space-y-4 sm:space-y-5">
+              <div class="bg-background-50/30 rounded-xl p-4 sm:p-5 lg:p-6 border border-background-100">
+                <h3 class="text-base sm:text-lg font-bold text-accent mb-2">Warnung</h3>
+                <p class="text-sm sm:text-base leading-snug sm:leading-normal text-text/90">
+                  Eine Warnung ist ein offizieller Hinweis auf einen Regelverstoß. Sie dient als erste Maßnahme zur Klärung und als Gelegenheit, das eigene Verhalten anzupassen. Mehrere Warnungen können zu schwerwiegenderen Konsequenzen führen (siehe: Konsequenzen bei zu vielen Verwarnungen).
+                </p>
+              </div>
+
+              <div class="bg-background-50/30 rounded-xl p-4 sm:p-5 lg:p-6 border border-background-100">
+                <h3 class="text-base sm:text-lg font-bold text-accent mb-2">Mute</h3>
+                <p class="text-sm sm:text-base leading-snug sm:leading-normal text-text/90">
+                  Ein Mute bedeutet den temporären oder permanenten Ausschluss vom In-Game Chat. Während dieser Zeit kann der Spieler keine Nachrichten schreiben – weder öffentlich noch privat.
+                </p>
+              </div>
+
+              <div class="bg-background-50/30 rounded-xl p-4 sm:p-5 lg:p-6 border border-background-100">
+                <h3 class="text-base sm:text-lg font-bold text-accent mb-2">Timeout</h3>
+                <p class="text-sm sm:text-base leading-snug sm:leading-normal text-text/90">
+                  Ein Timeout ist ein temporärer Ausschluss vom Server. Die Dauer richtet sich nach Schwere und Häufigkeit des Verstoßes und kann von wenigen Minuten bis zu mehreren Tagen reichen. Timeouts dienen zur Abkühlung und als Konsequenz für Regelverstöße mittlerer Schwere.
+                </p>
+              </div>
+
+              <div class="bg-background-50/30 rounded-xl p-4 sm:p-5 lg:p-6 border border-background-100">
+                <h3 class="text-base sm:text-lg font-bold text-accent mb-2">Kick</h3>
+                <p class="text-sm sm:text-base leading-snug sm:leading-normal text-text/90">
+                  Ein Kick ist das sofortige Entfernen eines Spielers vom Server, ohne dauerhafte Sperre. Er wird meist bei kleineren Regelverstößen oder Störungen eingesetzt, kann aber auch als Vorwarnung vor einem Bann dienen.
+                </p>
+              </div>
+
+              <div class="bg-background-50/30 rounded-xl p-4 sm:p-5 lg:p-6 border border-background-100">
+                <h3 class="text-base sm:text-lg font-bold text-accent mb-2">Bann</h3>
+                <p class="text-sm sm:text-base leading-snug sm:leading-normal text-text/90">
+                  Ein Bann ist ein dauerhafter Ausschluss aus dem aktuellen Projekt. Der Spieler verliert damit alle Rechte auf Teilnahme an diesem Projekt, inklusive Zugang zum Server, Mitwirkung und Besitz.
+                </p>
+              </div>
+
+              <div class="bg-background-50/30 rounded-xl p-4 sm:p-5 lg:p-6 border border-background-100">
+                <h3 class="text-base sm:text-lg font-bold text-accent mb-2">Projekt-Bann</h3>
+                <p class="text-sm sm:text-base leading-snug sm:leading-normal text-text/90">
+                  Ein Projekt-Bann ist der dauerhafte Ausschluss aus allen BuildMC-Projekten, unabhängig von Art oder Zeitraum. Er ist eine der schwerwiegendsten Maßnahmen und wird bei besonders gravierenden oder wiederholten Verstößen verhängt.
+                </p>
+              </div>
+            </div>
+            <div class="mt-4 sm:mt-6 p-3 sm:p-4 bg-accent/10 border border-accent/30 rounded-xl">
+              <p class="text-sm sm:text-base leading-snug sm:leading-normal text-text/90 font-semibold mb-2">
+                Wer nach einem Timeout oder Bann zurückkehrt, sollte sich bewusst sein, dass er unter besonderer Beobachtung steht. Rückfälle können schneller und härter sanktioniert werden.
+              </p>
+              <p class="text-sm sm:text-base leading-snug sm:leading-normal text-text/90 font-semibold">
+                Die Umgehung von Sanktionen ist strengstens untersagt. Ein solcher Versuch wird als schwerwiegender Regelverstoß gewertet und kann zu einer Verschärfung der bestehenden Strafe bis hin zum Projekt-Bann führen.
+              </p>
+            </div>
+          </section>
+
+          <!-- Konsequenzen bei zu vielen Verwarnungen -->
+          <section id="verwarnungen" class="scroll-mt-24 bg-background-10 rounded-2xl border border-background-50 p-4 sm:p-6 lg:p-8">
+            <h2 class="text-primary text-md md:text-2xl font-minecraft text-center mb-8 sm:mb-12">Konsequenzen bei zu vielen Verwarnungen</h2>
+            <div class="space-y-3 sm:space-y-4 text-sm sm:text-base leading-snug sm:leading-base text-text/90 mb-4 sm:mb-6">
+              <p>
+                Verwarnungen sind Hinweise auf Regelverstöße und sollen Spielern die Möglichkeit geben, ihr Verhalten zu überdenken und zu verbessern. Werden jedoch zu viele Verwarnungen angesammelt, folgen gestaffelte Konsequenzen:
+              </p>
+            </div>
+            <div class="space-y-4 sm:space-y-5">
+              <div class="bg-background-50/30 rounded-xl p-4 sm:p-5 lg:p-6 border border-background-100">
+                <h3 class="text-base sm:text-lg font-bold text-accent mb-2">Bei 3 Verwarnungen:</h3>
+                <p class="text-sm sm:text-base leading-snug sm:leading-normal text-text/90">
+                  Wird ein Timeout ausgesprochen. Die Dauer beträgt je nach Schwere und Häufigkeit bis zu 2 Wochen.
+                </p>
+              </div>
+
+              <div class="bg-background-50/30 rounded-xl p-4 sm:p-5 lg:p-6 border border-background-100">
+                <h3 class="text-base sm:text-lg font-bold text-accent mb-2">Bei 6 Verwarnungen:</h3>
+                <p class="text-sm sm:text-base leading-snug sm:leading-normal text-text/90">
+                  Erfolgt ein Bann. Eine Rückkehr ist nur in Ausnahmefällen und nach längerer Zeit möglich - dies wird individuell entschieden.
+                </p>
+              </div>
+
+              <div class="bg-background-50/30 rounded-xl p-4 sm:p-5 lg:p-6 border border-background-100">
+                <h3 class="text-base sm:text-lg font-bold text-accent mb-2">Bei 8 Verwarnungen:</h3>
+                <p class="text-sm sm:text-base leading-snug sm:leading-normal text-text/90">
+                  Wird ein Projekt-Bann ausgesprochen. Ein Wiedereintritt ist in der Regel ausgeschlossen.
+                </p>
+              </div>
+            </div>
+            <div class="mt-4 sm:mt-6 p-3 sm:p-4 bg-background-50/50 rounded-xl border border-background-100">
+              <p class="text-sm sm:text-base leading-snug sm:leading-normal text-text/90">
+                Verwarnungen verfallen nicht automatisch. Eine mögliche Zurücksetzung oder Milderung erfolgt nur nach regelkonformer Teilnahme und Rücksprache mit dem Team.
+              </p>
+            </div>
+          </section>
+
+          <!-- Spieler Rechte -->
+          <section id="spieler-rechte" class="scroll-mt-24 bg-background-10 rounded-2xl border border-background-50 p-4 sm:p-6 lg:p-8">
+            <h2 class="text-primary text-md md:text-2xl font-minecraft text-center mb-8 sm:mb-12">Spieler Rechte</h2>
+            <div class="space-y-3 sm:space-y-4 text-sm sm:text-base leading-snug sm:leading-base text-text/90">
+              <p class="font-semibold text-text mb-3 sm:mb-4">Jeder Spieler hat das Recht…:</p>
+              <ul class="space-y-2 sm:space-y-3 list-none">
+                <li class="flex items-start gap-2 sm:gap-3">
+                  <span class="text-accent font-bold mt-1">-</span>
+                  <span class="text-sm sm:text-base leading-snug sm:leading-normal text-text/90">
+                    …, auf Item Rückerstattung bei dem Tod, der durch Spielfehler oder Griefing aufgetreten ist, aber nur wenn wir einen klaren Beweis dafür erhalten (z.B. Videoaufnahmen). Es werden nie alle Items zurückerstattet.
+                  </span>
+                </li>
+                <li class="flex items-start gap-2 sm:gap-3">
+                  <span class="text-accent font-bold mt-1">-</span>
+                  <span class="text-sm sm:text-base leading-snug sm:leading-normal text-text/90">
+                    …, auf Kritik an den Regeln der Projekte oder diesem Dokument, diese müssen aber nicht angenommen werden.
+                  </span>
+                </li>
+                <li class="flex items-start gap-2 sm:gap-3">
+                  <span class="text-accent font-bold mt-1">-</span>
+                  <span class="text-sm sm:text-base leading-snug sm:leading-normal text-text/90">
+                    …, gegen Strafen oder Maßnahmen Einspruch einzulegen. Dies erfolgt sachlich und direkt beim nächsten verfügbaren Mod/Admin. Das Team ist verpflichtet, den Fall intern zu prüfen.
+                  </span>
+                </li>
+                <li class="flex items-start gap-2 sm:gap-3">
+                  <span class="text-accent font-bold mt-1">-</span>
+                  <span class="text-sm sm:text-base leading-snug sm:leading-normal text-text/90">
+                    …, anderen Spielern das Betreten ihres Grundstücks, außer in Shops, zu verbieten. Sollte das Grundstück mehreren Personen gehören, muss jeder zustimmen, dass die Person das Grundstück nicht betreten darf. In Shops kann der Besitzer außerdem Schilder aufstellen, die einen für Fremde gesperrten Bereich festlegen. Das könnte z.B. die Technik des Shops sein.
+                  </span>
+                </li>
+                <li class="flex items-start gap-2 sm:gap-3">
+                  <span class="text-accent font-bold mt-1">-</span>
+                  <span class="text-sm sm:text-base leading-snug sm:leading-normal text-text/90">
+                    …, im Falle eines Angriffs, sich selbst zu verteidigen, mit angemessener Kraft, auch wenn es nur ein „Spaß" sein sollte.
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- Sonstiges -->
+          <section id="sonstiges" class="scroll-mt-24 bg-background-10 rounded-2xl border border-background-50 p-4 sm:p-6 lg:p-8">
+            <h2 class="text-primary text-md md:text-2xl font-minecraft text-center mb-8 sm:mb-12">Sonstiges</h2>
+            <div class="space-y-3 sm:space-y-4 text-sm sm:text-base leading-snug sm:leading-base text-text/90">
+              <p>
+                Beim Melden von Vorfällen ist es erwünscht, Beweismaterial vorzulegen. Beweismaterial kann sein:
+              </p>
+              <ul class="list-disc list-inside space-y-1 ml-2 sm:ml-4 text-sm sm:text-base">
+                <li>Screenshots</li>
+                <li>Bildschirmaufnahmen</li>
+                <li>Aufnahmen von Flashback / Replay Mod.</li>
+              </ul>
+              <p>
+                Die Weitergabe von privaten Nachrichten oder Vorfällen, die nichts mit dem Projekt zu tun haben, ist jedoch untersagt. Wer beim Fälschen oder absichtlich falsch Repräsentieren von Beweisen erwischt wird, bekommt angemessene Strafen.
+              </p>
+              <p>
+                Die Regeln können bei Bedarf angepasst werden. Änderungen werden öffentlich (z. B. im Discord) bekanntgegeben. Jeder Spieler ist selbst dafür verantwortlich, sich über Neuerungen zu informieren.
+              </p>
+            </div>
+          </section>
+
+          <!-- BuildMC Team -->
+          <section id="team" class="scroll-mt-24 bg-background-10 rounded-2xl border border-background-50 p-4 sm:p-6 lg:p-8">
+            <h2 class="text-primary text-md md:text-2xl font-minecraft text-center mb-8 sm:mb-12">BuildMC Team</h2>
+            
+            <div class="space-y-4 sm:space-y-6">
+              <!-- Hierarchie -->
+              <div>
+                <h3 class="text-base sm:text-lg md:text-xl font-bold text-accent mb-3 sm:mb-4">Hierarchie</h3>
+                <p class="text-sm sm:text-base text-text/90 mb-3 sm:mb-4">Von am mächtigsten zu am wenig mächtigsten</p>
+                <div class="bg-background-50/30 rounded-xl p-4 sm:p-5 border border-background-100 space-y-2">
+                  <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+                    <span class="text-accent font-bold">1.</span>
+                    <span class="text-text font-semibold">Owner</span>
+                    <span class="text-text-50 text-xs sm:text-sm">(Sämtliche Rechte und Zugriff auf Konsole, Dateien, andere Dienste, etc.)</span>
+                  </div>
+                  <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+                    <span class="text-accent font-bold">2.</span>
+                    <span class="text-text font-semibold">Admin</span>
+                    <span class="text-text-50 text-xs sm:text-sm">(Fast alle Rechte und begrenzten Zugriff)</span>
+                  </div>
+                  <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+                    <span class="text-accent font-bold">3.</span>
+                    <span class="text-text font-semibold">Moderator</span>
+                    <span class="text-text-50 text-xs sm:text-sm">(Nur wenige in-game Rechte wie Verwarnungen, Timeout, Spectator, usw.) (Kann nur verwarnungen und Chat-Mutes verteilen)</span>
+                  </div>
+                  <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+                    <span class="text-accent font-bold">4.</span>
+                    <span class="text-text font-semibold">Team</span>
+                    <span class="text-text-50 text-xs sm:text-sm">(Mithilfe beim Erstellen des Projektes. Wirkt nicht bei der Moderation bei)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Anliegen an das Team -->
+              <div>
+                <h3 class="text-base sm:text-lg md:text-xl font-bold text-accent mb-3 sm:mb-4">Anliegen an das Team</h3>
+                <div class="space-y-2 sm:space-y-3 text-sm sm:text-base leading-snug sm:leading-base text-text/90">
+                  <p>
+                    Jeder im Team muss sich um Anliegen in irgendeiner Art und Weise kümmern.
+                  </p>
+                  <p>
+                    Jeder kann bei allen Anliegen, die sie an das Team haben jedem im Team schreiben, Doch grundsätzlich gilt: Man sollte zuerst die Mods fragen, dann die Admins und dann erst die Owner.
+                  </p>
+                  <p>
+                    Doch der Owner sollte nur bei schwerwiegenden Problemen, oder wenn niemand aus dem Team anwesend ist, um Hilfe gebeten werden.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Was darf das Team -->
+              <div>
+                <h3 class="text-base sm:text-lg md:text-xl font-bold text-accent mb-3 sm:mb-4">Was darf das Team, was nicht und an welche Regeln muss es sich halten?</h3>
+                <div class="space-y-3 sm:space-y-4">
+                  <div class="bg-background-50/30 rounded-xl p-4 sm:p-5 border border-background-100">
+                    <h4 class="text-sm sm:text-base font-semibold text-text mb-2 sm:mb-3">Das BuildMC Team darf:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm sm:text-base text-text/90">
+                      <li>Spectaten, ohne andern sagen zu müssen wenn und weshalb (z.B. bei Verdacht oder einfach nur als Stichprobe)</li>
+                    </ul>
+                  </div>
+                  <div class="bg-background-50/30 rounded-xl p-4 sm:p-5 border border-background-100">
+                    <h4 class="text-sm sm:text-base font-semibold text-text mb-2 sm:mb-3">Das BuildMC Team darf nicht:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm sm:text-base text-text/90">
+                      <li>grundlos verwarnen, bannen oder in einen Timeout schicken</li>
+                      <li>sich selbst oder anderen einen Vorteil verschaffen</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Welche Regeln gelten -->
+              <div>
+                <h3 class="text-base sm:text-lg md:text-xl font-bold text-accent mb-3 sm:mb-4">Welche Regeln gelten?</h3>
+                <div class="bg-background-50/30 rounded-xl p-4 sm:p-5 border border-background-100">
+                  <p class="text-sm sm:text-base leading-snug sm:leading-normal text-text/90">
+                    Das BuildMC Team muss sich an dieselben, und noch mehr, Regeln wie jeder normale Spieler halten, und dabei wird es auch normalerweise nie Ausnahmen geben, außer alle anderen (Owner sind ausgeschlossen), wünschen sich die Personen wieder im Team.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // Smooth scrolling for anchor links
+    document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', (e: Event) => {
+        e.preventDefault();
+        const targetId = anchor.getAttribute('href');
+        if (targetId === '#') return;
+        const target = document.querySelector(targetId || '');
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Highlight active section in sidebar
+    const sections = document.querySelectorAll<HTMLElement>('section[id]');
+    const sidebarLinks = document.querySelectorAll<HTMLElement>('.sidebar-link');
+
+    function updateActiveSection() {
+      const scrollPosition = window.scrollY + 100;
+
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const sectionId = section.getAttribute('id');
+
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          sidebarLinks.forEach((link) => {
+            link.classList.remove('bg-accent', 'text-background', 'font-semibold');
+            link.classList.add('text-text');
+            if (link.getAttribute('data-section') === sectionId) {
+              link.classList.add('bg-accent', 'text-background', 'font-semibold');
+              link.classList.remove('text-text');
+            }
+          });
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveSection);
+    window.addEventListener('load', updateActiveSection);
+  </script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</DefaultLayout>
