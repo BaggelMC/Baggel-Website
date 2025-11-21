@@ -14,7 +14,41 @@ const sections = [
 ---
 
 <DefaultLayout title="BuildMC – Regeln & Rechte" lang="de">
-<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-20 text-text font-sans">
+<div class="relative">
+  <!-- Sidebar Navigation -->
+  <aside class="fixed left-4 top-24 w-64 z-50 hidden lg:block">
+    <nav class="bg-background-10 rounded-2xl border border-background-50 p-4 space-y-2" id="navigation-menu">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-md font-bold text-primary font-minecraft px-2" data-no-copy-link>Navigation</h2>
+        <button 
+          class="nav-toggle-button flex items-center justify-center w-8 h-8 rounded-lg hover:bg-background-50 transition-colors"
+          aria-label="Navigation ein-/ausblenden"
+          aria-expanded="true"
+          type="button"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <ul class="space-y-1 nav-menu-content">
+        {sections.map((section) => (
+          <li>
+            <a
+              href={`#${section.id}`}
+              class="sidebar-link block px-3 py-2 rounded-lg text-text hover:bg-background-50 hover:text-accent transition-colors duration-200"
+              data-section={section.id}
+            >
+              {section.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-20 text-text font-sans">
     <!-- Header -->
     <div class="mb-6 sm:mb-8 lg:mb-12 text-center mt-8 sm:mt-12">
         <Headline text="BuildMC" />
@@ -24,27 +58,7 @@ const sections = [
       </p>
     </div>
 
-    <div class="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:gap-8">
-      <!-- Sidebar Navigation -->
-      <aside class="lg:w-64 shrink-0 lg:sticky lg:self-start lg:top-24 hidden lg:block">
-        <nav class="bg-background-10 rounded-2xl border border-background-50 p-4 space-y-2">
-          <h2 class="text-base sm:text-lg font-bold text-primary font-minecraft mb-4 px-2">Navigation</h2>
-          <ul class="space-y-1">
-            {sections.map((section) => (
-              <li>
-                <a
-                  href={`#${section.id}`}
-                  class="sidebar-link block px-3 py-2 rounded-lg text-text hover:bg-background-50 hover:text-accent transition-colors duration-200"
-                  data-section={section.id}
-                >
-                  {section.title}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </aside>
-
+    <div class="flex flex-col">
       <!-- Main Content -->
       <main class="flex-1 min-w-0">
         <div class="space-y-6 sm:space-y-8">
@@ -514,6 +528,7 @@ const sections = [
       </main>
     </div>
   </div>
+</div>
 
   <script>
     // Smooth scrolling for anchor links
@@ -560,9 +575,7 @@ const sections = [
     window.addEventListener('scroll', updateActiveSection);
     window.addEventListener('load', updateActiveSection);
 
-    // Add copy link buttons to headings
     function addCopyButtonsToHeadings() {
-      // Find all headings (h2, h3, h4) in the main content
       const main = document.querySelector('main');
       if (!main) return;
 
@@ -570,24 +583,22 @@ const sections = [
       const usedIds = new Set<string>();
       
       headings.forEach((heading) => {
-        // Skip if button already exists
         if (heading.querySelector('.copy-heading-link')) return;
+        
+        if (heading.hasAttribute('data-no-copy-link')) return;
 
-        // Get the ID - either from the heading itself or generate one
         let targetId = heading.id;
         if (!targetId) {
           // Generate an ID from the heading text
           const text = heading.textContent?.trim() || '';
           if (text) {
-            // Create a unique ID based on heading text and section
             const section = heading.closest<HTMLElement>('section[id]');
             const sectionPrefix = section ? `${section.id}-` : '';
             let baseId = (sectionPrefix + text.toLowerCase()
               .replace(/[^a-z0-9]+/g, '-')
               .replace(/^-|-$/g, ''))
-              .substring(0, 100); // Limit length
+              .substring(0, 100);
             
-            // Ensure uniqueness
             targetId = baseId;
             let counter = 1;
             while (usedIds.has(targetId) || document.getElementById(targetId)) {
@@ -598,7 +609,6 @@ const sections = [
             usedIds.add(targetId);
             heading.id = targetId;
           } else {
-            // Fallback: use section ID if heading has no text (shouldn't happen)
             const section = heading.closest<HTMLElement>('section[id]');
             targetId = section?.id || 'heading';
           }
@@ -606,7 +616,6 @@ const sections = [
           usedIds.add(targetId);
         }
 
-        // Create the copy button
         const button = document.createElement('button');
         button.className = 'copy-heading-link';
         button.setAttribute('aria-label', 'Link zu diesem Abschnitt kopieren');
@@ -617,21 +626,17 @@ const sections = [
           </svg>
         `;
 
-        // Make heading position relative for button positioning
         if (getComputedStyle(heading).position === 'static') {
           heading.style.position = 'relative';
         }
 
-        // Check if heading is centered and position button accordingly
         if (heading.classList.contains('text-center')) {
           button.style.left = 'auto';
           button.style.right = '-32px';
         }
 
-        // Add button to heading
         heading.appendChild(button);
 
-        // Handle click
         button.addEventListener('click', async (e) => {
           e.preventDefault();
           e.stopPropagation();
@@ -641,7 +646,6 @@ const sections = [
           try {
             await navigator.clipboard.writeText(link);
             
-            // Show success feedback
             const originalHTML = button.innerHTML;
             button.innerHTML = `
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -665,12 +669,10 @@ const sections = [
       });
     }
 
-    // Initialize on page load
     window.addEventListener('load', () => {
       addCopyButtonsToHeadings();
     });
 
-    // Also handle hash fragments on page load for highlighting
     function handleHashFragment() {
       const hash = window.location.hash;
       if (!hash) return;
@@ -694,6 +696,39 @@ const sections = [
     });
 
     window.addEventListener('hashchange', handleHashFragment);
+
+    function initCollapsibleNav() {
+      const toggleButton = document.querySelector<HTMLElement>('.nav-toggle-button');
+      const navContent = document.querySelector<HTMLElement>('.nav-menu-content');
+      const nav = document.querySelector<HTMLElement>('#navigation-menu');
+      
+      if (!toggleButton || !navContent || !nav) return;
+
+      const isCollapsed = localStorage.getItem('nav-collapsed') === 'true';
+      if (isCollapsed) {
+        navContent.style.display = 'none';
+        toggleButton.setAttribute('aria-expanded', 'false');
+        nav.classList.add('collapsed');
+      }
+
+      toggleButton.addEventListener('click', () => {
+        const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
+        
+        if (isExpanded) {
+          navContent.style.display = 'none';
+          toggleButton.setAttribute('aria-expanded', 'false');
+          nav.classList.add('collapsed');
+          localStorage.setItem('nav-collapsed', 'true');
+        } else {
+          navContent.style.display = 'block';
+          toggleButton.setAttribute('aria-expanded', 'true');
+          nav.classList.remove('collapsed');
+          localStorage.setItem('nav-collapsed', 'false');
+        }
+      });
+    }
+
+    window.addEventListener('load', initCollapsibleNav);
   </script>
 
   <style>
@@ -701,7 +736,6 @@ const sections = [
       scroll-behavior: smooth;
     }
 
-    /* Copy link button for headings */
     h2, h3, h4 {
       position: relative;
     }
@@ -756,13 +790,40 @@ const sections = [
       opacity: 1;
     }
 
-    /* For centered headings, position button differently */
     h2.text-center .copy-heading-link {
       left: auto;
       right: -32px;
     }
 
-    /* Highlight effect for hash navigation */
+    .nav-toggle-button {
+      cursor: pointer;
+      color: var(--color-text-50);
+    }
+
+    .nav-toggle-button:hover {
+      color: var(--color-accent);
+    }
+
+    .nav-toggle-button svg {
+      transition: transform 0.2s ease;
+    }
+
+    #navigation-menu.collapsed .nav-toggle-button svg {
+      transform: rotate(45deg);
+    }
+
+    .nav-menu-content {
+      transition: opacity 0.2s ease;
+    }
+
+    aside[class*="fixed"] {
+      position: fixed;
+    }
+
+    .max-w-5xl {
+      position: relative;
+    }
+
     .highlighted-section {
       animation: highlight-section 0.6s ease-in-out;
     }
@@ -776,7 +837,6 @@ const sections = [
       }
     }
 
-    /* Show button on mobile when heading is focused/tapped */
     @media (max-width: 1024px) {
       .copy-heading-link {
         opacity: 0.5;
