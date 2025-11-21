@@ -559,11 +559,239 @@ const sections = [
 
     window.addEventListener('scroll', updateActiveSection);
     window.addEventListener('load', updateActiveSection);
+
+    // Add copy link buttons to headings
+    function addCopyButtonsToHeadings() {
+      // Find all headings (h2, h3, h4) in the main content
+      const main = document.querySelector('main');
+      if (!main) return;
+
+      const headings = main.querySelectorAll<HTMLElement>('h2, h3, h4');
+      const usedIds = new Set<string>();
+      
+      headings.forEach((heading) => {
+        // Skip if button already exists
+        if (heading.querySelector('.copy-heading-link')) return;
+
+        // Get the ID - either from the heading itself or generate one
+        let targetId = heading.id;
+        if (!targetId) {
+          // Generate an ID from the heading text
+          const text = heading.textContent?.trim() || '';
+          if (text) {
+            // Create a unique ID based on heading text and section
+            const section = heading.closest<HTMLElement>('section[id]');
+            const sectionPrefix = section ? `${section.id}-` : '';
+            let baseId = (sectionPrefix + text.toLowerCase()
+              .replace(/[^a-z0-9]+/g, '-')
+              .replace(/^-|-$/g, ''))
+              .substring(0, 100); // Limit length
+            
+            // Ensure uniqueness
+            targetId = baseId;
+            let counter = 1;
+            while (usedIds.has(targetId) || document.getElementById(targetId)) {
+              targetId = `${baseId}-${counter}`;
+              counter++;
+            }
+            
+            usedIds.add(targetId);
+            heading.id = targetId;
+          } else {
+            // Fallback: use section ID if heading has no text (shouldn't happen)
+            const section = heading.closest<HTMLElement>('section[id]');
+            targetId = section?.id || 'heading';
+          }
+        } else {
+          usedIds.add(targetId);
+        }
+
+        // Create the copy button
+        const button = document.createElement('button');
+        button.className = 'copy-heading-link';
+        button.setAttribute('aria-label', 'Link zu diesem Abschnitt kopieren');
+        button.innerHTML = `
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+          </svg>
+        `;
+
+        // Make heading position relative for button positioning
+        if (getComputedStyle(heading).position === 'static') {
+          heading.style.position = 'relative';
+        }
+
+        // Check if heading is centered and position button accordingly
+        if (heading.classList.contains('text-center')) {
+          button.style.left = 'auto';
+          button.style.right = '-32px';
+        }
+
+        // Add button to heading
+        heading.appendChild(button);
+
+        // Handle click
+        button.addEventListener('click', async (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          const link = `${window.location.origin}${window.location.pathname}#${targetId}`;
+          
+          try {
+            await navigator.clipboard.writeText(link);
+            
+            // Show success feedback
+            const originalHTML = button.innerHTML;
+            button.innerHTML = `
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            `;
+            button.classList.add('success');
+            
+            setTimeout(() => {
+              button.innerHTML = originalHTML;
+              button.classList.remove('success');
+            }, 2000);
+          } catch (err) {
+            console.error('Failed to copy link:', err);
+            button.classList.add('error');
+            setTimeout(() => {
+              button.classList.remove('error');
+            }, 2000);
+          }
+        });
+      });
+    }
+
+    // Initialize on page load
+    window.addEventListener('load', () => {
+      addCopyButtonsToHeadings();
+    });
+
+    // Also handle hash fragments on page load for highlighting
+    function handleHashFragment() {
+      const hash = window.location.hash;
+      if (!hash) return;
+
+      const target = document.querySelector(hash);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        highlightElement(target as HTMLElement);
+      }
+    }
+
+    function highlightElement(element: HTMLElement) {
+      element.classList.add('highlighted-section');
+      setTimeout(() => {
+        element.classList.remove('highlighted-section');
+      }, 3000);
+    }
+
+    window.addEventListener('load', () => {
+      setTimeout(handleHashFragment, 100);
+    });
+
+    window.addEventListener('hashchange', handleHashFragment);
   </script>
 
   <style>
     html {
       scroll-behavior: smooth;
+    }
+
+    /* Copy link button for headings */
+    h2, h3, h4 {
+      position: relative;
+    }
+
+    .copy-heading-link {
+      position: absolute;
+      left: -32px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      padding: 0;
+      background: var(--color-background-10);
+      border: 1px solid var(--color-background-50);
+      border-radius: 6px;
+      color: var(--color-text-50);
+      opacity: 0;
+      transition: all 0.2s ease;
+      z-index: 10;
+    }
+
+    h2:hover .copy-heading-link,
+    h3:hover .copy-heading-link,
+    h4:hover .copy-heading-link,
+    .copy-heading-link:hover,
+    .copy-heading-link:focus {
+      opacity: 1;
+      color: var(--color-accent);
+      background: var(--color-background-50);
+      border-color: var(--color-accent);
+    }
+
+    .copy-heading-link svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .copy-heading-link.success {
+      background: var(--color-success);
+      border-color: var(--color-success);
+      color: white;
+      opacity: 1;
+    }
+
+    .copy-heading-link.error {
+      background: var(--color-error);
+      border-color: var(--color-error);
+      color: white;
+      opacity: 1;
+    }
+
+    /* For centered headings, position button differently */
+    h2.text-center .copy-heading-link {
+      left: auto;
+      right: -32px;
+    }
+
+    /* Highlight effect for hash navigation */
+    .highlighted-section {
+      animation: highlight-section 0.6s ease-in-out;
+    }
+
+    @keyframes highlight-section {
+      0%, 100% {
+        background-color: transparent;
+      }
+      50% {
+        background-color: rgba(214, 144, 79, 0.2);
+      }
+    }
+
+    /* Show button on mobile when heading is focused/tapped */
+    @media (max-width: 1024px) {
+      .copy-heading-link {
+        opacity: 0.5;
+        left: -28px;
+        width: 24px;
+        height: 24px;
+      }
+
+      h2.text-center .copy-heading-link {
+        right: -28px;
+      }
+
+      .copy-heading-link:active {
+        opacity: 1;
+      }
     }
   </style>
 </DefaultLayout>
