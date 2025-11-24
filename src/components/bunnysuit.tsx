@@ -148,6 +148,7 @@ export default function BunnySuitConverter() {
           <option value="overlays/1.png">Bunny Suit Classic</option>
           <option value="overlays/2.png">Bunny Suit White</option>
           <option value="overlays/3.png">Bunny Suit Black</option>
+          <option value="overlays/4.png">Bunny Suit Purple</option>
         </select>
       </div>
 
