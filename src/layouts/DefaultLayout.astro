@@ -6,14 +6,62 @@ import "../styles/global.css";
 
 //@ts-ignore
 import Background from "../assets/background_dark.png?format=webp";
+//@ts-ignore
+import metaImage from "../assets/largehero.png?format=webp"
 
-const { title, lang } = Astro.props;
+const { title, lang, meta_description } = Astro.props;
 ---
 <html lang={lang?lang : "de"} >
   <head>
-    <meta charset="UTF-8" />
     <title>{title ? `${title} | BaggelMC` : "BaggelMC"}</title>
+
+    <!-- Technical -->
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#d6904f" />
+
+    <!-- Basic SEO -->
+    <meta
+      name="description"
+      content={Astro.props.meta_description ?? "BaggelMC – eine Minecraft server community"}
+    />
+    <meta name="keywords" content={Astro.props.keywords ?? "Minecraft, Server, BaggelMC, BuildMC, Minigames, Community"} />
+    <meta name="author" content="BaggelMC" />
+    <link rel="canonical" href={Astro.url ?? "https://baggelmc.de"} />
+
+    <!-- Robots -->
+    <meta name="revisit-after" content="8 days">
+    <meta name="robots" content="index,follow">
+
+
+    <!-- Open Graph (Facebook, Discord, etc.) -->
+    <meta property="og:site_name" content="BaggelMC" />
+    <meta property="og:title" content={title ? `${title} | BaggelMC` : "BaggelMC"} />
+    <meta
+      property="og:description"
+      content={Astro.props.meta_description ?? "BaggelMC – eine Minecraft server community"}
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url ?? "https://baggelmc.de"} />
+    <meta
+      property="og:image"
+      content={metaImage}
+    />
+    <meta property="og:locale" content={lang ?? "de"} />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title ? `${title} | BaggelMC` : "BaggelMC"} />
+    <meta
+      name="twitter:description"
+      content={Astro.props.meta_description ?? "BaggelMC – eine Minecraft server community"}
+    />
+    <meta
+      name="twitter:image"
+      content={metaImage}
+    />
+
+
     <link href={RESOURCES.fontURL} rel="stylesheet" />
     <script src="https://unpkg.com/alpinejs" defer></script>
   </head>
