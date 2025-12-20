@@ -2,6 +2,8 @@
 import DefaultLayout from "../../../layouts/DefaultLayout.astro";
 import Separator from "../../../components/Separator.astro";
 
+import { LINKS } from "../../../config";
+
 // @ts-ignore
 import BuildmcLogo from "../../../assets/images/buildmc-logo.png?format=webp"
 // @ts-ignore
@@ -66,9 +68,9 @@ import WinterMCBanner from "../../../assets/images/wintermc.png?format=webp&w=12
     <Separator />
 
     <!-- WinterMC Section -->
-    <section class="wintermc-section bg-background-10 relative max-w-4xl mx-auto text-left text-text rounded-4xl shadow-lg border border-background-50 hover:border-accent transition-all duration-500 overflow-hidden">
+    <section class="wintermc-section bg-background-10 relative max-w-4xl mx-auto text-left text-text rounded-4xl shadow-lg border border-accent transition-all duration-500 overflow-hidden">
       <span class="absolute top-4 right-4 bg-accent/20 text-accent text-xs font-semibold px-3 py-1 rounded-md backdrop-blur-sm border border-accent/30 z-20">
-        Demnächst
+        Jetzt live
       </span>
       
       <!-- Banner Image -->
@@ -82,30 +84,40 @@ import WinterMCBanner from "../../../assets/images/wintermc.png?format=webp&w=12
       
       <div class="relative z-10 px-6 sm:px-8 md:px-10 py-10 space-y-6">
         
-        
         <div class="space-y-4 text-base leading-base text-text/90">
           <p>
-            <strong class="text-primary">WinterMC</strong> ist die nächste aufregende Saison von BuildMC und bringt ein 
-            winterliches Survival-Erlebnis in unsere Community. Bereite dich auf eine gefrorene Landschaft, einzigartige Herausforderungen 
-            und saisonale Bauprojekte vor.
+            <strong class="text-primary">WinterMC</strong> ist die aktuell laufende Saison von BuildMC und entführt euch in ein 
+            gemeinschaftliches, winterliches Survival-Erlebnis.Stimmungsvolle Bauprojekte und aktive 
+            Zusammenarbeit stehen im Mittelpunkt dieser Saison.
           </p>
           
           <div class="bg-background-50/50 rounded-2xl p-6 space-y-3 border border-background-100">
-            <h3 class="text-lg font-bold text-primary font-minecraft">Projektdetails</h3>
+            <h3 class="text-lg font-bold text-primary font-minecraft">Status</h3>
             <ul class="space-y-2 text-text-50 list-disc list-inside">
-              <li><strong class="text-text">Startdatum:</strong> <span class="text-primary">13. Dezember 2025</span></li>
+              <li><strong class="text-text">Status:</strong> <span class="text-primary">Läuft aktuell</span></li>
               <li><strong class="text-text">Thema:</strong> <span class="text-primary">Winter & Feiertagszeit</span></li>
             </ul>
           </div>
 
           <p>
-            Begleite uns auf diesem Winterabenteuer! Ob du ein erfahrener Baumeister bist oder neu in der Community, 
-            WinterMC bietet für jeden etwas. Baue gemütliche Winterhütten, erstelle festliche Dekorationen und erkunde 
-            gemeinsam die gefrorene Wildnis.
+            Du möchtest mitspielen? Egal ob erfahrener Baumeister oder Neuling. WinterMC lebt von einer aktiven Community. 
+            Baue gemeinsam mit anderen, erkunde die Landschaft und werde Teil des Projekts.
           </p>
 
-          <p class="text-text-50 italic">
-            Weitere Details zu WinterMC werden näher am Starttermin bekannt gegeben. Bleib dran für Updates!
+          <!-- Discord CTA -->
+          <div class="flex justify-center pt-4">
+            <a
+              href={LINKS.discord}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-8 py-4 rounded-2xl bg-accent text-background font-bold text-lg transition duration-300 hover:scale-105 hover:shadow-xl text-center"
+            >
+              Jetzt joinen!
+            </a>
+          </div>
+
+          <p class="text-text-50 italic text-center">
+            Alle Infos zum Mitspielen, zur Whitelist und zu Updates findest du auf unserem Discord.
           </p>
         </div>
       </div>
