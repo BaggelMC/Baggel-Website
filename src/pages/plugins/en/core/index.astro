@@ -26,6 +26,26 @@ import logoSrc from "../../../../assets/images/buildmc-core.png?format=webp&w=80
       <img src={logoSrc} alt="BuildMC-Core Logo" class="w-160 h-auto" />
     </div>
 
+    <CoreDownload/>
+
+    <Separator margin_sides="0"/>
+
+    <!-- Documentation Buttons -->
+     <h2 class="text-xl text-center leading-xl text-primary mt-12 mb-6 font-minecraft">Documentation</h2>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+      <a href="/plugins/en/core/docs/1.1.0/user" class="px-6 py-3 rounded-2xl bg-primary text-background font-bold transition duration-300 hover:bg-accent hover:scale-105">
+        User
+      </a>
+      <a href="/plugins/en/core/docs/1.1.0/admin" class="px-6 py-3 rounded-2xl bg-secondary text-text font-bold transition duration-300 hover:bg-accent hover:text-background hover:scale-105">
+        Admin
+      </a>
+      <a href="/plugins/en/core/docs/1.1.0/dev" class="px-6 py-3 rounded-2xl bg-accent text-background font-bold transition duration-300 hover:bg-primary hover:scale-105">
+        Dev
+      </a>
+    </div>
+
+    <Separator margin_sides="0"/>
+
     <div class="space-y-8 text-base leading-base text-text/90">
 
       <p class="md:text-lg md:leading-lg sm:text-base text-text">
@@ -63,25 +83,6 @@ import logoSrc from "../../../../assets/images/buildmc-core.png?format=webp&w=80
           GitHub Repository
         </a>
       </p>
-
-      <Separator margin_sides="0"/>
-
-      <CoreDownload/>
-
-      <Separator margin_sides="0"/>
-
-      <!-- Documentation Buttons -->
-      <div class="mt-16 flex flex-col sm:flex-row items-center justify-center gap-6">
-        <a href="/plugins/en/core/docs/1.1.0/user" class="px-6 py-3 rounded-2xl bg-primary text-background font-bold transition duration-300 hover:bg-accent hover:scale-105">
-          User Documentation
-        </a>
-        <a href="/plugins/en/core/docs/1.1.0/admin" class="px-6 py-3 rounded-2xl bg-secondary text-text font-bold transition duration-300 hover:bg-accent hover:text-background hover:scale-105">
-          Admin Documentation
-        </a>
-        <a href="/plugins/en/core/docs/1.1.0/dev" class="px-6 py-3 rounded-2xl bg-accent text-background font-bold transition duration-300 hover:bg-primary hover:scale-105">
-          Dev Documentation
-        </a>
-      </div>
 
     </div>
 
