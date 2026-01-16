@@ -63,6 +63,8 @@
   --color-error: #ef4444;
   --color-error-gradient: #b91c1c;
 
+  --color-separator: #666666;
+
   /* Font Family */
   --font-sans: "Cascadia Code", monospace;
   --font-minecraft: "MinecraftStandard";

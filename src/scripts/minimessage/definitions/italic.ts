@@ -6,7 +6,7 @@ export const italicTag: TagDefinition = {
   appearance: (() => {
     const el = document.createElement("strong");
     el.textContent = "I";
-    el.className = "bg-background p-2 rounded-xl"
+    el.className = ""
     return el;
   })(),
   staticResult: {

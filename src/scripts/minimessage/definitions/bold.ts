@@ -6,7 +6,7 @@ export const boldTag: TagDefinition = {
   appearance: (() => {
     const el = document.createElement("strong");
     el.textContent = "B";
-    el.className = "bg-background p-2 rounded-xl"
+    el.className = ""
     return el;
   })(),
   staticResult: {

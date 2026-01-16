@@ -20,12 +20,12 @@ export function openModal(def: {
 
   const cancel = document.createElement("button");
   cancel.textContent = "Cancel";
-  cancel.className = "bg-background cursor-pointer px-4 py-2 rounded-lg"
+  cancel.className = "bg-background cursor-pointer px-4 py-2 rounded-lg transition duration-300 hover:scale-105"
   cancel.onclick = () => overlay.remove();
 
   const submit = document.createElement("button");
   submit.textContent = "Insert";
-  submit.className = "bg-primary text-background cursor-pointer px-4 py-2 rounded-lg";
+  submit.className = "bg-accent text-background cursor-pointer px-4 py-2 rounded-lg transition duration-300 hover:scale-105";
   submit.onclick = () => {
 
     const shouldClose = def.onSubmit();

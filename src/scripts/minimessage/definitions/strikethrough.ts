@@ -6,7 +6,7 @@ export const strikethroughTag: TagDefinition = {
   appearance: (() => {
     const el = document.createElement("strong");
     el.textContent = "S";
-    el.className = "bg-background p-2 rounded-xl line-through"
+    el.className = ""
     return el;
   })(),
   staticResult: {

@@ -9,10 +9,7 @@ export function renderToolbar(
 ) {
   tags.forEach(tag => {
     const button = document.createElement("button");
-    button.className = "tag-button";
-
-
-    
+    button.className = "tag-button bg-background p-2 rounded-xl shadow-lg cursor-pointer transition duration-300 hover:scale-105";
     const appearance =
       typeof tag.appearance === "function"
         ? tag.appearance()

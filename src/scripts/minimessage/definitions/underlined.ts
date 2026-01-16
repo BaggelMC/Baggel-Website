@@ -6,7 +6,7 @@ export const underlinedTag: TagDefinition = {
   appearance: (() => {
     const el = document.createElement("strong");
     el.textContent = "U";
-    el.className = "bg-background p-2 rounded-xl underline"
+    el.className = ""
     return el;
   })(),
   staticResult: {

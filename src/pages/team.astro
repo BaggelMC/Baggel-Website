@@ -1,7 +1,12 @@
 ---
 import DefaultLayout from "../layouts/DefaultLayout.astro";
+import Separator from "src/components/Separator.astro";
+
 import { getTeamMembers } from "../scripts/team";
 import Headline from "../components/Headline.astro";
+
+//@ts-ignore
+import AururmLogo from "../assets/images/aurum_logo.png?format=webp";
 
 const teamMembers = await getTeamMembers();
 ---
@@ -35,7 +40,23 @@ const teamMembers = await getTeamMembers();
         </div>
       ))}
     </div>
+
+    <Separator></Separator>
+    <h2 class="text-xl text-center leading-xl text-primary mt-12 mb-6 font-minecraft">Freunde & Partner</h2>
+    <div class="flex flex-wrap justify-center gap-8">
+      <div class="w-64 relative group">
+        <a href="https://aurum-mc.de" target="_blank" class="group flex flex-col items-center bg-background-10 rounded-xl p-4 shadow-lg not-last-of-type:transform transition-smooth hover:scale-105 hover:shadow-2xl">
+        <img src={AururmLogo} alt="Aurum Logo" class="w-32 h-32 object-contain mb-3" />
+        <p class="text-center text-text-50 text-sm">
+          Wir freuen uns über die freundschaftliche Zusammenarbeit mit <strong>Aurum MC</strong>! Schaut unbedingt auf ihrer Website vorbei.
+        </p>
+      </a>
+      </div>
+      
+    </div>
+
   </section>
+
 
   <script is:inline>
     let openIndex = null;

@@ -9,7 +9,7 @@ export const headTag: TagDefinition = {
   appearance: (() => {
     const el = document.createElement("span");
     el.textContent = "👤";
-    el.className = "bg-background p-2 rounded-xl"
+    el.className = ""
     return el;
   })(),
 
