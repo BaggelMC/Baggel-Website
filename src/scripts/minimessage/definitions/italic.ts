@@ -6,7 +6,7 @@ export const italicTag: TagDefinition = {
   appearance: (() => {
     const el = document.createElement("strong");
     el.textContent = "I";
-    el.className = ""
+    el.className = "italic"
     return el;
   })(),
   staticResult: {

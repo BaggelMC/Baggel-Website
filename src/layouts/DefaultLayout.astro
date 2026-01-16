@@ -65,13 +65,13 @@ const { title, lang, meta_description } = Astro.props;
     <link href={RESOURCES.fontURL} rel="stylesheet" />
     <script src="https://unpkg.com/alpinejs" defer></script>
   </head>
-  <body
-    class="min-h-screen text-text font-sans flex flex-col relative overflow-x-hidden bg-background"
-    style={`--page-bg: url(${Background});`}
-  >
+<body
+  class="relative min-h-screen text-text font-sans flex flex-col overflow-x-hidden bg-background"
+  style={`--page-bg: url(${Background});`}
+>
+
     <div
-      class="fixed top-0 left-1/2 -translate-x-1/2 w-screen h-screen bg-cover bg-center bg-no-repeat blur-xl scale-105"
-      style="background-image: var(--page-bg); z-index: -1;"
+      class="parallax-bg pointer-events-none"
       aria-hidden="true"
     ></div>
 
@@ -81,4 +81,53 @@ const { title, lang, meta_description } = Astro.props;
     </main>
     <Footer />
   </body>
+  <script>
+    const bg = document.querySelector<HTMLElement>(".parallax-bg");
+
+    if (bg && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      let current = 0;
+      let target = 0;
+      const speed = 0.1;
+
+      const maxParallaxOffset = -120;
+
+      function getScrollProgress() {
+        const maxScroll =
+          document.documentElement.scrollHeight - window.innerHeight;
+        return maxScroll > 0 ? window.scrollY / maxScroll : 0;
+      }
+
+      function updateTarget() {
+        target = getScrollProgress() * maxParallaxOffset;
+      }
+
+      updateTarget();
+      current = target;
+      bg.style.transform = `translate(-50%, ${current}px)`;
+
+      window.addEventListener("scroll", updateTarget);
+
+      window.addEventListener("pageshow", () => {
+        updateTarget();
+        current = target;
+        bg.style.transform = `translate(-50%, ${current}px)`;
+      });
+
+      window.addEventListener("resize", updateTarget);
+      
+      const ro = new ResizeObserver(() => {
+        updateTarget();
+      });
+      ro.observe(document.documentElement);
+
+      function animate() {
+        if (!bg) return;
+        current += (target - current) * speed;
+        bg.style.transform = `translate(-50%, ${current}px)`;
+        requestAnimationFrame(animate);
+      }
+
+      requestAnimationFrame(animate);
+    }
+  </script>
 </html>

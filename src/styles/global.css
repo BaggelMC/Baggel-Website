@@ -178,3 +178,20 @@
   scrollbar-width: thin;
   scrollbar-color: var(--color-primary) var(--color-background);
 }
+
+.parallax-bg {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  width: 100vw;
+  height: 140vh;
+  transform: translateX(-50%);
+  background-image: var(--page-bg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(24px);
+  scale: 1.1;
+  z-index: -1;
+  will-change: transform;
+}

@@ -48,13 +48,24 @@ import "../../../styles/MiniMessageTool.css"
     </div>
 
 
-    <div class="flex flex-col io">
+    <div class="flex flex-col io relative">
       <label id="output-dom-label" class="text-text-50 mb-2 text-sm uppercase tracking-wide">Output</label>
-      <div
-        id="output-dom"
-        class="content w-full min-h-[200px] p-4 bg-background-gradient text-text font-minecraft-minimessage rounded-2xl border border-background-50 wrap-break-word whitespace-pre-wrap"
-      ></div>
 
+      <button
+        id="copy-json-btn"
+        class="absolute top right-0 bg-background-50 hover:bg-background-100 text-text text-xs px-2 py-1 rounded-lg cursor-pointer transition duration-300 hover:scale-105"
+        title="Copy as JSON (for tellraw, etc.)"
+      >
+        <span class="btn-text">Copy JSON</span>
+      </button>
+
+      <div class="relative">
+        <div
+          id="output-dom"
+          class="content w-full min-h-[200px] p-4 bg-background-gradient text-text font-minecraft-minimessage rounded-2xl border border-background-50 wrap-break-word whitespace-pre-wrap"
+        ></div>
+      </div>
+      
     </div>
   </div>
 

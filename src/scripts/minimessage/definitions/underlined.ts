@@ -6,7 +6,7 @@ export const underlinedTag: TagDefinition = {
   appearance: (() => {
     const el = document.createElement("strong");
     el.textContent = "U";
-    el.className = ""
+    el.className = "underline"
     return el;
   })(),
   staticResult: {
