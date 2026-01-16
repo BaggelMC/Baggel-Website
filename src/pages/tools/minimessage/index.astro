@@ -93,4 +93,29 @@ import "../../../styles/MiniMessageTool.css"
     }
   </script>
 
+  <script>
+    import { renderToolbar } from "@scripts/minimessage/toolbar";
+    import { boldTag } from "@scripts/minimessage/definitions/bold";
+    import { italicTag } from "@scripts/minimessage/definitions/italic";
+    import { underlinedTag } from "@scripts/minimessage/definitions/underlined";
+    import { strikethroughTag } from "@scripts/minimessage/definitions/strikethrough";
+    import { headTag } from "@scripts/minimessage/definitions/head";
+
+    const textarea = document.getElementById("input");
+    const toolbar = document.getElementById("tag-toolbar");
+
+    if (
+      textarea instanceof HTMLTextAreaElement &&
+      toolbar instanceof HTMLDivElement
+    ) {
+      renderToolbar(toolbar, textarea, [
+        boldTag,
+        italicTag,
+        underlinedTag,
+        strikethroughTag,
+        headTag
+      ]);
+    }
+  </script>
+
 </ToolLayout>

@@ -13,7 +13,12 @@ import react from '@astrojs/react';
 export default defineConfig({
   output: "static",
   vite: {
-    plugins: [imagetools(), tailwindcss()]
+    plugins: [imagetools(), tailwindcss()],
+    resolve: {
+      alias: {
+        "@scripts": "/src/scripts",
+      },
+    },
   },
 
   site: "https://baggel.de",
