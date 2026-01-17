@@ -68,6 +68,124 @@ import "../../../styles/MiniMessageTool.css"
       </div>
 
     </div>
+    <section class="bg-background rounded-xl max-w-5xl mx-auto px-8 p-8 text-text font-sans space-y-10">
+      <div class="space-y-4">
+        <h2 class="text-xl font-semibold">What is MiniMessage?</h2>
+
+        <p class="text-text-80 leading-relaxed">
+          <strong>MiniMessage</strong> is a modern text formatting language from the
+          <a
+            href="https://docs.papermc.io/adventure/minimessage/format"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-primary hover:opacity-80"
+          >
+            Adventure
+          </a>
+          library, widely used in Minecraft servers and plugins such as Paper,
+          Velocity, Fabric, and more.
+        </p>
+
+        <p class="text-text-80 leading-relaxed">
+          It allows you to format text using readable tags instead of legacy color
+          codes, supporting colors, gradients, text decorations, shadows, fonts,
+          and other advanced effects in a clean and future-proof way.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        <h2 class="text-xl font-semibold">Why use this editor?</h2>
+
+        <p class="text-text-80 leading-relaxed">
+          This MiniMessage Editor lets you write, preview, and export MiniMessage
+          text instantly directly in your browser.
+        </p>
+
+        <p class="text-text-80 leading-relaxed">
+          This tool runs
+          <strong>100% client-side</strong>. No data is sent to any server, and
+          nothing ever leaves your device.
+        </p>
+
+        <p class="text-text-80 leading-relaxed">
+          The renderer is based on an extended and customized version of the original
+          MiniMessage renderer by <strong>WasabiThumb</strong>:
+        </p>
+
+        <ul class="list-disc list-inside text-text-80 space-y-1">
+          <li>
+            Original:
+            <a
+              href="https://github.com/WasabiThumb/minimessage-js"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-primary underline hover:opacity-80"
+            >
+              github.com/WasabiThumb/minimessage-js
+            </a>
+          </li>
+          <li>
+            Our fork:
+            <a
+              href="https://github.com/BaggelMC/minimessage-js"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-primary underline hover:opacity-80"
+            >
+              github.com/BaggelMC/minimessage-js
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="space-y-4">
+        <h2 class="text-xl font-semibold">Not using MiniMessage?</h2>
+
+        <p class="text-text-80 leading-relaxed">
+          You can still use this tool as a <strong>Minecraft text formatter</strong>.
+        </p>
+
+        <p class="text-text-80 leading-relaxed">
+          The <strong>Copy JSON</strong> button copies the rendered output as a
+          Minecraft Component JSON. This can be used in commands and configurations
+          such as <code class="px-1 py-0.5 bg-background-50 rounded">/tellraw</code>,
+          titles, bossbars, datapacks, and plugin configs that accept component JSON.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        <h2 class="text-xl font-semibold">Planned features</h2>
+
+        <p class="text-text-80 leading-relaxed">
+          The following MiniMessage features are planned but not implemented yet:
+        </p>
+
+        <ul class="list-disc list-inside text-text-80 space-y-1">
+          <li>Click</li>
+          <li>Hover</li>
+          <li>Fallback</li>
+          <li>Insertion</li>
+          <li>Sprite</li>
+        </ul>
+      </div>
+
+      <div class="space-y-4">
+        <h2 class="text-xl font-semibold">Server-only features</h2>
+
+        <p class="text-text-80 leading-relaxed">
+          Some MiniMessage features depend on live server data and cannot be
+          supported in an external editor:
+        </p>
+
+        <ul class="list-disc list-inside text-text-80 space-y-1">
+          <li>Selector</li>
+          <li>Score</li>
+          <li>NBT</li>
+        </ul>
+      </div>
+    </section>
+
+
   </div>
 
   <script>
@@ -115,6 +233,7 @@ import "../../../styles/MiniMessageTool.css"
     import { headTag } from "@scripts/minimessage/definitions/head";
     import { colorTag } from "@scripts/minimessage/definitions/color";
     import { gradientTag } from "@scripts/minimessage/definitions/gradient";
+    import { shadowColorTag } from "@scripts/minimessage/definitions/shadow";
 
     const textarea = document.getElementById("input");
     const toolbar = document.getElementById("tag-toolbar");
@@ -130,6 +249,7 @@ import "../../../styles/MiniMessageTool.css"
         underlinedTag,
         strikethroughTag,
         obfuscatedTag,
+        shadowColorTag,
         gradientTag,
         headTag
       ]);

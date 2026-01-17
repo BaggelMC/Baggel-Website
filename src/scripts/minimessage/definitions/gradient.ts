@@ -30,7 +30,7 @@ export const gradientTag: TagDefinition = {
         row.className = "flex items-center gap-2 bg-background p-2 rounded-xl";
 
         const previewBtn = document.createElement("button");
-        previewBtn.className = "w-6 h-6 rounded border";
+        previewBtn.className = "w-6 h-6 rounded border shrink-0 cursor-pointer hover:scale-105";
         previewBtn.style.backgroundColor = hex;
         previewBtn.onclick = async () => {
           colors[index] = await openColorPicker(colors[index]);
@@ -39,10 +39,21 @@ export const gradientTag: TagDefinition = {
 
         const label = document.createElement("span");
         label.textContent = hexToPresetName(hex) ?? hex.toUpperCase();
-        label.className = "font-mono text-sm";
+        label.className = "font-mono text-sm flex-1 truncate";
 
         const upBtn = document.createElement("button");
         upBtn.innerHTML = upIcon;
+        upBtn.className = "shrink-0";
+
+        const downBtn = document.createElement("button");
+        downBtn.innerHTML = downIcon;
+        downBtn.className = "shrink-0";
+
+        const removeBtn = document.createElement("button");
+        removeBtn.innerHTML = removeIcon;
+        removeBtn.className = "shrink-0";
+        removeBtn.style.color = "var(--color-error)";
+
         if (index === 0) {
           upBtn.style.color = "var(--color-text-100)";
           upBtn.style.cursor = "not-allowed";
@@ -55,8 +66,6 @@ export const gradientTag: TagDefinition = {
           };
         }
 
-        const downBtn = document.createElement("button");
-        downBtn.innerHTML = downIcon;
         if (index === colors.length - 1) {
           downBtn.style.color = "var(--color-text-100)";
           downBtn.style.cursor = "not-allowed";
@@ -69,9 +78,6 @@ export const gradientTag: TagDefinition = {
           };
         }
 
-        const removeBtn = document.createElement("button");
-        removeBtn.innerHTML = removeIcon;
-        removeBtn.style.color = "var(--color-error)";
         removeBtn.style.cursor = colors.length <= 2 ? "not-allowed" : "pointer";
         if (colors.length > 2) {
           removeBtn.onclick = () => {
@@ -80,9 +86,14 @@ export const gradientTag: TagDefinition = {
           };
         }
 
-        row.append(previewBtn, label, upBtn, downBtn, removeBtn);
+        const controls = document.createElement("div");
+        controls.className = "flex items-center gap-1 shrink-0 w-20 justify-end";
+        controls.append(upBtn, downBtn, removeBtn);
+
+        row.append(previewBtn, label, controls);
         listEl.appendChild(row);
       });
+
 
       previewEl.style.background = `linear-gradient(to right, ${colors.join(",")})`;
     }
@@ -105,8 +116,15 @@ export const gradientTag: TagDefinition = {
         container.appendChild(previewEl);
 
         listEl = document.createElement("div");
-        listEl.className = "flex flex-col gap-2 mb-4";
+        listEl.className = "flex flex-col gap-2 mb-4 max-h-64 overflow-y-auto pr-1";
         container.appendChild(listEl);
+        listEl.addEventListener("wheel", (e) => {
+          const target = e.currentTarget as HTMLDivElement;
+          const delta = e.deltaY;
+          target.scrollTop += delta;
+          e.preventDefault();
+        }, { passive: false });
+
 
         const addBtn = document.createElement("button");
         addBtn.textContent = "+ Add color";
