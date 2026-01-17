@@ -14,6 +14,7 @@ export function renderToolbar(
       typeof tag.appearance === "function"
         ? tag.appearance()
         : tag.appearance;
+    button.title = tag.label;
 
     button.appendChild(appearance);
 

@@ -6,7 +6,7 @@ export const strikethroughTag: TagDefinition = {
   appearance: (() => {
     const el = document.createElement("strong");
     el.textContent = "S";
-    el.className = "line-through"
+    el.className = "line-through";
     return el;
   })(),
   staticResult: {

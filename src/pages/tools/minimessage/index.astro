@@ -22,7 +22,8 @@ import "../../../styles/MiniMessageTool.css"
       >
         <textarea
           id="input"
-          class="min-h-[200px] w-full h-full p-4 bg-transparent text-text font-sans focus:outline-none transition duration-300 resize-none"
+          spellcheck="false"
+          class="min-h-[200px] w-full h-full p-4 bg-transparent font-sans focus:outline-none transition duration-300 resize-none"
           placeholder="Type MiniMessage text here..."
         ></textarea>
 
@@ -53,7 +54,7 @@ import "../../../styles/MiniMessageTool.css"
 
       <button
         id="copy-json-btn"
-        class="absolute top right-0 bg-background-50 hover:bg-background-100 text-text text-xs px-2 py-1 rounded-lg cursor-pointer transition duration-300 hover:scale-105"
+        class="absolute top right-0 bg-background-50 hover:bg-background-100 text-text text-xs px-2 py-1 rounded-lg cursor-pointer hover:scale-105"
         title="Copy as JSON (for tellraw, etc.)"
       >
         <span class="btn-text">Copy JSON</span>
@@ -65,7 +66,7 @@ import "../../../styles/MiniMessageTool.css"
           class="content w-full min-h-[200px] p-4 bg-background-gradient text-text font-minecraft-minimessage rounded-2xl border border-background-50 wrap-break-word whitespace-pre-wrap"
         ></div>
       </div>
-      
+
     </div>
   </div>
 
@@ -110,7 +111,10 @@ import "../../../styles/MiniMessageTool.css"
     import { italicTag } from "@scripts/minimessage/definitions/italic";
     import { underlinedTag } from "@scripts/minimessage/definitions/underlined";
     import { strikethroughTag } from "@scripts/minimessage/definitions/strikethrough";
+    import { obfuscatedTag } from "@scripts/minimessage/definitions/obfuscated";
     import { headTag } from "@scripts/minimessage/definitions/head";
+    import { colorTag } from "@scripts/minimessage/definitions/color";
+    import { gradientTag } from "@scripts/minimessage/definitions/gradient";
 
     const textarea = document.getElementById("input");
     const toolbar = document.getElementById("tag-toolbar");
@@ -120,13 +124,48 @@ import "../../../styles/MiniMessageTool.css"
       toolbar instanceof HTMLDivElement
     ) {
       renderToolbar(toolbar, textarea, [
+        colorTag,
         boldTag,
         italicTag,
         underlinedTag,
         strikethroughTag,
+        obfuscatedTag,
+        gradientTag,
         headTag
       ]);
     }
   </script>
 
+  <script>
+    const textarea = document.getElementById("input") as HTMLTextAreaElement | null;
+
+    if (textarea) {
+      const updateColor = () => {
+        if (textarea.value.trim() === "") {
+          textarea.classList.add("placeholder-color");
+          textarea.classList.remove("input-color");
+        } else {
+          textarea.classList.add("input-color");
+          textarea.classList.remove("placeholder-color");
+        }
+      };
+
+      updateColor();
+
+      textarea.addEventListener("input", updateColor);
+    }
+
+  </script>
+
+  <style>
+    #input {
+      transition: border-color 0.6s;
+    }
+    .placeholder-color {
+      color: var(--color-background-100);
+    }
+    .input-color {
+      color: var(--color-text);
+    }
+  </style>
 </ToolLayout>
