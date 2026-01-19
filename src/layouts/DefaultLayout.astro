@@ -5,7 +5,7 @@ import { RESOURCES } from "../config";
 import "../styles/global.css";
 
 //@ts-ignore
-import Background from "../assets/background_dark.png?format=webp";
+import Background from "../assets/background_dark.png?format=webp&w=800";
 //@ts-ignore
 import metaImage from "../assets/largehero.png?format=webp"
 
@@ -54,7 +54,7 @@ const { title, lang, meta_description } = Astro.props;
     <meta name="twitter:title" content={title ? `${title} | BaggelMC` : "BaggelMC"} />
     <meta
       name="twitter:description"
-      content={Astro.props.meta_description ?? "BaggelMC – eine Minecraft server community"}
+      content={Astro.props.meta_description ?? "BaggelMC - eine Minecraft server community"}
     />
     <meta
       name="twitter:image"

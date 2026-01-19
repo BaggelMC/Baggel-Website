@@ -84,8 +84,8 @@ export function createColorPickerModal(
       picker = new iro.ColorPicker(wheelDiv, {
         width: 200,
         color: initialColor,
-        borderWidth: 1,
-        borderColor: "#000"
+        borderWidth: 3,
+        borderColor: "var(--color-primary)"
       });
 
       picker.on("color:change", (color: any) => {

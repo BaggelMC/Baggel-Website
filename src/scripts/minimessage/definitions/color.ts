@@ -35,7 +35,7 @@ export const colorTag: TagDefinition = {
   appearance: (() => {
     const wrapper = document.createElement("span");
     wrapper.className = "w-6 h-6 flex items-center justify-center";
-    
+
     const parser = new DOMParser();
     const doc = parser.parseFromString(toolbarIcon, "image/svg+xml");
     const svgEl = doc.querySelector("svg");
@@ -45,13 +45,12 @@ export const colorTag: TagDefinition = {
     return wrapper;
   })(),
 
-
   modal: () => {
-    // TODO: Replace with generic color picker modal
     let containerEl!: HTMLDivElement;
     let presetContainer!: HTMLDivElement;
-    let selectedColorHex: string | null = null;
-    let selectedPreset: string | null = null;
+
+    let selectedColorHex: string | null = "#FFFFFF";
+    let selectedPreset: string | null = "white";
 
     let hexInput!: HTMLInputElement;
     let rInput!: HTMLInputElement;
@@ -70,14 +69,16 @@ export const colorTag: TagDefinition = {
 
         presetRows.forEach(row => {
           const rowEl = document.createElement("div");
-          rowEl.className = "flex gap-2";
+          rowEl.className = "flex gap-2 justify-center";
 
           row.forEach(name => {
             const hex = presetColors[name];
             const btn = document.createElement("button");
             btn.style.backgroundColor = hex;
             btn.title = name;
-            btn.className = "w-6 h-6 rounded-full border border-black/20 transition-transform hover:scale-110";
+            btn.className =
+              "w-6 h-6 rounded-full border border-black/20 transition-transform hover:scale-110";
+
             btn.addEventListener("click", () => {
               selectedPreset = name;
               selectedColorHex = null;
@@ -101,15 +102,15 @@ export const colorTag: TagDefinition = {
         wheelDiv.style.margin = "0 auto 4rem auto";
         container.appendChild(wheelDiv);
 
-        //@ts-ignore: Yeah, types don't exist for this I think
-        let picker: any = new iro.ColorPicker(wheelDiv, {
+        //@ts-ignore
+        picker = new iro.ColorPicker(wheelDiv, {
           width: 200,
-          color: "#FFFFFF",
-          borderWidth: 1,
-          borderColor: "#000"
+          color: selectedColorHex ?? "#FFFFFF",
+          borderWidth: 3,
+          borderColor: "var(--color-primary)"
         });
 
-        //@ts-ignore: Same as picker variable
+        //@ts-ignore
         picker.on("color:change", (color) => {
           selectedColorHex = color.hexString;
           selectedPreset = null;
@@ -144,12 +145,14 @@ export const colorTag: TagDefinition = {
         rInput.max = "255";
         rInput.placeholder = "R";
         rInput.className = "bg-background rounded p-1 w-16 text-center";
+
         gInput = document.createElement("input");
         gInput.type = "number";
         gInput.min = "0";
         gInput.max = "255";
         gInput.placeholder = "G";
         gInput.className = "bg-background rounded p-1 w-16 text-center";
+
         bInput = document.createElement("input");
         bInput.type = "number";
         bInput.min = "0";
@@ -157,7 +160,7 @@ export const colorTag: TagDefinition = {
         bInput.placeholder = "B";
         bInput.className = "bg-background rounded p-1 w-16 text-center";
 
-        [rInput, gInput, bInput].forEach((input, idx) => {
+        [rInput, gInput, bInput].forEach(input => {
           input.addEventListener("change", () => {
             const r = parseInt(rInput.value) || 0;
             const g = parseInt(gInput.value) || 0;
@@ -183,35 +186,34 @@ export const colorTag: TagDefinition = {
           bInput.value = rgb.b.toString();
         }
 
-        updateInputs("#FFFFFF");
+        updateInputs(selectedColorHex ?? "#FFFFFF");
       },
 
       validate() {
-        return !!(selectedColorHex || selectedPreset);
+        return true;
       },
 
       submit(): { start: string; end: string } {
         let presetMatch: string | null = null;
 
-        if (selectedColorHex) {
-            const hex = selectedColorHex.toUpperCase();
-            for (const [name, colorHex] of Object.entries(presetColors)) {
-                if (colorHex.toUpperCase() === hex) {
-                    presetMatch = name;
-                    break;
-                }
+        const hex = selectedColorHex ?? "#FFFFFF";
+        if (hex) {
+          for (const [name, colorHex] of Object.entries(presetColors)) {
+            if (colorHex.toUpperCase() === hex.toUpperCase()) {
+              presetMatch = name;
+              break;
             }
+          }
         }
 
-        const tagName = selectedPreset || presetMatch;
+        const tagName = selectedPreset || presetMatch || "white";
         if (tagName) {
-            return { start: `<${tagName}>`, end: `</${tagName}>` };
+          return { start: `<${tagName}>`, end: `</${tagName}>` };
         }
 
-        return { start: `<color:${selectedColorHex!}>`, end: `</color>` };
-    }
-
-
+        // Should never happen, but fallback to white
+        return { start: `<color:#FFFFFF>`, end: `</color>` };
+      }
     };
   }
 };

@@ -1,4 +1,5 @@
 ---
+import "../styles/index.css";
 import Headline from "../components/Headline.astro";
 import DefaultLayout from "../layouts/DefaultLayout.astro";
 import Separator from "../components/Separator.astro";
@@ -12,46 +13,66 @@ import PlayButtonTexture from "../assets/images/textures/play.png";
 import PlayButtonHoverTexture from "../assets/images/textures/play_hover.png";
 import Click from "../assets/audio/click.ogg"
 //@ts-ignore
-import Screenshot from "../assets/screenshot1.png?format=webp&w=800";
+import Screenshot from "../assets/screenshot1.png?format=webp&w=100";
 
 import { LINKS } from "../config";
 
+// IMAGES
+
 //@ts-ignore
-import ImageDuels from "../assets/images/gamemodes/1v1.png?format=webp&w=800";
+import ImageDuelsLow from "../assets/images/gamemodes/1v1.png?format=webp&w=100";
 //@ts-ignore
-import ImageFFA from "../assets/images/gamemodes/FFA.png?format=webp&w=800";
+import ImageDuelsMed from "../assets/images/gamemodes/1v1.png?format=webp&w=800";
 //@ts-ignore
-import ImageFireball from "../assets/images/gamemodes/fireball.png?format=webp&w=800";
+import ImageDuelsHigh from "../assets/images/gamemodes/1v1.png?format=png&w=1400";
+
 //@ts-ignore
-import ImageTNTTag from "../assets/images/gamemodes/tnttag.png?format=webp&w=800";
+import ImageFFALow from "../assets/images/gamemodes/FFA.png?format=webp&w=100";
+//@ts-ignore
+import ImageFFAMed from "../assets/images/gamemodes/FFA.png?format=webp&w=800";
+//@ts-ignore
+import ImageFFAHigh from "../assets/images/gamemodes/FFA.png?format=png&w=1400";
+
+//@ts-ignore
+import ImageFireballLow from "../assets/images/gamemodes/fireball.png?format=webp&w=100";
+//@ts-ignore
+import ImageFireballMed from "../assets/images/gamemodes/fireball.png?format=webp&w=800";
+//@ts-ignore
+import ImageFireballHigh from "../assets/images/gamemodes/fireball.png?format=png&w=1400";
+
+//@ts-ignore
+import ImageTNTTagLow from "../assets/images/gamemodes/tnttag.png?format=webp&w=100";
+//@ts-ignore
+import ImageTNTTagMed from "../assets/images/gamemodes/tnttag.png?format=webp&w=800";
+//@ts-ignore
+import ImageTNTTagHigh from "../assets/images/gamemodes/tnttag.png?format=png&w=1400";
 
 import Pronounciation from "../assets/audio/baggel.mp3"
-import SecretPronounciation from "../assets/audio/baggel_remix.mp3"
 
 const finishedGames = [
   {
     name: "Duels 1v1",
     description:
       "Tritt gegen einen anderen Spieler in intensiven, schnellen PvP-Duellen an. Wähle dein Kit, schärfe deine Reflexe und kämpfe um den Sieg in unseren Arenen! Nur die Besten werden bestehen.",
-    image: ImageDuels,
+    images: [ImageDuelsLow, ImageDuelsMed, ImageDuelsHigh],
   },
   {
     name: "Knockback FFA",
     description:
       "Keine Teams, keine Gnade! Jeder Spieler für sich selbst! Springe in chaotische Free-for-All-Kämpfe, bei denen schnelles Denken und Geschick entscheiden, wer das Schlachtfeld dominiert.",
-    image: ImageFFA,
+    images: [ImageFFALow, ImageFFAMed, ImageFFAHigh],
   },
   {
     name: "Fireball Fight",
     description:
       "Schieße, weiche aus und kämpfe dich mit Explosionen zum Sieg! Nutze Präzision und Timing, um deine Gegner mit gut gezielten Feuerbällen von der Karte zu befördern. Ein Treffer kann alles ändern.",
-    image: ImageFireball,
+    images: [ImageFireballLow, ImageFireballMed, ImageFireballHigh],
   },
   {
     name: "Hot Potato",
     description:
       "Du hast eine tickende Zeitbombe! Gib sie schnell weiter, bevor sie explodiert! Wer am Ende die Bombe hat, verliert. Geschwindigkeit und Strategie entscheiden über Sieg oder Niederlage.",
-    image: ImageTNTTag,
+    images: [ImageTNTTagLow, ImageTNTTagMed, ImageTNTTagHigh],
   },
 ];
 
@@ -98,9 +119,7 @@ const unfinishedGames = [
 
   <div class="max-w-5xl mx-auto px-4 sm:px-8 py-16 sm:py-20 text-text font-sans space-y-20">
 
-    
     <img src={TextLogo} class="mx-auto h-30 md:h-80 object-cover" alt="Baggel Logo" />
-
 
     <!-- Server Info Section -->
     <section 
@@ -191,7 +210,6 @@ const unfinishedGames = [
       </p>
 
       <audio id="pronunciationAudio" src={Pronounciation}></audio>
-      <audio id="secretPronunciationAudio" src={SecretPronounciation}></audio>
     </section>
 
     <!-- Finished Games Section -->
@@ -201,16 +219,22 @@ const unfinishedGames = [
       <div class="flex flex-wrap justify-center gap-8">
         {finishedGames.map((game) => (
           <div class="w-full sm:w-[45%] lg:w-[45%] max-w-xl group relative rounded-2xl overflow-hidden bg-background-10 border border-background-50 hover:border-accent transition-all duration-500 shadow-lg hover:shadow-2xl">
+          <div class="progressive-img-wrapper w-full h-48">
             <img
-              src={game.image}
+              src={game.images[0]}
+              data-images={JSON.stringify(game.images)}
               alt={game.name}
-              class="w-full h-48 object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+              loading="lazy"
+              decoding="async"
+              class="progressive-img w-full h-full object-cover"
             />
-            <div class="p-6 text-left space-y-2">
-              <h3 class="text-xl font-bold text-primary">{game.name}</h3>
-              <p class="text-text-50">{game.description}</p>
-            </div>
           </div>
+          <div class="p-6 text-left space-y-2">
+            <h3 class="text-xl font-bold text-primary">{game.name}</h3>
+            <p class="text-text-50">{game.description}</p>
+          </div>
+        </div>
+
         ))}
       </div>
     </section>
@@ -412,19 +436,23 @@ const unfinishedGames = [
 
 <script>
   const chance = 0.1;
-  const rotationSpeed = 360; // degrees per second
+  const rotationSpeed = 360;
   const volume = 0.25;
   const minClicksForSecret = 3;
 
   document.addEventListener("DOMContentLoaded", () => {
-    const playButton = document.getElementById("playAudioButton") as HTMLButtonElement | null;
+    const playButton = document.getElementById("playAudioButton");
     const normalAudio = document.getElementById("pronunciationAudio") as HTMLAudioElement | null;
-    const secretAudio = document.getElementById("secretPronunciationAudio") as HTMLAudioElement | null;
 
-    if (!playButton || !normalAudio || !secretAudio) return;
+    if (!playButton || !normalAudio) return;
 
     normalAudio.volume = volume;
-    secretAudio.volume = volume;
+
+    let secretAudio: HTMLAudioElement | null = null;
+    let secretReady = false;
+    let loadingSecret = false;
+
+    let partyModeActive = false;
 
     let animationFrameId: number | null = null;
     let hue = 0;
@@ -432,7 +460,6 @@ const unfinishedGames = [
     let clickCount = 0;
     let lastFrameTime: number | null = null;
 
-    // List of CSS variables to rotate
     const colorVars = [
       "--color-text",
       "--color-text-50",
@@ -451,7 +478,10 @@ const unfinishedGames = [
       "--color-error-gradient",
     ];
 
-    // Convert hex to HSL
+    const originalColors = colorVars.map(v =>
+      getComputedStyle(document.documentElement).getPropertyValue(v).trim() || "#000000"
+    );
+
     const hexToHSL = (hex: string) => {
       hex = hex.replace("#", "");
       const r = parseInt(hex.substring(0, 2), 16) / 255;
@@ -475,39 +505,42 @@ const unfinishedGames = [
       return { h, s, l };
     };
 
-    // Convert HSL back to hex
-    const hslToHex = ({h, s, l}: {h:number,s:number,l:number}) => {
-      const c = (1 - Math.abs(2*l - 1)) * s;
-      const x = c * (1 - Math.abs((h/60)%2 - 1));
-      const m = l - c/2;
-      let r=0,g=0,b=0;
-      if (h>=0 && h<60) { r=c; g=x; b=0 }
-      else if (h<120) { r=x; g=c; b=0 }
-      else if (h<180) { r=0; g=c; b=x }
-      else if (h<240) { r=0; g=x; b=c }
-      else if (h<300) { r=x; g=0; b=c }
-      else { r=c; g=0; b=x }
+    type HSL = {
+        h: number;
+        s: number;
+        l: number;
+      };
 
-      const toHex = (v:number) =>
-        Math.round((v+m)*255).toString(16).padStart(2,"0");
+      const hslToHex = ({ h, s, l }: HSL): string => {
+        const c = (1 - Math.abs(2 * l - 1)) * s;
+        const x = c * (1 - Math.abs((h / 60) % 2 - 1));
+        const m = l - c / 2;
 
-      return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
-    };
+        let r = 0, g = 0, b = 0;
 
-    // Store original colors
-    const originalColors = colorVars.map(v =>
-      getComputedStyle(document.documentElement).getPropertyValue(v).trim() || "#000000"
-    );
+        if (h < 60) [r, g, b] = [c, x, 0];
+        else if (h < 120) [r, g, b] = [x, c, 0];
+        else if (h < 180) [r, g, b] = [0, c, x];
+        else if (h < 240) [r, g, b] = [0, x, c];
+        else if (h < 300) [r, g, b] = [x, 0, c];
+        else [r, g, b] = [c, 0, x];
 
-    const updateColors = (currentTime: number) => {
-      if (lastFrameTime === null) {
-        lastFrameTime = currentTime;
-      }
+        const toHex = (v: number): string =>
+          Math.round((v + m) * 255).toString(16).padStart(2, "0");
 
-      const deltaTime = (currentTime - lastFrameTime) / 1000; // Convert to seconds
-      lastFrameTime = currentTime;
+        return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+      };
 
-      hue = (hue + rotationSpeed * deltaTime) % 360;
+
+    const updateColors = (time: number) => {
+      if (!partyModeActive) return;
+
+      if (lastFrameTime === null) lastFrameTime = time;
+      const delta = (time - lastFrameTime) / 1000;
+      lastFrameTime = time;
+
+      hue = (hue + rotationSpeed * delta) % 360;
+
       colorVars.forEach((v, i) => {
         const hsl = hexToHSL(originalColors[i]);
         hsl.h = (hsl.h + hue) % 360;
@@ -517,15 +550,23 @@ const unfinishedGames = [
     };
 
     const startPartyMode = () => {
-      if (!animationFrameId) {
-        lastFrameTime = null;
-        animationFrameId = requestAnimationFrame(updateColors);
-      }
+      if (partyModeActive) return;
+
+      partyModeActive = true;
+      hue = 0;
+      lastFrameTime = null;
+      animationFrameId = requestAnimationFrame(updateColors);
     };
 
     const stopPartyMode = () => {
-      if (animationFrameId) cancelAnimationFrame(animationFrameId);
-      animationFrameId = null;
+      partyModeActive = false;
+
+
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId)
+        animationFrameId = null;
+      };
+      
       lastFrameTime = null;
 
       colorVars.forEach((v, i) =>
@@ -533,14 +574,32 @@ const unfinishedGames = [
       );
     };
 
-    secretAudio.addEventListener("ended", stopPartyMode);
+    const loadSecretAudio = () => {
+      if (secretAudio || loadingSecret) return;
+
+      loadingSecret = true;
+      secretAudio = new Audio("/assets/audio/baggel_remix.mp3");
+      secretAudio.volume = volume;
+      secretAudio.preload = "auto";
+
+      secretAudio.addEventListener("canplaythrough", () => {
+        secretReady = true;
+        loadingSecret = false;
+      });
+
+      secretAudio.addEventListener("ended", stopPartyMode);
+    };
+
     normalAudio.addEventListener("ended", stopPartyMode);
 
     playButton.addEventListener("click", () => {
       clickCount++;
-      
-      // Only allow secret audio if user has clicked at least 3 times
-      const canTriggerSecret = clickCount >= minClicksForSecret;
+
+      if (clickCount === minClicksForSecret) {
+        loadSecretAudio();
+      }
+
+      const canTriggerSecret = clickCount >= minClicksForSecret && secretReady;
       const isSecret = canTriggerSecret && Math.random() < chance;
 
       if (activeAudio) {
@@ -548,10 +607,10 @@ const unfinishedGames = [
         activeAudio.currentTime = 0;
       }
 
-      activeAudio = isSecret ? secretAudio : normalAudio;
+      activeAudio = isSecret && secretAudio ? secretAudio : normalAudio;
 
       activeAudio.currentTime = 0;
-      activeAudio.play();
+      activeAudio.play().catch(() => {});
 
       if (isSecret) startPartyMode();
       else stopPartyMode();
@@ -627,5 +686,69 @@ const unfinishedGames = [
       playersEl.textContent = "-";
       motdEl.textContent = "Server-Informationen konnten nicht geladen werden.";
     }
+  });
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const imgs = document.querySelectorAll<HTMLImageElement>(".progressive-img");
+
+    const upgradeImage = (img: HTMLImageElement) => {
+      const images: string[] = JSON.parse(img.dataset.images || "[]");
+      if (!images.length) return;
+
+      let current = 0;
+
+      const loadNext = () => {
+        current++;
+        if (current < images.length) {
+          const nextImg = new Image();
+          nextImg.src = images[current];
+          nextImg.onload = () => {
+            const overlay = document.createElement("img");
+            overlay.src = nextImg.src;
+            overlay.style.position = "absolute";
+            overlay.style.top = "0";
+            overlay.style.left = "0";
+            overlay.style.width = "100%";
+            overlay.style.height = "100%";
+            overlay.style.objectFit = "cover";
+            overlay.style.opacity = "0";
+            overlay.style.transition = "opacity 0.5s ease";
+            overlay.classList.add("progressive-overlay");
+
+            const parent = img.parentElement!;
+            parent.style.position = "relative";
+            parent.appendChild(overlay);
+
+            requestAnimationFrame(() => {
+              overlay.style.opacity = "1";
+            });
+
+            overlay.addEventListener("transitionend", () => {
+              img.src = nextImg.src;
+              parent.removeChild(overlay);
+              loadNext();
+            });
+          };
+        }
+      };
+
+      setTimeout(loadNext, 500);
+    };
+
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target as HTMLImageElement;
+            upgradeImage(img);
+            observer.unobserve(img);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    imgs.forEach(img => observer.observe(img));
   });
 </script>
