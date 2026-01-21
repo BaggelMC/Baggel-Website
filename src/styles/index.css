@@ -1,3 +1,147 @@
+.motd-box {
+  position: relative;
+  background-repeat: repeat;
+  background-size: 64px 64px;
+  image-rendering: pixelated;
+  border: 2px solid #fff;
+  padding: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  line-height: 1.5;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.motd-box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.motd-box > * {
+  position: relative;
+  z-index: 2;
+}
+
+.icon-container {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  overflow: hidden;
+  image-rendering: pixelated;
+  cursor: pointer;
+}
+
+/* White overlay */
+.icon-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.25);
+  opacity: 0;
+  z-index: 1;
+}
+
+/* Overlay hover */
+.group:hover .icon-container::before {
+  opacity: 1;
+}
+
+/* Base icon */
+.icon-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  position: relative;
+  z-index: 0;
+}
+
+/* Overlay textures */
+.icon-overlay,
+.icon-overlay-hover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  z-index: 2; /* above white overlay */
+}
+
+.icon-overlay {
+  opacity: 0;
+}
+
+.icon-overlay-hover {
+  opacity: 0;
+}
+
+/* Show play texture */
+.group:hover .icon-overlay {
+  opacity: 1;
+}
+
+/* Swap texture */
+.group:hover .icon-container:hover .icon-overlay {
+  opacity: 0;
+}
+.group:hover .icon-container:hover .icon-overlay-hover {
+  opacity: 1;
+}
+
+.definition-section {
+  padding-left: var(--space-6);
+  margin-top: var(--space-16);
+}
+
+.definition-section h2 {
+  font-family: var(--font-minecraft);
+  line-height: var(--leading-3xl);
+}
+
+.definition-section p {
+  margin-bottom: var(--space-3);
+}
+
+.audio-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-2);
+  border-radius: var(--space-2);
+}
+
+.audio-button:hover {
+  color: var(--color-primary);
+  transform: scale(1.1);
+}
+
+.audio-button:active {
+  transform: scale(0.95);
+}
+
+@keyframes hueRotate {
+  from { filter: hue-rotate(0deg); }
+  to { filter: hue-rotate(360deg); }
+}
+
+.hue-shift {
+  animation: hueRotate 1s linear infinite;
+}
+
+.hue-shift * {
+  animation: hueRotate 1s linear infinite;
+}
+
 .progressive-img {
   transition: opacity 0.5s ease-in-out;
 }

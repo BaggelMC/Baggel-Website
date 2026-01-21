@@ -1,11 +1,28 @@
 ---
 import Headline from "../../../components/Headline.astro";
-import ToolLayout from "../../../layouts/MiniMessageToolLayout.astro";
+import Layout from "../../../layouts/DefaultLayout.astro";
 
 import "../../../styles/MiniMessageTool.css"
 ---
 
-<ToolLayout title="MiniMessage Editor">
+<Layout title="MiniMessage Tool" titleSuffix="Tool">
+  <Fragment slot="head">
+    <script src="/minimessage.min.js" is:inline />
+    <script src="/minimessage-fetch-translations.min.js" is:inline />
+    <script src="/minimessage.baggel-io.js" is:inline />
+
+    <noscript>
+      <style>
+        .simplebar-content-wrapper {
+          scrollbar-width: auto;
+          -ms-overflow-style: auto;
+        }
+        .simplebar-content-wrapper::-webkit-scrollbar {
+          display: initial;
+        }
+      </style>
+    </noscript>
+  </Fragment>
   <div class="max-w-5xl mx-auto px-8 py-20 text-text font-sans space-y-12">
     <Headline text="MiniMessage Editor" class="text-center" />
 
@@ -286,4 +303,4 @@ import "../../../styles/MiniMessageTool.css"
       color: var(--color-text);
     }
   </style>
-</ToolLayout>
+</Layout>

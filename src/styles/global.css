@@ -179,7 +179,7 @@
   scrollbar-color: var(--color-primary) var(--color-background);
 }
 
-.parallax-bg {
+.background-image {
   position: fixed;
   top: 0;
   left: 50%;

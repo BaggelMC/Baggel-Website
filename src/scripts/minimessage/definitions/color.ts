@@ -194,26 +194,21 @@ export const colorTag: TagDefinition = {
       },
 
       submit(): { start: string; end: string } {
-        let presetMatch: string | null = null;
+        const hex = (selectedColorHex ?? "#FFFFFF").toUpperCase();
 
-        const hex = selectedColorHex ?? "#FFFFFF";
-        if (hex) {
-          for (const [name, colorHex] of Object.entries(presetColors)) {
-            if (colorHex.toUpperCase() === hex.toUpperCase()) {
-              presetMatch = name;
-              break;
-            }
+        if (selectedPreset) {
+          return { start: `<${selectedPreset}>`, end: `</${selectedPreset}>` };
+        }
+
+        for (const [name, colorHex] of Object.entries(presetColors)) {
+          if (colorHex.toUpperCase() === hex) {
+            return { start: `<${name}>`, end: `</${name}>` };
           }
         }
 
-        const tagName = selectedPreset || presetMatch || "white";
-        if (tagName) {
-          return { start: `<${tagName}>`, end: `</${tagName}>` };
-        }
-
-        // Should never happen, but fallback to white
-        return { start: `<color:#FFFFFF>`, end: `</color>` };
+        return { start: `<color:${hex}>`, end: `</color>` };
       }
+
     };
   }
 };

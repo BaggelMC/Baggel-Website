@@ -4,76 +4,64 @@ import Footer from "../components/Footer.astro";
 import { RESOURCES } from "../config";
 import "../styles/global.css";
 
-//@ts-ignore
+// @ts-ignore
 import Background from "../assets/background_dark.png?format=webp&w=800";
-//@ts-ignore
-import metaImage from "../assets/largehero.png?format=webp"
+// @ts-ignore
+import metaImage from "../assets/largehero.png?format=webp";
 
-const { title, lang, meta_description } = Astro.props;
+const {
+  title,
+  lang = "de",
+  meta_description = "BaggelMC – eine Minecraft server community",
+  keywords = "Minecraft, Server, BaggelMC, BuildMC, Minigames, Community",
+  titleSuffix = "BaggelMC",
+  enableAlpine = true,
+  extraHead = null,
+} = Astro.props;
+
+const fullTitle = title ? `${title} | ${titleSuffix}` : titleSuffix;
 ---
-<html lang={lang?lang : "de"} >
+<html lang={lang}>
   <head>
-    <title>{title ? `${title} | BaggelMC` : "BaggelMC"}</title>
-
-    <!-- Technical -->
     <meta charset="UTF-8" />
+    <title>{fullTitle}</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#d6904f" />
 
-    <!-- Basic SEO -->
-    <meta
-      name="description"
-      content={Astro.props.meta_description ?? "BaggelMC – eine Minecraft server community"}
-    />
-    <meta name="keywords" content={Astro.props.keywords ?? "Minecraft, Server, BaggelMC, BuildMC, Minigames, Community"} />
+    <meta name="description" content={meta_description} />
+    <meta name="keywords" content={keywords} />
     <meta name="author" content="BaggelMC" />
     <link rel="canonical" href={Astro.url ?? "https://baggelmc.de"} />
 
-    <!-- Robots -->
-    <meta name="revisit-after" content="8 days">
-    <meta name="robots" content="index,follow">
+    <meta name="robots" content="index,follow" />
+    <meta name="revisit-after" content="8 days" />
 
-
-    <!-- Open Graph (Facebook, Discord, etc.) -->
     <meta property="og:site_name" content="BaggelMC" />
-    <meta property="og:title" content={title ? `${title} | BaggelMC` : "BaggelMC"} />
-    <meta
-      property="og:description"
-      content={Astro.props.meta_description ?? "BaggelMC – eine Minecraft server community"}
-    />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={meta_description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.url ?? "https://baggelmc.de"} />
-    <meta
-      property="og:image"
-      content={metaImage}
-    />
-    <meta property="og:locale" content={lang ?? "de"} />
+    <meta property="og:image" content={metaImage} />
+    <meta property="og:locale" content={lang} />
 
-    <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title ? `${title} | BaggelMC` : "BaggelMC"} />
-    <meta
-      name="twitter:description"
-      content={Astro.props.meta_description ?? "BaggelMC - eine Minecraft server community"}
-    />
-    <meta
-      name="twitter:image"
-      content={metaImage}
-    />
-
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={meta_description} />
+    <meta name="twitter:image" content={metaImage} />
 
     <link href={RESOURCES.fontURL} rel="stylesheet" />
-    <script src="https://unpkg.com/alpinejs" defer></script>
-  </head>
-<body
-  class="relative min-h-screen text-text font-sans flex flex-col overflow-x-hidden bg-background"
-  style={`--page-bg: url(${Background});`}
->
 
-    <div
-      class="parallax-bg pointer-events-none"
-      aria-hidden="true"
-    ></div>
+    {enableAlpine && <script src="https://unpkg.com/alpinejs" defer></script>}
+
+    <slot name="head" />
+  </head>
+
+  <body
+    class="relative min-h-screen text-text font-sans flex flex-col overflow-x-hidden bg-background"
+    style={`--page-bg: url(${Background});`}
+  >
+    <div class="background-image pointer-events-none" aria-hidden="true"></div>
 
     <Header title="BaggelMC" />
     <main class="grow relative z-10">
