@@ -24,7 +24,7 @@ export default function GalleryCarousel({ section }: { section: GallerySection }
             <div className="min-w-full" key={idx}>
               <img
                 src={img.src}
-                alt={section.name}
+                alt={section.name} 
                 loading="lazy"
                 className="object-cover w-full h-full"
                 style={{ aspectRatio: "16 / 9" }}
