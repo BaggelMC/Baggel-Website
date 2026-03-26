@@ -2,6 +2,8 @@ export const LINKS = {
     discord: "https://discord.gg/p8wBMZXAfb",
     github: "https://github.com/BaggelMC",
     tiktok: "https://www.tiktok.com/@baggel.de",
+    youtube: "https://www.youtube.com/@baggel-de/",
+    instagram: "https://www.instagram.com/baggelmc/",
 
     server_address: "baggel.de",
     email: "mail@baggel.de",

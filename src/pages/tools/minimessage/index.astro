@@ -7,9 +7,7 @@ import "../../../styles/MiniMessageTool.css"
 
 <Layout title="MiniMessage Tool" titleSuffix="Tool">
   <Fragment slot="head">
-    <script src="/minimessage.min.js" is:inline />
-    <script src="/minimessage-fetch-translations.min.js" is:inline />
-    <script src="/minimessage.baggel-io.js" is:inline />
+    <script src="/tools/minimessage/minimessage.umd.js" is:inline />
 
     <noscript>
       <style>
@@ -80,7 +78,7 @@ import "../../../styles/MiniMessageTool.css"
       <div class="relative">
         <div
           id="output-dom"
-          class="content w-full min-h-[200px] p-4 bg-background-gradient text-text font-minecraft-minimessage rounded-2xl border border-background-50 wrap-break-word whitespace-pre-wrap"
+          class="content w-full min-h-[200px] p-4 bg-background-gradient text-[#FFFFFF] font-minecraft-minimessage rounded-2xl border border-background-50 wrap-break-word whitespace-pre-wrap"
         ></div>
       </div>
 
@@ -291,6 +289,53 @@ import "../../../styles/MiniMessageTool.css"
     }
 
   </script>
+  </script>
+  <script lang="js">
+    ((window) => {
+      const { MiniMessage } = window.adventure;
+      const { MinecraftTranslations } = window.minecraftTranslations;
+
+      window.addEventListener("DOMContentLoaded", () => {
+        const input = document.querySelector("#input");
+        const domOutput = document.querySelector("#output-dom");
+        const copyBtn = document.querySelector("#copy-json-btn");
+
+        if (!input || !domOutput || !copyBtn) return;
+
+        const mini = MiniMessage.miniMessage();
+
+        function update() {
+          domOutput.innerHTML = "";
+          try {
+            const component = mini.deserialize(input.value);
+            mini.toHTML(component, domOutput);
+            copyBtn.dataset.json = JSON.stringify(component, null, 2);
+          } catch (e) {
+            console.trace(e);
+            copyBtn.dataset.json = "";
+          }
+        }
+
+        input.addEventListener("input", update);
+        update();
+
+        copyBtn.addEventListener("click", () => {
+          const json = copyBtn.dataset.json;
+          if (!json) return;
+
+          navigator.clipboard.writeText(json).then(() => {
+            const textSpan = copyBtn.querySelector(".btn-text");
+            if (textSpan) {
+              textSpan.textContent = "Copied!";
+              setTimeout(() => { textSpan.textContent = "Copy JSON"; }, 1500);
+            }
+          }).catch((err) => console.error("Failed to copy JSON:", err));
+        });
+      });
+
+    })(window);
+  </script>
+  <script src="../../../scripts/minimessage/debug.ts"></script>
 
   <style>
     #input {
