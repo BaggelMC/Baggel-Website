@@ -1,0 +1,164 @@
+{
+    "orgName": "Das Baggel Team",
+    "orgLogo": "/src/assets/logo.png",
+    "teams": [
+        {
+            "id": "dev",
+            "label": "Developers",
+            "color": "#00bbff"
+        },
+        {
+            "id": "c_admin",
+            "label": "Community Admins",
+            "color": "#88ff00"
+        },
+        {
+            "id": "s_admin",
+            "label": "Server Admins",
+            "color": "#ff6f00"
+        },
+        {
+            "id": "mods",
+            "label": "Moderators",
+            "color": "#f7c44f"
+        },
+        {
+            "id": "builders",
+            "label": "Builders",
+            "color": "#6684fa"
+        },
+        {
+            "id": "media",
+            "label": "Social Media",
+            "color": "#00ffb3"
+        }
+    ],
+    "members": [
+        {
+            "id": "nurlouis",
+            "name": "NurLouis",
+            "role": "Founder & Server Owner",
+            "bio": "<p>Ich bin das Louis, das die Schatten verschlang. Ich bin der Schatten, der das Louis erweckte. Ich bin das Louis der letzten Stunde.</p>",
+            "image": "src/assets/team/NurLouis/avatar.png",
+            "teams": [
+                "c_admin",
+                "s_admin"
+            ]
+        },
+        {
+            "id": "mathias2246",
+            "name": "Mathias2246",
+            "role": "Founder & Lead Developer",
+            "bio": "<p><iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/dQw4w9WgXcQ?si=WZ9uxRqqDUZAi0q&controls=0&disablekb=1&autoplay=1\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen=\"\"></iframe></p>",
+            "image": "src/assets/team/Mathias2246/avatar.png",
+            "teams": [
+                "dev",
+                "s_admin"
+            ]
+        },
+        {
+            "id": "pekantv",
+            "name": "PekanTV",
+            "role": "Admin",
+            "bio": "<p>Administrator auf Baggel.de</p>",
+            "image": "src/assets/team/PekanTV/avatar.png",
+            "teams": [
+                "c_admin"
+            ]
+        },
+        {
+            "id": "darkyl",
+            "name": "Darkyl",
+            "role": "Lead Developer",
+            "bio": "<p>Ich mache Musik und Programmiere</p> <p>:3</p> <p>Website: <a href='https://darkylmusic.com/' target='_blank' style='color: #009DFF; text-decoration: underline;'>darkylmusic.com</a><br>YouTube: <a href='https://www.youtube.com/channel/UC1vqivmEx6wSMN3GGzdMM4A' target='_blank' style='color: #009DFF; text-decoration: underline;'>YouTube</a><br>GitHub: <a href='https://github.com/Darkylt' target='_blank' style='color: #009DFF; text-decoration: underline;'>GitHub</a></p>",
+            "image": "src/assets/team/Darkyl/avatar.png",
+            "teams": [
+                "dev",
+                "media"
+            ]
+        },
+        {
+            "id": "shxdowcrafter",
+            "name": "ShxdowCrafter",
+            "role": "Admin & Developer",
+            "bio": "<p style=\"text-align: center;\">Minigame-Dev & Drummer</p>",
+            "image": "src/assets/team/ShxdowCrafter/avatar.png",
+            "teams": [
+                "dev",
+                "s_admin",
+                "c_admin"
+            ]
+        },
+        {
+            "id": "perry",
+            "name": "Perry",
+            "role": "Admin",
+            "bio": "<p>Administrator und Builder auf Baggel.de</p>",
+            "image": "src/assets/team/Perry/avatar.png",
+            "teams": [
+                "media",
+                "c_admin"
+            ]
+        },
+        {
+            "id": "basti4457",
+            "name": "Basti4457",
+            "role": "Moderator",
+            "bio": "<p>Labert gerne scheiße ✔️</p> <a href='https://baggel.de/tools/bunnysuit/' target='_blank' style='color: #009DFF; text-decoration: underline;'>BunnySuit Tool</a>",
+            "image": "src/assets/team/Basti4457/avatar.png",
+            "teams": [
+                "mods"
+            ]
+        },
+        {
+            "id": "nk51207",
+            "name": "NK51207",
+            "role": "Moderator",
+            "bio": "<p>Ich bin zu blöd für PVP/Skywars</p>",
+            "image": "src/assets/team/NK151207/avatar.png",
+            "teams": [
+                "mods"
+            ]
+        },
+        {
+            "id": "creeper3.0",
+            "name": "Creeper3.0",
+            "role": "Builder",
+            "bio": "<p>Ich bin builder und auch dabei.</p>",
+            "image": "src/assets/team/Creeper3.0/avatar.png",
+            "teams": [
+                "builders"
+            ]
+        },
+        {
+            "id": "mino",
+            "name": "Mino",
+            "role": "Builder",
+            "bio": "<p>Jahrelange Baubegeisterung - Liebe zum Detail</p>",
+            "image": "src/assets/team/Mino/avatar.png",
+            "teams": [
+                "builders"
+            ]
+        },
+        {
+            "id": "onlyteotv",
+            "name": "OnlyTeoTV",
+            "role": "Moderator",
+            "bio": "<p>Moderator auf BuildMC</p><p>Ehemaliger Projektleiter</p>",
+            "image": "src/assets/team/OnlyTeoTV/avatar.png",
+            "teams": [
+                "mods"
+            ]
+        },
+        {
+            "id": "btwaaron",
+            "name": "btw_Aaron",
+            "role": "Moderator",
+            "bio": "<p>Moderator auf BuildMC</p>",
+            "image": "src/assets/team/btw_Aaron/avatar.png",
+            "teams": [
+                "mods"
+            ]
+        }
+    ]
+}
