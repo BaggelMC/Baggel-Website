@@ -9,7 +9,23 @@ import AururmLogo from "../assets/images/aurum_logo.png?format=webp";
 //@ts-ignore
 import OrgLogo from "../assets/logo.png?format=webp";
 
-import teamData from "../data/team.json";
+import teamDataRaw from "../data/team.json";
+
+const avatars = import.meta.glob<{ default: string }>(
+  "../assets/team/*/avatar.png",
+  {
+    eager: true,
+    query: { w: 160, format: "webp", imagetools: true },
+  }
+);
+
+const teamData = {
+  ...teamDataRaw,
+  members: teamDataRaw.members.map((member) => ({
+    ...member,
+    image: avatars[`../assets/team/${member.id}/avatar.png`]?.default ?? "",
+  })),
+};
 ---
 
 <DefaultLayout title="Team">

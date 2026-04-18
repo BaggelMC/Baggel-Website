@@ -504,7 +504,6 @@ export default function TeamGraph({ data, logoSrc }: TeamGraphProps) {
       );
       ctx.restore();
     } else {
-      // Initials fallback
       ctx.fillStyle = "#aaaacc";
       ctx.font = `bold ${r * 0.5}px sans-serif`;
       ctx.textAlign = "center";
@@ -792,6 +791,7 @@ export default function TeamGraph({ data, logoSrc }: TeamGraphProps) {
       {selectedMember && (
         <MemberPopup
           member={selectedMember}
+          cachedImage={imgCacheRef.current.get(selectedMember.image) ?? null}
           //@ts-ignore (can't be bothered, shouldn't be null)
           divRef={popupRef}
           onClose={() => {
@@ -806,13 +806,35 @@ export default function TeamGraph({ data, logoSrc }: TeamGraphProps) {
 
 function MemberPopup({
   member,
+  cachedImage,
   divRef,
   onClose,
 }: {
   member: TeamMemberData;
+  cachedImage: HTMLImageElement | null;
   divRef: React.RefObject<HTMLDivElement>;
   onClose: () => void;
 }) {
+  const avatarCanvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = avatarCanvasRef.current;
+    if (!canvas || !cachedImage) return;
+    const SIZE = 56;
+    const DPR = window.devicePixelRatio || 1;
+    canvas.width = SIZE * DPR;
+    canvas.height = SIZE * DPR;
+    canvas.style.width = `${SIZE}px`;
+    canvas.style.height = `${SIZE}px`;
+    const ctx = canvas.getContext("2d")!;
+    ctx.scale(DPR, DPR);
+
+    ctx.beginPath();
+    ctx.arc(SIZE / 2, SIZE / 2, SIZE / 2, 0, Math.PI * 2);
+    ctx.clip();
+    ctx.drawImage(cachedImage, 0, 0, SIZE, SIZE);
+  }, [cachedImage]);
+
   return (
     <div
       ref={divRef}
@@ -866,15 +888,15 @@ function MemberPopup({
         }}
       >
         {member.image && (
-          <img
-            src={member.image}
-            alt={member.name}
+          <canvas
+            ref={avatarCanvasRef}
+            aria-label={member.name}
             style={{
               width: 56,
               height: 56,
               borderRadius: "50%",
-              objectFit: "cover",
               border: "2px solid rgba(255,255,255,0.15)",
+              flexShrink: 0,
             }}
           />
         )}
