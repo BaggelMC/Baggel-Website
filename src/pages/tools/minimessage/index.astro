@@ -2,12 +2,12 @@
 import Headline from "../../../components/Headline.astro";
 import Layout from "../../../layouts/DefaultLayout.astro";
 
-import "../../../styles/MiniMessageTool.css"
+import "../../../styles/MiniMessageTool.css";
 ---
 
 <Layout title="MiniMessage Tool" titleSuffix="Tool">
   <Fragment slot="head">
-    <script src="/tools/minimessage/minimessage.umd.js" is:inline />
+    <script src="/tools/minimessage/minimessage.umd.js" is:inline></script>
 
     <noscript>
       <style>
@@ -25,13 +25,16 @@ import "../../../styles/MiniMessageTool.css"
     <Headline text="MiniMessage Editor" class="text-center" />
 
     <div class="flex flex-col relative">
-      <label id="input-label" class="text-text-50 mb-2 text-sm uppercase tracking-wide">Input</label>
+      <label
+        id="input-label"
+        class="text-text-50 mb-2 text-sm uppercase tracking-wide">Input</label
+      >
 
       <div id="tag-toolbar" class="flex flex-wrap gap-2 mb-3"></div>
 
       <div
-        data-simplebar 
-        data-simplebar-auto-hide="false" 
+        data-simplebar
+        data-simplebar-auto-hide="false"
         class="w-full min-h-[200px] rounded-2xl bg-background-10 focus-within:ring-2 focus-within:ring-primary transition duration-300"
         style="overflow: hidden;"
       >
@@ -39,8 +42,7 @@ import "../../../styles/MiniMessageTool.css"
           id="input"
           spellcheck="false"
           class="min-h-[200px] w-full h-full p-4 bg-transparent font-sans focus:outline-none transition duration-300 resize-none"
-          placeholder="Type MiniMessage text here..."
-        ></textarea>
+          placeholder="Type MiniMessage text here..."></textarea>
 
         <div
           id="resizer"
@@ -48,24 +50,123 @@ import "../../../styles/MiniMessageTool.css"
           title="Resize"
         >
           <svg
-            xmlns="http://www.w3.org/2000/svg" 
-            fill="var(--color-primary)" 
-            viewBox="0 0 384.792 384.792" 
+            xmlns="http://www.w3.org/2000/svg"
+            fill="var(--color-primary)"
+            viewBox="0 0 384.792 384.792"
             class="w-full h-full"
           >
-            <path d="M116.783,281.339c-4.74-4.704-12.439-4.704-17.179,0c-4.74,4.704-4.74,12.319,0,17.011
+            <path
+              d="M116.783,281.339c-4.74-4.704-12.439-4.704-17.179,0c-4.74,4.704-4.74,12.319,0,17.011
               l84.2,82.997c4.644,4.559,12.512,4.632,17.191-0.012l84.188-82.997c4.74-4.704,4.74-12.319,0-17.011
               c-4.752-4.692-12.439-4.704-17.191,0l-63.448,62.558V40.89l63.46,62.558c4.752,4.704,12.439,4.692,17.179,0
               c4.752-4.704,4.752-12.319,0-17.011l-84.2-82.997c-4.812-4.776-12.367-4.391-17.191,0L99.604,86.436
-              c-4.752,4.704-4.74,12.319,0,17.011c4.74,4.704,12.439,4.704,17.179,0l63.46-62.558v303.007L116.783,281.339z"/>
+              c-4.752,4.704-4.74,12.319,0,17.011c4.74,4.704,12.439,4.704,17.179,0l63.46-62.558v303.007L116.783,281.339z"
+            ></path>
           </svg>
         </div>
       </div>
     </div>
 
+    <!-- Settings Panel -->
+    <div
+      id="settings-panel"
+      class="rounded-2xl bg-background-10 border border-background-50 overflow-hidden"
+    >
+      <button
+        id="settings-toggle"
+        class="w-full flex items-center justify-between px-4 py-3 text-text-50 hover:text-text transition-colors duration-200 cursor-pointer"
+        aria-expanded="false"
+        aria-controls="settings-body"
+      >
+        <span
+          class="flex items-center gap-2 text-sm uppercase tracking-wide font-medium"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-4 h-4"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            stroke="none"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              xmlns="http://www.w3.org/2000/svg"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M14.2788 2.15224C13.9085 2 13.439 2 12.5 2C11.561 2 11.0915 2 10.7212 2.15224C10.2274 2.35523 9.83509 2.74458 9.63056 3.23463C9.53719 3.45834 9.50065 3.7185 9.48635 4.09799C9.46534 4.65568 9.17716 5.17189 8.69017 5.45093C8.20318 5.72996 7.60864 5.71954 7.11149 5.45876C6.77318 5.2813 6.52789 5.18262 6.28599 5.15102C5.75609 5.08178 5.22018 5.22429 4.79616 5.5472C4.47814 5.78938 4.24339 6.1929 3.7739 6.99993C3.30441 7.80697 3.06967 8.21048 3.01735 8.60491C2.94758 9.1308 3.09118 9.66266 3.41655 10.0835C3.56506 10.2756 3.77377 10.437 4.0977 10.639C4.57391 10.936 4.88032 11.4419 4.88029 12C4.88026 12.5581 4.57386 13.0639 4.0977 13.3608C3.77372 13.5629 3.56497 13.7244 3.41645 13.9165C3.09108 14.3373 2.94749 14.8691 3.01725 15.395C3.06957 15.7894 3.30432 16.193 3.7738 17C4.24329 17.807 4.47804 18.2106 4.79606 18.4527C5.22008 18.7756 5.75599 18.9181 6.28589 18.8489C6.52778 18.8173 6.77305 18.7186 7.11133 18.5412C7.60852 18.2804 8.2031 18.27 8.69012 18.549C9.17714 18.8281 9.46533 19.3443 9.48635 19.9021C9.50065 20.2815 9.53719 20.5417 9.63056 20.7654C9.83509 21.2554 10.2274 21.6448 10.7212 21.8478C11.0915 22 11.561 22 12.5 22C13.439 22 13.9085 22 14.2788 21.8478C14.7726 21.6448 15.1649 21.2554 15.3694 20.7654C15.4628 20.5417 15.4994 20.2815 15.5137 19.902C15.5347 19.3443 15.8228 18.8281 16.3098 18.549C16.7968 18.2699 17.3914 18.2804 17.8886 18.5412C18.2269 18.7186 18.4721 18.8172 18.714 18.8488C19.2439 18.9181 19.7798 18.7756 20.2038 18.4527C20.5219 18.2105 20.7566 17.807 21.2261 16.9999C21.6956 16.1929 21.9303 15.7894 21.9827 15.395C22.0524 14.8691 21.9088 14.3372 21.5835 13.9164C21.4349 13.7243 21.2262 13.5628 20.9022 13.3608C20.4261 13.0639 20.1197 12.558 20.1197 11.9999C20.1197 11.4418 20.4261 10.9361 20.9022 10.6392C21.2263 10.4371 21.435 10.2757 21.5836 10.0835C21.9089 9.66273 22.0525 9.13087 21.9828 8.60497C21.9304 8.21055 21.6957 7.80703 21.2262 7C20.7567 6.19297 20.522 5.78945 20.2039 5.54727C19.7799 5.22436 19.244 5.08185 18.7141 5.15109C18.4722 5.18269 18.2269 5.28136 17.8887 5.4588C17.3915 5.71959 16.7969 5.73002 16.3099 5.45096C15.8229 5.17191 15.5347 4.65566 15.5136 4.09794C15.4993 3.71848 15.4628 3.45833 15.3694 3.23463C15.1649 2.74458 14.7726 2.35523 14.2788 2.15224ZM12.5 15C14.1695 15 15.5228 13.6569 15.5228 12C15.5228 10.3431 14.1695 9 12.5 9C10.8305 9 9.47716 10.3431 9.47716 12C9.47716 13.6569 10.8305 15 12.5 15Z"
+            ></path>
+          </svg>
+          Settings
+        </span>
+        <svg
+          id="settings-chevron"
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-4 h-4 transition-transform duration-200"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
+
+      <div id="settings-body" class="hidden border-t border-background-50">
+        <div class="px-4 py-4 flex flex-wrap gap-6 items-center">
+          <div class="flex items-center gap-3">
+            <span class="text-sm text-text-80">Strict Mode</span>
+            <button
+              id="strict-toggle"
+              role="switch"
+              aria-checked="false"
+              class="relative inline-flex h-6 w-11 items-center rounded-full bg-background-50 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer"
+              title="When enabled, malformed tags throw errors instead of being passed through as plain text"
+            >
+              <span
+                id="strict-knob"
+                class="inline-block h-4 w-4 translate-x-1 rounded-full bg-text-50 shadow transition-all duration-200"
+              ></span>
+            </button>
+            <span id="strict-label" class="text-xs text-text-50 w-16">Off</span>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <label for="lang-select" class="text-sm text-text-80 shrink-0"
+              >Language</label
+            >
+            <div class="relative">
+              <select
+                id="lang-select"
+                size="1"
+                class="appearance-none bg-background-50 text-text text-sm rounded-lg pl-3 pr-8 py-1.5 border border-transparent hover:border-primary focus:outline-none focus:border-primary transition-colors duration-200 cursor-pointer"
+              ></select>
+              <svg
+                class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-text-50"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="flex flex-col io relative">
-      <label id="output-dom-label" class="text-text-50 mb-2 text-sm uppercase tracking-wide">Output</label>
+      <label
+        id="output-dom-label"
+        class="text-text-50 mb-2 text-sm uppercase tracking-wide">Output</label
+      >
 
       <button
         id="copy-json-btn"
@@ -79,11 +180,13 @@ import "../../../styles/MiniMessageTool.css"
         <div
           id="output-dom"
           class="content w-full min-h-[200px] p-4 bg-background-gradient text-[#FFFFFF] font-minecraft-minimessage rounded-2xl border border-background-50 wrap-break-word whitespace-pre-wrap"
-        ></div>
+        >
+        </div>
       </div>
-
     </div>
-    <section class="bg-background rounded-xl max-w-5xl mx-auto px-8 p-8 text-text font-sans space-y-10">
+    <section
+      class="bg-background rounded-xl max-w-5xl mx-auto px-8 p-8 text-text font-sans space-y-10"
+    >
       <div class="space-y-4">
         <h2 class="text-xl font-semibold">What is MiniMessage?</h2>
 
@@ -97,14 +200,14 @@ import "../../../styles/MiniMessageTool.css"
           >
             Adventure
           </a>
-          library, widely used in Minecraft servers and plugins such as Paper,
-          Velocity, Fabric, and more.
+          library, widely used in Minecraft servers and plugins such as Paper, Velocity,
+          Fabric, and more.
         </p>
 
         <p class="text-text-80 leading-relaxed">
-          It allows you to format text using readable tags instead of legacy color
-          codes, supporting colors, gradients, text decorations, shadows, fonts,
-          and other advanced effects in a clean and future-proof way.
+          It allows you to format text using readable tags instead of legacy
+          color codes, supporting colors, gradients, text decorations, shadows,
+          fonts, and other advanced effects in a clean and future-proof way.
         </p>
       </div>
 
@@ -112,8 +215,8 @@ import "../../../styles/MiniMessageTool.css"
         <h2 class="text-xl font-semibold">Why use this editor?</h2>
 
         <p class="text-text-80 leading-relaxed">
-          This MiniMessage Editor lets you write, preview, and export MiniMessage
-          text instantly directly in your browser.
+          This MiniMessage Editor lets you write, preview, and export
+          MiniMessage text instantly directly in your browser.
         </p>
 
         <p class="text-text-80 leading-relaxed">
@@ -123,8 +226,8 @@ import "../../../styles/MiniMessageTool.css"
         </p>
 
         <p class="text-text-80 leading-relaxed">
-          The renderer is based on an extended and customized version of the original
-          minimessage-js renderer by <strong>WasabiThumb</strong>:
+          The renderer is based on an extended and customized version of the
+          original minimessage-js renderer by <strong>WasabiThumb</strong>:
         </p>
 
         <ul class="list-disc list-inside text-text-80 space-y-1">
@@ -155,14 +258,17 @@ import "../../../styles/MiniMessageTool.css"
         <h2 class="text-xl font-semibold">Not using MiniMessage?</h2>
 
         <p class="text-text-80 leading-relaxed">
-          You can still use this tool as a <strong>Minecraft text formatter</strong>.
+          You can still use this tool as a <strong
+            >Minecraft text formatter</strong
+          >.
         </p>
 
         <p class="text-text-80 leading-relaxed">
-          The <strong>Copy JSON</strong> button copies the rendered output as a
-          Minecraft Component JSON. This can be used in commands and configurations
-          such as <code class="px-1 py-0.5 bg-background-50 rounded">/tellraw</code>,
-          titles, bossbars, datapacks, and plugin configs that accept component JSON.
+          The <strong>Copy JSON</strong> button copies the rendered output as a Minecraft
+          Component JSON. This can be used in commands and configurations such as
+          <code class="px-1 py-0.5 bg-background-50 rounded">/tellraw</code>,
+          titles, bossbars, datapacks, and plugin configs that accept component
+          JSON.
         </p>
       </div>
 
@@ -170,7 +276,8 @@ import "../../../styles/MiniMessageTool.css"
         <h2 class="text-xl font-semibold">Planned features</h2>
 
         <p class="text-text-80 leading-relaxed">
-          The following MiniMessage features are planned but not implemented yet:
+          The following MiniMessage features are planned but not implemented
+          yet:
         </p>
 
         <ul class="list-disc list-inside text-text-80 space-y-1">
@@ -197,12 +304,12 @@ import "../../../styles/MiniMessageTool.css"
         </ul>
       </div>
     </section>
-
-
   </div>
 
   <script>
-    const textarea = document.getElementById("input") as HTMLTextAreaElement | null;
+    const textarea = document.getElementById(
+      "input",
+    ) as HTMLTextAreaElement | null;
     const resizer = document.getElementById("resizer") as HTMLDivElement | null;
 
     if (textarea && resizer) {
@@ -219,8 +326,11 @@ import "../../../styles/MiniMessageTool.css"
           if (newHeight >= 100) {
             textarea.style.height = `${newHeight}px`;
 
-            const simplebarEl = textarea.closest("[data-simplebar]") as HTMLElement | null;
-            const simplebarInstance = simplebarEl && (simplebarEl as any).SimpleBar;
+            const simplebarEl = textarea.closest(
+              "[data-simplebar]",
+            ) as HTMLElement | null;
+            const simplebarInstance =
+              simplebarEl && (simplebarEl as any).SimpleBar;
             simplebarInstance?.recalculate();
           }
         };
@@ -264,13 +374,15 @@ import "../../../styles/MiniMessageTool.css"
         obfuscatedTag,
         shadowColorTag,
         gradientTag,
-        headTag
+        headTag,
       ]);
     }
   </script>
 
   <script>
-    const textarea = document.getElementById("input") as HTMLTextAreaElement | null;
+    const textarea = document.getElementById(
+      "input",
+    ) as HTMLTextAreaElement | null;
 
     if (textarea) {
       const updateColor = () => {
@@ -287,65 +399,288 @@ import "../../../styles/MiniMessageTool.css"
 
       textarea.addEventListener("input", updateColor);
     }
-
   </script>
-  </script>
-  <script lang="js">
-    ((window) => {
-      const { MiniMessage } = window.adventure;
-      const { MinecraftTranslations } = window.minecraftTranslations;
+</Layout>
+<script lang="js">
+  ((window) => {
+    const { MiniMessage } = window.adventure;
 
-      window.addEventListener("DOMContentLoaded", () => {
-        const input = document.querySelector("#input");
-        const domOutput = document.querySelector("#output-dom");
-        const copyBtn = document.querySelector("#copy-json-btn");
+    window.addEventListener("DOMContentLoaded", async () => {
+      const input = document.querySelector("#input");
+      const domOutput = document.querySelector("#output-dom");
+      const copyBtn = document.querySelector("#copy-json-btn");
+      const strictToggle = document.querySelector("#strict-toggle");
+      const strictKnob = document.querySelector("#strict-knob");
+      const strictLabel = document.querySelector("#strict-label");
+      const langSelect = document.querySelector("#lang-select");
 
-        if (!input || !domOutput || !copyBtn) return;
+      if (!input || !domOutput || !copyBtn) return;
 
-        const mini = MiniMessage.miniMessage();
+      const translationsModule =
+        await import("/tools/minimessage/translation/index.mjs");
+      const MinecraftTranslations = translationsModule.default;
 
-        function update() {
-          domOutput.innerHTML = "";
-          try {
-            const component = mini.deserialize(input.value);
-            mini.toHTML(component, domOutput);
-            copyBtn.dataset.json = JSON.stringify(component, null, 2);
-          } catch (e) {
-            console.trace(e);
-            copyBtn.dataset.json = "";
-          }
+      let strictMode = false;
+      let currentLang = "en_us";
+
+      function buildMini() {
+        const raw = MinecraftTranslations.get(currentLang);
+        return MiniMessage.builder()
+          .strict(strictMode)
+          .translations(raw)
+          .build();
+      }
+
+      let mini = buildMini();
+
+      function update() {
+        domOutput.innerHTML = "";
+        try {
+          const component = mini.deserialize(input.value);
+          mini.toHTML(component, domOutput);
+          copyBtn.dataset.json = JSON.stringify(component, null, 2);
+        } catch (e) {
+          console.trace(e);
+          copyBtn.dataset.json = "";
+          domOutput.innerHTML = `<span style="color:#ff5555;font-family:monospace;font-size:0.85em;opacity:0.8">${e.message ?? "Parse error"}</span>`;
         }
+      }
 
-        input.addEventListener("input", update);
-        update();
+      input.addEventListener("input", update);
+      update();
 
-        copyBtn.addEventListener("click", () => {
-          const json = copyBtn.dataset.json;
-          if (!json) return;
+      if (strictToggle && strictKnob && strictLabel) {
+        strictToggle.addEventListener("click", () => {
+          strictMode = !strictMode;
+          strictToggle.setAttribute("aria-checked", String(strictMode));
+          if (strictMode) {
+            strictKnob.style.transform = "translateX(1.375rem)";
+            strictKnob.style.background = "var(--color-primary)";
+            strictToggle.style.background =
+              "color-mix(in srgb, var(--color-primary) 30%, transparent)";
+            strictLabel.textContent = "On";
+          } else {
+            strictKnob.style.transform = "translateX(0.25rem)";
+            strictKnob.style.background = "";
+            strictToggle.style.background = "";
+            strictLabel.textContent = "Off";
+          }
+          mini = buildMini();
+          update();
+        });
+      }
 
-          navigator.clipboard.writeText(json).then(() => {
+      if (langSelect) {
+        langSelect.addEventListener("change", () => {
+          currentLang = langSelect.value;
+          mini = buildMini();
+          update();
+        });
+      }
+
+      copyBtn.addEventListener("click", () => {
+        const json = copyBtn.dataset.json;
+        if (!json) return;
+
+        navigator.clipboard
+          .writeText(json)
+          .then(() => {
             const textSpan = copyBtn.querySelector(".btn-text");
             if (textSpan) {
               textSpan.textContent = "Copied!";
-              setTimeout(() => { textSpan.textContent = "Copy JSON"; }, 1500);
+              setTimeout(() => {
+                textSpan.textContent = "Copy JSON";
+              }, 1500);
             }
-          }).catch((err) => console.error("Failed to copy JSON:", err));
-        });
+          })
+          .catch((err) => console.error("Failed to copy JSON:", err));
       });
+    });
+  })(window);
+</script>
 
-    })(window);
-  </script>
-  <script src="../../../scripts/minimessage/debug.ts"></script>
+<script>
+  const toggle = document.getElementById("settings-toggle");
+  const body = document.getElementById("settings-body");
+  const chevron = document.getElementById("settings-chevron");
 
-  <style>
-    #input {
-      transition: border-color 0.6s;
+  if (toggle && body && chevron) {
+    toggle.addEventListener("click", () => {
+      const isOpen = !body.classList.contains("hidden");
+      body.classList.toggle("hidden", isOpen);
+      toggle.setAttribute("aria-expanded", String(!isOpen));
+      chevron.style.transform = isOpen ? "" : "rotate(180deg)";
+    });
+  }
+
+  const locales = [
+    "af_za",
+    "ar_sa",
+    "ast_es",
+    "az_az",
+    "ba_ru",
+    "bar",
+    "be_by",
+    "be_latn",
+    "bg_bg",
+    "br_fr",
+    "brb",
+    "bs_ba",
+    "ca_es",
+    "cs_cz",
+    "cv_cu",
+    "cy_gb",
+    "da_dk",
+    "de_at",
+    "de_ch",
+    "de_de",
+    "el_gr",
+    "en_au",
+    "en_ca",
+    "en_gb",
+    "en_nz",
+    "en_pt",
+    "en_ud",
+    "en_us",
+    "enp",
+    "enws",
+    "eo_uy",
+    "es_ar",
+    "es_cl",
+    "es_ec",
+    "es_es",
+    "es_mx",
+    "es_uy",
+    "es_ve",
+    "esan",
+    "et_ee",
+    "eu_es",
+    "fa_ir",
+    "fi_fi",
+    "fil_ph",
+    "fo_fo",
+    "fr_ca",
+    "fr_ch",
+    "fr_fr",
+    "fra_de",
+    "fur_it",
+    "fy_nl",
+    "ga_ie",
+    "gd_gb",
+    "gl_es",
+    "go_fr",
+    "hal_ua",
+    "haw_us",
+    "he_il",
+    "hi_in",
+    "hn_no",
+    "hr_hr",
+    "hu_hu",
+    "hy_am",
+    "id_id",
+    "ig_ng",
+    "io_en",
+    "is_is",
+    "isv",
+    "it_it",
+    "ja_jp",
+    "jbo_en",
+    "ka_ge",
+    "kk_kz",
+    "kn_in",
+    "ko_kr",
+    "ksh",
+    "kw_gb",
+    "ky_kg",
+    "la_la",
+    "lb_lu",
+    "li_li",
+    "lmo",
+    "lo_la",
+    "lol_us",
+    "lt_lt",
+    "lv_lv",
+    "lzh",
+    "mk_mk",
+    "mn_mn",
+    "ms_my",
+    "mt_mt",
+    "nah",
+    "nds_de",
+    "nl_be",
+    "nl_nl",
+    "nn_no",
+    "no_no",
+    "oc_fr",
+    "ovd",
+    "pl_pl",
+    "pls",
+    "pt_br",
+    "pt_pt",
+    "qcb_es",
+    "qid",
+    "qya_aa",
+    "ro_ro",
+    "rpr",
+    "ru_ru",
+    "ry_ua",
+    "sah_sah",
+    "se_no",
+    "sk_sk",
+    "sl_si",
+    "so_so",
+    "sq_al",
+    "sr_cs",
+    "sr_sp",
+    "sv_se",
+    "sxu",
+    "szl",
+    "ta_in",
+    "th_th",
+    "tl_ph",
+    "tlh_aa",
+    "tok",
+    "tr_tr",
+    "tt_ru",
+    "tzo_mx",
+    "uk_ua",
+    "uz_uz",
+    "val_es",
+    "vec_it",
+    "vi_vn",
+    "vp_vl",
+    "vro",
+    "yi_de",
+    "yo_ng",
+    "zh_cn",
+    "zh_hk",
+    "zh_tw",
+    "zlm_arab",
+  ];
+
+  const langSelect = document.getElementById(
+    "lang-select",
+  ) as HTMLSelectElement | null;
+  if (langSelect) {
+    for (const locale of locales) {
+      const opt = document.createElement("option");
+      opt.value = locale;
+      opt.textContent = locale;
+      if (locale === "en_us") opt.selected = true;
+      langSelect.appendChild(opt);
     }
-    .placeholder-color {
-      color: var(--color-background-100);
-    }
-    .input-color {
-      color: var(--color-text);
-    }
-  </style>
-</Layout>
+  }
+</script>
+<script src="../../../scripts/minimessage/debug.ts"></script>
+
+<style>
+  #input {
+    transition: border-color 0.6s;
+  }
+  .placeholder-color {
+    color: var(--color-background-100);
+  }
+  .input-color {
+    color: var(--color-text);
+  }
+</style>
