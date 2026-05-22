@@ -756,7 +756,7 @@ import "../../../styles/MiniMessageTool.css";
       if (mcTooltip.style.display === "none") return;
 
       let x = e.clientX + 16;
-      let y = e.clientY + 16;
+      let y = e.clientY - 32;
 
       // Flip left if it would overflow right edge
       if (x + mcTooltip.offsetWidth > window.innerWidth - 8) {
