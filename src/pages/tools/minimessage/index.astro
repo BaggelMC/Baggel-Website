@@ -5,7 +5,7 @@ import Layout from "../../../layouts/DefaultLayout.astro";
 import "../../../styles/MiniMessageTool.css";
 ---
 
-<Layout title="MiniMessage Tool" titleSuffix="Tool">
+<Layout title="MiniMessage" titleSuffix="Tool">
   <Fragment slot="head">
     <script src="/tools/minimessage/minimessage.umd.js" is:inline></script>
 
@@ -422,15 +422,15 @@ import "../../../styles/MiniMessageTool.css";
       let strictMode = false;
       let currentLang = "en_us";
 
-      function buildMini() {
-        const raw = MinecraftTranslations.get(currentLang);
+      async function buildMini() {
+        const raw = await MinecraftTranslations.get(currentLang);
         return MiniMessage.builder()
           .strict(strictMode)
           .translations(raw)
           .build();
       }
 
-      let mini = buildMini();
+      let mini = await buildMini();
 
       function update() {
         domOutput.innerHTML = "";
@@ -449,7 +449,7 @@ import "../../../styles/MiniMessageTool.css";
       update();
 
       if (strictToggle && strictKnob && strictLabel) {
-        strictToggle.addEventListener("click", () => {
+        strictToggle.addEventListener("click", async () => {
           strictMode = !strictMode;
           strictToggle.setAttribute("aria-checked", String(strictMode));
           if (strictMode) {
@@ -464,15 +464,15 @@ import "../../../styles/MiniMessageTool.css";
             strictToggle.style.background = "";
             strictLabel.textContent = "Off";
           }
-          mini = buildMini();
+          mini = await buildMini();
           update();
         });
       }
 
       if (langSelect) {
-        langSelect.addEventListener("change", () => {
+        langSelect.addEventListener("change", async () => {
           currentLang = langSelect.value;
-          mini = buildMini();
+          mini = await buildMini();
           update();
         });
       }
