@@ -4369,8 +4369,8 @@
       }
       /**
        * Returns true if any ancestor of `element`, up to but not including
-       * `boundary`, carries a `data-mm-shadow` attribute of its own — meaning
-       * that ancestor is a more specific shadow scope that owns this image.
+       * `boundary`, carries a `data-mm-shadow` attribute of its own
+       * Meaning that ancestor is a more specific shadow scope that owns this image
        */
       _hasNestedShadowAncestor(element, boundary) {
         let current = element.parentElement;
@@ -4935,7 +4935,7 @@
           DomEffects.writeProperty(writer, "shadow", shadowColor.asHexString());
         }
         const hover = component.hoverEvent();
-        if (hover) _HtmlComponentRenderer.HOVER_EVENT_RENDERER.invoke(hover, writer);
+        if (hover) _HtmlComponentRenderer.HOVER_EVENT_RENDERER.invoke(hover, { writer, renderer: this });
       }
       _close(component, writer) {
         for (const child of component.children()) {
@@ -4946,20 +4946,26 @@
     };
     __publicField$l(_HtmlComponentRenderer, "HOVER_EVENT_RENDERER", (() => {
       const handlers = new exports.HoverEvent.Handlers();
-      handlers.register(exports.HoverEvent.Action.SHOW_TEXT, (event, context) => {
-        const text = exports.PlainTextComponentSerializer.plainText().serialize(event.value());
-        context.property("title", text);
+      handlers.register(exports.HoverEvent.Action.SHOW_TEXT, (event, { writer, renderer }) => {
+        const inner = exports.HtmlWriter.string();
+        renderer.render(event.value(), inner);
+        writer.property("data-mc-tooltip", inner.toString());
       });
-      handlers.register(exports.HoverEvent.Action.SHOW_ENTITY, (event, context) => {
+      handlers.register(exports.HoverEvent.Action.SHOW_ENTITY, (event, { writer, renderer }) => {
         const name = event.value().name();
-        const text = name !== null ? exports.PlainTextComponentSerializer.plainText().serialize(name) : event.value().type();
-        context.property("title", text);
+        const inner = exports.HtmlWriter.string();
+        if (name !== null) {
+          renderer.render(name, inner);
+        } else {
+          inner.openTag("span").content(event.value().type()).closeTag();
+        }
+        writer.property("data-mc-tooltip", inner.toString());
       });
-      handlers.register(exports.HoverEvent.Action.SHOW_ITEM, (event, context) => {
+      handlers.register(exports.HoverEvent.Action.SHOW_ITEM, (event, { writer }) => {
         let text = event.value().item().asString();
         const count = event.value().count();
         if (count !== 1) text += ` x${count}`;
-        context.property("title", text);
+        writer.property("data-mc-tooltip", `<span>${text}</span>`);
       });
       return handlers;
     })());
@@ -7199,7 +7205,8 @@
         NbtTag.RESOLVER,
         PrideTag.RESOLVER,
         ShadowColorTag.RESOLVER,
-        SpriteTag.RESOLVER
+        SpriteTag.RESOLVER,
+        HoverTag.RESOLVER
       ).build();
       function defaults() {
         return ALL;
