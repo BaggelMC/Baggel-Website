@@ -4350,6 +4350,49 @@
       }
     }
 
+    const DEFAULT_SHADOW_OFFSET = "0.10714286em";
+    class ShadowDomEffectImpl {
+      apply(element, color) {
+        const images = element.querySelectorAll("img");
+        const filter = `drop-shadow(${DEFAULT_SHADOW_OFFSET} ${DEFAULT_SHADOW_OFFSET} ${color})`;
+        for (const image of images) {
+          if (this._hasNestedShadowAncestor(image, element)) continue;
+          const existing = image.style.filter;
+          if (existing) {
+            if (!existing.includes("drop-shadow")) {
+              image.style.filter = `${existing} ${filter}`;
+            }
+          } else {
+            image.style.filter = filter;
+          }
+        }
+      }
+      /**
+       * Returns true if any ancestor of `element`, up to but not including
+       * `boundary`, carries a `data-mm-shadow` attribute of its own — meaning
+       * that ancestor is a more specific shadow scope that owns this image.
+       */
+      _hasNestedShadowAncestor(element, boundary) {
+        let current = element.parentElement;
+        while (current !== null && current !== boundary) {
+          if (current.hasAttribute("data-mm-shadow")) return true;
+          current = current.parentElement;
+        }
+        return false;
+      }
+      serialize(color) {
+        return color;
+      }
+      deserialize(value) {
+        return value;
+      }
+    }
+    var ShadowDomEffect;
+    ((ShadowDomEffect2) => {
+      ShadowDomEffect2.TOKEN = "shadow";
+      ShadowDomEffect2.INSTANCE = new ShadowDomEffectImpl();
+    })(ShadowDomEffect || (ShadowDomEffect = {}));
+
     class MiscDomEffectImpl {
       apply(element, data) {
       }
@@ -4374,6 +4417,7 @@
       const MAP = {
         [ObfuscatedDomEffect.TOKEN]: ObfuscatedDomEffect.INSTANCE,
         [PlayerHeadDomEffect.TOKEN]: PlayerHeadDomEffect.INSTANCE,
+        [ShadowDomEffect.TOKEN]: ShadowDomEffect.INSTANCE,
         [MiscDomEffect.TOKEN]: MiscDomEffect.INSTANCE
       };
       function writeProperty(writer, token, value) {
@@ -4886,7 +4930,10 @@
         const color = component.color();
         if (color) writer.style(HtmlStyle.color(color.asHexString()));
         const shadowColor = component.shadowColor();
-        if (shadowColor) writer.style(HtmlStyle.textShadow(shadowColor.asHexString()));
+        if (shadowColor) {
+          writer.style(HtmlStyle.textShadow(shadowColor.asHexString()));
+          DomEffects.writeProperty(writer, "shadow", shadowColor.asHexString());
+        }
         const hover = component.hoverEvent();
         if (hover) _HtmlComponentRenderer.HOVER_EVENT_RENDERER.invoke(hover, writer);
       }

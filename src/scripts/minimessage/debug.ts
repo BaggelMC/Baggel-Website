@@ -89,6 +89,7 @@ Heads:
 <head:Darkylt> Darkylt. <red><head:Darkylt> Darkylt in red.</red> <red><shadow:green:1><head:Darkylt> Darkylt in red with green shadow.</shadow></red>
 <head:Darkylt:false> Darkylt without overlay.
 <head:NurLouis> NurLouis.
+<head:5f9d5824-75b2-43cd-8f5a-9a5e1deaf141> UUID.
 <head:player/wide/steve> Texture
 
 
@@ -103,7 +104,7 @@ Weird tag stuff:
 <shadow:#00ff15:1>Closed shadow tag with an <red>unclosed color tag with</shadow> normal text after
 
 Escaped tags:
-\<red>This should NOT be red\</red>
+\\<red>This should NOT be red\\</red>
 \\<blue>Backslash before tag</blue>
 Literal angle brackets: < not a tag > and </ not closing >
 Mixed escaping: \\<bold>\<italic>text\</italic></bold>
