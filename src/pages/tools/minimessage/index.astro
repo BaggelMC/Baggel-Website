@@ -22,9 +22,6 @@ import "../../../styles/MiniMessageTool.css";
     </noscript>
   </Fragment>
   <style is:global>
-    .content {
-      text-shadow: 0.125em 0.125em 0 #3e3e3e;
-    }
 
     #mc-tooltip {
       display: none;
@@ -566,6 +563,7 @@ import "../../../styles/MiniMessageTool.css";
     import { colorTag } from "@scripts/minimessage/definitions/color";
     import { gradientTag } from "@scripts/minimessage/definitions/gradient";
     import { shadowColorTag } from "@scripts/minimessage/definitions/shadow";
+    import { hoverTag } from "@scripts/minimessage/definitions/hover";
 
     const textarea = document.getElementById("input");
     const toolbar = document.getElementById("tag-toolbar");
@@ -584,6 +582,7 @@ import "../../../styles/MiniMessageTool.css";
         shadowColorTag,
         gradientTag,
         headTag,
+        hoverTag
       ]);
     }
   </script>
