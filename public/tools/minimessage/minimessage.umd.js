@@ -4410,7 +4410,7 @@
       MiscDomEffect2.INSTANCE = new MiscDomEffectImpl();
     })(MiscDomEffect || (MiscDomEffect = {}));
 
-    var DomEffects;
+    exports.DomEffects = void 0;
     ((DomEffects2) => {
       const PROPERTY_PREFIX = "data-mm-";
       const APPLIED = `${PROPERTY_PREFIX}applied`;
@@ -4478,7 +4478,7 @@
         }
       }
       DomEffects2.apply = apply;
-    })(DomEffects || (DomEffects = {}));
+    })(exports.DomEffects || (exports.DomEffects = {}));
 
     var __defProp$n = Object.defineProperty;
     var __defNormalProp$n = (obj, key, value) => key in obj ? __defProp$n(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
@@ -4489,7 +4489,7 @@
         const { ownerDocument } = element;
         if (!ownerDocument) return;
         if (window !== ownerDocument.defaultView) return;
-        DomEffects.apply(element);
+        exports.DomEffects.apply(element);
       });
       if ("isConnected" in element && element.isConnected) {
         proceed();
@@ -4870,14 +4870,14 @@
       }
       renderSelector(component, writer) {
         this._open(component, writer);
-        DomEffects.writeProperty(writer, "misc", component);
+        exports.DomEffects.writeProperty(writer, "misc", component);
         writer.content(component.pattern());
         this._close(component, writer);
         return component;
       }
       renderKeybind(component, writer) {
         this._open(component, writer);
-        DomEffects.writeProperty(writer, "misc", component);
+        exports.DomEffects.writeProperty(writer, "misc", component);
         const key = component.keybind();
         writer.content(KEYBIND_TO_LITERAL[key] ?? KEYBIND_TO_TRANSLATABLE[key] ?? key);
         this._close(component, writer);
@@ -4889,10 +4889,10 @@
         const contentsType = contents.type;
         switch (contentsType) {
           case "playerHead":
-            DomEffects.writeProperty(writer, "player-head", contents);
+            exports.DomEffects.writeProperty(writer, "player-head", contents);
             break;
           case "sprite":
-            DomEffects.writeProperty(writer, "misc", component);
+            exports.DomEffects.writeProperty(writer, "misc", component);
             break;
           default:
             assertNever(contentsType);
@@ -4903,7 +4903,7 @@
       //
       _renderMisc(component, writer) {
         this._open(component, writer);
-        DomEffects.writeProperty(writer, "misc", component);
+        exports.DomEffects.writeProperty(writer, "misc", component);
         this._close(component, writer);
         return component;
       }
@@ -4920,7 +4920,7 @@
         }
         s = component.decoration(exports.TextDecoration.OBFUSCATED);
         if (s !== exports.TextDecoration.State.NOT_SET) {
-          DomEffects.writeProperty(writer, "obfuscated", s === exports.TextDecoration.State.TRUE);
+          exports.DomEffects.writeProperty(writer, "obfuscated", s === exports.TextDecoration.State.TRUE);
         }
         const underlined = component.decoration(exports.TextDecoration.UNDERLINED);
         const strikethrough = component.decoration(exports.TextDecoration.STRIKETHROUGH);
@@ -4932,7 +4932,7 @@
         const shadowColor = component.shadowColor();
         if (shadowColor) {
           writer.style(HtmlStyle.textShadow(shadowColor.asHexString()));
-          DomEffects.writeProperty(writer, "shadow", shadowColor.asHexString());
+          exports.DomEffects.writeProperty(writer, "shadow", shadowColor.asHexString());
         }
         const hover = component.hoverEvent();
         if (hover) _HtmlComponentRenderer.HOVER_EVENT_RENDERER.invoke(hover, { writer, renderer: this });

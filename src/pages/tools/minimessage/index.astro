@@ -744,6 +744,8 @@ import "../../../styles/MiniMessageTool.css";
       if (!target) return;
       mcTooltip.innerHTML = target.getAttribute("data-mc-tooltip") ?? "";
       mcTooltip.style.display = "block";
+      //@ts-ignore
+      window.adventure.DomEffects.apply(mcTooltip);
     });
 
     outputDom.addEventListener("mouseout", (e) => {
