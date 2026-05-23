@@ -34,6 +34,7 @@ Gradients:
 <gradient:red:blue>Short Gradient</gradient>
 <rainbow>Rainbow Text Test</rainbow>
 <rainbow:!>Inverted Rainbow Text Test</rainbow>
+<gradient:#000000:#ffffff>AB</gradient>
 
 <pride>Pride</pride>
 <pride:trans>Transgender</pride>
@@ -85,6 +86,9 @@ Nothing <font:uniform>Uniform <font:alt>Alt </font> Uniform
 
 
 Newline:<newline><br>
+<red>Styling
+Across lines</red>
+
 Heads:
 <head:Darkylt> Darkylt. <red><head:Darkylt> Darkylt in red.</red> <red><shadow:green:1><head:Darkylt> Darkylt in red with green shadow.</shadow></red>
 <head:Darkylt:false> Darkylt without overlay.
@@ -93,15 +97,36 @@ Heads:
 <head:player/wide/steve> Texture
 
 
+Hover:
+<hover:show_text:'Normal text. <red>Colored text.</red> <obf>Obfuscated</obf>'>Text in hover</hover>
+<hover:show_text:'<red>Unclosed color tag'>Unclosed tags in hover</hover>
+<hover:show_text:'<head:Darkylt> Normal head. <red><head:Darkylt> Colored head.</red>'>Player head in hover</hover>
+<hover:show_text:'<hover:show_text:"Y">Z</hover>'>Recursive hover</hover>
+<hover:show_text:'<red>A
+B'>Newline in hover</hover>
+
 Stress tests:
 <bold>Bold <italic>Bold+Italic <underlined>Bold+Italic+Underlined</underlined> Still Bold+Italic</italic> Back to Bold</bold> Normal.
 
 <color:#47FF19>L</color><color:#FF4000>o</color><color:#0A2BFF>t</color><color:#03FF68>'</color><color:#FFD21C>s</color> <color:#8CFF98>o</color><color:#FF0090>f</color> <color:#DEFF91>c</color><color:#7AFFB4>o</color><color:#FF5CA5>l</color><color:#FF367F>o</color><color:#00FF88>r</color> <color:#6CFF47>s</color><color:#EEFF00>p</color><color:#0048FF>a</color><color:#FFB947>m</color>
 
+<red><shadow:green:1><st><u><i><b>Deep nesting</b></i></u></st></shadow></red>
+
+
+Combined chars:
+é
+Bidirectional text:
+<red>English العربية עברית</red>
+
 
 Weird tag stuff:
 
 <shadow:#00ff15:1>Closed shadow tag with an <red>unclosed color tag with</shadow> normal text after
+
+Empty arguments:
+<color:>
+<shadow::1>
+<transition::0.5>
 
 Escaped tags:
 \\<red>This should NOT be red\\</red>
@@ -154,9 +179,10 @@ Unclosed at end:
 <green>Green <bold>Green+Bold <italic>Green+Bold+Italic
 `;
 
-
 function insertDebugMiniMessage(): void {
-  const textarea = document.getElementById("input") as HTMLTextAreaElement | null;
+  const textarea = document.getElementById(
+    "input",
+  ) as HTMLTextAreaElement | null;
   if (!textarea) {
     console.warn("MiniMessage debug: #input textarea not found");
     return;
@@ -176,4 +202,3 @@ declare global {
 }
 
 window.insertMiniMessageDebug = insertDebugMiniMessage;
-
