@@ -4936,6 +4936,8 @@
         }
         const hover = component.hoverEvent();
         if (hover) _HtmlComponentRenderer.HOVER_EVENT_RENDERER.invoke(hover, { writer, renderer: this });
+        const click = component.clickEvent();
+        if (click) _HtmlComponentRenderer.CLICK_EVENT_RENDERER.invoke(click, { writer });
       }
       _close(component, writer) {
         for (const child of component.children()) {
@@ -4966,6 +4968,40 @@
         const count = event.value().count();
         if (count !== 1) text += ` x${count}`;
         writer.property("data-mc-tooltip", `<span>${text}</span>`);
+      });
+      return handlers;
+    })());
+    __publicField$l(_HtmlComponentRenderer, "CLICK_EVENT_RENDERER", (() => {
+      const handlers = new exports.ClickEvent.Handlers();
+      handlers.register(exports.ClickEvent.Action.OPEN_URL, (event, { writer }) => {
+        writer.property("data-mc-click-action", "open_url");
+        writer.property("data-mc-click-value", event.payload().value());
+      });
+      handlers.register(exports.ClickEvent.Action.OPEN_FILE, (event, { writer }) => {
+        writer.property("data-mc-click-action", "open_file");
+        writer.property("data-mc-click-value", event.payload().value());
+      });
+      handlers.register(exports.ClickEvent.Action.RUN_COMMAND, (event, { writer }) => {
+        writer.property("data-mc-click-action", "run_command");
+        writer.property("data-mc-click-value", event.payload().value());
+      });
+      handlers.register(exports.ClickEvent.Action.SUGGEST_COMMAND, (event, { writer }) => {
+        writer.property("data-mc-click-action", "suggest_command");
+        writer.property("data-mc-click-value", event.payload().value());
+      });
+      handlers.register(exports.ClickEvent.Action.CHANGE_PAGE, (event, { writer }) => {
+        writer.property("data-mc-click-action", "change_page");
+        writer.property("data-mc-click-value", event.payload().integer().toString());
+      });
+      handlers.register(exports.ClickEvent.Action.COPY_TO_CLIPBOARD, (event, { writer }) => {
+        writer.property("data-mc-click-action", "copy_to_clipboard");
+        writer.property("data-mc-click-value", event.payload().value());
+      });
+      handlers.register(exports.ClickEvent.Action.CUSTOM, (event, { writer }) => {
+        writer.property("data-mc-click-action", "custom");
+        writer.property("data-mc-click-value", event.payload().key().toString());
+        const nbt = event.payload().nbt();
+        if (nbt !== null) writer.property("data-mc-click-nbt", nbt);
       });
       return handlers;
     })());

@@ -21,7 +21,11 @@ import "../../../styles/MiniMessageTool.css";
       </style>
     </noscript>
   </Fragment>
-  <style>
+  <style is:global>
+    .content {
+      text-shadow: 0.125em 0.125em 0 #3e3e3e;
+    }
+
     #mc-tooltip {
       display: none;
       position: fixed;
@@ -64,6 +68,164 @@ import "../../../styles/MiniMessageTool.css";
       left: -0.125em;
       border: 0.15em solid rgba(16, 0, 16, 0.94);
       border-style: none solid;
+    }
+
+    [data-mc-click-action] {
+      cursor: pointer;
+    }
+
+    #mc-click-container {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 0.5rem;
+      z-index: 10000;
+      pointer-events: none;
+    }
+
+    .mc-click-popup {
+      pointer-events: all;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.625rem;
+      padding: 0.5rem 0.625rem 0.5rem 0.75rem;
+      background-color: rgba(16, 0, 16, 0.94);
+      font-family: MinecraftMiniMessage, sans-serif;
+      font-size: 13px;
+      color: #fbfbfb;
+      text-shadow: 0.125em 0.125em 0 #3e3e3e;
+      word-spacing: 4px;
+      line-height: 1.4;
+      max-width: 280px;
+      min-width: 180px;
+      margin: 0.125em 0.25em;
+      animation: mc-popup-in 0.15s ease-out forwards;
+      transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+    }
+
+    .mc-click-popup::after {
+      content: "";
+      position: absolute;
+      top: 0.125em;
+      right: 0;
+      bottom: 0.125em;
+      left: 0;
+      border: 0.125em solid #2d0a63;
+      border-image: linear-gradient(
+          rgba(80, 0, 255, 0.31),
+          rgba(40, 0, 127, 0.31)
+        )
+        1;
+    }
+    .mc-click-popup::before {
+      content: "";
+      position: absolute;
+      top: 0.125em;
+      right: -0.125em;
+      bottom: 0.125em;
+      left: -0.125em;
+      border: 0.15em solid rgba(16, 0, 16, 0.94);
+      border-style: none solid;
+    }
+
+    .mc-click-popup.mc-popup-out {
+      opacity: 0;
+      transform: translateX(0.75rem);
+    }
+
+    @keyframes mc-popup-in {
+      from {
+        opacity: 0;
+        transform: translateX(0.75rem);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .mc-click-popup-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .mc-click-popup-action {
+      color: #aaaaaa;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.2em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .mc-click-popup-value {
+      color: #ffffff;
+      word-break: break-all;
+      overflow-wrap: anywhere;
+    }
+
+    .mc-click-popup-close {
+      flex-shrink: 0;
+      width: 1.1rem;
+      height: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #888;
+      font-size: 14px;
+      line-height: 1;
+      margin-top: 1px;
+      transition: color 0.15s;
+      background: none;
+      border: none;
+      padding: 0;
+      font-family: inherit;
+    }
+
+    .mc-click-popup-close:hover {
+      color: #ffffff;
+    }
+
+    .mc-click-progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      background: linear-gradient(
+        90deg,
+        rgba(80, 0, 255, 0.7),
+        rgba(140, 60, 255, 0.5)
+      );
+      border-radius: 0 0 4px 4px;
+      width: 100%;
+      transform-origin: left;
+      animation: mc-progress-shrink var(--mc-duration, 4000ms) linear forwards;
+    }
+
+    @keyframes mc-progress-shrink {
+      from {
+        transform: scaleX(1);
+      }
+      to {
+        transform: scaleX(0);
+      }
+    }
+
+    #input {
+      transition: border-color 0.6s;
+    }
+    .placeholder-color {
+      color: var(--color-background-100);
+    }
+    .input-color {
+      color: var(--color-text);
     }
   </style>
   <div class="max-w-5xl mx-auto px-8 py-20 text-text font-sans space-y-12">
@@ -332,7 +494,6 @@ import "../../../styles/MiniMessageTool.css";
         </p>
 
         <ul class="list-disc list-inside text-text-80 space-y-1">
-          <li>Click</li>
           <li>Insertion</li>
         </ul>
       </div>
@@ -578,17 +739,97 @@ import "../../../styles/MiniMessageTool.css";
 </script>
 <script src="../../../scripts/minimessage/debug.ts"></script>
 
-<style>
-  #input {
-    transition: border-color 0.6s;
-  }
-  .placeholder-color {
-    color: var(--color-background-100);
-  }
-  .input-color {
-    color: var(--color-text);
-  }
-</style>
+<div
+  id="mc-click-container"
+  aria-live="polite"
+  aria-label="Click event notifications"
+>
+</div>
+
+<script>
+  (() => {
+    const container = document.getElementById("mc-click-container");
+    const outputDom = document.getElementById("output-dom");
+    if (!container || !outputDom) return;
+
+    const POPUP_DURATION = 8000;
+    const MAX_POPUPS = 6;
+
+    const ACTION_LABELS: Record<string, string> = {
+      open_url: "Opened URL:",
+      run_command: "Ran Command:",
+      suggest_command: "Suggested Command:",
+      change_page: "Changed Page to:",
+      copy_to_clipboard: "Copied to Clipboard:",
+      custom: "Custom Action:",
+    };
+
+    function removePopup(el: HTMLElement) {
+      el.classList.add("mc-popup-out");
+      el.addEventListener("transitionend", () => el.remove(), { once: true });
+      setTimeout(() => el.remove(), 400);
+    }
+
+    function escapeHtml(str: string): string {
+      return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function spawnPopup(action: string, value: string) {
+      if (!container) return;
+      const existing =
+        container.querySelectorAll<HTMLElement>(".mc-click-popup");
+      if (existing.length >= MAX_POPUPS) {
+        removePopup(existing[0]);
+      }
+
+      const label = ACTION_LABELS[action] ?? action;
+
+      const popup = document.createElement("div");
+      popup.className = "mc-click-popup";
+      popup.style.position = "relative";
+      popup.style.overflow = "hidden";
+      popup.style.setProperty("--mc-duration", `${POPUP_DURATION}ms`);
+
+      popup.innerHTML = `
+        <div class="mc-click-popup-body">
+          <div class="mc-click-popup-action">${escapeHtml(label)}</div>
+          <div class="mc-click-popup-value">${escapeHtml(value)}</div>
+        </div>
+        <button class="mc-click-popup-close" aria-label="Dismiss" title="Dismiss">✕</button>
+        <div class="mc-click-progress"></div>
+      `;
+
+      const closeBtn = popup.querySelector<HTMLButtonElement>(
+        ".mc-click-popup-close",
+      )!;
+      closeBtn.addEventListener("click", () => removePopup(popup));
+
+      container.appendChild(popup);
+
+      let timer = setTimeout(() => removePopup(popup), POPUP_DURATION);
+
+      popup.addEventListener("mouseenter", () => clearTimeout(timer));
+      popup.addEventListener("mouseleave", () => {
+        timer = setTimeout(() => removePopup(popup), 800);
+      });
+    }
+
+    outputDom.addEventListener("click", (e: MouseEvent) => {
+      const target = (e.target as Element).closest<HTMLElement>(
+        "[data-mc-click-action]",
+      );
+      if (!target) return;
+      const action = target.dataset.mcClickAction ?? "";
+      const value = target.dataset.mcClickValue ?? "";
+      spawnPopup(action, value);
+    });
+  })();
+</script>
+
 <script>
   const mcTooltip = document.getElementById("mc-tooltip");
   const outputDom = document.getElementById("output-dom");
@@ -604,6 +845,12 @@ import "../../../styles/MiniMessageTool.css";
     });
 
     outputDom.addEventListener("mouseout", (e) => {
+      const target = (e.target as Element).closest("[data-mc-tooltip]");
+      if (!target) return;
+      mcTooltip.style.display = "none";
+    });
+
+    outputDom.addEventListener("scroll", (e) => {
       const target = (e.target as Element).closest("[data-mc-tooltip]");
       if (!target) return;
       mcTooltip.style.display = "none";
