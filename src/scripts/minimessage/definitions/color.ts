@@ -27,7 +27,7 @@ const presetRows: string[][] = [
   ["black", "dark_blue", "dark_green", "dark_aqua", "dark_red", "dark_purple", "gold", "gray"]
 ];
 
-const toolbarIcon = `<svg fill="currentColor" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+const toolbarIcon = `<svg fill="currentColor" width="100%" height="100%" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 
 <g data-name="Layer 2">
 

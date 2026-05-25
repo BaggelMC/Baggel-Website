@@ -2,7 +2,7 @@ import type { TagDefinition } from "../tags";
 import { createTextInput, createInfoBlock } from "../util/components";
 
 const toolbarIcon = `<svg fill="currentColor" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-	 width="100px" height="100px" viewBox="0 0 420.238 420.238"
+	 width="100%" height="100%" viewBox="0 0 420.238 420.238"
 	 xml:space="preserve">
 <g>
 	<path d="M412.739,18.188C412.739,8.159,404.581,0,394.553,0H234.409c-10.027,0-18.186,8.159-18.186,18.188V85.75H25.042

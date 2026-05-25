@@ -339,9 +339,10 @@ import "../../../styles/MiniMessageTool.css";
           </div>
 
           <div class="flex items-center gap-3">
-            <label for="lang-select" class="text-sm text-text-80 shrink-0"
-              >Language</label
-            >
+            <label for="lang-select" class="text-sm text-text-80 shrink-0">
+              <span class="sm:hidden">Lang</span>
+              <span class="hidden sm:inline">Language</span>
+            </label>
             <div class="relative">
               <select
                 id="lang-select"
@@ -743,10 +744,11 @@ import "../../../styles/MiniMessageTool.css";
     "lang-select",
   ) as HTMLSelectElement | null;
   if (langSelect) {
+    const isMobile = window.innerWidth < 640;
     for (const [localeCode, localeName] of Object.entries(locales)) {
       const opt = document.createElement("option");
       opt.value = localeCode;
-      opt.textContent = localeName;
+      opt.textContent = isMobile ? localeCode : localeName;
       if (localeCode === "en_us") opt.selected = true;
       langSelect.appendChild(opt);
     }
