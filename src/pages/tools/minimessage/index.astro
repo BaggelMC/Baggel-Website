@@ -234,7 +234,7 @@ import "../../../styles/MiniMessageTool.css";
         class="text-text-50 mb-2 text-sm uppercase tracking-wide">Input</label
       >
 
-      <div id="tag-toolbar" class="flex flex-wrap gap-2 mb-3"></div>
+      <div id="tag-toolbar" class="flex flex-wrap gap-2 mb-3 justify-center"></div>
 
       <div
         data-simplebar
@@ -552,6 +552,14 @@ import "../../../styles/MiniMessageTool.css";
         tags: [colorTag, boldTag, italicTag, underlinedTag, strikethroughTag],
       },
 
+      utility: {
+        display: "Utility",
+        tags: [
+          resetTag,
+          newlineTag,
+        ],
+      },
+
       effects: {
         display: "Effects",
         tags: [
@@ -578,14 +586,6 @@ import "../../../styles/MiniMessageTool.css";
           headTag,
           keybindTag,
           translatableTag,
-        ],
-      },
-
-      utility: {
-        display: "Utility",
-        tags: [
-          resetTag,
-          newlineTag,
         ],
       },
     };
