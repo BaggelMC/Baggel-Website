@@ -22,7 +22,6 @@ import "../../../styles/MiniMessageTool.css";
     </noscript>
   </Fragment>
   <style is:global>
-
     #mc-tooltip {
       display: none;
       position: fixed;
@@ -465,24 +464,6 @@ import "../../../styles/MiniMessageTool.css";
       </div>
 
       <div class="space-y-4">
-        <h2 class="text-xl font-semibold">Not using MiniMessage?</h2>
-
-        <p class="text-text-80 leading-relaxed">
-          You can still use this tool as a <strong
-            >Minecraft text formatter</strong
-          >.
-        </p>
-
-        <p class="text-text-80 leading-relaxed">
-          The <strong>Copy JSON</strong> button copies the rendered output as a Minecraft
-          Component JSON. This can be used in commands and configurations such as
-          <code class="px-1 py-0.5 bg-background-50 rounded">/tellraw</code>,
-          titles, bossbars, datapacks, and plugin configs that accept component
-          JSON.
-        </p>
-      </div>
-
-      <div class="space-y-4">
         <h2 class="text-xl font-semibold">Planned features</h2>
 
         <p class="text-text-80 leading-relaxed">
@@ -564,26 +545,64 @@ import "../../../styles/MiniMessageTool.css";
     import { gradientTag } from "@scripts/minimessage/definitions/gradient";
     import { shadowColorTag } from "@scripts/minimessage/definitions/shadow";
     import { hoverTag } from "@scripts/minimessage/definitions/hover";
+    import { rainbowTag } from "@scripts/minimessage/definitions/rainbow";
+    import { prideTag } from "@scripts/minimessage/definitions/pride";
+    import { clickTag } from "@scripts/minimessage/definitions/click";
+    import { resetTag } from "@scripts/minimessage/definitions/reset";
+    import { newlineTag } from "@scripts/minimessage/definitions/newline";
 
     const textarea = document.getElementById("input");
     const toolbar = document.getElementById("tag-toolbar");
+
+    const toolbarContent = {
+      basic: {
+        display: "Basic",
+        tags: [colorTag, boldTag, italicTag, underlinedTag, strikethroughTag],
+      },
+
+      effects: {
+        display: "Effects",
+        tags: [
+          gradientTag,
+          shadowColorTag,
+          obfuscatedTag,
+          rainbowTag,
+          prideTag,
+        ],
+      },
+
+      interactive: {
+        display: "Interactive",
+        tags: [
+          clickTag,
+          hoverTag,
+          // insertionTag,
+        ],
+      },
+
+      content: {
+        display: "Content",
+        tags: [
+          headTag,
+          // keybindTag,
+          // translatableTag,
+        ],
+      },
+
+      utility: {
+        display: "Utility",
+        tags: [
+          resetTag,
+          newlineTag,
+        ],
+      },
+    };
 
     if (
       textarea instanceof HTMLTextAreaElement &&
       toolbar instanceof HTMLDivElement
     ) {
-      renderToolbar(toolbar, textarea, [
-        colorTag,
-        boldTag,
-        italicTag,
-        underlinedTag,
-        strikethroughTag,
-        obfuscatedTag,
-        shadowColorTag,
-        gradientTag,
-        headTag,
-        hoverTag
-      ]);
+      renderToolbar(toolbar, textarea, toolbarContent);
     }
   </script>
 
