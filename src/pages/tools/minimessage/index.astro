@@ -66,7 +66,8 @@ import "../../../styles/MiniMessageTool.css";
       border-style: none solid;
     }
 
-    [data-mc-click-action] {
+    [data-mc-click-action],
+    [data-mc-insertion] {
       cursor: pointer;
     }
 
@@ -327,7 +328,7 @@ import "../../../styles/MiniMessageTool.css";
               role="switch"
               aria-checked="false"
               class="relative inline-flex h-6 w-11 items-center rounded-full bg-background-50 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary cursor-pointer"
-              title="When enabled, malformed tags throw errors instead of being passed through as plain text"
+              title="When enabled, using the <reset> tag is prohibited and all tags must be closed in reverse order of opening."
             >
               <span
                 id="strict-knob"
@@ -464,19 +465,6 @@ import "../../../styles/MiniMessageTool.css";
       </div>
 
       <div class="space-y-4">
-        <h2 class="text-xl font-semibold">Planned features</h2>
-
-        <p class="text-text-80 leading-relaxed">
-          The following MiniMessage features are planned but not implemented
-          yet:
-        </p>
-
-        <ul class="list-disc list-inside text-text-80 space-y-1">
-          <li>Insertion</li>
-        </ul>
-      </div>
-
-      <div class="space-y-4">
         <h2 class="text-xl font-semibold">Server-only features</h2>
 
         <p class="text-text-80 leading-relaxed">
@@ -550,6 +538,8 @@ import "../../../styles/MiniMessageTool.css";
     import { clickTag } from "@scripts/minimessage/definitions/click";
     import { resetTag } from "@scripts/minimessage/definitions/reset";
     import { newlineTag } from "@scripts/minimessage/definitions/newline";
+    import { insertionTag } from "@scripts/minimessage/definitions/insertion";
+    import { translatableTag } from "@scripts/minimessage/definitions/translatable";
 
     const textarea = document.getElementById("input");
     const toolbar = document.getElementById("tag-toolbar");
@@ -576,7 +566,7 @@ import "../../../styles/MiniMessageTool.css";
         tags: [
           clickTag,
           hoverTag,
-          // insertionTag,
+          insertionTag,
         ],
       },
 
@@ -585,7 +575,7 @@ import "../../../styles/MiniMessageTool.css";
         tags: [
           headTag,
           // keybindTag,
-          // translatableTag,
+          translatableTag,
         ],
       },
 
@@ -630,7 +620,7 @@ import "../../../styles/MiniMessageTool.css";
 </Layout>
 <script lang="js">
   ((window) => {
-    const { MiniMessage } = window.adventure;
+    const { MiniMessage, JsonComponentSerializer } = window.adventure;
 
     window.addEventListener("DOMContentLoaded", async () => {
       const input = document.querySelector("#input");
@@ -646,14 +636,19 @@ import "../../../styles/MiniMessageTool.css";
       const translationsModule =
         await import("/tools/minimessage/translation/index.mjs");
       const MinecraftTranslations = translationsModule.default;
+      window.__mcTranslations = MinecraftTranslations;
 
       let strictMode = false;
       let currentLang = "en_us";
 
       async function buildMini() {
         const raw = await MinecraftTranslations.get(currentLang);
+        const verbose = false;
         return MiniMessage.builder()
           .strict(strictMode)
+          .postProcessor((c) => {
+                return verbose ? c : c.compact();
+            })
           .translations(raw)
           .build();
       }
@@ -665,7 +660,8 @@ import "../../../styles/MiniMessageTool.css";
         try {
           const component = mini.deserialize(input.value);
           mini.toHTML(component, domOutput);
-          copyBtn.dataset.json = JSON.stringify(component, null, 2);
+          const json = JsonComponentSerializer.json().serialize(component);
+          copyBtn.dataset.json = JSON.stringify(json, null, 2);
         } catch (e) {
           console.trace(e);
           copyBtn.dataset.json = "";
@@ -844,6 +840,16 @@ import "../../../styles/MiniMessageTool.css";
       const action = target.dataset.mcClickAction ?? "";
       const value = target.dataset.mcClickValue ?? "";
       spawnPopup(action, value);
+    });
+
+    outputDom.addEventListener("click", (e: MouseEvent) => {
+      if (!e.shiftKey) return;
+      const target = (e.target as Element).closest<HTMLElement>(
+        "[data-mc-insertion]",
+      );
+      if (!target) return;
+      const value = target.dataset.mcInsertion ?? "";
+      spawnPopup("Inserted Text:", value);
     });
   })();
 </script>

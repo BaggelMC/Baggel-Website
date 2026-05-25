@@ -1,5 +1,5 @@
 import type { TagDefinition } from "../tags";
-import { createNumberInput, createToggle } from "../util/components";
+import { createNumberInput, createToggle, createInfoBlock } from "../util/components";
 
 export const rainbowTag: TagDefinition = {
   id: "rainbow",
@@ -20,6 +20,11 @@ export const rainbowTag: TagDefinition = {
       title: "Edit Rainbow",
 
       render(container) {
+        createInfoBlock(
+          container,
+          "Creates a gradient with rainbow colors.",
+        );
+
         phase.render(container);
 
         const spacer = document.createElement("div");

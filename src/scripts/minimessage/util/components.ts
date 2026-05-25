@@ -1,3 +1,14 @@
+export function createInfoBlock(container: HTMLElement, message: string) {
+  const el = document.createElement("div");
+  el.className = "flex gap-2 mt-3 p-2 text-sm text-text-50 max-w-80";
+
+  const text = document.createElement("span");
+  text.textContent = message;
+  el.appendChild(text);
+
+  container.appendChild(el);
+}
+
 export function createNumberInput(options: {
   label: string;
   min: number;
@@ -141,24 +152,18 @@ export function createSearchableDropdown(options: {
 
   let searchInput!: HTMLInputElement;
   let viewport!: HTMLDivElement;
-  let spacerTop!: HTMLDivElement;
-  let spacerBottom!: HTMLDivElement;
+  let innerTrack!: HTMLDivElement;
   let rowsContainer!: HTMLDivElement;
-  let scrollOffset = 0;
-
-  function getVisibleRange() {
-    const start = Math.floor(scrollOffset / ROW_HEIGHT);
-    const end = Math.min(start + VISIBLE_ROWS + 2, filtered.length); // +2 overscan
-    return { start, end };
-  }
 
   function renderRows() {
-    const { start, end } = getVisibleRange();
+    const scrollOffset = viewport.scrollTop;
+    const start = Math.floor(scrollOffset / ROW_HEIGHT);
+    const end = Math.min(start + VISIBLE_ROWS + 2, filtered.length);
 
-    spacerTop.style.height = `${start * ROW_HEIGHT}px`;
-    spacerBottom.style.height = `${Math.max(0, (filtered.length - end) * ROW_HEIGHT)}px`;
+    innerTrack.style.height = `${filtered.length * ROW_HEIGHT}px`;
 
-    // Reuse existing row elements where possible
+    rowsContainer.style.top = `${start * ROW_HEIGHT}px`;
+
     const needed = end - start;
     while (rowsContainer.children.length > needed) {
       rowsContainer.removeChild(rowsContainer.lastChild!);
@@ -181,7 +186,6 @@ export function createSearchableDropdown(options: {
         selected = item;
         searchInput.value = item;
         viewport.style.display = "none";
-        // Re-render just to update the highlight if dropdown reopens
         renderRows();
       };
     }
@@ -190,9 +194,9 @@ export function createSearchableDropdown(options: {
   function applyFilter(query: string) {
     const q = query.toLowerCase();
     filtered = q
-      ? options.items.filter(item => item.toLowerCase().includes(q))
+      ? options.items.filter((item) => item.toLowerCase().includes(q))
       : options.items;
-    scrollOffset = 0;
+
     viewport.scrollTop = 0;
     renderRows();
   }
@@ -218,8 +222,8 @@ export function createSearchableDropdown(options: {
       searchInput.className = "bg-background w-full p-2 rounded-lg text-sm";
 
       searchInput.addEventListener("focus", () => {
-        applyFilter(searchInput.value);
         viewport.style.display = "block";
+        applyFilter(searchInput.value);
       });
 
       searchInput.addEventListener("input", () => {
@@ -237,7 +241,6 @@ export function createSearchableDropdown(options: {
 
       wrapper.appendChild(searchInput);
 
-      // Dropdown viewport
       viewport = document.createElement("div");
       viewport.style.display = "none";
       viewport.style.height = `${VIEWPORT_HEIGHT}px`;
@@ -245,25 +248,24 @@ export function createSearchableDropdown(options: {
         "absolute z-50 w-full mt-1 overflow-y-auto rounded-lg bg-background border border-background-50 shadow-lg";
 
       viewport.addEventListener("scroll", () => {
-        scrollOffset = viewport.scrollTop;
         renderRows();
       });
 
-      // Virtual scroll structure: spacer | rows | spacer
-      spacerTop = document.createElement("div");
-      rowsContainer = document.createElement("div");
-      spacerBottom = document.createElement("div");
+      innerTrack = document.createElement("div");
+      innerTrack.style.position = "relative";
 
-      viewport.appendChild(spacerTop);
-      viewport.appendChild(rowsContainer);
-      viewport.appendChild(spacerBottom);
+      rowsContainer = document.createElement("div");
+      rowsContainer.style.position = "absolute";
+      rowsContainer.style.left = "0";
+      rowsContainer.style.right = "0";
+
+      innerTrack.appendChild(rowsContainer);
+      viewport.appendChild(innerTrack);
       wrapper.appendChild(viewport);
 
-      // Close on outside click
       document.addEventListener("mousedown", (e) => {
         if (!wrapper.contains(e.target as Node)) {
           viewport.style.display = "none";
-          // Reset input to last valid selection
           if (selected !== null) {
             searchInput.value = selected;
           }

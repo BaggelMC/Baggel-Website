@@ -1,11 +1,33 @@
 import type { TagDefinition } from "../tags";
-import { createSearchableDropdown, createNumberInput } from "../util/components";
+import {
+  createSearchableDropdown,
+  createNumberInput,
+  createInfoBlock,
+} from "../util/components";
 
 const FLAGS = [
-  "pride", "progress", "trans", "bi", "pan", "nb", "lesbian", "ace",
-  "agender", "demisexual", "genderqueer", "genderfluid", "intersex",
-  "aro", "baker", "philly", "queer", "gay", "bigender", "demigender",
-  "femboy", "intersex inclusive",
+  "pride",
+  "progress",
+  "trans",
+  "bi",
+  "pan",
+  "nb",
+  "lesbian",
+  "ace",
+  "agender",
+  "demisexual",
+  "genderqueer",
+  "genderfluid",
+  "intersex",
+  "aro",
+  "baker",
+  "philly",
+  "queer",
+  "gay",
+  "bigender",
+  "demigender",
+  "femboy",
+  "intersex inclusive",
 ];
 
 export const prideTag: TagDefinition = {
@@ -13,9 +35,22 @@ export const prideTag: TagDefinition = {
   label: "Pride",
   appearance: (() => {
     const el = document.createElement("span");
-    el.className = "inline-block w-6 h-6 rounded-lg border";
-    el.style.background =
-      "linear-gradient(to right, #f87171, #fb923c, #facc15, #4ade80, #60a5fa, #a78bfa)";
+    el.className = "inline-block w-6 h-6 rounded-lg border overflow-hidden";
+    el.style.background = `
+    linear-gradient(
+      135deg,
+      #000 0% 14%,
+      #784f17 14% 28%,
+      #5BCEFA 28% 42%,
+      #F5A9B8 42% 56%,
+      #fff 56% 70%,
+      #f87171 70% 76%,
+      #fb923c 76% 82%,
+      #facc15 82% 88%,
+      #4ade80 88% 94%,
+      #60a5fa 94% 100%
+    )
+  `;
     el.style.display = "block";
     return el;
   })(),
@@ -36,6 +71,11 @@ export const prideTag: TagDefinition = {
       title: "Edit Pride",
 
       render(container) {
+        createInfoBlock(
+          container,
+          "Creates a gradient with pride flag colors.",
+        );
+
         flag.render(container);
 
         const spacer = document.createElement("div");
