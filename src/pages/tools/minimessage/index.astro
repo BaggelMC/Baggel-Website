@@ -540,6 +540,7 @@ import "../../../styles/MiniMessageTool.css";
     import { newlineTag } from "@scripts/minimessage/definitions/newline";
     import { insertionTag } from "@scripts/minimessage/definitions/insertion";
     import { translatableTag } from "@scripts/minimessage/definitions/translatable";
+    import { keybindTag } from "@scripts/minimessage/definitions/keybind";
 
     const textarea = document.getElementById("input");
     const toolbar = document.getElementById("tag-toolbar");
@@ -574,7 +575,7 @@ import "../../../styles/MiniMessageTool.css";
         display: "Content",
         tags: [
           headTag,
-          // keybindTag,
+          keybindTag,
           translatableTag,
         ],
       },
