@@ -234,7 +234,8 @@ import "../../../styles/MiniMessageTool.css";
         class="text-text-50 mb-2 text-sm uppercase tracking-wide">Input</label
       >
 
-      <div id="tag-toolbar" class="flex flex-wrap gap-2 mb-3 justify-center"></div>
+      <div id="tag-toolbar" class="flex flex-wrap gap-2 mb-3 justify-center">
+      </div>
 
       <div
         data-simplebar
@@ -554,10 +555,7 @@ import "../../../styles/MiniMessageTool.css";
 
       utility: {
         display: "Utility",
-        tags: [
-          resetTag,
-          newlineTag,
-        ],
+        tags: [resetTag, newlineTag],
       },
 
       effects: {
@@ -573,20 +571,12 @@ import "../../../styles/MiniMessageTool.css";
 
       interactive: {
         display: "Interactive",
-        tags: [
-          clickTag,
-          hoverTag,
-          insertionTag,
-        ],
+        tags: [clickTag, hoverTag, insertionTag],
       },
 
       content: {
         display: "Content",
-        tags: [
-          headTag,
-          keybindTag,
-          translatableTag,
-        ],
+        tags: [headTag, keybindTag, translatableTag],
       },
     };
 
@@ -649,8 +639,8 @@ import "../../../styles/MiniMessageTool.css";
         return MiniMessage.builder()
           .strict(strictMode)
           .postProcessor((c) => {
-                return verbose ? c : c.compact();
-            })
+            return verbose ? c : c.compact();
+          })
           .translations(raw)
           .build();
       }
