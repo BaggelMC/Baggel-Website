@@ -1,0 +1,255 @@
+---
+import { VERSIONS, LATEST_VERSION, type Version } from "../../scripts/docs-config";
+import { slugExistsInVersion } from "../../scripts/docs";
+
+interface Props {
+  lang: string;
+  currentVersion: Version;
+  currentSlug: string;
+}
+
+const { lang, currentVersion, currentSlug } = Astro.props;
+
+// Pre-compute which versions have this page, so the client doesn't need to
+const versionAvailability = await Promise.all(
+  VERSIONS.map(async (v) => ({
+    version: v,
+    exists: await slugExistsInVersion(lang, v, currentSlug),
+    isCurrent: v === currentVersion,
+    isLatest: v === LATEST_VERSION,
+  }))
+);
+---
+
+<div class="version-switcher" x-data="{ open: false }" @click.outside="open = false">
+  <button
+    class="switcher-trigger"
+    @click="open = !open"
+    :aria-expanded="open"
+    aria-haspopup="listbox"
+  >
+    <span class="switcher-label">Version</span>
+    <span class="switcher-value">{currentVersion}</span>
+    <svg class="switcher-chevron" :class="{ 'rotated': open }" width="12" height="12" viewBox="0 0 12 12" fill="none">
+      <path d="M2 4L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <ul
+    class="switcher-dropdown"
+    x-show="open"
+    x-transition:enter="dropdown-enter"
+    x-transition:enter-start="dropdown-enter-start"
+    x-transition:enter-end="dropdown-enter-end"
+    x-transition:leave="dropdown-leave"
+    x-transition:leave-start="dropdown-enter-end"
+    x-transition:leave-end="dropdown-enter-start"
+    role="listbox"
+  >
+    {versionAvailability.map(({ version, exists, isCurrent, isLatest }) => (
+      <li role="option" aria-selected={isCurrent}>
+        {exists ? (
+          <a
+            href={`/docs/${lang}/${version}/${currentSlug}`}
+            class:list={["switcher-option", { "switcher-option--active": isCurrent }]}
+          >
+            <span>{version}</span>
+            <span class="option-badges">
+              {isLatest && <span class="badge badge--latest">latest</span>}
+              {isCurrent && <span class="badge badge--current">current</span>}
+            </span>
+          </a>
+        ) : (
+          <button
+            class="switcher-option switcher-option--missing"
+            data-version={version}
+            data-lang={lang}
+            @click={`open = false; $dispatch('version-missing', { version: '${version}' })`}
+          >
+            <span>{version}</span>
+            <span class="option-badges">
+              {isLatest && <span class="badge badge--latest">latest</span>}
+              <span class="badge badge--missing">no page</span>
+            </span>
+          </button>
+        )}
+      </li>
+    ))}
+  </ul>
+</div>
+
+<!-- "Page not available" toast -->
+<div
+  id="version-missing-toast"
+  class="version-toast"
+  x-data="{ show: false, version: '' }"
+  x-show="show"
+  x-transition
+  @version-missing.window="show = true; version = $event.detail.version; setTimeout(() => show = false, 3500)"
+>
+  <span x-text="`This page doesn't exist in ` + version + `.`"></span>
+</div>
+
+
+
+<style>
+  .version-switcher {
+    position: relative;
+    font-family: var(--font-sans);
+  }
+
+  .switcher-trigger {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    width: 100%;
+    padding: var(--space-2) var(--space-3);
+    background: var(--color-background-10);
+    border: 1px solid color-mix(in srgb, var(--color-separator) 30%, transparent);
+    border-radius: 6px;
+    color: var(--color-text);
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    transition:
+      border-color var(--transition-duration-fast) var(--transition-timing-default),
+      background var(--transition-duration-fast) var(--transition-timing-default);
+  }
+
+  .switcher-trigger:hover {
+    border-color: color-mix(in srgb, var(--color-separator) 60%, transparent);
+    background: var(--color-background-50);
+  }
+
+  .switcher-label {
+    color: var(--color-text-50);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .switcher-value {
+    flex: 1;
+    text-align: left;
+    color: var(--color-primary);
+    font-weight: 500;
+  }
+
+  .switcher-chevron {
+    color: var(--color-text-50);
+    transition: transform var(--transition-duration-fast) var(--transition-timing-default);
+    flex-shrink: 0;
+  }
+
+  .switcher-chevron.rotated {
+    transform: rotate(180deg);
+  }
+
+  .switcher-dropdown {
+    position: absolute;
+    top: calc(100% + var(--space-2));
+    left: 0;
+    right: 0;
+    background: var(--color-background-10);
+    border: 1px solid color-mix(in srgb, var(--color-separator) 35%, transparent);
+    border-radius: 8px;
+    padding: var(--space-2);
+    list-style: none;
+    margin: 0;
+    z-index: 50;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+
+  .dropdown-enter { transition: opacity 0.15s ease, transform 0.15s ease; }
+  .dropdown-enter-start { opacity: 0; transform: translateY(-4px); }
+  .dropdown-enter-end { opacity: 1; transform: translateY(0); }
+  .dropdown-leave { transition: opacity 0.1s ease; }
+
+  .switcher-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-2) var(--space-3);
+    border-radius: 5px;
+    font-size: var(--text-xs);
+    color: var(--color-text-50);
+    text-decoration: none;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    transition:
+      color var(--transition-duration-fast) var(--transition-timing-default),
+      background var(--transition-duration-fast) var(--transition-timing-default);
+  }
+
+  .switcher-option:hover {
+    color: var(--color-text);
+    background: color-mix(in srgb, var(--color-background-50) 60%, transparent);
+  }
+
+  .switcher-option--active {
+    color: var(--color-primary);
+    background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  }
+
+  .switcher-option--missing {
+    opacity: 0.5;
+    cursor: default;
+  }
+
+  .switcher-option--missing:hover {
+    color: var(--color-text-50);
+    background: none;
+  }
+
+  .option-badges {
+    display: flex;
+    gap: var(--space-1);
+  }
+
+  .badge {
+    font-size: 9px;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-family: var(--font-sans);
+    letter-spacing: 0.04em;
+  }
+
+  .badge--latest {
+    background: color-mix(in srgb, var(--color-primary) 15%, transparent);
+    color: var(--color-primary);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 25%, transparent);
+  }
+
+  .badge--current {
+    background: color-mix(in srgb, var(--color-accent) 15%, transparent);
+    color: var(--color-accent);
+    border: 1px solid color-mix(in srgb, var(--color-accent) 25%, transparent);
+  }
+
+  .badge--missing {
+    background: color-mix(in srgb, var(--color-error) 12%, transparent);
+    color: var(--color-error);
+    border: 1px solid color-mix(in srgb, var(--color-error) 20%, transparent);
+  }
+
+  /* Toast */
+  .version-toast {
+    position: fixed;
+    bottom: var(--space-6);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-background-10);
+    border: 1px solid color-mix(in srgb, var(--color-error) 30%, transparent);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    padding: var(--space-3) var(--space-5);
+    border-radius: 8px;
+    z-index: 100;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    white-space: nowrap;
+  }
+</style>

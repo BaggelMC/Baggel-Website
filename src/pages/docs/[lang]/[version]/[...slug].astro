@@ -1,0 +1,51 @@
+---
+import { render } from "astro:content";
+import DocsLayout from "../../../../layouts/DocsLayout.astro";
+import { getAllDocsPaths, resolveEntry } from "../../../../scripts/docs";
+import {
+  isValidVersion,
+  isValidLang,
+  DEFAULT_LANG,
+  LATEST_VERSION,
+} from "../../../../scripts/docs-config";
+import type { Version } from "../../../../scripts/docs-config";
+
+export async function getStaticPaths() {
+  return getAllDocsPaths();
+}
+
+const { lang, version, slug } = Astro.params as {
+  lang: string;
+  version: string;
+  slug: string;
+};
+
+const { resolvedSlug } = Astro.props as { resolvedSlug: string };
+
+if (!isValidLang(lang) || !isValidVersion(version)) {
+  return Astro.redirect(`/docs/${DEFAULT_LANG}/${LATEST_VERSION}`);
+}
+
+const resolved = await resolveEntry(lang, version as Version, resolvedSlug);
+
+if (!resolved) {
+  return Astro.redirect(`/docs/${lang}/${version}`);
+}
+
+const { entry, inherited, langFallback } = resolved;
+const { Content } = await render(entry);
+---
+
+<DocsLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  lang={lang}
+  version={version as Version}
+  slug={slug}
+  deprecated={entry.data.deprecated}
+  deprecationMessage={entry.data.deprecationMessage}
+  langFallback={langFallback}
+  inherited={inherited}
+>
+  <Content />
+</DocsLayout>

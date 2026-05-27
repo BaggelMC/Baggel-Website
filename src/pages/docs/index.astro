@@ -1,0 +1,37 @@
+---
+import { getCollection } from "astro:content";
+import { buildNav } from "../../scripts/docs";
+import {
+  VERSIONS,
+  LATEST_VERSION,
+  DEFAULT_LANG,
+  isValidLang,
+  isValidVersion,
+} from "../../scripts/docs-config";
+import { parseEntryId } from "../../scripts/docs";
+import type { Version } from "../../scripts/docs-config";
+
+export async function getStaticPaths() {
+  const all = await getCollection("docs");
+  const langs = [...new Set(all.map((e) => parseEntryId(e.id).lang))];
+
+  return VERSIONS.flatMap((version) =>
+    langs.map((lang) => ({ params: { lang, version } })),
+  );
+}
+
+const { lang, version } = Astro.params as { lang: string; version: string };
+
+if (!isValidLang(lang) || !isValidVersion(version)) {
+  return Astro.redirect(`/docs/${DEFAULT_LANG}/${LATEST_VERSION}/core`);
+}
+
+const nav = await buildNav(lang, version as Version);
+const first = nav[0];
+
+if (first) {
+  return Astro.redirect(first.href, 302);
+}
+
+return Astro.redirect(`/docs/${DEFAULT_LANG}/${LATEST_VERSION}/core`);
+---
