@@ -9,14 +9,14 @@ import AururmLogo from "../assets/images/aurum_logo_resized.png?format=webp";
 //@ts-ignore
 import OrgLogo from "../assets/logo.png?format=webp";
 
-import teamDataRaw from "../data/team.json";
+import teamDataRaw from "../content/team.json";
 
 const avatars = import.meta.glob<{ default: string }>(
   "../assets/team/*/avatar.png",
   {
     eager: true,
     query: { w: 160, format: "webp", imagetools: true },
-  }
+  },
 );
 
 const teamData = {
@@ -34,7 +34,11 @@ const teamData = {
   </section>
 
   <div class="flex flex-wrap justify-center gap-8">
-    <div class="w-full px-4 md:px-32" style="height: 700px;" oncontextmenu="event.preventDefault()">
+    <div
+      class="w-full px-4 md:px-32"
+      style="height: 700px;"
+      oncontextmenu="event.preventDefault()"
+    >
       <TeamGraph client:load data={teamData} logoSrc={OrgLogo} />
     </div>
   </div>

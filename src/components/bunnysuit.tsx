@@ -44,7 +44,12 @@ export default function BunnySuitConverter() {
         const maskCtx = maskCanvas.getContext("2d")!;
         maskCtx.drawImage(maskImg, 0, 0);
 
-        const maskData = maskCtx.getImageData(0, 0, canvas.width, canvas.height);
+        const maskData = maskCtx.getImageData(
+          0,
+          0,
+          canvas.width,
+          canvas.height,
+        );
         const skinData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
         for (let i = 0; i < maskData.data.length; i += 4) {
@@ -102,7 +107,14 @@ export default function BunnySuitConverter() {
       }}
     >
       {/* Skin Upload */}
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "var(--space-2)" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "var(--space-2)",
+        }}
+      >
         <label style={{ fontWeight: 600 }}>Upload skin</label>
         <input
           type="file"
@@ -123,15 +135,26 @@ export default function BunnySuitConverter() {
             border: "none",
             transition: "background-color 0.3s ease",
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "var(--color-accent)")}
-          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--color-primary)")}
+          onMouseEnter={(e) =>
+            (e.currentTarget.style.backgroundColor = "var(--color-accent)")
+          }
+          onMouseLeave={(e) =>
+            (e.currentTarget.style.backgroundColor = "var(--color-primary)")
+          }
         >
           {skinFile ? skinFile.name : "Choose skin"}
         </button>
       </div>
 
       {/* Overlay Selector */}
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "var(--space-2)" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "var(--space-2)",
+        }}
+      >
         <label style={{ fontWeight: 600 }}>Choose Overlay</label>
         <select
           style={{
@@ -153,7 +176,14 @@ export default function BunnySuitConverter() {
       </div>
 
       {/* Preview */}
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "var(--space-2)" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "var(--space-2)",
+        }}
+      >
         <p style={{ fontWeight: 600 }}>Preview</p>
         <div
           style={{

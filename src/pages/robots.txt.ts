@@ -2,15 +2,10 @@ import type { APIRoute } from "astro";
 
 export const GET: APIRoute = () => {
   // Normal bots cannot access
-  const disallowedPaths = [
-        "/example",
-    ];
+  const disallowedPaths = ["/example"];
 
   // Blocked user agents
-  const blockedAgents = [
-    "GPTBot",
-    "Google-Extended",
-  ];
+  const blockedAgents = ["GPTBot", "Google-Extended"];
 
   // Default rule
   const defaultRules = [
@@ -22,15 +17,8 @@ export const GET: APIRoute = () => {
 
   // Blocked bot rules
   const blockedRules = blockedAgents
-    .map(
-      (agent) => [
-        `User-agent: ${agent}`,
-        "Disallow: /",
-        "",
-      ].join("\n")
-    )
+    .map((agent) => [`User-agent: ${agent}`, "Disallow: /", ""].join("\n"))
     .join("\n");
-
 
   const content = [
     blockedRules,

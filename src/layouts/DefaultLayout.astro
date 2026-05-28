@@ -21,6 +21,7 @@ const {
 
 const fullTitle = title ? `${title} | ${titleSuffix}` : titleSuffix;
 ---
+
 <html lang={lang}>
   <head>
     <meta charset="UTF-8" />
@@ -52,7 +53,7 @@ const fullTitle = title ? `${title} | ${titleSuffix}` : titleSuffix;
 
     <link href={RESOURCES.fontURL} rel="stylesheet" />
 
-    {enableAlpine && <script src="https://unpkg.com/alpinejs" defer></script>}
+    {enableAlpine && <script src="https://unpkg.com/alpinejs" defer />}
 
     <slot name="head" />
   </head>

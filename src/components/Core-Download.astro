@@ -6,7 +6,7 @@ const { lang } = Astro.props;
 let github = "";
 let modrinth = "";
 
-switch(lang) {
+switch (lang) {
   case "de": {
     github = "Quellcode (GitHub)";
     modrinth = "Alle Versionen (Modrinth)";
@@ -20,12 +20,26 @@ switch(lang) {
 }
 ---
 
-<h2 class="text-xl text-center leading-xl text-primary mt-12 mb-6 font-minecraft">Download</h2>
+<h2
+  class="text-xl text-center leading-xl text-primary mt-12 mb-6 font-minecraft"
+>
+  Download
+</h2>
 <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-6">
-    <a href={LINKS.core_plugin_download_github} class="px-6 py-3 rounded-2xl bg-primary text-background font-bold transition duration-300 hover:bg-accent hover:scale-105" target="_blank" rel="noopener noreferrer">
-      {github}
-    </a>
-    <a href={LINKS.core_plugin_download_modrinth} class="px-6 py-3 rounded-2xl bg-accent text-background font-bold transition duration-300 hover:bg-primary hover:scale-105" target="_blank" rel="noopener noreferrer">
-      {modrinth}
-    </a>
+  <a
+    href={LINKS.core_plugin_download_github}
+    class="px-6 py-3 rounded-2xl bg-primary text-background font-bold transition duration-300 hover:bg-accent hover:scale-105"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    {github}
+  </a>
+  <a
+    href={LINKS.core_plugin_download_modrinth}
+    class="px-6 py-3 rounded-2xl bg-accent text-background font-bold transition duration-300 hover:bg-primary hover:scale-105"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    {modrinth}
+  </a>
 </div>

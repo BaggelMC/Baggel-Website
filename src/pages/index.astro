@@ -11,7 +11,7 @@ import TextLogo from "../assets/largehero.png?format=webp&w=1000";
 import DirtTexture from "../assets/images/textures/dirt.png";
 import PlayButtonTexture from "../assets/images/textures/play.png";
 import PlayButtonHoverTexture from "../assets/images/textures/play_hover.png";
-import Click from "../assets/audio/click.ogg"
+import Click from "../assets/audio/click.ogg";
 //@ts-ignore
 import Screenshot from "../assets/server_status_background_1.png?format=webp&w=100";
 
@@ -47,7 +47,7 @@ import ImageTNTTagMed from "../assets/images/gamemodes/tnttag.png?format=webp&w=
 //@ts-ignore
 import ImageTNTTagHigh from "../assets/images/gamemodes/tnttag.png?format=png&w=1400";
 
-import Pronounciation from "../assets/audio/baggel.mp3"
+import Pronounciation from "../assets/audio/baggel.mp3";
 
 const finishedGames = [
   {
@@ -55,28 +55,32 @@ const finishedGames = [
     description:
       "Tritt gegen einen anderen Spieler in intensiven, schnellen PvP-Duellen an. Wähle dein Kit, schärfe deine Reflexe und kämpfe um den Sieg in unseren Arenen! Nur die Besten werden bestehen.",
     images: [ImageDuelsLow, ImageDuelsMed, ImageDuelsHigh],
-    image_alt: "Zwei Spieler in Diamantrüstungen kämpfen mit Diamantschwertern und -schilden in einer felsigen Arena.",
+    image_alt:
+      "Zwei Spieler in Diamantrüstungen kämpfen mit Diamantschwertern und -schilden in einer felsigen Arena.",
   },
   {
     name: "Knockback FFA",
     description:
       "Keine Teams, keine Gnade! Jeder Spieler für sich selbst! Springe in chaotische Free-for-All-Kämpfe, bei denen schnelles Denken und Geschick entscheiden, wer das Schlachtfeld dominiert.",
     images: [ImageFFALow, ImageFFAMed, ImageFFAHigh],
-    image_alt: "Zwei Spieler kämpfen in einer Ebenenlandschaft mit Lederrüstungen und Knockback Sticks.",
+    image_alt:
+      "Zwei Spieler kämpfen in einer Ebenenlandschaft mit Lederrüstungen und Knockback Sticks.",
   },
   {
     name: "Fireball Fight",
     description:
       "Schieße, weiche aus und kämpfe dich mit Explosionen zum Sieg! Nutze Präzision und Timing, um deine Gegner mit gut gezielten Feuerbällen von der Karte zu befördern. Ein Treffer kann alles ändern.",
     images: [ImageFireballLow, ImageFireballMed, ImageFireballHigh],
-    image_alt: "Zwei Spieler kämpfen. Einer befindet sich auf einem hohen Turm in blauer Rüstung und schleudert einen Feuerball auf einen Spieler in roter Rüstung.",
+    image_alt:
+      "Zwei Spieler kämpfen. Einer befindet sich auf einem hohen Turm in blauer Rüstung und schleudert einen Feuerball auf einen Spieler in roter Rüstung.",
   },
   {
     name: "Hot Potato",
     description:
       "Du hast eine tickende Zeitbombe! Gib sie schnell weiter, bevor sie explodiert! Wer am Ende die Bombe hat, verliert. Geschwindigkeit und Strategie entscheiden über Sieg oder Niederlage.",
     images: [ImageTNTTagLow, ImageTNTTagMed, ImageTNTTagHigh],
-    image_alt: "Ein Spieler mit einem TNT-Kopf jagt einen anderen brennenden Spieler durch eine enge Arena.",
+    image_alt:
+      "Ein Spieler mit einem TNT-Kopf jagt einen anderen brennenden Spieler durch eine enge Arena.",
   },
 ];
 
@@ -120,13 +124,17 @@ const unfinishedGames = [
 ---
 
 <DefaultLayout>
-
-  <div class="max-w-5xl mx-auto px-4 sm:px-8 py-16 sm:py-20 text-text font-sans space-y-20">
-
-    <img src={TextLogo} class="mx-auto h-30 md:h-80 object-cover" alt="Baggel Logo" />
+  <div
+    class="max-w-5xl mx-auto px-4 sm:px-8 py-16 sm:py-20 text-text font-sans space-y-20"
+  >
+    <img
+      src={TextLogo}
+      class="mx-auto h-30 md:h-80 object-cover"
+      alt="Baggel Logo"
+    />
 
     <!-- Server Info Section -->
-    <section 
+    <section
       class="info-section bg-background-10 relative max-w-xl mx-auto text-left text-text rounded-4xl shadow-lg border border-background-50 hover:border-accent transition-all duration-500 overflow-hidden"
     >
       <div class="absolute inset-0 h-67 overflow-hidden">
@@ -138,12 +146,18 @@ const unfinishedGames = [
       </div>
 
       <!-- Content Overlay -->
-      <div class="relative z-10 px-6 sm:px-8 md:px-10 py-10 text-center space-y-4 bg-transparent">
-        <h2 class="text-xl sm:text-2xl font-bold tracking-wide text-primary text-center">Server-Status</h2>
+      <div
+        class="relative z-10 px-6 sm:px-8 md:px-10 py-10 text-center space-y-4 bg-transparent"
+      >
+        <h2
+          class="text-xl sm:text-2xl font-bold tracking-wide text-primary text-center"
+        >
+          Server-Status
+        </h2>
 
         <ul class="space-y-2 text-base">
           <li>
-            <strong>Status:</strong> 
+            <strong>Status:</strong>
             <span id="server-status" class="text-neutral-400">Lädt...</span>
           </li>
           <li>
@@ -157,8 +171,15 @@ const unfinishedGames = [
             class="motd-box mt-2 items-center gap-4 font-minecraft text-xs group inline-flex"
             style={`background-image: url('${DirtTexture.src}');`}
           >
-            <div class="icon-container relative w-16 h-16 shrink-0 hidden select-none" id="serverIconContainer">
-              <img id="server-icon" alt="Server Icon" class="icon-image w-full h-full object-cover" />
+            <div
+              class="icon-container relative w-16 h-16 shrink-0 hidden select-none"
+              id="serverIconContainer"
+            >
+              <img
+                id="server-icon"
+                alt="Server Icon"
+                class="icon-image w-full h-full object-cover"
+              />
               <img
                 src={PlayButtonTexture.src}
                 alt="Play Button Overlay"
@@ -177,15 +198,21 @@ const unfinishedGames = [
         </div>
 
         <div class="mt-4 flex justify-center">
-          <CopyServerAddressButton text="Kopiere Server-Adresse" copyText={LINKS.server_address} />
+          <CopyServerAddressButton
+            text="Kopiere Server-Adresse"
+            copyText={LINKS.server_address}
+          />
         </div>
       </div>
     </section>
 
-
-    <section class="definition-section max-w-xl mx-auto px-6 sm:px-8 md:px-10 text-left text-text rounded-4xl bg-linear-to-br from-background-10 to-background-10 border border-background-50 hover:border-accent transition-all duration-500 shadow-lg hover:shadow-2xl py-5">
+    <section
+      class="definition-section max-w-xl mx-auto px-6 sm:px-8 md:px-10 text-left text-text rounded-4xl bg-linear-to-br from-background-10 to-background-10 border border-background-50 hover:border-accent transition-all duration-500 shadow-lg hover:shadow-2xl py-5"
+    >
       <div class="flex items-center gap-4">
-        <h2 class="text-xl sm:text-2xl font-bold italic tracking-wide text-primary mb-4">
+        <h2
+          class="text-xl sm:text-2xl font-bold italic tracking-wide text-primary mb-4"
+        >
           Ba·ggel
         </h2>
         <button
@@ -200,9 +227,18 @@ const unfinishedGames = [
             viewBox="0 0 32 32"
             class="w-10 h-10 sm:w-15 sm:h-15"
           >
-            <path xmlns="http://www.w3.org/2000/svg" d="M20.4,2.9c-0.3-0.2-0.7-0.1-1,0.1L9.7,10H3c-0.6,0-1,0.4-1,1v10c0,0.6,0.4,1,1,1h6.7l9.7,7.1c0.2,0.1,0.4,0.2,0.6,0.2   c0.2,0,0.3,0,0.5-0.1c0.3-0.2,0.5-0.5,0.5-0.9V3.8C21,3.4,20.8,3,20.4,2.9z"/>
-            <path xmlns="http://www.w3.org/2000/svg" d="M27.1,9.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4C27.2,12.1,28,14,28,16s-0.8,3.9-2.3,5.3c-0.4,0.4-0.4,1,0,1.4   c0.2,0.2,0.5,0.3,0.7,0.3c0.2,0,0.5-0.1,0.7-0.3C29,20.9,30,18.6,30,16S29,11.1,27.1,9.3z"/>
-            <path xmlns="http://www.w3.org/2000/svg" d="M24.7,12.7c-0.4-0.4-1-0.4-1.4,0.1c-0.4,0.4-0.3,1,0.1,1.4c0.5,0.5,0.8,1.2,0.8,1.9s-0.3,1.4-0.8,1.9   c-0.4,0.4-0.4,1-0.1,1.4c0.2,0.2,0.5,0.3,0.7,0.3c0.2,0,0.5-0.1,0.7-0.3c1-0.9,1.5-2.1,1.5-3.3S25.6,13.5,24.7,12.7z"/>
+            <path
+              xmlns="http://www.w3.org/2000/svg"
+              d="M20.4,2.9c-0.3-0.2-0.7-0.1-1,0.1L9.7,10H3c-0.6,0-1,0.4-1,1v10c0,0.6,0.4,1,1,1h6.7l9.7,7.1c0.2,0.1,0.4,0.2,0.6,0.2   c0.2,0,0.3,0,0.5-0.1c0.3-0.2,0.5-0.5,0.5-0.9V3.8C21,3.4,20.8,3,20.4,2.9z"
+            ></path>
+            <path
+              xmlns="http://www.w3.org/2000/svg"
+              d="M27.1,9.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4C27.2,12.1,28,14,28,16s-0.8,3.9-2.3,5.3c-0.4,0.4-0.4,1,0,1.4   c0.2,0.2,0.5,0.3,0.7,0.3c0.2,0,0.5-0.1,0.7-0.3C29,20.9,30,18.6,30,16S29,11.1,27.1,9.3z"
+            ></path>
+            <path
+              xmlns="http://www.w3.org/2000/svg"
+              d="M24.7,12.7c-0.4-0.4-1-0.4-1.4,0.1c-0.4,0.4-0.3,1,0.1,1.4c0.5,0.5,0.8,1.2,0.8,1.9s-0.3,1.4-0.8,1.9   c-0.4,0.4-0.4,1-0.1,1.4c0.2,0.2,0.5,0.3,0.7,0.3c0.2,0,0.5-0.1,0.7-0.3c1-0.9,1.5-2.1,1.5-3.3S25.6,13.5,24.7,12.7z"
+            ></path>
           </svg>
         </button>
       </div>
@@ -221,61 +257,64 @@ const unfinishedGames = [
       <h2 class="text-2xl font-bold mb-8 text-primary">Verfügbare Spiele</h2>
 
       <div class="flex flex-wrap justify-center gap-8">
-        {finishedGames.map((game) => (
-          <div class="w-full sm:w-[45%] lg:w-[45%] max-w-xl group relative rounded-2xl overflow-hidden bg-background-10 border border-background-50 hover:border-accent transition-all duration-500 shadow-lg hover:shadow-2xl">
-          <div class="progressive-img-wrapper w-full h-48">
-            <img
-              src={game.images[0]}
-              data-images={JSON.stringify(game.images)}
-              alt={game.image_alt}
-              loading="lazy"
-              decoding="async"
-              class="progressive-img w-full h-full object-cover"
-            />
-          </div>
-          <div class="p-6 text-left space-y-2">
-            <h3 class="text-xl font-bold text-primary">{game.name}</h3>
-            <p class="text-text-50">{game.description}</p>
-          </div>
-        </div>
-
-        ))}
+        {
+          finishedGames.map((game) => (
+            <div class="w-full sm:w-[45%] lg:w-[45%] max-w-xl group relative rounded-2xl overflow-hidden bg-background-10 border border-background-50 hover:border-accent transition-all duration-500 shadow-lg hover:shadow-2xl">
+              <div class="progressive-img-wrapper w-full h-48">
+                <img
+                  src={game.images[0]}
+                  data-images={JSON.stringify(game.images)}
+                  alt={game.image_alt}
+                  loading="lazy"
+                  decoding="async"
+                  class="progressive-img w-full h-full object-cover"
+                />
+              </div>
+              <div class="p-6 text-left space-y-2">
+                <h3 class="text-xl font-bold text-primary">{game.name}</h3>
+                <p class="text-text-50">{game.description}</p>
+              </div>
+            </div>
+          ))
+        }
       </div>
     </section>
 
-    <Separator/>
+    <Separator />
 
     <!-- Coming Soon Section -->
     <section class="unfinished-games text-center">
       <h2 class="text-2xl font-bold mb-8 text-primary">Demnächst</h2>
 
       <div class="flex flex-wrap justify-center gap-8">
-        {unfinishedGames.map((game) => (
-          <div class="w-full sm:w-[45%] lg:w-[45%] max-w-xl group relative rounded-2xl overflow-hidden bg-background-10 border border-background-50 hover:border-accent transition-all duration-500 shadow-lg hover:shadow-2xl">
-            <div class="absolute bottom-4 right-4 bg-accent/20 text-accent text-xs font-semibold px-2 py-1 rounded-md backdrop-blur-sm border border-accent/30">
-              In Entwicklung
-            </div>
+        {
+          unfinishedGames.map((game) => (
+            <div class="w-full sm:w-[45%] lg:w-[45%] max-w-xl group relative rounded-2xl overflow-hidden bg-background-10 border border-background-50 hover:border-accent transition-all duration-500 shadow-lg hover:shadow-2xl">
+              <div class="absolute bottom-4 right-4 bg-accent/20 text-accent text-xs font-semibold px-2 py-1 rounded-md backdrop-blur-sm border border-accent/30">
+                In Entwicklung
+              </div>
 
-            <div class="p-6 text-left space-y-2 mb-8">
-              <h3 class="text-xl font-bold text-primary">{game.name}</h3>
-              <p class="text-text-50">{game.description}</p>
+              <div class="p-6 text-left space-y-2 mb-8">
+                <h3 class="text-xl font-bold text-primary">{game.name}</h3>
+                <p class="text-text-50">{game.description}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </section>
 
     <!-- Development Notice -->
     <section class="text-center max-w-2xl mx-auto">
-      <Separator/>
+      <Separator />
       <p class="text-text-50 text-base">
-        Unser Server befindet sich derzeit in <span class="text-accent font-semibold">aktiver Entwicklung</span>.<br />
+        Unser Server befindet sich derzeit in <span
+          class="text-accent font-semibold">aktiver Entwicklung</span
+        >.<br />
         Neue Spielmodi und Funktionen werden ständig hinzugefügt. Bleib dran!
       </p>
     </section>
-
   </div>
-
 </DefaultLayout>
 
 <script src="../scripts/index/pronounciationButton.ts"></script>

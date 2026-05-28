@@ -1,15 +1,15 @@
 ---
 import { getCollection } from "astro:content";
-import { buildNav } from "../../scripts/docs";
+import { buildNav } from "../../scripts/docs/docs";
 import {
   VERSIONS,
   LATEST_VERSION,
   DEFAULT_LANG,
   isValidLang,
   isValidVersion,
-} from "../../scripts/docs-config";
-import { parseEntryId } from "../../scripts/docs";
-import type { Version } from "../../scripts/docs-config";
+} from "../../scripts/docs/docs-config";
+import { parseEntryId } from "../../scripts/docs/docs";
+import type { Version } from "../../scripts/docs/docs-config";
 
 export async function getStaticPaths() {
   const all = await getCollection("docs");

@@ -1,7 +1,11 @@
 import { useState } from "react";
 import type { GallerySection } from "../scripts/gallery";
 
-export default function GalleryCarousel({ section }: { section: GallerySection }) {
+export default function GalleryCarousel({
+  section,
+}: {
+  section: GallerySection;
+}) {
   const images = Object.values(section.images);
   const [current, setCurrent] = useState(0);
 
@@ -14,7 +18,10 @@ export default function GalleryCarousel({ section }: { section: GallerySection }
         {section.name}
       </h2>
 
-      <div className="relative overflow-hidden rounded-2xl" style={{ aspectRatio: "16 / 9" }}>
+      <div
+        className="relative overflow-hidden rounded-2xl"
+        style={{ aspectRatio: "16 / 9" }}
+      >
         {/* Slides */}
         <div
           className="flex transition-transform duration-(--transition-duration-fast) ease-(--transition-timing-soft)"
@@ -24,7 +31,7 @@ export default function GalleryCarousel({ section }: { section: GallerySection }
             <div className="min-w-full" key={idx}>
               <img
                 src={img.src}
-                alt={section.name} 
+                alt={section.name}
                 loading="lazy"
                 className="object-cover w-full h-full"
                 style={{ aspectRatio: "16 / 9" }}

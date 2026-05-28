@@ -4,44 +4,66 @@ import DefaultLayout from "../../../layouts/DefaultLayout.astro";
 import { LINKS } from "../../../config";
 
 // @ts-ignore
-import BuildmcLogo from "../../../assets/images/buildmc-logo.png?format=webp"
+import BuildmcLogo from "../../../assets/images/buildmc-logo.png?format=webp";
 ---
 
 <DefaultLayout title="BuildMC" lang="de">
-
-  <div class="max-w-5xl mx-auto px-4 sm:px-8 py-16 sm:py-20 text-text font-sans space-y-12">
-
+  <div
+    class="max-w-5xl mx-auto px-4 sm:px-8 py-16 sm:py-20 text-text font-sans space-y-12"
+  >
     <!-- Logo Section -->
     <div class="flex justify-center mb-8">
-      <img src={BuildmcLogo} alt="BuildMC Logo" class="w-full max-w-md h-auto" />
+      <img
+        src={BuildmcLogo}
+        alt="BuildMC Logo"
+        class="w-full max-w-md h-auto"
+      />
     </div>
 
     <!-- About Section -->
-    <section class="info-section bg-background-10 relative max-w-4xl mx-auto text-left text-text rounded-4xl shadow-lg border border-background-50 hover:border-accent transition-all duration-500 overflow-hidden">
+    <section
+      class="info-section bg-background-10 relative max-w-4xl mx-auto text-left text-text rounded-4xl shadow-lg border border-background-50 hover:border-accent transition-all duration-500 overflow-hidden"
+    >
       <div class="relative z-10 px-6 sm:px-8 md:px-10 py-10 space-y-6">
-        <h2 class="text-xl sm:text-2xl font-bold tracking-wide text-primary text-center font-minecraft">Über BuildMC</h2>
-        
+        <h2
+          class="text-xl sm:text-2xl font-bold tracking-wide text-primary text-center font-minecraft"
+        >
+          Über BuildMC
+        </h2>
+
         <div class="space-y-4 text-base leading-base text-text/90">
           <p>
-            <strong class="text-primary">BuildMC</strong> ist ein kollaboratives Minecraft Survival Multiplayer (SMP) Projekt, 
-            das Baumeister, Entdecker und Kreative in einer gemeinsamen Welt zusammenbringt. Unser Server konzentriert sich auf 
-            gemeinschaftliches Bauen, kreative Zusammenarbeit und langfristige Weltenentwicklung.
-          </p>
-          
-          <p>
-            Jede Saison von BuildMC bietet einen Neustart mit neuen Herausforderungen, Themen und Möglichkeiten für Spieler, 
-            ihre Spuren in der Welt zu hinterlassen. Wir legen Wert auf faires Spiel, Respekt und die Freude am gemeinsamen Bauen.
+            <strong class="text-primary">BuildMC</strong> ist ein kollaboratives Minecraft
+            Survival Multiplayer (SMP) Projekt, das Baumeister, Entdecker und Kreative
+            in einer gemeinsamen Welt zusammenbringt. Unser Server konzentriert sich
+            auf gemeinschaftliches Bauen, kreative Zusammenarbeit und langfristige
+            Weltenentwicklung.
           </p>
 
           <p>
-            Alle BuildMC-Server werden von <a href="/plugins/de/core" target="_blank" rel="noopener noreferrer" class="text-accent font-bold hover:underline">BuildMC-Core</a> angetrieben, unserem benutzerdefinierten Plugin, 
-            das wichtige Funktionen wie Claim-Systeme, Spielerköpfe, Spawn-Elytra und vieles mehr bereitstellt. Diese einheitliche 
-            Grundlage sorgt für ein konsistentes und poliertes Erlebnis in allen unseren Projekten.
+            Jede Saison von BuildMC bietet einen Neustart mit neuen
+            Herausforderungen, Themen und Möglichkeiten für Spieler, ihre Spuren
+            in der Welt zu hinterlassen. Wir legen Wert auf faires Spiel,
+            Respekt und die Freude am gemeinsamen Bauen.
+          </p>
+
+          <p>
+            Alle BuildMC-Server werden von <a
+              href="/plugins/de/core"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-accent font-bold hover:underline">BuildMC-Core</a
+            > angetrieben, unserem benutzerdefinierten Plugin, das wichtige Funktionen
+            wie Claim-Systeme, Spielerköpfe, Spawn-Elytra und vieles mehr bereitstellt.
+            Diese einheitliche Grundlage sorgt für ein konsistentes und poliertes
+            Erlebnis in allen unseren Projekten.
           </p>
         </div>
 
         <!-- Discord CTA -->
-        <div class="flex justify-center gap-4 mt-8 pt-6 border-t border-background-50">
+        <div
+          class="flex justify-center gap-4 mt-8 pt-6 border-t border-background-50"
+        >
           <a
             href={LINKS.discord}
             target="_blank"
@@ -53,17 +75,19 @@ import BuildmcLogo from "../../../assets/images/buildmc-logo.png?format=webp"
         </div>
 
         <!-- Quick Links -->
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8 pt-6 border-t border-background-50">
-          <a 
-            href="/projects/buildmc/rules" 
+        <div
+          class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8 pt-6 border-t border-background-50"
+        >
+          <a
+            href="/projects/buildmc/rules"
             target="_blank"
             rel="noopener noreferrer"
             class="px-6 py-3 rounded-2xl bg-primary text-background font-bold transition duration-300 hover:bg-accent hover:scale-105 text-center w-full sm:w-auto"
           >
             Projektregeln
           </a>
-          <a 
-            href="/plugins/de/core" 
+          <a
+            href="/plugins/de/core"
             target="_blank"
             rel="noopener noreferrer"
             class="px-6 py-3 rounded-2xl bg-secondary text-text font-bold transition duration-300 hover:bg-accent hover:text-background hover:scale-105 text-center w-full sm:w-auto"
@@ -74,5 +98,4 @@ import BuildmcLogo from "../../../assets/images/buildmc-logo.png?format=webp"
       </div>
     </section>
   </div>
-
 </DefaultLayout>

@@ -1,14 +1,14 @@
 ---
 import { render } from "astro:content";
 import DocsLayout from "../../../../layouts/DocsLayout.astro";
-import { getAllDocsPaths, resolveEntry } from "../../../../scripts/docs";
+import { getAllDocsPaths, resolveEntry } from "../../../../scripts/docs/docs";
 import {
   isValidVersion,
   isValidLang,
   DEFAULT_LANG,
   LATEST_VERSION,
-} from "../../../../scripts/docs-config";
-import type { Version } from "../../../../scripts/docs-config";
+} from "../../../../scripts/docs/docs-config";
+import type { Version } from "../../../../scripts/docs/docs-config";
 
 export async function getStaticPaths() {
   return getAllDocsPaths();

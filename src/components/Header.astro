@@ -2,7 +2,14 @@
 // @ts-ignore
 import logoSrc from "../assets/logo.png?format=webp&w=64&h=64";
 // @ts-ignore
-import texture from "../assets/header-texture.png?format=webp&h=200"
+import texture from "../assets/header-texture.png?format=webp&h=200";
+
+const home_url = "/";
+const buildmc_url = "/projects/buildmc";
+const core_url = "/tools/core";
+const minimessage_url = "/tools/minimessage";
+const gallery_url = "/gallery";
+const team_url = "/team";
 ---
 
 <header class="relative text-text shadow-lg">
@@ -10,11 +17,19 @@ import texture from "../assets/header-texture.png?format=webp&h=200"
     class="relative"
     style={`background-image: url(${texture}); background-size: cover; background-position: center; image-rendering: pixelated;`}
   >
-    <div class="absolute inset-0 bg-linear-to-r from-primary/20 to-accent/20 pointer-events-none"></div>
+    <div
+      class="absolute inset-0 bg-linear-to-r from-primary/20 to-accent/20 pointer-events-none"
+    >
+    </div>
 
-    <div class="max-w-6xl mx-auto flex justify-between items-center p-(--space-4)">
+    <div
+      class="max-w-6xl mx-auto flex justify-between items-center p-(--space-4)"
+    >
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-2 text-lg font-bold font-minecraft z-2">
+      <a
+        href="/"
+        class="flex items-center gap-2 text-lg font-bold font-minecraft z-2"
+      >
         <img src={logoSrc} alt="Logo" class="h-[2em] w-auto" />
         Baggel
       </a>
@@ -22,7 +37,9 @@ import texture from "../assets/header-texture.png?format=webp&h=200"
       <!-- Desktop Navigation -->
       <nav class="hidden md:block">
         <ul class="flex space-x-6 items-center">
-          <li><a href="/" class="hover:text-accent transition">Home</a></li>
+          <li>
+            <a href={home_url} class="hover:text-accent transition">Home</a>
+          </li>
 
           <!-- Projects Dropdown -->
           <li class="dropdown relative">
@@ -31,8 +48,18 @@ import texture from "../assets/header-texture.png?format=webp&h=200"
               aria-expanded="false"
             >
               Projekte
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"></path>
               </svg>
             </button>
 
@@ -41,7 +68,13 @@ import texture from "../assets/header-texture.png?format=webp&h=200"
               role="menu"
             >
               <div class="bg-background rounded-[inherit] overflow-hidden">
-                <li><a href="/projects/buildmc" role="menuitem" class="block px-4 py-2 hover:bg-accent-light hover:text-accent">BuildMC</a></li>
+                <li>
+                  <a
+                    href={buildmc_url}
+                    role="menuitem"
+                    class="block px-4 py-2 hover:bg-accent-light hover:text-accent"
+                    >BuildMC</a>
+                </li>
               </div>
             </ul>
           </li>
@@ -53,8 +86,18 @@ import texture from "../assets/header-texture.png?format=webp&h=200"
               aria-expanded="false"
             >
               Tools
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"></path>
               </svg>
             </button>
 
@@ -63,14 +106,31 @@ import texture from "../assets/header-texture.png?format=webp&h=200"
               role="menu"
             >
               <div class="bg-background rounded-[inherit] overflow-hidden">
-                <li><a href="/tools/core" role="menuitem" class="block px-4 py-2 hover:bg-accent-light hover:text-accent">Core-Plugin</a></li>
-                <li><a href="/tools/minimessage" role="menuitem" class="block px-4 py-2 hover:bg-accent-light hover:text-accent">MiniMessage</a></li>
+                <li>
+                  <a
+                    href={core_url}
+                    role="menuitem"
+                    class="block px-4 py-2 hover:bg-accent-light hover:text-accent"
+                    >Core-Plugin</a>
+                </li>
+                <li>
+                  <a
+                    href={minimessage_url}
+                    role="menuitem"
+                    class="block px-4 py-2 hover:bg-accent-light hover:text-accent"
+                    >MiniMessage</a>
+                </li>
               </div>
             </ul>
           </li>
 
-          <li><a href="/gallery" class="hover:text-accent transition">Gallerie</a></li>
-          <li><a href="/team" class="hover:text-accent transition">Team</a></li>
+          <li>
+            <a href={gallery_url} class="hover:text-accent transition"
+              >Gallerie</a>
+          </li>
+          <li>
+            <a href={team_url} class="hover:text-accent transition">Team</a>
+          </li>
         </ul>
       </nav>
 
@@ -95,142 +155,179 @@ import texture from "../assets/header-texture.png?format=webp&h=200"
     class="md:hidden max-h-0 overflow-hidden transition-all duration-300 bg-background/95 backdrop-blur-md"
   >
     <ul class="flex flex-col p-4 space-y-2 border-t border-background-50">
-      <li><a href="/" class="block py-2">Home</a></li>
+      <li><a href={home_url} class="block py-2">Home</a></li>
 
       <li class="dropdown">
-        <button class="w-full flex justify-between items-center py-2" aria-expanded="false">
+        <button
+          class="w-full flex justify-between items-center py-2"
+          aria-expanded="false"
+        >
           Projekte
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"></path>
           </svg>
         </button>
         <ul class="dropdown-menu hidden pl-4" role="menu">
-          <li><a href="/projects/buildmc" role="menuitem" class="block py-1">BuildMC</a></li>
+          <li>
+            <a href={buildmc_url} role="menuitem" class="block py-1">BuildMC</a>
+          </li>
         </ul>
       </li>
 
       <li class="dropdown">
-        <button class="w-full flex justify-between items-center py-2" aria-expanded="false">
+        <button
+          class="w-full flex justify-between items-center py-2"
+          aria-expanded="false"
+        >
           Tools
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"></path>
           </svg>
         </button>
         <ul class="dropdown-menu hidden pl-4" role="menu">
-          <li><a href="/plugins/de/core" role="menuitem" class="block py-1">Core-Plugin</a></li>
-          <li><a href="/tools/minimessage" role="menuitem" class="block py-1">MiniMessage</a></li>
+          <li>
+            <a href={core_url} role="menuitem" class="block py-1"
+              >Core-Plugin</a>
+          </li>
+          <li>
+            <a href={minimessage_url} role="menuitem" class="block py-1"
+              >MiniMessage</a>
+          </li>
         </ul>
       </li>
 
-      <li><a href="/gallery" class="block py-2">Gallerie</a></li>
-      <li><a href="/team" class="block py-2">Team</a></li>
+      <li><a href={gallery_url} class="block py-2">Gallerie</a></li>
+      <li><a href={team_url} class="block py-2">Team</a></li>
     </ul>
   </nav>
 
-<script>
-  const dropdowns = document.querySelectorAll<HTMLElement>('.dropdown');
+  <script>
+    const dropdowns = document.querySelectorAll<HTMLElement>(".dropdown");
 
-  function closeAll(except?: HTMLElement | null) {
-    dropdowns.forEach(d => {
-      if (d === except) return;
+    function closeAll(except?: HTMLElement | null) {
+      dropdowns.forEach((d) => {
+        if (d === except) return;
 
-      const btn = d.querySelector<HTMLButtonElement>('button');
-      const menu = d.querySelector<HTMLElement>('.dropdown-menu');
-      if (!btn || !menu) return;
+        const btn = d.querySelector<HTMLButtonElement>("button");
+        const menu = d.querySelector<HTMLElement>(".dropdown-menu");
+        if (!btn || !menu) return;
 
-      btn.setAttribute('aria-expanded', 'false');
-      menu.classList.add('hidden');
+        btn.setAttribute("aria-expanded", "false");
+        menu.classList.add("hidden");
 
-      menu
-        .querySelectorAll<HTMLElement>('[role="menuitem"]')
-        .forEach(i => i.setAttribute('tabindex', '-1'));
-    });
-  }
+        menu
+          .querySelectorAll<HTMLElement>('[role="menuitem"]')
+          .forEach((i) => i.setAttribute("tabindex", "-1"));
+      });
+    }
 
-  dropdowns.forEach(dropdown => {
-    const button = dropdown.querySelector<HTMLButtonElement>('button');
-    const menu = dropdown.querySelector<HTMLElement>('.dropdown-menu');
-    const items = menu?.querySelectorAll<HTMLElement>('[role="menuitem"]');
+    dropdowns.forEach((dropdown) => {
+      const button = dropdown.querySelector<HTMLButtonElement>("button");
+      const menu = dropdown.querySelector<HTMLElement>(".dropdown-menu");
+      const items = menu?.querySelectorAll<HTMLElement>('[role="menuitem"]');
 
-    if (!button || !menu || !items) return;
+      if (!button || !menu || !items) return;
 
-    const open = () => {
-      closeAll(dropdown);
-      button.setAttribute('aria-expanded', 'true');
-      menu.classList.remove('hidden');
-      items.forEach(i => i.removeAttribute('tabindex'));
-    };
+      const open = () => {
+        closeAll(dropdown);
+        button.setAttribute("aria-expanded", "true");
+        menu.classList.remove("hidden");
+        items.forEach((i) => i.removeAttribute("tabindex"));
+      };
 
-    const close = () => {
-      button.setAttribute('aria-expanded', 'false');
-      menu.classList.add('hidden');
-      items.forEach(i => i.setAttribute('tabindex', '-1'));
-    };
+      const close = () => {
+        button.setAttribute("aria-expanded", "false");
+        menu.classList.add("hidden");
+        items.forEach((i) => i.setAttribute("tabindex", "-1"));
+      };
 
-    button.addEventListener('click', (e: MouseEvent) => {
-      e.stopPropagation();
-      button.getAttribute('aria-expanded') === 'true' ? close() : open();
-    });
+      button.addEventListener("click", (e: MouseEvent) => {
+        e.stopPropagation();
+        button.getAttribute("aria-expanded") === "true" ? close() : open();
+      });
 
-    button.addEventListener('keydown', (e: KeyboardEvent) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        button.click();
-      }
-
-      if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        open();
-        items[0]?.focus();
-      }
-
-      if (e.key === 'Escape') {
-        close();
-        button.focus();
-      }
-    });
-
-    items.forEach((item, i) => {
-      item.addEventListener('keydown', (e: KeyboardEvent) => {
-        if (e.key === 'Escape') {
+      button.addEventListener("keydown", (e: KeyboardEvent) => {
+        if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
+          button.click();
+        }
+
+        if (e.key === "ArrowDown") {
+          e.preventDefault();
+          open();
+          items[0]?.focus();
+        }
+
+        if (e.key === "Escape") {
           close();
           button.focus();
         }
+      });
 
-        if (e.key === 'ArrowDown') {
-          e.preventDefault();
-          items[(i + 1) % items.length].focus();
-        }
+      items.forEach((item, i) => {
+        item.addEventListener("keydown", (e: KeyboardEvent) => {
+          if (e.key === "Escape") {
+            e.preventDefault();
+            close();
+            button.focus();
+          }
 
-        if (e.key === 'ArrowUp') {
-          e.preventDefault();
-          i === 0 ? button.focus() : items[i - 1].focus();
-        }
+          if (e.key === "ArrowDown") {
+            e.preventDefault();
+            items[(i + 1) % items.length].focus();
+          }
+
+          if (e.key === "ArrowUp") {
+            e.preventDefault();
+            i === 0 ? button.focus() : items[i - 1].focus();
+          }
+        });
       });
     });
-  });
 
-  document.addEventListener('click', () => closeAll());
+    document.addEventListener("click", () => closeAll());
 
-  document.addEventListener('focusin', (e: FocusEvent) => {
-    const target = e.target as Node | null;
-    if (!target) return;
+    document.addEventListener("focusin", (e: FocusEvent) => {
+      const target = e.target as Node | null;
+      if (!target) return;
 
-    if (![...dropdowns].some(d => d.contains(target))) {
-      closeAll();
-    }
-  });
+      if (![...dropdowns].some((d) => d.contains(target))) {
+        closeAll();
+      }
+    });
 
-  const toggle = document.getElementById('mobile-menu-toggle') as HTMLButtonElement | null;
-  const mobileMenu = document.getElementById('mobile-menu') as HTMLElement | null;
+    const toggle = document.getElementById(
+      "mobile-menu-toggle",
+    ) as HTMLButtonElement | null;
+    const mobileMenu = document.getElementById(
+      "mobile-menu",
+    ) as HTMLElement | null;
 
-  toggle?.addEventListener('click', () => {
-    if (!mobileMenu) return;
+    toggle?.addEventListener("click", () => {
+      if (!mobileMenu) return;
 
-    const isOpen = mobileMenu.classList.toggle('max-h-[100vh]');
-    toggle.setAttribute('aria-expanded', String(isOpen));
-  });
-</script>
-
+      const isOpen = mobileMenu.classList.toggle("max-h-[100vh]");
+      toggle.setAttribute("aria-expanded", String(isOpen));
+    });
+  </script>
 </header>
