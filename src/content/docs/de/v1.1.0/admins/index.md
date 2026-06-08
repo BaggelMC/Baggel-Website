@@ -17,3 +17,9 @@ Hi! Hier findest du alle Infos, die Server-Admins zum Plugin brauchen. Schau am 
 - [End Event](./admins/end-event/)
 
 - [Player Heads](./admins/player-heads/)
+
+- [Deaths](./admins/deaths/)
+
+- [Spawn Teleport](./admins/spawn/)
+
+- [Guides](./admins/guides/)

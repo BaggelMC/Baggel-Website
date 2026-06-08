@@ -17,3 +17,9 @@ Here you can find all of the information relevant to server administrators using
 - [End Event](./admins/end-event/)
 
 - [Player Heads](./admins/player-heads/)
+
+- [Deaths](./admins/deaths/)
+
+- [Spawn Teleport](./admins/spawn/)
+
+- [Guides](./admins/guides/)

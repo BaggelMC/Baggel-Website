@@ -12,3 +12,5 @@ Hier sind ein paar Themen, die du dir anschauen könntest:
 - [Status](./players/status)
 
 - [Spawn Elytra](./players/spawn-elytra)
+
+- [Spawn Teleport](./players/spawn)
