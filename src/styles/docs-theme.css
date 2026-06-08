@@ -1,0 +1,114 @@
+:root,
+::backdrop {
+  --sl-color-white: #f1e4db;
+  --sl-color-gray-1: #c9b8ac;
+  --sl-color-gray-2: #a09288;
+  --sl-color-gray-3: #928a85;
+  --sl-color-gray-4: #3e3933;
+  --sl-color-gray-5: #25211e;
+  --sl-color-gray-6: #121212;
+  --sl-color-black: #0b0a09;
+
+  --sl-color-accent-low: #25211e;
+  --sl-color-accent: #d6904f;
+  --sl-color-accent-high: #dfc798;
+
+  --sl-color-orange-low: #4a2510;
+  --sl-color-orange: #8b4d25;
+  --sl-color-orange-high: #d6904f;
+
+  --sl-color-green-low: #0f4a25;
+  --sl-color-green: #22c55e;
+  --sl-color-green-high: #86efac;
+
+  --sl-color-blue-low: #1a2a35;
+  --sl-color-blue: #4a7c9e;
+  --sl-color-blue-high: #93c5d8;
+
+  --sl-color-purple-low: #2a1a2e;
+  --sl-color-purple: #7c5a8a;
+  --sl-color-purple-high: #c4a8d0;
+
+  --sl-color-red-low: #4a1010;
+  --sl-color-red: #ef4444;
+  --sl-color-red-high: #fca5a5;
+}
+
+:root[data-theme='light'],
+[data-theme='light'] ::backdrop {
+  --sl-color-white: #0b0a09;
+  --sl-color-gray-1: #25211e;
+  --sl-color-gray-2: #3e3933;
+  --sl-color-gray-3: #514d4b;
+  --sl-color-gray-4: #8b7e72;
+  --sl-color-gray-5: #a09288;
+  --sl-color-gray-6: #e8d8ce;
+  --sl-color-gray-7: #f2e8e2;
+  --sl-color-black: #f7f0eb;
+
+  --sl-color-accent-low: #f0e0d0;
+  --sl-color-accent: #a06030;
+  --sl-color-accent-high: #5a3018;
+
+  --sl-color-orange-low: #fad5b0;
+  --sl-color-orange: #8b4d25;
+  --sl-color-orange-high: #4a2510;
+
+  --sl-color-green-low: #bbf7d0;
+  --sl-color-green: #16a34a;
+  --sl-color-green-high: #14532d;
+
+  --sl-color-blue-low: #bfdbf0;
+  --sl-color-blue: #2e6a8c;
+  --sl-color-blue-high: #1a3d52;
+
+  --sl-color-purple-low: #e8d5f0;
+  --sl-color-purple: #5c3d6e;
+  --sl-color-purple-high: #351f40;
+
+  --sl-color-red-low: #fecaca;
+  --sl-color-red: #dc2626;
+  --sl-color-red-high: #7f1d1d;
+}
+
+.simplebar-track.simplebar-vertical {
+  width: 8px;
+  background: #25211E;
+  border-radius: 12px;
+}
+
+.simplebar-scrollbar::before {
+  background-color: #dfc798;
+  border-radius: 12px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #0b0a09;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #dfc798;
+  border-radius: 9999px;
+  border: 2px solid #0b0a09;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d6904f;
+}
+
+/* Firefox has to be extra ofc */
+* {
+  scrollbar-width: thin;
+  scrollbar-color:#dfc798 #0b0a09;
+}
+
+img {
+    border-radius: 1rem;
+}

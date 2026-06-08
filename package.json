@@ -9,21 +9,27 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^4.4.0",
-    "@astrojs/sitemap": "^3.6.0",
+    "@astrojs/react": "^5.0.7",
+    "@astrojs/sitemap": "^3.7.3",
+    "@astrojs/starlight": "^0.39.3",
     "@jaames/iro": "^5.5.2",
     "@minimessage-js/fetch-translations": "^2.0.1",
-    "@tailwindcss/vite": "^4.1.15",
-    "@types/react": "^19.2.2",
-    "@types/react-dom": "^19.2.2",
-    "alpinejs": "^3.15.0",
-    "astro": "^5.14.6",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "@tailwindcss/vite": "^4.3.0",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "alpinejs": "^3.15.12",
+    "astro": "^6.4.4",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "sharp": "^0.34.5",
     "simplebar": "^6.3.3",
-    "tailwindcss": "^4.1.15"
+    "starlight-links-validator": "^0.24.0",
+    "tailwindcss": "^4.3.0"
   },
   "devDependencies": {
-    "vite-imagetools": "^9.0.0"
+    "vite-imagetools": "^10.0.0"
+  },
+  "overrides": {
+    "vite": "^7"
   }
 }
