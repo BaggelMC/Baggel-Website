@@ -1,0 +1,59 @@
+---
+title: Installation
+sidebar:
+  order: 6
+---
+
+import { FileTree } from '@astrojs/starlight/components';
+
+## Download
+
+Die neuesten Versionen kannst du an diesen Orten herunterladen:
+
+- [GitHub](https://github.com/BaggelMC/BuildMC-Core-Plugin/releases)
+- [Modrinth](https://modrinth.com/plugin/buildmc-core/versions)
+
+---
+
+Die Installation ist ganz einfach, genau wie bei jedem anderen Plugin.
+
+1. Lade die richtige BuildMC-Core Plugin `.jar` Datei für deinen Servertyp herunter.
+2. Lade [ProtocolLib](https://www.spigotmc.org/resources/protocollib.1997/).
+3. Lege beide `.jar`-Dateien in den `plugins`-Ordner deines Servers.
+4. Starte deinen Server neu.
+
+Beim ersten Start erstellt BuildMC-Core automatisch einen Ordner namens `BuildMC-Core` in deinem `plugins`-Verzeichnis. Dieser Ordner enthält alle Konfigurationsdateien und Daten, die das Plugin benötigt.
+
+<FileTree>
+- plugins/
+  - BuildMC-Core/
+    - Data/
+      - database.mv.db
+    - lang/
+      - de-DE.yml
+      - en-US.yml
+    - logs/
+      - claims/
+        - claims-0000-00-00.log
+    - config.yml
+    - database.yml
+    - guides.yml
+    - status.yml
+  - BuildMC-Core.jar
+</FileTree>
+
+> Standardmäßig blockiert BuildMC-Core bestimmte Befehle wie `/reload`. Führe nach Änderungen an der Konfiguration immer einen **vollständigen Server-Neustart** durch. Das Verwenden von Reload-Befehlen kann unerwartetes Verhalten und Plugin-Fehler verursachen.
+
+---
+
+## Datenbankkonfiguration
+
+Bevor wir starten, ist es gut zu überlegen, wie deine Datenbank verwendet wird.
+
+BuildMC-Core nutzt die [H2 database](https://www.h2database.com/), um Daten zu speichern. Die Einstellungen für die Datenbank findest du in der `database.yml` Konfigurationsdatei.
+
+Dort wird dir die Option `useServerMode` begegnen. Standardmäßig ist sie auf `false` gesetzt, was bedeutet, dass das Plugin H2 im **Embedded Mode** (eingebetteten Modus) betreibt. In diesem Modus kann nur ein Prozess auf die Datenbank zugreifen.
+
+Wenn mehrere Prozesse Zugriff benötigen – zum Beispiel beim Einsatz bestimmter Plugin-Erweiterungen oder wenn du Folia nutzt – solltest du den **TCP mode** aktivieren, indem du `useServerMode: true` setzt. Beachte, dass dies mehr Laufzeitressourcen verbraucht.
+
+Für die meisten BuildMC-Server ist der Standardmodus perfekt und erfordert keine Änderungen.

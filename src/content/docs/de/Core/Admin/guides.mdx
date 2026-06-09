@@ -1,0 +1,122 @@
+---
+title: Anleitungen
+---
+
+import { FileTree } from '@astrojs/starlight/components';
+
+Die Funktion „Anleitungen“ (Guides) ermöglicht Serveradministratoren, Informationsseiten zu erstellen, die Spieler im Spiel lesen können.
+
+Anleitungen sind nützlich, um spezifische Servermechaniken, Befehle, Regeln oder andere Informationen zu erklären, ohne auf externe Dokumentationen angewiesen zu sein.
+
+## Anleitungen aktivieren
+
+Anleitungen werden in `guides.yml` konfiguriert.
+
+```yaml
+enabled: true
+```
+
+Stellen Sie `enabled` auf `true`, um den Zugriff der Spieler auf die Anleitungen zu ermöglichen, oder auf `false`, um die Funktion komplett zu deaktivieren.
+
+## Anleitungen erstellen
+
+Anleitungen werden unter dem Abschnitt `guides` definiert.
+
+```yaml
+guides:
+  commands: "<lang:messages.guides.commands>"
+```
+
+Jeder Schlüssel wird zu einer Anleitung, die Spieler über folgenden Befehl erreichen können:
+
+```text
+/guides <guide>
+```
+
+Beispielsweise erstellt die obige Konfiguration eine Anleitung namens `commands`, die von den Spielern mit folgendem Befehl aufgerufen werden kann:
+
+```text
+/guides commands
+```
+
+## Anleitungsformat
+
+Der Anleitungsinhalt wird mithilfe von MiniMessage gerendert.
+
+Sie können beliebige gültige MiniMessage-Formatierungstags verwenden, einschließlich Farben, Dekorationen, Klickereignissen, Hover-Ereignissen und übersetzbaren Komponenten.
+
+Anleitungen können direkt in `guides.yml` geschrieben werden:
+
+```yaml
+guides:
+  commands: "<gold>Willkommen auf dem Server!</gold>"
+```
+
+Dieses Vorgehen unterstützt jedoch nur eine Sprache.
+
+## Empfehlung: Verwendung von Sprachdateien
+
+Wir empfehlen dringend, den Anleitungsinhalt in die Sprachdateien des Plugins zu speichern und ihn über das `<lang:key>`-Tag von MiniMessage zu referenzieren.
+
+Dies ermöglicht es den Anleitungen, automatisch an die Sprache anzupassen, die jeder Spieler in seinem Minecraft-Client ausgewählt hat.
+
+Die Sprachdateien finden Sie hier:
+
+```text
+plugins/BuildMC-Core/lang/
+```
+
+<FileTree>
+- plugins/
+  - BuildMC-Core/
+    - lang/
+      - de-DE.yml
+      - en-US.yml
+</FileTree>
+
+Unter `messages.guides` können Sie benutzerdefinierte Anleitungen erstellen:
+
+```yaml
+messages:
+  guides:
+    guide-not-found: "<red>Diese Anleitung existiert nicht!</red>"
+
+    commands: |-
+      ===================== <blue>Befehle</blue> =====================
+      <gray>Hier ist eine Liste nützlicher Befehle:</gray>
+
+      <gray>- </gray><gold>/rules</gold> | Zeigt die Serverregeln an
+      <gray>- </gray><gold>/spawn</gold> | Teleportiert Sie zum Spawn-Punkt
+      <gray>- </gray><gold>/claim</gold> | Verwalten Sie Ihre Claims
+      <gray>- </gray><gold>/status</gold> | Setzt oder entfernt Ihren Status
+
+    spawn-elytra: |-
+      ==================== <blue>Spawn Elytra</blue> ====================
+
+      Wenn Sie sich in einem Bereich befinden, in dem das Spawn Elytra aktiv ist,
+      können Sie mit einem <gold>Doppelspring</gold> fliegen.
+
+      Drücken Sie <gold><key:key.swapOffhand></gold>, um einen Boost zu erhalten.
+```
+
+Diese Anleitungen werden automatisch vom Plugin als übersetzbare Komponenten registriert.
+
+Sie können sie dann in `guides.yml` referenzieren:
+
+```yaml
+guides:
+  commands: "<lang:messages.guides.commands>"
+  spawn-elytra: "<lang:messages.guides.spawn-elytra>"
+```
+
+Wenn ein Spieler eine Anleitung öffnet, wird die korrekte Übersetzung basierend auf seiner ausgewählten Minecraft-Sprache angezeigt.
+
+Wir empfehlen dringend, Anleitungen in allen von Ihrem Server unterstützten Sprachen zu übersetzen.
+
+## Design von Anleitungen
+
+Da Anleitungen MiniMessage verwenden, kann das manuelle Bearbeiten schwierig sein.
+
+Wir empfehlen Ihnen, unseren eigenen [MiniMessage Editor](https://baggel.de/tools/minimessage/) zum Gestalten Ihrer Anleitungen zu verwenden.
+
+Alternativ können Sie auch den [Official MiniMessage Viewer](https://webui.advntr.dev) nutzen.
