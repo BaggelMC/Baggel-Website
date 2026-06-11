@@ -25,11 +25,22 @@ With the claim tool in hand:
 
 Once you have both corner chunks selected, a message will appear in chat, telling you that the area is ready to be claimed!
 
-Now you can use the `/claim create <type> <name>` command to create your claim.
-Make sure to replace `<type>` with the type of claim you want to create (See: [Claim Types](/core/player/claims/claim-types)) and `<name>` with the name of your claim.
+Now you can use the `/claim create` command to create your claim.
+
+Running the command will open the **Claim creation UI**.
+
+![Claim Create UI](src/assets/docs/images/claims/claim-create-ui.png)
+
+Here you can select your Claim Type (See: [Claim Types](/core/player/claims/claim-types)) and enter a name for your claim.
+
+> The name cannot contain spaces or characters that cannot be entered into a Minecraft chat.
 
 After creation, your claim is immediately protected by the default protections.
 
+Alternatively you can also enter the parameters directly into the command as arguments:
+```
+/claim create <claim_type> <name>
+```
 ---
 
 ### Managing your Claim

@@ -24,10 +24,22 @@ Wenn das Claim Tool in deiner Hand ist:
 
 Sobald beide Eckchunks ausgewählt sind, erscheint im Chat eine Meldung, die dir mitteilt, dass der Bereich bereit zum Claimen ist!
 
-Jetzt kannst du den Befehl `/claim create <type> <name>` verwenden, um deinen Claim zu erstellen.
-Vergiss nicht, `<type>` durch den gewünschten Claim-Typ zu ersetzen (Siehe: [Claim Types](/core/player/claims/claim-types)) und `<name>` durch den Namen deines Claims.
+Jetzt kannst du den Befehl `/claim create` verwenden, um deinen Claim zu erstellen.
 
-Nach der Erstellung ist dein Claim sofort durch die Standardprotections geschützt.
+Das Ausführen des Befehls wird die **Claim creation UI** öffnen.
+
+![Claim Create UI](src/assets/docs/images/claims/claim-create-ui.png)
+
+Hier kannst du deinen claim typ auswählen (See: [Claim Types](/de/core/player/claims/claim-types)) und deinen Claim benennen.
+
+> Der Name deines Claims kann keine Leerzeichen oder Buchstaben enthalten, die nicht im Minecraft Chat eingegeben werden können.
+
+Nach der Erstellung ist dein Claim direkt von den Standard-Protections geschützt.
+
+Alternativ kannst du die Parameter auch direkt in den Befehl als Argumente eingeben:
+```
+/claim create <claim_type> <name>
+```
 
 ---
 
