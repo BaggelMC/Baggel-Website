@@ -38,9 +38,11 @@ Here you can select your Claim Type (See: [Claim Types](/core/player/claims/clai
 After creation, your claim is immediately protected by the default protections.
 
 Alternatively you can also enter the parameters directly into the command as arguments:
+
 ```
 /claim create <claim_type> <name>
 ```
+
 ---
 
 ### Managing your Claim
@@ -90,15 +92,11 @@ Clicking on the player head takes you to the Whitelist Menu. (See: [Whitelist](/
 
 ![Claim Whitelist UI](src/assets/docs/images/claims/claim-whitelist.png)
 
-Here you can see all players that are currently whitelisted on the claim. Below each player head is a red glass pane. Clicking on it will allow you to remove that player from the whitelist. In the middle of the UI is a green glass pane. Clicking on it allows you to add a new player to the whitelist. It will open a sign. You will have to enter the player name of the player you wish to add to the whitelist into the **first line** of the sign.
+Here you can see all players that are currently whitelisted on the claim. Below each player head is a red glass pane. Clicking on it will allow you to remove that player from the whitelist. In the middle of the UI is a green glass pane. Clicking on it allows you to add a new player to the whitelist.
 
-![Claim Whitelist Sign UI](src/assets/docs/images/claims/claim-whitelist-sign.png)
+![Claim Whitelist Add UI](src/assets/docs/images/claims/whitelist-add-ui.png)
 
-The Player will then be whitelisted.
-
-_Notice: Opening the Sign UI will spawn a temporary Sign below you. This sign only exists for you and no other player. The sign will disappear after closing it. This may cause server-client synchronization issues in some edge cases. If this happens, simply logging in again should resolve the issue._
-
----
+You will be asked to enter the player name into the input field.
 
 ## Other Commands
 

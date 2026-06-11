@@ -85,13 +85,11 @@ Klicke auf den Spielerkopf-Button, um zum Menü der Whitelist zu gelangen. (Sieh
 
 ![Claim Whitelist UI](src/assets/docs/images/claims/claim-whitelist.png)
 
-Hier siehst du alle Spieler, die aktuell auf dem Claim auf der Whitelist stehen. Unter jedem Spielerkopf befindet sich ein rotes Glas. Ein Klick darauf ermöglicht es dir, diesen Spieler von der Liste zu entfernen. In der Mitte des UIs befindet sich ein grünes Glas. Ein Klick darauf lässt dich einen neuen Spieler zur Whitelist hinzufügen. Es öffnet sich ein Schild. Du musst den Namen des Spielers, den du zur Whitelist hinzufügen möchtest, in die **erste Zeile** dieses Schildes eingeben.
+Hier siehst du alle Spieler, die aktuell auf dem Claim auf der Whitelist stehen. Unter jedem Spielerkopf befindet sich ein rotes Glas. Ein Klick darauf ermöglicht es dir, diesen Spieler von der Liste zu entfernen. In der Mitte des UIs befindet sich ein grünes Glas. Ein Klick darauf lässt dich einen neuen Spieler zur Whitelist hinzufügen.
 
-![Claim Whitelist Sign UI](src/assets/docs/images/claims/claim-whitelist-sign.png)
+![Claim Whitelist Add UI](src/assets/docs/images/claims/whitelist-add-ui.png)
 
-Der Spieler wird dann auf die Whitelist gesetzt.
-
-_Hinweis: Das Öffnen des Sign UIs spawnt ein temporäres Schild unter dir. Dieses Schild existiert nur für dich und keinen anderen Spieler. Es verschwindet, sobald du das UI schließt. Das kann in seltenen Fällen zu Synchronisationsproblemen zwischen Server und Client führen. Sollte dies passieren, reicht es in der Regel aus, einmal neu einzuloggen, um das Problem zu beheben._
+Du wirst gefragt, den Spielernamen in das Eingabefeld einzugeben.
 
 ---
 
