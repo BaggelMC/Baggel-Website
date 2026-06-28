@@ -8,12 +8,12 @@ let modrinth = "";
 
 switch (lang) {
   case "de": {
-    github = "Quellcode (GitHub)";
+    github = "Quellcode (Forgejo)";
     modrinth = "Alle Versionen (Modrinth)";
     break;
   }
   default: {
-    github = "Source Code (GitHub)";
+    github = "Source Code (Forgejo)";
     modrinth = "All Versions (Modrinth)";
     break;
   }
@@ -27,7 +27,7 @@ switch (lang) {
 </h2>
 <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-6">
   <a
-    href={LINKS.core_plugin_download_github}
+    href={LINKS.core_plugin_forgejo}
     class="px-6 py-3 rounded-2xl bg-primary text-background font-bold transition duration-300 hover:bg-accent hover:scale-105"
     target="_blank"
     rel="noopener noreferrer"

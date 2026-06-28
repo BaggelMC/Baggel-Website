@@ -9,6 +9,7 @@ export const LINKS = {
     email: "mail@baggel.de",
 
     core_plugin_github: "https://github.com/BaggelMC/BuildMC-Core-Plugin",
+    core_plugin_forgejo: "https://git.mathias2246.net:3000/BuildMC/BuildMC-Core-Plugin",
     core_plugin_download_github: "https://github.com/BaggelMC/BuildMC-Core-Plugin/releases",
     core_plugin_download_spigot: "https://www.spigotmc.org/resources/buildmc-core-spigot.127607/",
     core_plugin_download_modrinth: "https://modrinth.com/plugin/buildmc-core/versions",
