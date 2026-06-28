@@ -19,6 +19,7 @@
     "@types/react-dom": "^19.2.3",
     "alpinejs": "^3.15.12",
     "astro": "^6.4.4",
+    "jszip": "^3.10.1",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "sharp": "^0.34.5",
@@ -27,6 +28,7 @@
     "tailwindcss": "^4.3.0"
   },
   "devDependencies": {
+    "@types/jszip": "^3.4.0",
     "vite-imagetools": "^10.0.0"
   },
   "overrides": {
