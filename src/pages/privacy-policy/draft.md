@@ -27,7 +27,7 @@ This Privacy Policy applies to:
 * The Baggel website
 * Baggel Minecraft servers
 * The Baggel Discord server
-* Baggel moderation systems and APIs
+* Baggel moderation systems
 * Project registration systems operated by Baggel
 
 ## 4. Website Data Processing
@@ -36,7 +36,7 @@ This Privacy Policy applies to:
 
 Our website does not require user accounts and does not provide forms for submitting personal information.
 
-We do not intentionally collect personal information through the website itself.
+We do not intentionally collect personal data through website forms or account systems.
 
 ### Cookies and Tracking
 
@@ -56,17 +56,19 @@ Like most web services, technical server logs may be generated automatically by 
 * Technical connection information
 * Error information
 
-These logs are used solely for technical operation, security, abuse prevention, and troubleshooting.
+These logs are used solely for technical operation, security, abuse prevention, and troubleshooting and are retained for up to 7 days.
 
 ### Embedded Third-Party Content
 
 Our website may contain embedded content from third parties, including YouTube videos.
 
-When you interact with embedded content, the third-party provider may process information about your visit, including IP addresses, cookies, device information, and usage data.
+When you interact with embedded content, the third-party provider may process information about your visit, including IP addresses, cookies, device information, and usage data. Embedded YouTube content may transmit information to Google when loaded or interacted with, depending on the embedding configuration and your browser settings.
 
 We do not control the processing performed by these third parties.
 
 Please refer to the privacy policies of the respective providers for additional information.
+
+[Google Privacy Policy](https://policies.google.com/privacy)
 
 ## 5. Data We Collect
 
@@ -106,7 +108,9 @@ A profile may contain:
 * Data deletion requests
 * Operational metadata
 
-Multiple Discord accounts and Minecraft accounts may be associated with the same profile where moderators determine that the accounts belong to the same individual.
+Account associations may be created manually by authorized moderators based on available evidence, including account links, user-provided information, technical indicators, or moderation investigations. Such associations are used solely for community administration, security, and enforcement purposes.
+
+Technical indicators are used only where necessary for moderation and security purposes and are not used for profiling or automated decision-making.
 
 ### Moderation Records
 
@@ -142,7 +146,8 @@ Minecraft servers may generate operational logs containing:
 * IP addresses
 * Security and moderation events
 
-These logs are used for server administration, abuse prevention, troubleshooting, and moderation.
+These logs are used for server administration, abuse prevention, troubleshooting, and moderation. The server logs are retained for up to 7 days.
+This processing is based on our legitimate interest in maintaining security and availability of our services (Article 6(1)(f) GDPR).
 
 ## 6. How We Obtain Data
 
@@ -189,11 +194,13 @@ Including:
 * Service security
 * Technical administration
 
-### Performance of a Service
+We have considered that such processing is proportionate and does not override the rights and freedoms of affected individuals.
+
+### Performance of a Service (Article 6(1)(b) GDPR)
 
 Where processing is necessary to provide requested community services, project registrations, team management features, or Minecraft server functionality.
 
-### Legal Obligations
+### Legal Obligations (Article 6(1)(c) GDPR)
 
 Where processing is required by applicable law.
 
@@ -205,25 +212,39 @@ We do not sell personal data.
 
 We do not share personal data with advertisers.
 
-Data may be disclosed where legally required or necessary to protect our community, users, or services.
+Data may be disclosed where required by law or where necessary to protect the rights, safety, and security of our users, community, or services.
 
 ## 10. Hosting and Data Storage
 
 Our infrastructure is hosted in Germany.
 
-Services are hosted through Prepaid Host or successor providers selected by Baggel administrators.
+Services are hosted through [Prepaid Host](https://prepaid-host.com/).
 
-Personal data is stored on systems located in Germany unless otherwise stated.
+We use hosting providers located in Germany unless otherwise stated. These providers process data on our behalf under appropriate data processing agreements where required.
 
-## 11. Data Retention
+## 11. Discord Services
+Our community uses Discord as a communication platform. When you join our Discord server, Discord may process personal data independently according to its own privacy policy. We only process information made available to us through Discord APIs.
+
+[Discord Privacy Policy](https://discord.com/privacy)
+
+## 12. Minecraft Services
+When you provide your Minecraft account to us or connect to our Minecraft servers, information associated with your Minecraft account may be processed. Minecraft accounts are operated by Mojang Studios and Microsoft. Their processing of personal data is governed by their own privacy policies.
+
+[Microsoft Privacy Statement](https://www.microsoft.com/en-gb/privacy/privacystatement)
+
+## 13. Data Retention
 
 ### Moderation Records
 
-Warnings, kicks, and mutes are deleted 12 months after creation.
+Warnings, kicks, and mutes are deleted 36 months after creation.
 
-Bans are deleted 12 months after expiration or revocation.
+Bans are deleted 36 months after expiration or revocation.
 
-Project-specific bans are deleted 12 months after expiration, revocation, or the end of the relevant project.
+Project-specific bans are deleted 36 months after expiration, revocation, or the end of the relevant project.
+
+These retention periods are necessary to maintain consistent moderation across recurring community projects. Baggel projects may operate for limited periods and may have extended inactive periods between projects. Retaining moderation history allows authorized moderators to identify repeated rule violations, evaluate patterns of behaviour, enforce previous sanctions consistently, and protect the integrity of future projects. A uniform retention period is used for moderation records to provide a clear and predictable retention policy for community members and to ensure consistent handling of moderation data.
+
+The retention period is limited to the time reasonably necessary for these purposes. Moderation records are not used for advertising, profiling, or purposes unrelated to community safety and administration.
 
 ### Account Records
 
@@ -231,7 +252,7 @@ Minecraft and Discord account records are deleted 30 days after being unlinked f
 
 ### Deletion Requests
 
-Deletion requests are deleted 36 months after completion.
+Deletion request records may be retained for up to 36 months after completion to document compliance with legal obligations and demonstrate that requests were handled appropriately.
 
 ### Operational Data
 
@@ -243,9 +264,9 @@ Minecraft server logs, including chat history and IP addresses, are automaticall
 
 ### Dormant Profiles
 
-If all Discord accounts associated with a profile have left the community for more than 90 days, the profile has not participated in an active project within the previous 90 days, and no active deletion request exists, the profile may be automatically evaluated for deletion.
+If all Discord accounts associated with a profile have left the community for more than 90 days, the profile has not participated in an active project within the previous 90 days, and no active deletion request exists, the profile may be reviewed for deletion and may be removed unless retention is necessary for moderation, security, or legal reasons.
 
-## 12. Your Rights Under GDPR
+## 14. Your Rights Under GDPR
 
 Subject to applicable law, you may have the following rights:
 
@@ -258,7 +279,7 @@ Subject to applicable law, you may have the following rights:
 
 ### Right of Access
 
-To request a copy of your data, open a support ticket in our Discord server.
+To request a copy of your data, open a [support ticket in our Discord server](https://discord.gg/Xh92t4rK5V). You may alternatively contact us via email.
 
 An administrator will provide an automatically generated data export.
 
@@ -266,13 +287,13 @@ Generated exports are retained for up to 49 hours before deletion.
 
 ### Right to Rectification
 
-To correct inaccurate information, open a support ticket in our Discord server.
+To correct inaccurate information, open a [support ticket in our Discord server](https://discord.gg/Xh92t4rK5V). You may alternatively contact us via email.
 
 ### Right to Erasure
 
 To request deletion of your data, use the `/datenschutz daten_löschung` command provided by our Discord bot.
 
-Deletion requests are evaluated automatically.
+Automated checks may assist in evaluating deletion requests. Where a request cannot be fulfilled automatically or requires further assessment, it may be reviewed by authorized administrators.
 
 #### Full Deletion
 
@@ -306,13 +327,24 @@ Partial deletion may remove:
 
 Deletion eligibility is automatically re-evaluated and full deletion may occur later when retention is no longer required.
 
-## 13. Security
+## 15 Age Requirements
+Baggel services are intended for users aged 13 and above. This requirement references the minimum age requirements of Discord in Germany, which may be required to participate in our community, and applicable law.
+
+Users under the minimum age are not permitted to use Baggel services. Where users between the ages of 13 and 18 use our services, their personal data may be processed in accordance with this Privacy Policy and applicable data protection laws.
+
+## 16. Security
 
 We implement reasonable technical and organizational measures designed to protect personal data against unauthorized access, disclosure, alteration, or destruction.
 
+We implement:
+- Access control
+- Authentication requirements
+- Logging
+- Encryption where appropriate
+
 However, no system can be guaranteed to be completely secure.
 
-## 14. Changes to this Privacy Policy
+## 17. Changes to this Privacy Policy
 
 We may update this Privacy Policy from time to time.
 
@@ -320,7 +352,13 @@ Material changes may be announced through our website, Discord server, or other 
 
 The latest version will always be considered authoritative.
 
-## 15. Contact
+## 18. Definitions
+
+"Profile" refers to an internal community record used to associate accounts, moderation history, and participation information belonging to the same individual.
+
+"Operational data" refers to technical information required to operate, secure, and maintain our services.
+
+## 19. Contact
 
 For privacy-related inquiries, please contact:
 
