@@ -16,6 +16,7 @@ const {
   keywords = "Minecraft, Server, BaggelMC, BuildMC, Minigames, Community",
   titleSuffix = "BaggelMC",
   enableAlpine = true,
+  enableBackground = true,
   extraHead = null,
 } = Astro.props;
 
@@ -60,9 +61,11 @@ const fullTitle = title ? `${title} | ${titleSuffix}` : titleSuffix;
 
   <body
     class="relative min-h-screen text-text font-sans flex flex-col overflow-x-hidden bg-background"
-    style={`--page-bg: url(${Background});`}
+    style={enableBackground ? `--page-bg: url(${Background});` : ""}
   >
-    <div class="background-image pointer-events-none" aria-hidden="true"></div>
+    {enableBackground && (
+      <div class="background-image pointer-events-none" aria-hidden="true"></div>
+    )}
 
     <Header title="BaggelMC" />
     <main class="grow relative z-10">

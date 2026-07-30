@@ -1,0 +1,812 @@
+---
+import { LINKS } from "../config";
+import Headline from "../components/Headline.astro";
+import DefaultLayout from "../layouts/DefaultLayout.astro";
+
+const DISCORD_SUPPORT = "https://discord.gg/Xh92t4rK5V";
+---
+
+<DefaultLayout title="Privacy Policy" enableBackground={false}>
+  <div class="max-w-6xl mx-auto px-8 py-20 text-text font-sans">
+    <Headline text="Privacy Policy" />
+
+    <section class="text-sm leading-base text-text-50">
+      <p class="mb-8 text-text-100">Last updated: 30.07.2026</p>
+
+      <!-- 1. Introduction -->
+      <h2 class="text-lg font-semibold text-text mt-10 mb-3">
+        1. Introduction
+      </h2>
+      <p class="mb-4">
+        This Privacy Policy explains how Baggel ("we", "us", "our") collects,
+        uses, stores, and protects personal data when you use our services.
+      </p>
+      <p class="mb-4">
+        Baggel is a community-operated project providing Minecraft servers, a
+        website, Discord-based community services, and related moderation
+        systems.
+      </p>
+      <p class="mb-4">
+        By using our services, you acknowledge that your personal data may be
+        processed as described in this Privacy Policy.
+      </p>
+
+      <!-- 2. Data Controller -->
+      <h2 class="text-lg font-semibold text-text mt-10 mb-3">
+        2. Data Controller
+      </h2>
+      <div class="mb-4">
+        <p class="font-bold mb-1">Louis Liposcak</p>
+        <p class="mb-1">c/o IP-Management #11230</p>
+        <p class="mb-1">Ludwig-Erhard-Str. 18</p>
+        <p>20459 Hamburg</p>
+      </div>
+      <p class="mb-4">
+        Contact Email:
+        <a href={"mailto:" + LINKS.email} class="text-primary hover:underline">
+          {LINKS.email}
+        </a>
+      </p>
+      <p class="mb-4">
+        For all privacy-related inquiries, data access requests, correction
+        requests, or complaints, please contact us using the email address above
+        or through our Discord support system.
+      </p>
+      <p class="mb-4">We are not required to have a DPO.</p>
+
+      <!-- 3. Services Covered -->
+      <h2 class="text-lg font-semibold text-text mt-10 mb-3">
+        3. Services Covered
+      </h2>
+      <p class="mb-2">This Privacy Policy applies to:</p>
+      <ul class="list-disc ml-6 space-y-1 mb-4">
+        <li>The Baggel website</li>
+        <li>Baggel Minecraft servers</li>
+        <li>The Baggel Discord server</li>
+        <li>Baggel moderation systems</li>
+        <li>Project registration systems operated by Baggel</li>
+      </ul>
+
+      <!-- 4. Website Data Processing -->
+      <h2 class="text-lg font-semibold text-text mt-10 mb-3">
+        4. Website Data Processing
+      </h2>
+
+      <h3 class="font-semibold text-text mb-1 mt-6">Website Usage</h3>
+      <p class="mb-4">
+        Our website does not require user accounts and does not provide forms
+        for submitting personal information.
+      </p>
+      <p class="mb-4">
+        We do not intentionally collect personal data through website forms or
+        account systems.
+      </p>
+
+      <h3 class="font-semibold text-text mb-1 mt-6">Cookies and Tracking</h3>
+      <p class="mb-4">
+        The website does not use cookies for analytics, advertising, profiling,
+        or user tracking. Embedded YouTube content uses privacy-enhanced mode
+        and does not set cookies unless a video is actively played.
+      </p>
+      <p class="mb-4">We do not store persistent identifiers on your device.</p>
+
+      <h3 class="font-semibold text-text mb-1 mt-6">Server Logs</h3>
+      <p class="mb-4">The website is hosted in Germany.</p>
+      <p class="mb-2">
+        Like most web services, technical server logs may be generated
+        automatically by the web server and hosting infrastructure. These logs
+        may include:
+      </p>
+      <ul class="list-disc ml-6 space-y-1 mb-4">
+        <li>IP addresses</li>
+        <li>Request timestamps</li>
+        <li>Requested resources</li>
+        <li>Technical connection information</li>
+        <li>Error information</li>
+      </ul>
+      <p class="mb-4">
+        These logs are used solely for technical operation, security, abuse
+        prevention, and troubleshooting and are retained for up to 7 days.
+      </p>
+
+      <h3 class="font-semibold text-text mb-1 mt-6">
+        Embedded Third-Party Content
+      </h3>
+      <p class="mb-4">
+        Our website may contain embedded YouTube videos using YouTube's
+        privacy-enhanced mode (youtube-nocookie.com). In this mode, YouTube does
+        not store cookies on your device related to video playback unless you
+        actively play the video. Once you interact with an embedded video,
+        YouTube may process information about that interaction, including IP
+        address and device information, according to its own privacy policy.
+      </p>
+      <p class="mb-4">
+        We do not control the processing performed by these third parties.
+      </p>
+      <p class="mb-4">
+        Please refer to the privacy policies of the respective providers for
+        additional information.
+      </p>
+      <p class="mb-4">
+        <a
+          href="https://policies.google.com/privacy"
+          class="text-primary hover:underline"
+        >
+          Google Privacy Policy
+        </a>
+      </p>
+
+      <!-- 5. Data We Collect -->
+      <h2 class="text-lg font-semibold text-text mt-10 mb-3">
+        5. Data We Collect
+      </h2>
+
+      <h3 class="font-semibold text-text mb-1 mt-6">Discord Accounts</h3>
+      <p class="mb-2">For Discord accounts we may store:</p>
+      <ul class="list-disc ml-6 space-y-1 mb-4">
+        <li>Discord User ID</li>
+        <li>Account linkage information</li>
+        <li>Account activity status</li>
+        <li>Date first known to us</li>
+        <li>Date the account left the Discord server</li>
+        <li>Operational metadata</li>
+      </ul>
+
+      <h3 class="font-semibold text-text mb-1 mt-6">Minecraft Accounts</h3>
+      <p class="mb-2">For Minecraft accounts we may store:</p>
+      <ul class="list-disc ml-6 space-y-1 mb-4">
+        <li>Minecraft UUID</li>
+        <li>Last known Minecraft username</li>
+        <li>Account linkage information</li>
+        <li>Date first known to us</li>
+        <li>Operational metadata</li>
+      </ul>
+
+      <h3 class="font-semibold text-text mb-1 mt-6">Profiles</h3>
+      <p class="mb-4">
+        Our moderation platform maintains profiles representing individual
+        community members.
+      </p>
+      <p class="mb-2">A profile may contain:</p>
+      <ul class="list-disc ml-6 space-y-1 mb-4">
+        <li>Associated Discord accounts</li>
+        <li>Associated Minecraft accounts</li>
+        <li>Punishment records</li>
+        <li>Project registrations</li>
+        <li>Team memberships</li>
+        <li>Data access requests</li>
+        <li>Data deletion requests</li>
+        <li>Operational metadata</li>
+      </ul>
+      <p class="mb-4">
+        Account associations may be created manually by authorized moderators
+        based on available evidence, including account links, user-provided
+        information, technical indicators, or moderation investigations. Such
+        associations are used solely for community administration, security, and
+        enforcement purposes.
+      </p>
+      <p class="mb-4">
+        Technical indicators are used only where necessary for moderation and
+        security purposes and are not used for profiling or automated
+        decision-making.
+      </p>
+
+      <h3 class="font-semibold text-text mb-1 mt-6">Moderation Records</h3>
+      <p class="mb-2">To enforce community rules, we may store:</p>
+      <ul class="list-disc ml-6 space-y-1 mb-4">
+        <li>Punishment type</li>
+        <li>Punishment scope</li>
+        <li>Punishment reason</li>
+        <li>Associated project</li>
+        <li>Creation date</li>
+        <li>Expiration date</li>
+        <li>Revocation information</li>
+        <li>Administrative audit information</li>
+      </ul>
+
+      <h3 class="font-semibold text-text mb-1 mt-6">
+        Project Registrations and Teams
+      </h3>
+      <p class="mb-2">When participating in community projects we may store:</p>
+      <ul class="list-disc ml-6 space-y-1 mb-4">
+        <li>Project registrations</li>
+        <li>Team memberships</li>
+        <li>Leadership status</li>
+        <li>Join dates</li>
+        <li>Team tags and identifiers</li>
+      </ul>
+
+      <h3 class="font-semibold text-text mb-1 mt-6">Minecraft Server Logs</h3>
+      <p class="mb-2">
+        Minecraft servers may generate operational logs containing:
+      </p>
+      <ul class="list-disc ml-6 space-y-1 mb-4">
+        <li>Minecraft UUIDs</li>
+        <li>Usernames</li>
+        <li>Chat messages</li>
+        <li>Connection information</li>
+        <li>IP addresses</li>
+        <li>Security and moderation events</li>
+      </ul>
+      <p class="mb-4">
+        These logs are used for server administration, abuse prevention,
+        troubleshooting, and moderation. The server logs are retained for up to
+        7 days. This processing is based on our legitimate interest in
+        maintaining security and availability of our services (Article 6(1)(f)
+        GDPR).
+      </p>
+
+      <!-- 6. How We Obtain Data -->
+      <h2 class="text-lg font-semibold text-text mt-10 mb-3">
+        6. How We Obtain Data
+      </h2>
+      <p class="mb-2">Data may be obtained:</p>
+      <ul class="list-disc ml-6 space-y-1 mb-4">
+        <li>Directly from you when registering for projects</li>
+        <li>From your Minecraft account when connecting to our servers</li>
+        <li>From your Discord account when joining our Discord server</li>
+        <li>Automatically through operation of our services</li>
+        <li>Through moderation activities</li>
+        <li>
+          Through account-linking and profile-merging procedures performed by
+          authorized moderators
+        </li>
+      </ul>
+      <p class="mb-4">
+        If moderation action is required and no profile exists, a profile may be
+        created automatically to enforce community guidelines.
+      </p>
+
+      <!-- 7. Purposes of Processing -->
+      <h2 class="text-lg font-semibold text-text mt-10 mb-3">
+        7. Purposes of Processing
+      </h2>
+      <p class="mb-2">We process personal data for the following purposes:</p>
+      <ul class="list-disc ml-6 space-y-1 mb-4">
+        <li>Operating our community services</li>
+        <li>Managing Minecraft servers</li>
+        <li>Managing Discord communities</li>
+        <li>Enforcing community guidelines</li>
+        <li>Detecting abuse and ban evasion</li>
+        <li>Maintaining moderation records</li>
+        <li>Managing project participation</li>
+        <li>Managing teams and team tags</li>
+        <li>Responding to support requests</li>
+        <li>Fulfilling legal obligations</li>
+        <li>Exercising and defending legal claims</li>
+        <li>Maintaining security and integrity of our services</li>
+      </ul>
+
+      <!-- 8. Legal Basis for Processing -->
+      <h2 class="text-lg font-semibold text-text mt-10 mb-3">
+        8. Legal Basis for Processing
+      </h2>
+      <p class="mb-4">
+        Where the GDPR applies, processing is generally based on one or more of
+        the following legal bases:
+      </p>
+
+      <h3 class="font-semibold text-text mb-1 mt-6">
+        Legitimate Interests (Article 6(1)(f) GDPR)
+      </h3>
+      <p class="mb-2">Including:</p>
+      <ul class="list-disc ml-6 space-y-1 mb-4">
+        <li>Community moderation</li>
+        <li>Rule enforcement</li>
+        <li>Abuse prevention</li>
+        <li>Ban enforcement</li>
+        <li>Service security</li>
+        <li>Technical administration</li>
+      </ul>
+      <p class="mb-4">
+        We have considered that such processing is proportionate and does not
+        override the rights and freedoms of affected individuals.
+      </p>
+
+      <h3 class="font-semibold text-text mb-1 mt-6">
+        Performance of a Service (Article 6(1)(b) GDPR)
+      </h3>
+      <p class="mb-4">
+        Where processing is necessary to provide requested community services,
+        project registrations, team management features, or Minecraft server
+        functionality.
+      </p>
+
+      <h3 class="font-semibold text-text mb-1 mt-6">
+        Legal Obligations (Article 6(1)(c) GDPR)
+      </h3>
+      <p class="mb-4">Where processing is required by applicable law.</p>
+
+      <!-- 9. Data Sharing -->
+      <h2 class="text-lg font-semibold text-text mt-10 mb-3">
+        9. Data Sharing
+      </h2>
+      <p class="mb-4">
+        Access to personal data is restricted to authorized administrators,
+        moderators, and trusted operators who require access to perform their
+        duties.
+      </p>
+      <p class="mb-4">
+        We use hosting infrastructure provided by
+        {" "}
+        <a
+          href="https://prepaid-host.com/"
+          class="text-primary hover:underline"
+        >
+          Prepaid Host
+        </a>
+        {" "}
+        to store and process data on our behalf, under an appropriate data processing
+        agreement where required. This hosting provider does not have independent
+        access to use your data for its own purposes.
+      </p>
+      <p class="mb-4">We do not sell personal data.</p>
+      <p class="mb-4">We do not share personal data with advertisers.</p>
+      <p class="mb-4">
+        Data may be disclosed where required by law or where necessary to
+        protect the rights, safety, and security of our users, community, or
+        services.
+      </p>
+
+      <!-- 10. Hosting and Data Storage -->
+      <h2 class="text-lg font-semibold text-text mt-10 mb-3">
+        10. Hosting and Data Storage
+      </h2>
+      <p class="mb-4">Our infrastructure is hosted in Germany.</p>
+      <p class="mb-4">
+        Services are hosted through
+        {" "}
+        <a
+          href="https://prepaid-host.com/"
+          class="text-primary hover:underline"
+        >
+          Prepaid Host
+        </a>
+        .
+      </p>
+      <p class="mb-4">
+        We use hosting providers located in Germany unless otherwise stated.
+        These providers process data on our behalf under appropriate data
+        processing agreements where required.
+      </p>
+      <p class="mb-4">
+        All personal data we collect and store is hosted and processed
+        exclusively in Germany. We do not transfer collected personal data
+        outside Germany or the European Economic Area.
+      </p>
+      <p class="mb-4">
+        We receive limited data from Discord and Mojang/Microsoft via their
+        respective APIs for the purpose of operating our services. This is
+        limited to information those platforms have already collected through
+        their own independent processing. We do not send, share, or transfer the
+        personal data we collect back to Discord, Mojang, or Microsoft beyond
+        what is inherently necessary to interact with their APIs (e.g.,
+        identifying a Discord user ID to query their public account status).
+      </p>
+      <p class="mb-4">
+        Discord's and Microsoft's own processing of your data — including any
+        transfers outside the EEA they may perform — is governed by their
+        respective privacy policies and is outside our control.
+      </p>
+
+      <!-- 11. Discord Services -->
+      <h2 class="text-lg font-semibold text-text mt-10 mb-3">
+        11. Discord Services
+      </h2>
+      <p class="mb-4">
+        Our community uses Discord as a communication platform. When you join
+        our Discord server, Discord may process personal data independently
+        according to its own privacy policy. We only process information made
+        available to us through Discord APIs.
+      </p>
+      <p class="mb-4">
+        <a
+          href="https://discord.com/privacy"
+          class="text-primary hover:underline"
+        >
+          Discord Privacy Policy
+        </a>
+      </p>
+
+      <!-- 12. Minecraft Services -->
+      <h2 class="text-lg font-semibold text-text mt-10 mb-3">
+        12. Minecraft Services
+      </h2>
+      <p class="mb-4">
+        When you provide your Minecraft account to us or connect to our
+        Minecraft servers, information associated with your Minecraft account
+        may be processed. Minecraft accounts are operated by Mojang Studios and
+        Microsoft. Their processing of personal data is governed by their own
+        privacy policies.
+      </p>
+      <p class="mb-4">
+        <a
+          href="https://www.microsoft.com/en-gb/privacy/privacystatement"
+          class="text-primary hover:underline"
+        >
+          Microsoft Privacy Statement
+        </a>
+      </p>
+
+      <!-- 13. Data Retention -->
+      <h2 class="text-lg font-semibold text-text mt-10 mb-3">
+        13. Data Retention
+      </h2>
+
+      <h3 class="font-semibold text-text mb-1 mt-6">Moderation Records</h3>
+      <p class="mb-4">
+        Warnings, kicks, and mutes are deleted 36 months after creation.
+      </p>
+      <p class="mb-4">
+        Bans are deleted 36 months after expiration or revocation.
+      </p>
+      <p class="mb-4">
+        Project-specific bans are deleted 36 months after expiration,
+        revocation, or the end of the relevant project.
+      </p>
+      <p class="mb-4">
+        These retention periods are necessary to maintain consistent moderation
+        across recurring community projects. Baggel projects may operate for
+        limited periods and may have extended inactive periods between projects.
+        Retaining moderation history allows authorized moderators to identify
+        repeated rule violations, evaluate patterns of behaviour, enforce
+        previous sanctions consistently, and protect the integrity of future
+        projects. A uniform retention period is used for moderation records to
+        provide a clear and predictable retention policy for community members
+        and to ensure consistent handling of moderation data.
+      </p>
+      <p class="mb-4">
+        The retention period is limited to the time reasonably necessary for
+        these purposes. Moderation records are not used for advertising,
+        profiling, or purposes unrelated to community safety and administration.
+      </p>
+
+      <h3 class="font-semibold text-text mb-1 mt-6">Account Records</h3>
+      <p class="mb-4">
+        Minecraft and Discord account records are deleted 30 days after being
+        unlinked from a profile.
+      </p>
+
+      <h3 class="font-semibold text-text mb-1 mt-6">Deletion Requests</h3>
+      <p class="mb-4">
+        Deletion request records may be retained for up to 36 months after
+        completion, based on our legitimate interest in demonstrating regulatory
+        compliance and defending against potential disputes regarding the
+        handling of the request (Article 6(1)(f) GDPR, in conjunction with the
+        accountability obligation under Article 5(2) GDPR and the exception
+        under Article 17(3)(e) GDPR).
+      </p>
+
+      <h3 class="font-semibold text-text mb-1 mt-6">Operational Data</h3>
+      <p class="mb-4">
+        Operational profile remnants and related operational records are deleted
+        after 30 days where no longer required.
+      </p>
+
+      <h3 class="font-semibold text-text mb-1 mt-6">Minecraft Server Logs</h3>
+      <p class="mb-4">
+        Minecraft server logs, including chat history and IP addresses, are
+        automatically deleted after a maximum retention period of 7 days.
+      </p>
+
+      <h3 class="font-semibold text-text mb-1 mt-6">Dormant Profiles</h3>
+      <p class="mb-4">
+        If all Discord accounts associated with a profile have left the
+        community for more than 90 days, the profile has not participated in an
+        active project within the previous 90 days, and no active deletion
+        request exists, the profile may be reviewed for deletion and may be
+        removed unless retention is necessary for moderation, security, or legal
+        reasons.
+      </p>
+
+      <!-- 14. Automated Decision-Making -->
+      <h2 class="text-lg font-semibold text-text mt-10 mb-3">
+        14. Automated Decision-Making
+      </h2>
+      <p class="mb-4">
+        Punishments, access restrictions, and other enforcement actions are
+        always issued by an authorized human moderator. No punishment or
+        restriction is ever imposed automatically.
+      </p>
+      <p class="mb-4">
+        The only automated decision-making we perform relates to data deletion
+        eligibility. When a deletion request is submitted, our system
+        automatically evaluates whether full or partial deletion is possible by
+        checking for existing active punishments on record (see Section 15,
+        "Right to Erasure"). This check references only straightforward
+        operational facts — whether a punishment created by a human moderator is
+        currently active — and does not involve profiling, behavioral analysis,
+        or technical indicators such as IP addresses.
+      </p>
+      <p class="mb-4">
+        If you disagree with the outcome of an automated eligibility check, you
+        may request human review by contacting us via a Discord support ticket
+        or email (see Section 20).
+      </p>
+
+      <!-- 15. Your Rights Under GDPR -->
+      <h2 class="text-lg font-semibold text-text mt-10 mb-3">
+        15. Your Rights Under GDPR
+      </h2>
+      <p class="mb-2">
+        Subject to applicable law, you may have the following rights:
+      </p>
+      <ul class="list-disc ml-6 space-y-1 mb-4">
+        <li>Right of access (Article 15 GDPR)</li>
+        <li>Right to rectification (Article 16 GDPR)</li>
+        <li>Right to Data Portability (Article 20 GDPR)</li>
+        <li>Right to erasure (Article 17 GDPR)</li>
+        <li>Right to restriction of processing</li>
+        <li>Right to object</li>
+        <li>Right to lodge a complaint with a supervisory authority</li>
+      </ul>
+
+      <h3 class="font-semibold text-text mb-1 mt-6">Right of Access</h3>
+      <p class="mb-4">
+        To request a copy of your data, open a
+        {" "}
+        <a href={DISCORD_SUPPORT} class="text-primary hover:underline">
+          support ticket in our Discord server
+        </a>
+        . You may alternatively contact us via email.
+      </p>
+      <p class="mb-4">
+        An administrator will provide an automatically generated data export.
+      </p>
+      <p class="mb-4">
+        Generated exports are retained for up to 49 hours before deletion.
+      </p>
+
+      <h3 class="font-semibold text-text mb-1 mt-6">Right to Rectification</h3>
+      <p class="mb-4">
+        To correct inaccurate information, open a
+        {" "}
+        <a href={DISCORD_SUPPORT} class="text-primary hover:underline">
+          support ticket in our Discord server
+        </a>
+        . You may alternatively contact us via email.
+      </p>
+
+      <h3 class="font-semibold text-text mb-1 mt-6">
+        Right to Data Portability
+      </h3>
+      <p class="mb-4">
+        Data exports generated in response to access requests are provided in a
+        structured, machine-readable format (ZIP archive containing structured
+        data files). This satisfies the right to data portability under Article
+        20 GDPR. No separate portability process is necessary, as the standard
+        export mechanism fulfills this right.
+      </p>
+
+      <h3 class="font-semibold text-text mb-1 mt-6">Right to Erasure</h3>
+      <p class="mb-4">
+        To request deletion of your data, use the
+        <code class="text-primary">/datenschutz daten_löschung</code>
+        command provided by our Discord bot.
+      </p>
+      <p class="mb-4">
+        Automated checks may assist in evaluating deletion requests. Where a
+        request cannot be fulfilled automatically or requires further
+        assessment, it may be reviewed by authorized administrators.
+      </p>
+
+      <h4 class="font-semibold text-text mb-1 mt-4">Full Deletion</h4>
+      <p class="mb-2">Where eligible, we permanently remove:</p>
+      <ul class="list-disc ml-6 space-y-1 mb-4">
+        <li>Project registrations</li>
+        <li>Team memberships</li>
+        <li>Minecraft accounts</li>
+        <li>Discord accounts</li>
+        <li>Punishment records</li>
+        <li>Profiles</li>
+        <li>Operational profile remnants</li>
+        <li>Operational event history</li>
+      </ul>
+
+      <h4 class="font-semibold text-text mb-1 mt-4">Partial Deletion</h4>
+      <p class="mb-4">
+        If an active ban or active project-ban exists, complete deletion may not
+        be possible because account identifiers are required to enforce
+        community sanctions and prevent ban evasion.
+      </p>
+      <p class="mb-4">
+        In such cases we may retain only the minimum information necessary for
+        enforcement.
+      </p>
+      <p class="mb-2">Partial deletion may remove:</p>
+      <ul class="list-disc ml-6 space-y-1 mb-4">
+        <li>Project registrations</li>
+        <li>Team memberships</li>
+        <li>Profile metadata</li>
+        <li>Minecraft account metadata</li>
+        <li>Discord account metadata</li>
+        <li>Inactive punishments</li>
+        <li>Operational profile remnants</li>
+        <li>Irrelevant operational history</li>
+      </ul>
+      <p class="mb-4">
+        Deletion eligibility is automatically re-evaluated and full deletion may
+        occur later when retention is no longer required.
+      </p>
+
+      <h3 class="font-semibold text-text mb-1 mt-6">Right to Object</h3>
+      <p class="mb-4">
+        Where we process your data based on legitimate interest (Article 6(1)(f)
+        GDPR) — for example, moderation, security, or ban enforcement — you may
+        object to that processing on grounds relating to your particular
+        situation.
+      </p>
+      <p class="mb-4">
+        To object, open a
+        {" "}
+        <a href={DISCORD_SUPPORT} class="text-primary hover:underline">
+          support ticket in our Discord server
+        </a>
+        {" "}
+        or contact us via email (see Section 20).
+      </p>
+      <p class="mb-4">
+        Upon receiving an objection, we promptly review the affected record.
+        Where continued enforcement is necessary to protect the rights and
+        safety of other community members — for example, an active ban related
+        to abuse, harassment, or cheating — enforcement may continue during this
+        review, consistent with Article 18(2) GDPR. Where no such risk exists,
+        enforcement is paused pending review by revoking the record, as
+        described under "Right to Restriction of Processing" below.
+      </p>
+      <p class="mb-2">Following review:</p>
+      <ul class="list-disc ml-6 space-y-1 mb-4">
+        <li>
+          If your objection is upheld, the record is revoked (or remains
+          revoked) and is handled according to our standard deletion rules.
+        </li>
+        <li>
+          If we determine we have compelling legitimate grounds that override
+          your interests, we will continue or resume enforcement and inform you
+          of the reasons.
+        </li>
+      </ul>
+      <p class="mb-4">
+        You may lodge a complaint with the Bayerisches Landesamt für
+        Datenschutzaufsicht (BayLDA) — the data protection supervisory authority
+        responsible for the private sector in Bavaria, Germany:
+      </p>
+      <p class="mb-1">
+        <a
+          href="https://www.lda.bayern.de/de/index.html"
+          class="text-primary hover:underline"
+        >
+          Bayerisches Landesamt für Datenschutzaufsicht (BayLDA)
+        </a>
+      </p>
+      <p class="mb-4">Promenade 18, 91522 Ansbach, Germany</p>
+      <p class="mb-4">
+        Alternatively, you may lodge a complaint with the supervisory authority
+        in your own EU/EEA member state of residence, place of work, or the
+        place of the alleged infringement.
+      </p>
+
+      <h3 class="font-semibold text-text mb-1 mt-6">
+        Right to Restriction of Processing
+      </h3>
+      <p class="mb-4">
+        You may request that we restrict processing of your data — meaning we
+        stop actively using or enforcing a record while continuing to store it —
+        in certain circumstances, including where you dispute the accuracy of a
+        record, where processing is contested, or while an objection under
+        Article 21 GDPR is being assessed.
+      </p>
+      <p class="mb-4">
+        Where restriction applies, it is implemented through revocation: the
+        disputed punishment is revoked, immediately stopping its enforcement
+        while keeping the record available to moderators for reference during
+        investigation. Because our moderation system does not support
+        reactivating a revoked record, any record found to still be warranted
+        after review is reissued as a new punishment rather than reinstated.
+      </p>
+      <p class="mb-4">
+        Consistent with Article 18(2) GDPR, we may continue enforcing a record
+        during restriction where necessary to protect the rights and safety of
+        other community members, such as active bans related to abuse,
+        harassment, exploiting, or cheating. In such cases, enforcement
+        continues while we conduct a prompt review, rather than pausing
+        automatically.
+      </p>
+      <p class="mb-4">
+        To request restriction, open a
+        {" "}
+        <a href={DISCORD_SUPPORT} class="text-primary hover:underline">
+          support ticket in our Discord server
+        </a>
+        {" "}
+        or contact us via email (see Section 20).
+      </p>
+
+      <!-- 16. Age Requirements -->
+      <h2 class="text-lg font-semibold text-text mt-10 mb-3">
+        16. Age Requirements
+      </h2>
+      <p class="mb-4">
+        Baggel services are intended for users aged 13 and above. This
+        policy-choice references the minimum age requirements of Discord, which
+        may be required to participate in our community.
+      </p>
+      <p class="mb-4">
+        We do not collect, verify, or store age or date-of-birth data. All users
+        are treated identically regardless of age, and no age-based profiling,
+        differentiated processing, or special category handling occurs. Users
+        under the applicable minimum age are not permitted to use Baggel
+        services; responsibility for meeting this requirement rests with the
+        user and, where applicable, their parent or guardian.
+      </p>
+
+      <!-- 17. Security -->
+      <h2 class="text-lg font-semibold text-text mt-10 mb-3">17. Security</h2>
+      <p class="mb-4">
+        We implement reasonable technical and organizational measures designed
+        to protect personal data against unauthorized access, disclosure,
+        alteration, or destruction.
+      </p>
+      <p class="mb-2">We implement:</p>
+      <ul class="list-disc ml-6 space-y-1 mb-4">
+        <li>Access control</li>
+        <li>Authentication requirements</li>
+        <li>Logging</li>
+        <li>Encryption where appropriate</li>
+      </ul>
+      <p class="mb-4">
+        However, no system can be guaranteed to be completely secure.
+      </p>
+
+      <!-- 18. Changes to this Privacy Policy -->
+      <h2 class="text-lg font-semibold text-text mt-10 mb-3">
+        18. Changes to this Privacy Policy
+      </h2>
+      <p class="mb-4">We may update this Privacy Policy from time to time.</p>
+      <p class="mb-4">
+        Material changes may be announced through our website, Discord server,
+        or other community communication channels.
+      </p>
+      <p class="mb-4">
+        The latest version will always be considered authoritative.
+      </p>
+
+      <!-- 19. Definitions -->
+      <h2 class="text-lg font-semibold text-text mt-10 mb-3">
+        19. Definitions
+      </h2>
+      <p class="mb-4">
+        <span class="font-semibold text-text">"Profile"</span> refers to an internal
+        community record used to associate accounts, moderation history, and participation
+        information belonging to the same individual.
+      </p>
+      <p class="mb-4">
+        <span class="font-semibold text-text">"Operational data"</span> refers to
+        technical information required to operate, secure, and maintain our services.
+      </p>
+      <p class="mb-4">
+        <span class="font-semibold text-text">"Operational metadata"</span>
+        refers to a reserved technical field used to pass non-personal information
+        between our internal services (for example, between our Discord bot and Minecraft
+        systems), primarily to support internal coordination and non-essential features
+        (such as cosmetic elements). Operational metadata is not used for moderation,
+        security enforcement, or any purpose critical to account status or service
+        delivery. We do not store personal data within operational metadata. Because
+        its content is defined by ongoing internal development rather than by a fixed
+        purpose, operational metadata is treated as inherently transient: it is the
+        first category of data removed whenever a profile is deleted or a deletion
+        request is processed, regardless of whether other data on the same profile
+        is retained for moderation or legal reasons.
+      </p>
+
+      <!-- 20. Contact -->
+      <h2 class="text-lg font-semibold text-text mt-10 mb-3">20. Contact</h2>
+      <p class="mb-2">For privacy-related inquiries, please contact:</p>
+      <p>
+        <a href={"mailto:" + LINKS.email} class="text-primary hover:underline">
+          {LINKS.email}
+        </a>
+      </p>
+    </section>
+  </div>
+</DefaultLayout>
