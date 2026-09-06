@@ -1,7 +1,7 @@
 import type { TagDefinition } from "../tags";
 import { createSearchableDropdown, createInfoBlock } from "../util/components";
 
-const toolbarIcon = `<svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+const toolbarIcon = `<svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M3 5H13M7 3V5M10.5 5C10.5 9 7.5 13 3 14.5M5.5 11C6.5 12.5 8.5 14 11 15M12 19L16 9L20 19M13.5 16H18.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`;
 

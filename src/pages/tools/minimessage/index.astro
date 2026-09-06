@@ -364,6 +364,27 @@ import "../../../styles/MiniMessageTool.css";
               </svg>
             </div>
           </div>
+          <div class="flex items-center gap-3">
+            <label
+              for="resourcepack-input"
+              class="text-sm text-text-80 shrink-0 cursor-pointer bg-background-50 hover:bg-background-100 rounded-lg px-3 py-1.5 transition-colors duration-200"
+            >
+              Upload Resource Pack
+            </label>
+            <input
+              type="file"
+              id="resourcepack-input"
+              accept=".zip"
+              multiple
+              class="hidden"
+            />
+          </div>
+
+          <div
+            id="resourcepack-list"
+            class="hidden px-4 pb-4 flex flex-col gap-2 border-t border-background-50 pt-3"
+          >
+          </div>
         </div>
       </div>
     </div>
@@ -609,199 +630,366 @@ import "../../../styles/MiniMessageTool.css";
       textarea.addEventListener("input", updateColor);
     }
   </script>
-</Layout>
-<script lang="js">
-  ((window) => {
-    const { MiniMessage, JsonComponentSerializer } = window.adventure;
 
-    window.addEventListener("DOMContentLoaded", async () => {
-      const input = document.querySelector("#input");
-      const domOutput = document.querySelector("#output-dom");
-      const copyBtn = document.querySelector("#copy-json-btn");
-      const strictToggle = document.querySelector("#strict-toggle");
-      const strictKnob = document.querySelector("#strict-knob");
-      const strictLabel = document.querySelector("#strict-label");
-      const langSelect = document.querySelector("#lang-select");
+  <script lang="js">
+    ((window) => {
+      const { MiniMessage, JsonComponentSerializer, ResourcePacks } =
+        window.adventure;
 
-      if (!input || !domOutput || !copyBtn) return;
+      window.addEventListener("DOMContentLoaded", async () => {
+        const input = document.querySelector("#input");
+        const domOutput = document.querySelector("#output-dom");
+        const copyBtn = document.querySelector("#copy-json-btn");
+        const strictToggle = document.querySelector("#strict-toggle");
+        const strictKnob = document.querySelector("#strict-knob");
+        const strictLabel = document.querySelector("#strict-label");
+        const langSelect = document.querySelector("#lang-select");
+        const packInput = document.querySelector("#resourcepack-input");
+        const packListEl = document.querySelector("#resourcepack-list");
 
-      const translationsModule =
-        await import("/tools/minimessage/translation/index.mjs");
-      const MinecraftTranslations = translationsModule.default;
-      window.__mcTranslations = MinecraftTranslations;
+        if (!input || !domOutput || !copyBtn) return;
 
-      let strictMode = false;
-      let currentLang = "en_us";
+        const translationsModule =
+          await import("/tools/minimessage/translation/index.mjs");
+        const MinecraftTranslations = translationsModule.default;
+        window.__mcTranslations = MinecraftTranslations;
 
-      async function buildMini() {
-        const raw = await MinecraftTranslations.get(currentLang);
-        const verbose = false;
-        return MiniMessage.builder()
-          .strict(strictMode)
-          .postProcessor((c) => {
-            return verbose ? c : c.compact();
-          })
-          .translations(raw)
-          .build();
-      }
+        let strictMode = false;
+        let currentLang = "en_us";
 
-      let mini = await buildMini();
+        // Files never leave the device; this just avoids re-uploading them
+        // every refresh. localStorage can't hold binary Blob/File data (and
+        // has a ~5MB cap), so IndexedDB is used instead
+        const PACK_DB_NAME = "minimessage-tool";
+        const PACK_DB_VERSION = 1;
+        const PACK_STORE_NAME = "resourcePacks";
+        const PACK_STORE_KEY = "packFiles";
 
-      function update() {
-        domOutput.innerHTML = "";
-        try {
-          const component = mini.deserialize(input.value);
-          mini.toHTML(component, domOutput);
-          const json = JsonComponentSerializer.json().serialize(component);
-          copyBtn.dataset.json = JSON.stringify(json, null, 2);
-        } catch (e) {
-          console.trace(e);
-          copyBtn.dataset.json = "";
-          domOutput.innerHTML = `<span style="color:#ff5555;font-family:monospace;font-size:0.85em;opacity:0.8">${e.message ?? "Parse error"}</span>`;
-        }
-      }
-
-      input.addEventListener("input", update);
-      update();
-
-      if (strictToggle && strictKnob && strictLabel) {
-        strictToggle.addEventListener("click", async () => {
-          strictMode = !strictMode;
-          strictToggle.setAttribute("aria-checked", String(strictMode));
-          if (strictMode) {
-            strictKnob.style.transform = "translateX(1.375rem)";
-            strictKnob.style.background = "var(--color-primary)";
-            strictToggle.style.background =
-              "color-mix(in srgb, var(--color-primary) 30%, transparent)";
-            strictLabel.textContent = "On";
-          } else {
-            strictKnob.style.transform = "translateX(0.25rem)";
-            strictKnob.style.background = "";
-            strictToggle.style.background = "";
-            strictLabel.textContent = "Off";
-          }
-          mini = await buildMini();
-          update();
-        });
-      }
-
-      if (langSelect) {
-        langSelect.addEventListener("change", async () => {
-          currentLang = langSelect.value;
-          mini = await buildMini();
-          update();
-        });
-      }
-
-      copyBtn.addEventListener("click", () => {
-        const json = copyBtn.dataset.json;
-        if (!json) return;
-
-        navigator.clipboard
-          .writeText(json)
-          .then(() => {
-            const textSpan = copyBtn.querySelector(".btn-text");
-            if (textSpan) {
-              textSpan.textContent = "Copied!";
-              setTimeout(() => {
-                textSpan.textContent = "Copy JSON";
-              }, 1500);
+        function openPackDb() {
+          return new Promise((resolve, reject) => {
+            if (!("indexedDB" in window)) {
+              reject(new Error("IndexedDB not available"));
+              return;
             }
-          })
-          .catch((err) => console.error("Failed to copy JSON:", err));
+            const req = indexedDB.open(PACK_DB_NAME, PACK_DB_VERSION);
+            req.onupgradeneeded = () => {
+              req.result.createObjectStore(PACK_STORE_NAME);
+            };
+            req.onsuccess = () => resolve(req.result);
+            req.onerror = () => reject(req.error);
+          });
+        }
+
+        async function loadPersistedPackFiles() {
+          try {
+            const db = await openPackDb();
+            const files = await new Promise((resolve, reject) => {
+              const tx = db.transaction(PACK_STORE_NAME, "readonly");
+              const req = tx.objectStore(PACK_STORE_NAME).get(PACK_STORE_KEY);
+              req.onsuccess = () => resolve(req.result ?? []);
+              req.onerror = () => reject(req.error);
+            });
+            db.close();
+            return files;
+          } catch (err) {
+            console.warn("Could not load saved resource packs:", err);
+            return [];
+          }
+        }
+
+        async function persistPackFiles(files) {
+          try {
+            const db = await openPackDb();
+            await new Promise((resolve, reject) => {
+              const tx = db.transaction(PACK_STORE_NAME, "readwrite");
+              tx.objectStore(PACK_STORE_NAME).put(files, PACK_STORE_KEY);
+              tx.oncomplete = () => resolve();
+              tx.onerror = () => reject(tx.error);
+            });
+            db.close();
+          } catch (err) {
+            console.warn("Could not save resource packs:", err);
+          }
+        }
+
+        // Ordered list of File objects — array order == pack priority (later wins)
+        let packFiles = [];
+        let resourcePacks = ResourcePacks.empty();
+
+        async function rebuildResourcePacks() {
+          const old = resourcePacks;
+          resourcePacks =
+            packFiles.length > 0
+              ? await ResourcePacks.fromZips([...packFiles].reverse())
+              : ResourcePacks.empty();
+          old.dispose(); // free old blob URLs only once the new set is ready
+        }
+
+        function renderPackList() {
+          if (!packListEl) return;
+          packListEl.innerHTML = "";
+          packListEl.classList.toggle("hidden", packFiles.length === 0);
+
+          packFiles.forEach((file, i) => {
+            const row = document.createElement("div");
+            row.className =
+              "flex items-center gap-2 bg-background-50 rounded-lg px-3 py-1.5";
+
+            const name = document.createElement("span");
+            name.className = "text-sm text-text-80 flex-1 truncate";
+            name.textContent = file.name;
+            row.appendChild(name);
+
+            const makeBtn = (label, title, disabled) => {
+              const btn = document.createElement("button");
+              btn.type = "button";
+              btn.textContent = label;
+              btn.title = title;
+              btn.disabled = disabled;
+              btn.className =
+                "text-text-50 hover:text-text disabled:opacity-30 disabled:pointer-events-none text-xs w-5 h-5 flex items-center justify-center cursor-pointer";
+              return btn;
+            };
+
+            const upBtn = makeBtn("↑", "Move up (increase priority)", i === 0);
+            upBtn.addEventListener("click", async () => {
+              [packFiles[i - 1], packFiles[i]] = [
+                packFiles[i],
+                packFiles[i - 1],
+              ];
+              renderPackList();
+              await rebuildResourcePacks();
+              await persistPackFiles(packFiles);
+              mini = await buildMini();
+              update();
+            });
+            row.appendChild(upBtn);
+
+            const downBtn = makeBtn(
+              "↓",
+              "Move down (decrease priority)",
+              i === packFiles.length - 1,
+            );
+            downBtn.addEventListener("click", async () => {
+              [packFiles[i], packFiles[i + 1]] = [
+                packFiles[i + 1],
+                packFiles[i],
+              ];
+              renderPackList();
+              await rebuildResourcePacks();
+              await persistPackFiles(packFiles);
+              mini = await buildMini();
+              update();
+            });
+            row.appendChild(downBtn);
+
+            const removeBtn = makeBtn("✕", "Remove", false);
+            removeBtn.addEventListener("click", async () => {
+              packFiles.splice(i, 1);
+              renderPackList();
+              await rebuildResourcePacks();
+              await persistPackFiles(packFiles);
+              mini = await buildMini();
+              update();
+            });
+            row.appendChild(removeBtn);
+
+            packListEl.appendChild(row);
+          });
+        }
+
+        async function buildMini() {
+          const raw = await MinecraftTranslations.get(currentLang);
+          const verbose = false;
+          return MiniMessage.builder()
+            .strict(strictMode)
+            .postProcessor((c) => {
+              return verbose ? c : c.compact();
+            })
+            .translations(raw)
+            .resourcePacks(resourcePacks)
+            .build();
+        }
+
+        packFiles = await loadPersistedPackFiles();
+        if (packFiles.length > 0) {
+          renderPackList();
+          await rebuildResourcePacks();
+        }
+
+        let mini = await buildMini();
+
+        function update() {
+          domOutput.innerHTML = "";
+          try {
+            const component = mini.deserialize(input.value);
+            mini.toHTML(component, domOutput);
+            const json = JsonComponentSerializer.json().serialize(component);
+            copyBtn.dataset.json = JSON.stringify(json, null, 2);
+          } catch (e) {
+            console.trace(e);
+            copyBtn.dataset.json = "";
+            domOutput.innerHTML = `<span style="color:#ff5555;font-family:monospace;font-size:0.85em;opacity:0.8">${e.message ?? "Parse error"}</span>`;
+          }
+        }
+
+        input.addEventListener("input", update);
+        update();
+
+        if (strictToggle && strictKnob && strictLabel) {
+          strictToggle.addEventListener("click", async () => {
+            strictMode = !strictMode;
+            strictToggle.setAttribute("aria-checked", String(strictMode));
+            if (strictMode) {
+              strictKnob.style.transform = "translateX(1.375rem)";
+              strictKnob.style.background = "var(--color-primary)";
+              strictToggle.style.background =
+                "color-mix(in srgb, var(--color-primary) 30%, transparent)";
+              strictLabel.textContent = "On";
+            } else {
+              strictKnob.style.transform = "translateX(0.25rem)";
+              strictKnob.style.background = "";
+              strictToggle.style.background = "";
+              strictLabel.textContent = "Off";
+            }
+            mini = await buildMini();
+            update();
+          });
+        }
+
+        if (langSelect) {
+          langSelect.addEventListener("change", async () => {
+            currentLang = langSelect.value;
+            mini = await buildMini();
+            update();
+          });
+        }
+
+        if (packInput) {
+          packInput.addEventListener("change", async () => {
+            const newFiles = Array.from(packInput.files ?? []);
+            if (newFiles.length === 0) return;
+
+            packFiles.push(...newFiles);
+            packInput.value = ""; // allow re-selecting the same file later
+
+            renderPackList();
+            await rebuildResourcePacks();
+            await persistPackFiles(packFiles);
+            mini = await buildMini();
+            update();
+          });
+        }
+
+        copyBtn.addEventListener("click", () => {
+          const json = copyBtn.dataset.json;
+          if (!json) return;
+
+          navigator.clipboard
+            .writeText(json)
+            .then(() => {
+              const textSpan = copyBtn.querySelector(".btn-text");
+              if (textSpan) {
+                textSpan.textContent = "Copied!";
+                setTimeout(() => {
+                  textSpan.textContent = "Copy JSON";
+                }, 1500);
+              }
+            })
+            .catch((err) => console.error("Failed to copy JSON:", err));
+        });
       });
-    });
-  })(window);
-</script>
+    })(window);
+  </script>
 
-<script>
-  import { locales } from "@scripts/minimessage/languages";
+  <script>
+    import { locales } from "@scripts/minimessage/languages";
 
-  const toggle = document.getElementById("settings-toggle");
-  const body = document.getElementById("settings-body");
-  const chevron = document.getElementById("settings-chevron");
+    const toggle = document.getElementById("settings-toggle");
+    const body = document.getElementById("settings-body");
+    const chevron = document.getElementById("settings-chevron");
 
-  if (toggle && body && chevron) {
-    toggle.addEventListener("click", () => {
-      const isOpen = !body.classList.contains("hidden");
-      body.classList.toggle("hidden", isOpen);
-      toggle.setAttribute("aria-expanded", String(!isOpen));
-      chevron.style.transform = isOpen ? "" : "rotate(180deg)";
-    });
-  }
-
-  const langSelect = document.getElementById(
-    "lang-select",
-  ) as HTMLSelectElement | null;
-  if (langSelect) {
-    const isMobile = window.innerWidth < 640;
-    for (const [localeCode, localeName] of Object.entries(locales)) {
-      const opt = document.createElement("option");
-      opt.value = localeCode;
-      opt.textContent = isMobile ? localeCode : localeName;
-      if (localeCode === "en_us") opt.selected = true;
-      langSelect.appendChild(opt);
-    }
-  }
-</script>
-<script src="../../../scripts/minimessage/debug.ts"></script>
-
-<div
-  id="mc-click-container"
-  aria-live="polite"
-  aria-label="Click event notifications"
->
-</div>
-
-<script>
-  (() => {
-    const container = document.getElementById("mc-click-container");
-    const outputDom = document.getElementById("output-dom");
-    if (!container || !outputDom) return;
-
-    const POPUP_DURATION = 8000;
-    const MAX_POPUPS = 6;
-
-    const ACTION_LABELS: Record<string, string> = {
-      open_url: "Opened URL:",
-      run_command: "Ran Command:",
-      suggest_command: "Suggested Command:",
-      change_page: "Changed Page to:",
-      copy_to_clipboard: "Copied to Clipboard:",
-      custom: "Custom Action:",
-    };
-
-    function removePopup(el: HTMLElement) {
-      el.classList.add("mc-popup-out");
-      el.addEventListener("transitionend", () => el.remove(), { once: true });
-      setTimeout(() => el.remove(), 400);
+    if (toggle && body && chevron) {
+      toggle.addEventListener("click", () => {
+        const isOpen = !body.classList.contains("hidden");
+        body.classList.toggle("hidden", isOpen);
+        toggle.setAttribute("aria-expanded", String(!isOpen));
+        chevron.style.transform = isOpen ? "" : "rotate(180deg)";
+      });
     }
 
-    function escapeHtml(str: string): string {
-      return str
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;");
+    const langSelect = document.getElementById(
+      "lang-select",
+    ) as HTMLSelectElement | null;
+    if (langSelect) {
+      const isMobile = window.innerWidth < 640;
+      for (const [localeCode, localeName] of Object.entries(locales)) {
+        const opt = document.createElement("option");
+        opt.value = localeCode;
+        opt.textContent = isMobile ? localeCode : localeName;
+        if (localeCode === "en_us") opt.selected = true;
+        langSelect.appendChild(opt);
+      }
     }
+  </script>
+  <script src="../../../scripts/minimessage/debug.ts"></script>
 
-    function spawnPopup(action: string, value: string) {
-      if (!container) return;
-      const existing =
-        container.querySelectorAll<HTMLElement>(".mc-click-popup");
-      if (existing.length >= MAX_POPUPS) {
-        removePopup(existing[0]);
+  <div
+    id="mc-click-container"
+    aria-live="polite"
+    aria-label="Click event notifications"
+  >
+  </div>
+
+  <script>
+    (() => {
+      const container = document.getElementById("mc-click-container");
+      const outputDom = document.getElementById("output-dom");
+      if (!container || !outputDom) return;
+
+      const POPUP_DURATION = 8000;
+      const MAX_POPUPS = 6;
+
+      const ACTION_LABELS: Record<string, string> = {
+        open_url: "Opened URL:",
+        run_command: "Ran Command:",
+        suggest_command: "Suggested Command:",
+        change_page: "Changed Page to:",
+        copy_to_clipboard: "Copied to Clipboard:",
+        custom: "Custom Action:",
+      };
+
+      function removePopup(el: HTMLElement) {
+        el.classList.add("mc-popup-out");
+        el.addEventListener("transitionend", () => el.remove(), { once: true });
+        setTimeout(() => el.remove(), 400);
       }
 
-      const label = ACTION_LABELS[action] ?? action;
+      function escapeHtml(str: string): string {
+        return str
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
 
-      const popup = document.createElement("div");
-      popup.className = "mc-click-popup";
-      popup.style.position = "relative";
-      popup.style.overflow = "hidden";
-      popup.style.setProperty("--mc-duration", `${POPUP_DURATION}ms`);
+      function spawnPopup(action: string, value: string) {
+        if (!container) return;
+        const existing =
+          container.querySelectorAll<HTMLElement>(".mc-click-popup");
+        if (existing.length >= MAX_POPUPS) {
+          removePopup(existing[0]);
+        }
 
-      popup.innerHTML = `
+        const label = ACTION_LABELS[action] ?? action;
+
+        const popup = document.createElement("div");
+        popup.className = "mc-click-popup";
+        popup.style.position = "relative";
+        popup.style.overflow = "hidden";
+        popup.style.setProperty("--mc-duration", `${POPUP_DURATION}ms`);
+
+        popup.innerHTML = `
         <div class="mc-click-popup-body">
           <div class="mc-click-popup-action">${escapeHtml(label)}</div>
           <div class="mc-click-popup-value">${escapeHtml(value)}</div>
@@ -810,86 +998,87 @@ import "../../../styles/MiniMessageTool.css";
         <div class="mc-click-progress"></div>
       `;
 
-      const closeBtn = popup.querySelector<HTMLButtonElement>(
-        ".mc-click-popup-close",
-      )!;
-      closeBtn.addEventListener("click", () => removePopup(popup));
+        const closeBtn = popup.querySelector<HTMLButtonElement>(
+          ".mc-click-popup-close",
+        )!;
+        closeBtn.addEventListener("click", () => removePopup(popup));
 
-      container.appendChild(popup);
+        container.appendChild(popup);
 
-      let timer = setTimeout(() => removePopup(popup), POPUP_DURATION);
+        let timer = setTimeout(() => removePopup(popup), POPUP_DURATION);
 
-      popup.addEventListener("mouseenter", () => clearTimeout(timer));
-      popup.addEventListener("mouseleave", () => {
-        timer = setTimeout(() => removePopup(popup), 800);
+        popup.addEventListener("mouseenter", () => clearTimeout(timer));
+        popup.addEventListener("mouseleave", () => {
+          timer = setTimeout(() => removePopup(popup), 800);
+        });
+      }
+
+      outputDom.addEventListener("click", (e: MouseEvent) => {
+        const target = (e.target as Element).closest<HTMLElement>(
+          "[data-mc-click-action]",
+        );
+        if (!target) return;
+        const action = target.dataset.mcClickAction ?? "";
+        const value = target.dataset.mcClickValue ?? "";
+        spawnPopup(action, value);
+      });
+
+      outputDom.addEventListener("click", (e: MouseEvent) => {
+        if (!e.shiftKey) return;
+        const target = (e.target as Element).closest<HTMLElement>(
+          "[data-mc-insertion]",
+        );
+        if (!target) return;
+        const value = target.dataset.mcInsertion ?? "";
+        spawnPopup("Inserted Text:", value);
+      });
+    })();
+  </script>
+
+  <script>
+    const mcTooltip = document.getElementById("mc-tooltip");
+    const outputDom = document.getElementById("output-dom");
+
+    if (mcTooltip && outputDom) {
+      outputDom.addEventListener("mouseover", (e) => {
+        const target = (e.target as Element).closest("[data-mc-tooltip]");
+        if (!target) return;
+        mcTooltip.innerHTML = target.getAttribute("data-mc-tooltip") ?? "";
+        mcTooltip.style.display = "block";
+        //@ts-ignore
+        window.adventure.DomEffects.apply(mcTooltip);
+      });
+
+      outputDom.addEventListener("mouseout", (e) => {
+        const target = (e.target as Element).closest("[data-mc-tooltip]");
+        if (!target) return;
+        mcTooltip.style.display = "none";
+      });
+
+      outputDom.addEventListener("scroll", (e) => {
+        const target = (e.target as Element).closest("[data-mc-tooltip]");
+        if (!target) return;
+        mcTooltip.style.display = "none";
+      });
+
+      window.addEventListener("mousemove", (e) => {
+        if (mcTooltip.style.display === "none") return;
+
+        let x = e.clientX + 16;
+        let y = e.clientY - 32;
+
+        // Flip left if it would overflow right edge
+        if (x + mcTooltip.offsetWidth > window.innerWidth - 8) {
+          x = e.clientX - mcTooltip.offsetWidth - 8;
+        }
+        // Flip up if it would overflow bottom edge
+        if (y + mcTooltip.offsetHeight > window.innerHeight - 8) {
+          y = e.clientY - mcTooltip.offsetHeight - 8;
+        }
+
+        mcTooltip.style.left = x + "px";
+        mcTooltip.style.top = y + "px";
       });
     }
-
-    outputDom.addEventListener("click", (e: MouseEvent) => {
-      const target = (e.target as Element).closest<HTMLElement>(
-        "[data-mc-click-action]",
-      );
-      if (!target) return;
-      const action = target.dataset.mcClickAction ?? "";
-      const value = target.dataset.mcClickValue ?? "";
-      spawnPopup(action, value);
-    });
-
-    outputDom.addEventListener("click", (e: MouseEvent) => {
-      if (!e.shiftKey) return;
-      const target = (e.target as Element).closest<HTMLElement>(
-        "[data-mc-insertion]",
-      );
-      if (!target) return;
-      const value = target.dataset.mcInsertion ?? "";
-      spawnPopup("Inserted Text:", value);
-    });
-  })();
-</script>
-
-<script>
-  const mcTooltip = document.getElementById("mc-tooltip");
-  const outputDom = document.getElementById("output-dom");
-
-  if (mcTooltip && outputDom) {
-    outputDom.addEventListener("mouseover", (e) => {
-      const target = (e.target as Element).closest("[data-mc-tooltip]");
-      if (!target) return;
-      mcTooltip.innerHTML = target.getAttribute("data-mc-tooltip") ?? "";
-      mcTooltip.style.display = "block";
-      //@ts-ignore
-      window.adventure.DomEffects.apply(mcTooltip);
-    });
-
-    outputDom.addEventListener("mouseout", (e) => {
-      const target = (e.target as Element).closest("[data-mc-tooltip]");
-      if (!target) return;
-      mcTooltip.style.display = "none";
-    });
-
-    outputDom.addEventListener("scroll", (e) => {
-      const target = (e.target as Element).closest("[data-mc-tooltip]");
-      if (!target) return;
-      mcTooltip.style.display = "none";
-    });
-
-    window.addEventListener("mousemove", (e) => {
-      if (mcTooltip.style.display === "none") return;
-
-      let x = e.clientX + 16;
-      let y = e.clientY - 32;
-
-      // Flip left if it would overflow right edge
-      if (x + mcTooltip.offsetWidth > window.innerWidth - 8) {
-        x = e.clientX - mcTooltip.offsetWidth - 8;
-      }
-      // Flip up if it would overflow bottom edge
-      if (y + mcTooltip.offsetHeight > window.innerHeight - 8) {
-        y = e.clientY - mcTooltip.offsetHeight - 8;
-      }
-
-      mcTooltip.style.left = x + "px";
-      mcTooltip.style.top = y + "px";
-    });
-  }
-</script>
+  </script>
+</Layout>

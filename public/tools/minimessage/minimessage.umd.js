@@ -54,9 +54,9 @@
       ArrayUtil2.insertAtStart = insertAtStart;
     })(ArrayUtil || (ArrayUtil = {}));
 
-    var __defProp$V = Object.defineProperty;
-    var __defNormalProp$V = (obj, key, value) => key in obj ? __defProp$V(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$V = (obj, key, value) => __defNormalProp$V(obj, key + "" , value);
+    var __defProp$W = Object.defineProperty;
+    var __defNormalProp$W = (obj, key, value) => key in obj ? __defProp$W(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$W = (obj, key, value) => __defNormalProp$W(obj, key + "" , value);
     exports.TextDecoration = void 0;
     ((TextDecoration2) => {
       TextDecoration2.OBFUSCATED = "obfuscated";
@@ -122,7 +122,7 @@
     })(exports.TextDecoration || (exports.TextDecoration = {}));
     class DecorationMap {
       constructor(value = 0) {
-        __publicField$V(this, "_buffer");
+        __publicField$W(this, "_buffer");
         this._buffer = new Uint16Array(1);
         this._value = value;
       }
@@ -182,9 +182,9 @@
       };
     });
 
-    var __defProp$U = Object.defineProperty;
-    var __defNormalProp$U = (obj, key, value) => key in obj ? __defProp$U(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$U = (obj, key, value) => __defNormalProp$U(obj, key + "" , value);
+    var __defProp$V = Object.defineProperty;
+    var __defNormalProp$V = (obj, key, value) => key in obj ? __defProp$V(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$V = (obj, key, value) => __defNormalProp$V(obj, key + "" , value);
     function normalize(value) {
       let n;
       switch (typeof value) {
@@ -213,7 +213,7 @@
     }
     class CharacterImpl {
       constructor(value) {
-        __publicField$U(this, "_buf");
+        __publicField$V(this, "_buf");
         this._buf = new Uint16Array(1);
         this._buf[0] = value;
       }
@@ -293,9 +293,9 @@
 `
     });
 
-    var __defProp$T = Object.defineProperty;
-    var __defNormalProp$T = (obj, key, value) => key in obj ? __defProp$T(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$T = (obj, key, value) => __defNormalProp$T(obj, typeof key !== "symbol" ? key + "" : key, value);
+    var __defProp$U = Object.defineProperty;
+    var __defNormalProp$U = (obj, key, value) => key in obj ? __defProp$U(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$U = (obj, key, value) => __defNormalProp$U(obj, typeof key !== "symbol" ? key + "" : key, value);
     const _KeyImpl = class _KeyImpl {
       //
       constructor(_namespace, _value) {
@@ -344,8 +344,8 @@
         return this.asString();
       }
     };
-    __publicField$T(_KeyImpl, "D_NAMESPACE", "namespace");
-    __publicField$T(_KeyImpl, "D_VALUE", "value");
+    __publicField$U(_KeyImpl, "D_NAMESPACE", "namespace");
+    __publicField$U(_KeyImpl, "D_VALUE", "value");
     let KeyImpl = _KeyImpl;
     exports.Key = void 0;
     ((Key2) => {
@@ -378,12 +378,12 @@
       Key2.equals = equals;
     })(exports.Key || (exports.Key = {}));
 
-    var __defProp$S = Object.defineProperty;
-    var __defNormalProp$S = (obj, key, value) => key in obj ? __defProp$S(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$S = (obj, key, value) => __defNormalProp$S(obj, typeof key !== "symbol" ? key + "" : key, value);
+    var __defProp$T = Object.defineProperty;
+    var __defNormalProp$T = (obj, key, value) => key in obj ? __defProp$T(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$T = (obj, key, value) => __defNormalProp$T(obj, typeof key !== "symbol" ? key + "" : key, value);
     class TextColorImpl {
       constructor(value) {
-        __publicField$S(this, "_buf");
+        __publicField$T(this, "_buf");
         this._buf = new DataView(new ArrayBuffer(4));
         this._buf.setUint32(0, value, false);
       }
@@ -466,7 +466,7 @@
     class NamedTextColorImpl extends TextColorImpl {
       constructor(name, value) {
         super(value);
-        __publicField$S(this, "_name");
+        __publicField$T(this, "_name");
         this._name = name;
       }
       //
@@ -578,12 +578,12 @@
       );
     })(exports.NamedTextColor || (exports.NamedTextColor = {}));
 
-    var __defProp$R = Object.defineProperty;
-    var __defNormalProp$R = (obj, key, value) => key in obj ? __defProp$R(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$R = (obj, key, value) => __defNormalProp$R(obj, key + "" , value);
+    var __defProp$S = Object.defineProperty;
+    var __defNormalProp$S = (obj, key, value) => key in obj ? __defProp$S(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$S = (obj, key, value) => __defNormalProp$S(obj, key + "" , value);
     class ShadowColorImpl {
       constructor(value) {
-        __publicField$R(this, "_buffer");
+        __publicField$S(this, "_buffer");
         this._buffer = new DataView(new ArrayBuffer(4));
         this._value = value;
       }
@@ -662,13 +662,13 @@
       ShadowColor2.fromHexString = fromHexString;
     })(exports.ShadowColor || (exports.ShadowColor = {}));
 
-    var __defProp$Q = Object.defineProperty;
-    var __defNormalProp$Q = (obj, key, value) => key in obj ? __defProp$Q(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$Q = (obj, key, value) => __defNormalProp$Q(obj, typeof key !== "symbol" ? key + "" : key, value);
+    var __defProp$R = Object.defineProperty;
+    var __defNormalProp$R = (obj, key, value) => key in obj ? __defProp$R(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$R = (obj, key, value) => __defNormalProp$R(obj, typeof key !== "symbol" ? key + "" : key, value);
     class ClickEventImpl {
       constructor(action, payload) {
-        __publicField$Q(this, "_action");
-        __publicField$Q(this, "_payload");
+        __publicField$R(this, "_action");
+        __publicField$R(this, "_payload");
         this._action = action;
         this._payload = payload;
       }
@@ -753,9 +753,9 @@
       })(Payload = ClickEvent2.Payload || (ClickEvent2.Payload = {}));
       class ActionImpl {
         constructor(name, readable, type) {
-          __publicField$Q(this, "_name");
-          __publicField$Q(this, "_readable");
-          __publicField$Q(this, "_type");
+          __publicField$R(this, "_name");
+          __publicField$R(this, "_readable");
+          __publicField$R(this, "_type");
           this._name = name;
           this._readable = readable;
           this._type = type;
@@ -796,7 +796,7 @@
       })(Action = ClickEvent2.Action || (ClickEvent2.Action = {}));
       class Handlers {
         constructor() {
-          __publicField$Q(this, "_map");
+          __publicField$R(this, "_map");
           this._map = {};
         }
         //
@@ -813,9 +813,9 @@
       ClickEvent2.Handlers = Handlers;
     })(exports.ClickEvent || (exports.ClickEvent = {}));
 
-    var __defProp$P = Object.defineProperty;
-    var __defNormalProp$P = (obj, key, value) => key in obj ? __defProp$P(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$P = (obj, key, value) => __defNormalProp$P(obj, key + "" , value);
+    var __defProp$Q = Object.defineProperty;
+    var __defNormalProp$Q = (obj, key, value) => key in obj ? __defProp$Q(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$Q = (obj, key, value) => __defNormalProp$Q(obj, key + "" , value);
     exports.HoverEvent = void 0;
     ((HoverEvent2) => {
       function create(action, value) {
@@ -942,7 +942,7 @@
       })(Action = HoverEvent2.Action || (HoverEvent2.Action = {}));
       class Handlers {
         constructor() {
-          __publicField$P(this, "_map");
+          __publicField$Q(this, "_map");
           this._map = {};
         }
         //
@@ -959,9 +959,9 @@
       HoverEvent2.Handlers = Handlers;
     })(exports.HoverEvent || (exports.HoverEvent = {}));
 
-    var __defProp$O = Object.defineProperty;
-    var __defNormalProp$O = (obj, key, value) => key in obj ? __defProp$O(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$O = (obj, key, value) => __defNormalProp$O(obj, typeof key !== "symbol" ? key + "" : key, value);
+    var __defProp$P = Object.defineProperty;
+    var __defNormalProp$P = (obj, key, value) => key in obj ? __defProp$P(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$P = (obj, key, value) => __defNormalProp$P(obj, typeof key !== "symbol" ? key + "" : key, value);
     const EMPTY_STYLE_INIT = Object.freeze({
       font: null,
       color: null,
@@ -973,21 +973,21 @@
     });
     class StyleImpl {
       constructor(init) {
-        __publicField$O(this, "_init");
+        __publicField$P(this, "_init");
         //
-        __publicField$O(this, "font", defineAccessor(
+        __publicField$P(this, "font", defineAccessor(
           () => this._get("font"),
           (font) => this._with({ font: font === null ? null : exports.Key.key(font) })
         ));
-        __publicField$O(this, "color", defineAccessor(
+        __publicField$P(this, "color", defineAccessor(
           () => this._get("color"),
           (color) => this._with({ color })
         ));
-        __publicField$O(this, "shadowColor", defineAccessor(
+        __publicField$P(this, "shadowColor", defineAccessor(
           () => this._get("shadowColor"),
           (shadowColor) => this._with({ shadowColor })
         ));
-        __publicField$O(this, "decoration", defineContextualAccessor(
+        __publicField$P(this, "decoration", defineContextualAccessor(
           (decoration) => this._get("decorations").get(decoration),
           (decoration, state) => {
             if (typeof state !== "string") {
@@ -996,7 +996,7 @@
             return this._with({ decorations: this._get("decorations").with(decoration, state) });
           }
         ));
-        __publicField$O(this, "decorations", defineAccessor(
+        __publicField$P(this, "decorations", defineAccessor(
           () => this._get("decorations").toObject(),
           (value) => {
             let map = this._get("decorations");
@@ -1007,15 +1007,15 @@
             return this._with({ decorations: map });
           }
         ));
-        __publicField$O(this, "clickEvent", defineAccessor(
+        __publicField$P(this, "clickEvent", defineAccessor(
           () => this._get("clickEvent"),
           (clickEvent) => this._with({ clickEvent })
         ));
-        __publicField$O(this, "hoverEvent", defineAccessor(
+        __publicField$P(this, "hoverEvent", defineAccessor(
           () => this._get("hoverEvent"),
           (hoverEvent) => this._with({ hoverEvent })
         ));
-        __publicField$O(this, "insertion", defineAccessor(
+        __publicField$P(this, "insertion", defineAccessor(
           () => this._get("insertion"),
           (insertion) => this._with({ insertion })
         ));
@@ -1132,7 +1132,7 @@
       Style2.equals = equals;
       class BuilderImpl {
         constructor() {
-          __publicField$O(this, "_init");
+          __publicField$P(this, "_init");
           this._init = { ...EMPTY_STYLE_INIT };
         }
         //
@@ -1288,15 +1288,15 @@
       ComponentCompaction2.compact = compact;
     })(ComponentCompaction || (ComponentCompaction = {}));
 
-    var __defProp$N = Object.defineProperty;
-    var __defNormalProp$N = (obj, key, value) => key in obj ? __defProp$N(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$N = (obj, key, value) => __defNormalProp$N(obj, typeof key !== "symbol" ? key + "" : key, value);
+    var __defProp$O = Object.defineProperty;
+    var __defNormalProp$O = (obj, key, value) => key in obj ? __defProp$O(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$O = (obj, key, value) => __defNormalProp$O(obj, typeof key !== "symbol" ? key + "" : key, value);
     class AbstractScopedComponent {
       constructor(extra, children = [], style = exports.Style.empty()) {
-        __publicField$N(this, "_extra");
-        __publicField$N(this, "_children");
-        __publicField$N(this, "_style");
-        __publicField$N(this, "children", defineAccessor(
+        __publicField$O(this, "_extra");
+        __publicField$O(this, "_children");
+        __publicField$O(this, "_style");
+        __publicField$O(this, "children", defineAccessor(
           () => ArrayUtil.immutableView(this._children),
           (children) => {
             const normalized = new Array(children.length);
@@ -1304,39 +1304,39 @@
             return this._mutate(this._extra, normalized, this._style);
           }
         ));
-        __publicField$N(this, "style", defineAccessor(
+        __publicField$O(this, "style", defineAccessor(
           () => this._style,
           (style) => this._mutate(this._extra, this._children, style)
         ));
-        __publicField$N(this, "font", defineAccessor(
+        __publicField$O(this, "font", defineAccessor(
           () => this._style.font(),
           (font) => this._mutateStyle((s) => s.font(font))
         ));
-        __publicField$N(this, "color", defineAccessor(
+        __publicField$O(this, "color", defineAccessor(
           () => this._style.color(),
           (color) => this._mutateStyle((s) => s.color(color))
         ));
-        __publicField$N(this, "shadowColor", defineAccessor(
+        __publicField$O(this, "shadowColor", defineAccessor(
           () => this._style.shadowColor(),
           (shadowColor) => this._mutateStyle((s) => s.shadowColor(shadowColor))
         ));
-        __publicField$N(this, "decoration", defineContextualAccessor(
+        __publicField$O(this, "decoration", defineContextualAccessor(
           (decoration) => this._style.decoration(decoration),
           (decoration, state) => this._mutateStyle((s) => s.decoration(decoration, state))
         ));
-        __publicField$N(this, "decorations", defineAccessor(
+        __publicField$O(this, "decorations", defineAccessor(
           () => this._style.decorations(),
           (decorations) => this._mutateStyle((s) => s.decorations(decorations))
         ));
-        __publicField$N(this, "clickEvent", defineAccessor(
+        __publicField$O(this, "clickEvent", defineAccessor(
           () => this._style.clickEvent(),
           (clickEvent) => this._mutateStyle((s) => s.clickEvent(clickEvent))
         ));
-        __publicField$N(this, "hoverEvent", defineAccessor(
+        __publicField$O(this, "hoverEvent", defineAccessor(
           () => this._style.hoverEvent(),
           (hoverEvent) => this._mutateStyle((s) => s.hoverEvent(hoverEvent))
         ));
-        __publicField$N(this, "insertion", defineAccessor(
+        __publicField$O(this, "insertion", defineAccessor(
           () => this._style.insertion(),
           (insertion) => this._mutateStyle((s) => s.insertion(insertion))
         ));
@@ -1386,9 +1386,9 @@
       }
     }
 
-    var __defProp$M = Object.defineProperty;
-    var __defNormalProp$M = (obj, key, value) => key in obj ? __defProp$M(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$M = (obj, key, value) => __defNormalProp$M(obj, typeof key !== "symbol" ? key + "" : key, value);
+    var __defProp$N = Object.defineProperty;
+    var __defNormalProp$N = (obj, key, value) => key in obj ? __defProp$N(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$N = (obj, key, value) => __defNormalProp$N(obj, typeof key !== "symbol" ? key + "" : key, value);
     var TextComponent;
     ((TextComponent2) => {
       TextComponent2.TYPE = "text";
@@ -1396,9 +1396,9 @@
     class TextComponentImpl extends AbstractScopedComponent {
       constructor(extra, children, style) {
         super(extra, children, style);
-        __publicField$M(this, "type", TextComponent.TYPE);
+        __publicField$N(this, "type", TextComponent.TYPE);
         //
-        __publicField$M(this, "content", defineAccessor(
+        __publicField$N(this, "content", defineAccessor(
           () => this._getExtra("content"),
           (content) => this._withExtra("content", content)
         ));
@@ -1408,9 +1408,9 @@
       }
     }
 
-    var __defProp$L = Object.defineProperty;
-    var __defNormalProp$L = (obj, key, value) => key in obj ? __defProp$L(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$L = (obj, key, value) => __defNormalProp$L(obj, typeof key !== "symbol" ? key + "" : key, value);
+    var __defProp$M = Object.defineProperty;
+    var __defNormalProp$M = (obj, key, value) => key in obj ? __defProp$M(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$M = (obj, key, value) => __defNormalProp$M(obj, typeof key !== "symbol" ? key + "" : key, value);
     var TranslatableComponent;
     ((TranslatableComponent2) => {
       TranslatableComponent2.TYPE = "translatable";
@@ -1418,17 +1418,17 @@
     class TranslatableComponentImpl extends AbstractScopedComponent {
       constructor(extra, children, style) {
         super(extra, children, style);
-        __publicField$L(this, "type", TranslatableComponent.TYPE);
+        __publicField$M(this, "type", TranslatableComponent.TYPE);
         //
-        __publicField$L(this, "key", defineAccessor(
+        __publicField$M(this, "key", defineAccessor(
           () => this._getExtra("key"),
           (key) => this._withExtra("key", key)
         ));
-        __publicField$L(this, "arguments", defineAccessor(
+        __publicField$M(this, "arguments", defineAccessor(
           () => ArrayUtil.immutableView(this._getExtra("arguments")),
           (args) => this._withExtra("arguments", ArrayUtil.immutableView(args))
         ));
-        __publicField$L(this, "fallback", defineAccessor(
+        __publicField$M(this, "fallback", defineAccessor(
           () => this._getExtra("fallback"),
           (fallback) => this._withExtra("fallback", fallback)
         ));
@@ -1438,9 +1438,9 @@
       }
     }
 
-    var __defProp$K = Object.defineProperty;
-    var __defNormalProp$K = (obj, key, value) => key in obj ? __defProp$K(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$K = (obj, key, value) => __defNormalProp$K(obj, typeof key !== "symbol" ? key + "" : key, value);
+    var __defProp$L = Object.defineProperty;
+    var __defNormalProp$L = (obj, key, value) => key in obj ? __defProp$L(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$L = (obj, key, value) => __defNormalProp$L(obj, typeof key !== "symbol" ? key + "" : key, value);
     var SelectorComponent;
     ((SelectorComponent2) => {
       SelectorComponent2.TYPE = "selector";
@@ -1448,13 +1448,13 @@
     class SelectorComponentImpl extends AbstractScopedComponent {
       constructor(extra, children, style) {
         super(extra, children, style);
-        __publicField$K(this, "type", SelectorComponent.TYPE);
+        __publicField$L(this, "type", SelectorComponent.TYPE);
         //
-        __publicField$K(this, "pattern", defineAccessor(
+        __publicField$L(this, "pattern", defineAccessor(
           () => this._getExtra("pattern"),
           (pattern) => this._withExtra("pattern", pattern)
         ));
-        __publicField$K(this, "separator", defineAccessor(
+        __publicField$L(this, "separator", defineAccessor(
           () => this._getExtra("separator"),
           (separator) => this._withExtra("separator", separator)
         ));
@@ -1464,9 +1464,9 @@
       }
     }
 
-    var __defProp$J = Object.defineProperty;
-    var __defNormalProp$J = (obj, key, value) => key in obj ? __defProp$J(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$J = (obj, key, value) => __defNormalProp$J(obj, typeof key !== "symbol" ? key + "" : key, value);
+    var __defProp$K = Object.defineProperty;
+    var __defNormalProp$K = (obj, key, value) => key in obj ? __defProp$K(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$K = (obj, key, value) => __defNormalProp$K(obj, typeof key !== "symbol" ? key + "" : key, value);
     var ScoreComponent;
     ((ScoreComponent2) => {
       ScoreComponent2.TYPE = "score";
@@ -1474,13 +1474,13 @@
     class ScoreComponentImpl extends AbstractScopedComponent {
       constructor(extra, children, style) {
         super(extra, children, style);
-        __publicField$J(this, "type", ScoreComponent.TYPE);
+        __publicField$K(this, "type", ScoreComponent.TYPE);
         //
-        __publicField$J(this, "name", defineAccessor(
+        __publicField$K(this, "name", defineAccessor(
           () => this._getExtra("name"),
           (name) => this._withExtra("name", name)
         ));
-        __publicField$J(this, "objective", defineAccessor(
+        __publicField$K(this, "objective", defineAccessor(
           () => this._getExtra("objective"),
           (objective) => this._withExtra("objective", objective)
         ));
@@ -1490,9 +1490,9 @@
       }
     }
 
-    var __defProp$I = Object.defineProperty;
-    var __defNormalProp$I = (obj, key, value) => key in obj ? __defProp$I(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$I = (obj, key, value) => __defNormalProp$I(obj, typeof key !== "symbol" ? key + "" : key, value);
+    var __defProp$J = Object.defineProperty;
+    var __defNormalProp$J = (obj, key, value) => key in obj ? __defProp$J(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$J = (obj, key, value) => __defNormalProp$J(obj, typeof key !== "symbol" ? key + "" : key, value);
     var KeybindComponent;
     ((KeybindComponent2) => {
       KeybindComponent2.TYPE = "keybind";
@@ -1500,9 +1500,9 @@
     class KeybindComponentImpl extends AbstractScopedComponent {
       constructor(extra, children, style) {
         super(extra, children, style);
-        __publicField$I(this, "type", KeybindComponent.TYPE);
+        __publicField$J(this, "type", KeybindComponent.TYPE);
         //
-        __publicField$I(this, "keybind", defineAccessor(
+        __publicField$J(this, "keybind", defineAccessor(
           () => this._getExtra("keybind"),
           (keybind) => this._withExtra("keybind", keybind)
         ));
@@ -1512,9 +1512,9 @@
       }
     }
 
-    var __defProp$H = Object.defineProperty;
-    var __defNormalProp$H = (obj, key, value) => key in obj ? __defProp$H(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$H = (obj, key, value) => __defNormalProp$H(obj, typeof key !== "symbol" ? key + "" : key, value);
+    var __defProp$I = Object.defineProperty;
+    var __defNormalProp$I = (obj, key, value) => key in obj ? __defProp$I(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$I = (obj, key, value) => __defNormalProp$I(obj, typeof key !== "symbol" ? key + "" : key, value);
     var ObjectComponent;
     ((ObjectComponent2) => {
       ObjectComponent2.TYPE = "object";
@@ -1522,9 +1522,9 @@
     class ObjectComponentImpl extends AbstractScopedComponent {
       constructor(extra, children, style) {
         super(extra, children, style);
-        __publicField$H(this, "type", ObjectComponent.TYPE);
+        __publicField$I(this, "type", ObjectComponent.TYPE);
         //
-        __publicField$H(this, "contents", defineAccessor(
+        __publicField$I(this, "contents", defineAccessor(
           () => this._getExtra("contents"),
           (contents) => this._withExtra("contents", contents)
         ));
@@ -1534,30 +1534,30 @@
       }
     }
 
-    var __defProp$G = Object.defineProperty;
-    var __defNormalProp$G = (obj, key, value) => key in obj ? __defProp$G(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$G = (obj, key, value) => __defNormalProp$G(obj, typeof key !== "symbol" ? key + "" : key, value);
+    var __defProp$H = Object.defineProperty;
+    var __defNormalProp$H = (obj, key, value) => key in obj ? __defProp$H(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$H = (obj, key, value) => __defNormalProp$H(obj, typeof key !== "symbol" ? key + "" : key, value);
     class AbstractNBTComponent extends AbstractScopedComponent {
       constructor() {
         super(...arguments);
-        __publicField$G(this, "nbtPath", defineAccessor(
+        __publicField$H(this, "nbtPath", defineAccessor(
           () => this._getExtra("nbtPath"),
           (nbtPath) => this._withExtra("nbtPath", nbtPath)
         ));
-        __publicField$G(this, "interpret", defineAccessor(
+        __publicField$H(this, "interpret", defineAccessor(
           () => this._getExtra("interpret"),
           (interpret) => this._withExtra("interpret", interpret)
         ));
-        __publicField$G(this, "separator", defineAccessor(
+        __publicField$H(this, "separator", defineAccessor(
           () => this._getExtra("separator"),
           (separator) => this._withExtra("separator", separator)
         ));
       }
     }
 
-    var __defProp$F = Object.defineProperty;
-    var __defNormalProp$F = (obj, key, value) => key in obj ? __defProp$F(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$F = (obj, key, value) => __defNormalProp$F(obj, typeof key !== "symbol" ? key + "" : key, value);
+    var __defProp$G = Object.defineProperty;
+    var __defNormalProp$G = (obj, key, value) => key in obj ? __defProp$G(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$G = (obj, key, value) => __defNormalProp$G(obj, typeof key !== "symbol" ? key + "" : key, value);
     var BlockNBTComponent;
     ((BlockNBTComponent2) => {
       BlockNBTComponent2.TYPE = "blockNBT";
@@ -1664,9 +1664,9 @@
     class BlockNBTComponentImpl extends AbstractNBTComponent {
       constructor(extra, children, style) {
         super(extra, children, style);
-        __publicField$F(this, "type", BlockNBTComponent.TYPE);
+        __publicField$G(this, "type", BlockNBTComponent.TYPE);
         //
-        __publicField$F(this, "pos", defineAccessor(
+        __publicField$G(this, "pos", defineAccessor(
           () => this._getExtra("pos"),
           (pos) => this._withExtra("pos", pos)
         ));
@@ -1676,9 +1676,9 @@
       }
     }
 
-    var __defProp$E = Object.defineProperty;
-    var __defNormalProp$E = (obj, key, value) => key in obj ? __defProp$E(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$E = (obj, key, value) => __defNormalProp$E(obj, typeof key !== "symbol" ? key + "" : key, value);
+    var __defProp$F = Object.defineProperty;
+    var __defNormalProp$F = (obj, key, value) => key in obj ? __defProp$F(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$F = (obj, key, value) => __defNormalProp$F(obj, typeof key !== "symbol" ? key + "" : key, value);
     var StorageNBTComponent;
     ((StorageNBTComponent2) => {
       StorageNBTComponent2.TYPE = "storageNBT";
@@ -1686,9 +1686,9 @@
     class StorageNBTComponentImpl extends AbstractNBTComponent {
       constructor(extra, children, style) {
         super(extra, children, style);
-        __publicField$E(this, "type", StorageNBTComponent.TYPE);
+        __publicField$F(this, "type", StorageNBTComponent.TYPE);
         //
-        __publicField$E(this, "storage", defineAccessor(
+        __publicField$F(this, "storage", defineAccessor(
           () => this._getExtra("storage"),
           (storage) => this._withExtra("storage", exports.Key.key(storage))
         ));
@@ -1698,9 +1698,9 @@
       }
     }
 
-    var __defProp$D = Object.defineProperty;
-    var __defNormalProp$D = (obj, key, value) => key in obj ? __defProp$D(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$D = (obj, key, value) => __defNormalProp$D(obj, typeof key !== "symbol" ? key + "" : key, value);
+    var __defProp$E = Object.defineProperty;
+    var __defNormalProp$E = (obj, key, value) => key in obj ? __defProp$E(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$E = (obj, key, value) => __defNormalProp$E(obj, typeof key !== "symbol" ? key + "" : key, value);
     var EntityNBTComponent;
     ((EntityNBTComponent2) => {
       EntityNBTComponent2.TYPE = "entityNBT";
@@ -1708,9 +1708,9 @@
     class EntityNBTComponentImpl extends AbstractNBTComponent {
       constructor(extra, children, style) {
         super(extra, children, style);
-        __publicField$D(this, "type", EntityNBTComponent.TYPE);
+        __publicField$E(this, "type", EntityNBTComponent.TYPE);
         //
-        __publicField$D(this, "selector", defineAccessor(
+        __publicField$E(this, "selector", defineAccessor(
           () => this._getExtra("selector"),
           (selector) => this._withExtra("selector", selector)
         ));
@@ -1836,9 +1836,9 @@
       Component2.object = object;
     })(exports.Component || (exports.Component = {}));
 
-    var __defProp$C = Object.defineProperty;
-    var __defNormalProp$C = (obj, key, value) => key in obj ? __defProp$C(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$C = (obj, key, value) => __defNormalProp$C(obj, typeof key !== "symbol" ? key + "" : key, value);
+    var __defProp$D = Object.defineProperty;
+    var __defNormalProp$D = (obj, key, value) => key in obj ? __defProp$D(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$D = (obj, key, value) => __defNormalProp$D(obj, typeof key !== "symbol" ? key + "" : key, value);
     var PlayerHeadObjectContents;
     ((PlayerHeadObjectContents2) => {
       function newContents(name, id, profileProperties, hat, texture) {
@@ -1878,11 +1878,11 @@
       PlayerHeadObjectContents2.property = property;
       class BuilderImpl {
         constructor() {
-          __publicField$C(this, "_name", null);
-          __publicField$C(this, "_id", null);
-          __publicField$C(this, "_properties", {});
-          __publicField$C(this, "_hat", true);
-          __publicField$C(this, "_texture", null);
+          __publicField$D(this, "_name", null);
+          __publicField$D(this, "_id", null);
+          __publicField$D(this, "_properties", {});
+          __publicField$D(this, "_hat", true);
+          __publicField$D(this, "_texture", null);
         }
         //
         name(name) {
@@ -1978,9 +1978,9 @@
       throw new Error(`Unexpected value: ${x}`);
     }
 
-    var __defProp$B = Object.defineProperty;
-    var __defNormalProp$B = (obj, key, value) => key in obj ? __defProp$B(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$B = (obj, key, value) => __defNormalProp$B(obj, typeof key !== "symbol" ? key + "" : key, value);
+    var __defProp$C = Object.defineProperty;
+    var __defNormalProp$C = (obj, key, value) => key in obj ? __defProp$C(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$C = (obj, key, value) => __defNormalProp$C(obj, typeof key !== "symbol" ? key + "" : key, value);
     class FunctionalComponentRenderer {
       mapContext(transformer) {
         return new MappedComponentRenderer(this, transformer);
@@ -1989,8 +1989,8 @@
     class MappedComponentRenderer extends FunctionalComponentRenderer {
       constructor(backing, transformer) {
         super();
-        __publicField$B(this, "_backing");
-        __publicField$B(this, "_transformer");
+        __publicField$C(this, "_backing");
+        __publicField$C(this, "_transformer");
         this._backing = backing;
         this._transformer = transformer;
       }
@@ -2049,9 +2049,9 @@
       }
     }
 
-    var __defProp$A = Object.defineProperty;
-    var __defNormalProp$A = (obj, key, value) => key in obj ? __defProp$A(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$A = (obj, key, value) => __defNormalProp$A(obj, typeof key !== "symbol" ? key + "" : key, value);
+    var __defProp$B = Object.defineProperty;
+    var __defNormalProp$B = (obj, key, value) => key in obj ? __defProp$B(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$B = (obj, key, value) => __defNormalProp$B(obj, typeof key !== "symbol" ? key + "" : key, value);
     const truncateColor = (() => {
       const NAMED = Object.values(exports.NamedTextColor.NAMES);
       const distance = ((a, b) => {
@@ -2083,15 +2083,15 @@
     const _LegacyColorComponentRenderer = class _LegacyColorComponentRenderer extends AbstractComponentRenderer {
       constructor() {
         super(...arguments);
-        __publicField$A(this, "renderBlock", this._renderComponent);
-        __publicField$A(this, "renderEntity", this._renderComponent);
-        __publicField$A(this, "renderKeybind", this._renderComponent);
-        __publicField$A(this, "renderObject", this._renderComponent);
-        __publicField$A(this, "renderScore", this._renderComponent);
-        __publicField$A(this, "renderSelector", this._renderComponent);
-        __publicField$A(this, "renderStorage", this._renderComponent);
-        __publicField$A(this, "renderText", this._renderComponent);
-        __publicField$A(this, "renderTranslatable", this._renderComponent);
+        __publicField$B(this, "renderBlock", this._renderComponent);
+        __publicField$B(this, "renderEntity", this._renderComponent);
+        __publicField$B(this, "renderKeybind", this._renderComponent);
+        __publicField$B(this, "renderObject", this._renderComponent);
+        __publicField$B(this, "renderScore", this._renderComponent);
+        __publicField$B(this, "renderSelector", this._renderComponent);
+        __publicField$B(this, "renderStorage", this._renderComponent);
+        __publicField$B(this, "renderText", this._renderComponent);
+        __publicField$B(this, "renderTranslatable", this._renderComponent);
       }
       static renderer() {
         return this.INSTANCE;
@@ -2134,7 +2134,7 @@
         return changed ? component.style(style).children(children) : component;
       }
     };
-    __publicField$A(_LegacyColorComponentRenderer, "INSTANCE", new _LegacyColorComponentRenderer());
+    __publicField$B(_LegacyColorComponentRenderer, "INSTANCE", new _LegacyColorComponentRenderer());
     let LegacyColorComponentRenderer = _LegacyColorComponentRenderer;
 
     exports.FlattenerListener = void 0;
@@ -2167,13 +2167,13 @@
       FlattenerListener2.normalize = normalize;
     })(exports.FlattenerListener || (exports.FlattenerListener = {}));
 
-    var __defProp$z = Object.defineProperty;
-    var __defNormalProp$z = (obj, key, value) => key in obj ? __defProp$z(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$z = (obj, key, value) => __defNormalProp$z(obj, typeof key !== "symbol" ? key + "" : key, value);
+    var __defProp$A = Object.defineProperty;
+    var __defNormalProp$A = (obj, key, value) => key in obj ? __defProp$A(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$A = (obj, key, value) => __defNormalProp$A(obj, typeof key !== "symbol" ? key + "" : key, value);
     class Stack {
       constructor() {
-        __publicField$z(this, "_tail");
-        __publicField$z(this, "_size");
+        __publicField$A(this, "_tail");
+        __publicField$A(this, "_size");
         this._tail = null;
         this._size = 0;
       }
@@ -2204,13 +2204,13 @@
       }
     }
 
-    var __defProp$y = Object.defineProperty;
-    var __defNormalProp$y = (obj, key, value) => key in obj ? __defProp$y(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$y = (obj, key, value) => __defNormalProp$y(obj, typeof key !== "symbol" ? key + "" : key, value);
+    var __defProp$z = Object.defineProperty;
+    var __defNormalProp$z = (obj, key, value) => key in obj ? __defProp$z(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$z = (obj, key, value) => __defNormalProp$z(obj, typeof key !== "symbol" ? key + "" : key, value);
     class ComponentFlattenerImpl {
       constructor(flatteners, unknownHandler) {
-        __publicField$y(this, "_flatteners");
-        __publicField$y(this, "_unknownHandler");
+        __publicField$z(this, "_flatteners");
+        __publicField$z(this, "_unknownHandler");
         this._flatteners = flatteners;
         this._unknownHandler = unknownHandler;
       }
@@ -2275,8 +2275,8 @@
     ((ComponentFlattener2) => {
       class BuilderImpl {
         constructor() {
-          __publicField$y(this, "_flatteners", {});
-          __publicField$y(this, "_unknownHandler", null);
+          __publicField$z(this, "_flatteners", {});
+          __publicField$z(this, "_unknownHandler", null);
         }
         //
         mapper(type, converter) {
@@ -2326,9 +2326,9 @@
       ComponentFlattener2.textOnly = textOnly;
     })(exports.ComponentFlattener || (exports.ComponentFlattener = {}));
 
-    var __defProp$x = Object.defineProperty;
-    var __defNormalProp$x = (obj, key, value) => key in obj ? __defProp$x(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$x = (obj, key, value) => __defNormalProp$x(obj, typeof key !== "symbol" ? key + "" : key, value);
+    var __defProp$y = Object.defineProperty;
+    var __defNormalProp$y = (obj, key, value) => key in obj ? __defProp$y(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$y = (obj, key, value) => __defNormalProp$y(obj, typeof key !== "symbol" ? key + "" : key, value);
     function codePointCount(data, from = 0, to = data.length) {
       let ret = 0;
       let codePoint;
@@ -2341,10 +2341,10 @@
     }
     const _StringBuilder = class _StringBuilder {
       constructor(capacity = 16) {
-        __publicField$x(this, "_u16");
-        __publicField$x(this, "_initialCapacity");
-        __publicField$x(this, "_capacity");
-        __publicField$x(this, "_length");
+        __publicField$y(this, "_u16");
+        __publicField$y(this, "_initialCapacity");
+        __publicField$y(this, "_capacity");
+        __publicField$y(this, "_length");
         if (capacity < 0) throw new Error("Capacity must be positive");
         this._u16 = new Uint16Array(capacity);
         this._initialCapacity = capacity;
@@ -2488,16 +2488,16 @@
         return ret;
       }
     };
-    __publicField$x(_StringBuilder, "LOAD_FACTOR", 0.75);
+    __publicField$y(_StringBuilder, "LOAD_FACTOR", 0.75);
     let StringBuilder = _StringBuilder;
 
-    var __defProp$w = Object.defineProperty;
-    var __defNormalProp$w = (obj, key, value) => key in obj ? __defProp$w(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$w = (obj, key, value) => __defNormalProp$w(obj, typeof key !== "symbol" ? key + "" : key, value);
+    var __defProp$x = Object.defineProperty;
+    var __defNormalProp$x = (obj, key, value) => key in obj ? __defProp$x(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$x = (obj, key, value) => __defNormalProp$x(obj, typeof key !== "symbol" ? key + "" : key, value);
     class PlainTextComponentSerializerImpl {
       constructor(flattener) {
         //
-        __publicField$w(this, "_flattener");
+        __publicField$x(this, "_flattener");
         this._flattener = flattener;
       }
       //
@@ -2512,14 +2512,14 @@
         return exports.Component.text(input);
       }
     }
-    __publicField$w(PlainTextComponentSerializerImpl, "DEFAULT_FLATTENER", exports.ComponentFlattener.basic().toBuilder().unknownMapper((component) => {
+    __publicField$x(PlainTextComponentSerializerImpl, "DEFAULT_FLATTENER", exports.ComponentFlattener.basic().toBuilder().unknownMapper((component) => {
       throw new Error(`Don't know how to turn component of type "${component.type}" into a string`);
     }).build());
     exports.PlainTextComponentSerializer = void 0;
     ((PlainTextComponentSerializer2) => {
       class BuilderImpl {
         constructor() {
-          __publicField$w(this, "_flattener", PlainTextComponentSerializerImpl.DEFAULT_FLATTENER);
+          __publicField$x(this, "_flattener", PlainTextComponentSerializerImpl.DEFAULT_FLATTENER);
         }
         //
         flattener(flattener) {
@@ -2541,9 +2541,9 @@
       PlainTextComponentSerializer2.builder = builder;
     })(exports.PlainTextComponentSerializer || (exports.PlainTextComponentSerializer = {}));
 
-    var __defProp$v = Object.defineProperty;
-    var __defNormalProp$v = (obj, key, value) => key in obj ? __defProp$v(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$v = (obj, key, value) => __defNormalProp$v(obj, typeof key !== "symbol" ? key + "" : key, value);
+    var __defProp$w = Object.defineProperty;
+    var __defNormalProp$w = (obj, key, value) => key in obj ? __defProp$w(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$w = (obj, key, value) => __defNormalProp$w(obj, typeof key !== "symbol" ? key + "" : key, value);
     const s = (() => {
       const n = new Uint32Array([738695, 669989, 770404, 703814]);
       return ((i) => {
@@ -2564,9 +2564,9 @@
     })();
     class AlignedBuffer {
       constructor(byteLength) {
-        __publicField$v(this, "raw");
-        __publicField$v(this, "_u8");
-        __publicField$v(this, "_u32");
+        __publicField$w(this, "raw");
+        __publicField$w(this, "_u8");
+        __publicField$w(this, "_u32");
         if (byteLength & 3) throw new Error(`Length ${byteLength} is not aligned`);
         this.raw = new ArrayBuffer(byteLength);
         this._u8 = new Uint8Array(this.raw);
@@ -2612,9 +2612,9 @@
     }
     class MessageDigest {
       constructor() {
-        __publicField$v(this, "_digest");
-        __publicField$v(this, "_buf");
-        __publicField$v(this, "_head", 0);
+        __publicField$w(this, "_digest");
+        __publicField$w(this, "_buf");
+        __publicField$w(this, "_head", 0);
         this._digest = new AlignedBuffer(16);
         this._buf = new AlignedBuffer(64);
         this._resetDigest();
@@ -2702,13 +2702,13 @@
       }
     }
 
-    var __defProp$u = Object.defineProperty;
-    var __defNormalProp$u = (obj, key, value) => key in obj ? __defProp$u(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$u = (obj, key, value) => __defNormalProp$u(obj, key + "" , value);
+    var __defProp$v = Object.defineProperty;
+    var __defNormalProp$v = (obj, key, value) => key in obj ? __defProp$v(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$v = (obj, key, value) => __defNormalProp$v(obj, key + "" , value);
     class UUID {
       constructor(ab) {
         //
-        __publicField$u(this, "_buf");
+        __publicField$v(this, "_buf");
         if (ab.byteLength !== 16) throw new Error(`Illegal byte length`);
         this._buf = new DataView(ab);
       }
@@ -2825,9 +2825,9 @@
       }
     }
 
-    var __defProp$t = Object.defineProperty;
-    var __defNormalProp$t = (obj, key, value) => key in obj ? __defProp$t(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$t = (obj, key, value) => __defNormalProp$t(obj, typeof key !== "symbol" ? key + "" : key, value);
+    var __defProp$u = Object.defineProperty;
+    var __defNormalProp$u = (obj, key, value) => key in obj ? __defProp$u(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$u = (obj, key, value) => __defNormalProp$u(obj, typeof key !== "symbol" ? key + "" : key, value);
     const _JsonComponentSerializerImpl = class _JsonComponentSerializerImpl {
       //
       serialize(component) {
@@ -3317,7 +3317,7 @@
         return _JsonComponentSerializerImpl.HOVER_EVENT_SERIALIZER.invoke(hoverEvent, this);
       }
     };
-    __publicField$t(_JsonComponentSerializerImpl, "CLICK_EVENT_SERIALIZER", (() => {
+    __publicField$u(_JsonComponentSerializerImpl, "CLICK_EVENT_SERIALIZER", (() => {
       const handlers = new exports.ClickEvent.Handlers();
       handlers.register(exports.ClickEvent.Action.RUN_COMMAND, (event) => {
         return { action: "run_command", command: event.payload().value() };
@@ -3346,7 +3346,7 @@
       });
       return handlers;
     })());
-    __publicField$t(_JsonComponentSerializerImpl, "HOVER_EVENT_SERIALIZER", (() => {
+    __publicField$u(_JsonComponentSerializerImpl, "HOVER_EVENT_SERIALIZER", (() => {
       const handlers = new exports.HoverEvent.Handlers();
       handlers.register(exports.HoverEvent.Action.SHOW_ITEM, (event) => {
         const value = event.value();
@@ -3393,7 +3393,7 @@
 
     const HtmlStyleStore = Object.freeze({
       get EMPTY() {
-        return { underline: false, strikethrough: false };
+        return { underline: false, strikethrough: false, color: null };
       }
     });
     class BasicHtmlStyle {
@@ -3440,6 +3440,121 @@
         return decorations.join(" ");
       }
     }
+    class MultiHtmlStyle {
+      constructor(_entries) {
+        this._entries = _entries;
+      }
+      //
+      applyToStore() {
+      }
+      applyToDocument(style) {
+        for (const [documentKey, , value] of this._entries) {
+          style[documentKey] = value;
+        }
+      }
+      applyToInlineSource(source) {
+        for (const [, sourceKey, value] of this._entries) {
+          if (!source.isEmpty()) source.appendChar(Character.SPACE);
+          source.appendString(sourceKey).appendString(": ").appendString(value).appendChar(Character.SEMICOLON);
+        }
+      }
+    }
+    class ColorHtmlStyle {
+      constructor(_value) {
+        this._value = _value;
+      }
+      applyToStore(store) {
+        store.color = this._value;
+      }
+      applyToDocument(style) {
+        style.color = this._value;
+      }
+      applyToInlineSource(source) {
+        if (!source.isEmpty()) source.appendChar(Character.SPACE);
+        source.appendString("color: ").appendString(this._value).appendChar(Character.SEMICOLON);
+      }
+    }
+    function keyframesCacheKey(animation) {
+      return JSON.stringify({
+        r: animation.totalRows,
+        f: animation.frames.map((f) => [f.row, f.durationMs])
+      });
+    }
+    function buildKeyframesCss(name, animation) {
+      const { frames, totalRows, durationMs } = animation;
+      const yFor = (row) => totalRows > 1 ? row / (totalRows - 1) * 100 : 0;
+      let cumulativeMs = 0;
+      const stops = [];
+      for (const frame of frames) {
+        const percent = durationMs > 0 ? cumulativeMs / durationMs * 100 : 0;
+        stops.push(
+          `${percent.toFixed(4)}% { background-position-y: ${yFor(frame.row).toFixed(4)}%; animation-timing-function: steps(1, jump-end); }`
+        );
+        cumulativeMs += frame.durationMs;
+      }
+      stops.push(`100% { background-position-y: ${yFor(frames[0].row).toFixed(4)}%; }`);
+      return `@keyframes ${name} { ${stops.join(" ")} }`;
+    }
+    let _keyframeNameCache = /* @__PURE__ */ new Map();
+    let _injectedKeyframeNames = /* @__PURE__ */ new Set();
+    let _keyframeCounter = 0;
+    function ensureAnimationKeyframes(animation) {
+      const cacheKey = keyframesCacheKey(animation);
+      let name = _keyframeNameCache.get(cacheKey);
+      if (!name) {
+        name = `mm-sprite-anim-${_keyframeCounter++}`;
+        _keyframeNameCache.set(cacheKey, name);
+      }
+      if (typeof document !== "undefined" && !_injectedKeyframeNames.has(name)) {
+        _injectedKeyframeNames.add(name);
+        const styleEl = document.createElement("style");
+        styleEl.setAttribute("data-mm-sprite-keyframes", name);
+        styleEl.textContent = buildKeyframesCss(name, animation);
+        document.head.appendChild(styleEl);
+      }
+      return name;
+    }
+    class SpriteHtmlStyle {
+      constructor(_url, _animation) {
+        this._url = _url;
+        this._animation = _animation;
+      }
+      applyToStore() {
+      }
+      applyToDocument(style) {
+        const keyframesName = this._animation ? ensureAnimationKeyframes(this._animation) : null;
+        this._apply((prop, value) => style.setProperty(prop, value), keyframesName);
+      }
+      applyToInlineSource(source) {
+        const keyframesName = this._animation ? ensureAnimationKeyframes(this._animation) : null;
+        this._apply((prop, value) => {
+          if (!source.isEmpty()) source.appendChar(Character.SPACE);
+          source.appendString(prop).appendString(": ").appendString(value).appendChar(Character.SEMICOLON);
+        }, keyframesName);
+      }
+      _apply(set, keyframesName) {
+        const safeUrl = this._url.replace(/"/g, "%22");
+        set("display", "inline-block");
+        set("vertical-align", "-0.2em");
+        set("width", "1em");
+        set("height", "1em");
+        set("image-rendering", "pixelated");
+        set("background-image", `url("${safeUrl}")`);
+        set("background-repeat", "no-repeat");
+        set("background-position", "center");
+        if (this._animation) {
+          const { totalRows, frames, durationMs } = this._animation;
+          const firstY = totalRows > 1 ? frames[0].row / (totalRows - 1) * 100 : 0;
+          set("background-size", `100% ${totalRows * 100}%`);
+          set("background-position-y", `${firstY}%`);
+          if (keyframesName) {
+            set("animation", `${keyframesName} ${durationMs}ms steps(1, jump-end) infinite`);
+          }
+        } else {
+          set("background-size", "cover");
+        }
+      }
+    }
     var HtmlStyle;
     ((HtmlStyle2) => {
       const DEFAULT_SHADOW_OFFSET = "0.10714286em";
@@ -3456,18 +3571,48 @@
       }
       HtmlStyle2.fontStyle = fontStyle;
       function color(color2) {
-        return new BasicHtmlStyle("color", "color", color2);
+        return new ColorHtmlStyle(color2);
       }
       HtmlStyle2.color = color;
       function textShadow(color2, xOffset = DEFAULT_SHADOW_OFFSET, yOffset = DEFAULT_SHADOW_OFFSET) {
         return new BasicHtmlStyle("textShadow", "text-shadow", `${xOffset} ${yOffset} ${color2}`);
       }
       HtmlStyle2.textShadow = textShadow;
+      const MISSING_SPRITE_DATA_URL = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAC4jAAAuIwF4pT92AAAAMUlEQVQ4T2NkYGD4D8Q4wQ+GH/ikGZjwyhIhOWoAwyAIRBZC8czBwDGaDggk52GQlAH5FQURrYyjQgAAAABJRU5ErkJggg==";
+      function sprite(url, animation = null) {
+        return new SpriteHtmlStyle(url, animation);
+      }
+      HtmlStyle2.sprite = sprite;
+      function missingSprite() {
+        return new SpriteHtmlStyle(MISSING_SPRITE_DATA_URL, null);
+      }
+      HtmlStyle2.missingSprite = missingSprite;
+      HtmlStyle2.SPRITE_ANIMATION_CSS = "@keyframes mm-sprite-cycle { from { background-position-y: 0%; } to { background-position-y: 100%; } }";
+      let _spriteKeyframesInjected = false;
+      function ensureSpriteKeyframesInjected() {
+        if (_spriteKeyframesInjected) return;
+        if (typeof document === "undefined") return;
+        _spriteKeyframesInjected = true;
+        const style = document.createElement("style");
+        style.setAttribute("data-mm-sprite-keyframes", "");
+        style.textContent = HtmlStyle2.SPRITE_ANIMATION_CSS;
+        document.head.appendChild(style);
+      }
+      HtmlStyle2.ensureSpriteKeyframesInjected = ensureSpriteKeyframesInjected;
+      function spriteContainer() {
+        return new MultiHtmlStyle([
+          ["display", "display", "inline-block"],
+          ["verticalAlign", "vertical-align", "-0.2em"],
+          ["width", "width", "1em"],
+          ["height", "height", "1em"]
+        ]);
+      }
+      HtmlStyle2.spriteContainer = spriteContainer;
     })(HtmlStyle || (HtmlStyle = {}));
 
-    var __defProp$s = Object.defineProperty;
-    var __defNormalProp$s = (obj, key, value) => key in obj ? __defProp$s(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$s = (obj, key, value) => __defNormalProp$s(obj, typeof key !== "symbol" ? key + "" : key, value);
+    var __defProp$t = Object.defineProperty;
+    var __defNormalProp$t = (obj, key, value) => key in obj ? __defProp$t(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$t = (obj, key, value) => __defNormalProp$t(obj, typeof key !== "symbol" ? key + "" : key, value);
     const LOAD_FACTOR = 0.75;
     const mod = ((a, b) => {
       return (a % b + b) % b;
@@ -3487,8 +3632,8 @@
     const ulo = Character.LOWERCASE_A.value - Character.UPPERCASE_A.value;
     class AbstractLookupTable {
       constructor(populate) {
-        __publicField$s(this, "_buckets");
-        __publicField$s(this, "_capacity");
+        __publicField$t(this, "_buckets");
+        __publicField$t(this, "_capacity");
         const queue = [];
         const put = ((k, v) => queue.push([k, v]));
         populate(put);
@@ -3552,7 +3697,7 @@
     class StringLookupTable extends AbstractLookupTable {
       constructor(populate, asciiCaseInsensitive = false) {
         super(populate);
-        __publicField$s(this, "_asciiCaseInsensitive");
+        __publicField$t(this, "_asciiCaseInsensitive");
         this._asciiCaseInsensitive = asciiCaseInsensitive;
       }
       //
@@ -3596,9 +3741,9 @@
       LookupTable2.caseInsensitiveString = caseInsensitiveString;
     })(LookupTable || (LookupTable = {}));
 
-    var __defProp$r = Object.defineProperty;
-    var __defNormalProp$r = (obj, key, value) => key in obj ? __defProp$r(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$r = (obj, key, value) => __defNormalProp$r(obj, typeof key !== "symbol" ? key + "" : key, value);
+    var __defProp$s = Object.defineProperty;
+    var __defNormalProp$s = (obj, key, value) => key in obj ? __defProp$s(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$s = (obj, key, value) => __defNormalProp$s(obj, typeof key !== "symbol" ? key + "" : key, value);
     const HTML_ENTITIES = LookupTable.number((put) => {
       put(Character.QUOTATION.value, `&quot;`);
       put(Character.APOSTROPHE.value, `&apos;`);
@@ -3609,11 +3754,11 @@
     });
     class StringHtmlWriter {
       constructor() {
-        __publicField$r(this, "_out");
-        __publicField$r(this, "_stack");
-        __publicField$r(this, "_writingProperties");
-        __publicField$r(this, "_properties");
-        __publicField$r(this, "_styles");
+        __publicField$s(this, "_out");
+        __publicField$s(this, "_stack");
+        __publicField$s(this, "_writingProperties");
+        __publicField$s(this, "_properties");
+        __publicField$s(this, "_styles");
         this._out = new StringBuilder();
         this._stack = new Stack();
         this._writingProperties = false;
@@ -3722,9 +3867,9 @@
       );
     })(ObfuscatedFont || (ObfuscatedFont = {}));
 
-    var __defProp$q = Object.defineProperty;
-    var __defNormalProp$q = (obj, key, value) => key in obj ? __defProp$q(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$q = (obj, key, value) => __defNormalProp$q(obj, key + "" , value);
+    var __defProp$r = Object.defineProperty;
+    var __defNormalProp$r = (obj, key, value) => key in obj ? __defProp$r(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$r = (obj, key, value) => __defNormalProp$r(obj, key + "" , value);
     class ObfuscatedDomEffectImpl {
       apply(element, data) {
         if (data) {
@@ -3808,7 +3953,7 @@
     }
     class TextFactory {
       constructor(text) {
-        __publicField$q(this, "_buf");
+        __publicField$r(this, "_buf");
         const length = text.length;
         const buf = new Uint8Array(length);
         for (let i = 0; i < text.length; i++) {
@@ -3895,13 +4040,13 @@
       ErrorInfo2.of = of;
     })(ErrorInfo || (ErrorInfo = {}));
 
-    var __defProp$p = Object.defineProperty;
-    var __defNormalProp$p = (obj, key, value) => key in obj ? __defProp$p(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$p = (obj, key, value) => __defNormalProp$p(obj, typeof key !== "symbol" ? key + "" : key, value);
+    var __defProp$q = Object.defineProperty;
+    var __defNormalProp$q = (obj, key, value) => key in obj ? __defProp$q(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$q = (obj, key, value) => __defNormalProp$q(obj, typeof key !== "symbol" ? key + "" : key, value);
     class Mutex {
       constructor() {
-        __publicField$p(this, "_listeners", []);
-        __publicField$p(this, "_locked", false);
+        __publicField$q(this, "_listeners", []);
+        __publicField$q(this, "_locked", false);
       }
       //
       async lock() {
@@ -3934,10 +4079,10 @@
     }
     class SharedCanvas {
       constructor(width, height) {
-        __publicField$p(this, "_width");
-        __publicField$p(this, "_height");
-        __publicField$p(this, "_mutex");
-        __publicField$p(this, "_state");
+        __publicField$q(this, "_width");
+        __publicField$q(this, "_height");
+        __publicField$q(this, "_mutex");
+        __publicField$q(this, "_state");
         this._width = width;
         this._height = height;
         this._mutex = new Mutex();
@@ -4157,9 +4302,9 @@
       OnlineHeads2.lookup = lookup;
     })(OnlineHeads || (OnlineHeads = {}));
 
-    var __defProp$o = Object.defineProperty;
-    var __defNormalProp$o = (obj, key, value) => key in obj ? __defProp$o(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$o = (obj, key, value) => __defNormalProp$o(obj, typeof key !== "symbol" ? key + "" : key, value);
+    var __defProp$p = Object.defineProperty;
+    var __defNormalProp$p = (obj, key, value) => key in obj ? __defProp$p(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$p = (obj, key, value) => __defNormalProp$p(obj, typeof key !== "symbol" ? key + "" : key, value);
     class PlayerHeadDomEffectImpl {
       apply(element, data) {
         const tint = this._resolveColor(element);
@@ -4275,11 +4420,11 @@
     })(PlayerHeadDomEffect || (PlayerHeadDomEffect = {}));
     class PolyImage {
       constructor(tintColor = null) {
-        __publicField$o(this, "element");
-        __publicField$o(this, "_activePriority");
-        __publicField$o(this, "_lastController");
-        __publicField$o(this, "_tintColor");
-        __publicField$o(this, "_tintedUrl");
+        __publicField$p(this, "element");
+        __publicField$p(this, "_activePriority");
+        __publicField$p(this, "_lastController");
+        __publicField$p(this, "_tintColor");
+        __publicField$p(this, "_tintedUrl");
         this.element = document.createElement("img");
         this._activePriority = Number.MIN_VALUE;
         this._lastController = null;
@@ -4410,6 +4555,146 @@
       MiscDomEffect2.INSTANCE = new MiscDomEffectImpl();
     })(MiscDomEffect || (MiscDomEffect = {}));
 
+    class SpriteTintDomEffectImpl {
+      apply(element, data) {
+        const tint = this._resolveColor(element);
+        if (tint === null) return;
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.addEventListener("load", () => {
+          const canvas = document.createElement("canvas");
+          canvas.width = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+          const ctx = canvas.getContext("2d");
+          if (!ctx) return;
+          ctx.drawImage(img, 0, 0);
+          ctx.globalCompositeOperation = "multiply";
+          ctx.fillStyle = tint;
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.globalCompositeOperation = "destination-in";
+          ctx.drawImage(img, 0, 0);
+          canvas.toBlob((blob) => {
+            if (!blob) return;
+            const tintedUrl = URL.createObjectURL(blob);
+            element.style.backgroundImage = `url("${tintedUrl}")`;
+          });
+        });
+        img.src = data.url;
+      }
+      serialize(data) {
+        return JSON.stringify(data);
+      }
+      deserialize(value) {
+        const parsed = JSON.parse(value);
+        assertObject(parsed);
+        return parsed;
+      }
+      _resolveColor(element) {
+        let current = element;
+        while (current !== null) {
+          const color = current.style?.color;
+          if (color) return color;
+          current = current.parentElement;
+        }
+        return null;
+      }
+    }
+    var SpriteTintDomEffect;
+    ((SpriteTintDomEffect2) => {
+      SpriteTintDomEffect2.TOKEN = "sprite-tint";
+      SpriteTintDomEffect2.INSTANCE = new SpriteTintDomEffectImpl();
+    })(SpriteTintDomEffect || (SpriteTintDomEffect = {}));
+
+    const imageCache = /* @__PURE__ */ new Map();
+    function loadImage(url) {
+      const existing = imageCache.get(url);
+      if (existing) return existing;
+      const img = new Image();
+      img.src = url;
+      imageCache.set(url, img);
+      return img;
+    }
+    function resolveColor(element) {
+      let current = element;
+      while (current !== null) {
+        const color = current.style?.color;
+        if (color) return color;
+        current = current.parentElement;
+      }
+      return null;
+    }
+    class SpriteAnimationDomEffectImpl {
+      apply(element, data) {
+        const { frameWidth, frameHeight, frames, durationMs } = data;
+        const sheet = loadImage(data.url);
+        const tint = resolveColor(element);
+        const canvas = document.createElement("canvas");
+        canvas.width = frameWidth;
+        canvas.height = frameHeight;
+        canvas.style.width = "100%";
+        canvas.style.height = "100%";
+        canvas.style.imageRendering = "pixelated";
+        canvas.style.display = "block";
+        element.appendChild(canvas);
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return;
+        const boundaries = [0];
+        let sum = 0;
+        for (const f of frames) {
+          sum += f.durationMs;
+          boundaries.push(sum);
+        }
+        const draw = (elapsed) => {
+          const t = elapsed % durationMs;
+          let i = 0;
+          while (i < frames.length - 1 && t >= boundaries[i + 1]) i++;
+          const segmentLen = frames[i].durationMs;
+          const progress = segmentLen > 0 ? (t - boundaries[i]) / segmentLen : 0;
+          const rowA = frames[i].row;
+          const rowB = frames[(i + 1) % frames.length].row;
+          ctx.clearRect(0, 0, frameWidth, frameHeight);
+          ctx.globalCompositeOperation = "source-over";
+          ctx.globalAlpha = 1;
+          ctx.drawImage(sheet, 0, rowA * frameHeight, frameWidth, frameHeight, 0, 0, frameWidth, frameHeight);
+          ctx.globalAlpha = progress;
+          ctx.drawImage(sheet, 0, rowB * frameHeight, frameWidth, frameHeight, 0, 0, frameWidth, frameHeight);
+          ctx.globalAlpha = 1;
+          if (tint !== null) {
+            ctx.globalCompositeOperation = "multiply";
+            ctx.fillStyle = tint;
+            ctx.fillRect(0, 0, frameWidth, frameHeight);
+            ctx.globalCompositeOperation = "destination-in";
+            ctx.drawImage(canvas, 0, 0);
+            ctx.globalCompositeOperation = "source-over";
+          }
+        };
+        let start = null;
+        const tick = (ts) => {
+          if (start === null) start = ts;
+          draw(ts - start);
+          requestAnimationFrame(tick);
+        };
+        if (sheet.complete) {
+          requestAnimationFrame(tick);
+        } else {
+          sheet.addEventListener("load", () => requestAnimationFrame(tick), { once: true });
+        }
+      }
+      serialize(data) {
+        return JSON.stringify(data);
+      }
+      deserialize(value) {
+        const parsed = JSON.parse(value);
+        assertObject(parsed);
+        return parsed;
+      }
+    }
+    var SpriteAnimationDomEffect;
+    ((SpriteAnimationDomEffect2) => {
+      SpriteAnimationDomEffect2.TOKEN = "sprite-interp";
+      SpriteAnimationDomEffect2.INSTANCE = new SpriteAnimationDomEffectImpl();
+    })(SpriteAnimationDomEffect || (SpriteAnimationDomEffect = {}));
+
     exports.DomEffects = void 0;
     ((DomEffects2) => {
       const PROPERTY_PREFIX = "data-mm-";
@@ -4418,7 +4703,9 @@
         [ObfuscatedDomEffect.TOKEN]: ObfuscatedDomEffect.INSTANCE,
         [PlayerHeadDomEffect.TOKEN]: PlayerHeadDomEffect.INSTANCE,
         [ShadowDomEffect.TOKEN]: ShadowDomEffect.INSTANCE,
-        [MiscDomEffect.TOKEN]: MiscDomEffect.INSTANCE
+        [MiscDomEffect.TOKEN]: MiscDomEffect.INSTANCE,
+        [SpriteTintDomEffect.TOKEN]: SpriteTintDomEffect.INSTANCE,
+        [SpriteAnimationDomEffect.TOKEN]: SpriteAnimationDomEffect.INSTANCE
       };
       function writeProperty(writer, token, value) {
         const effect = MAP[token];
@@ -4480,9 +4767,9 @@
       DomEffects2.apply = apply;
     })(exports.DomEffects || (exports.DomEffects = {}));
 
-    var __defProp$n = Object.defineProperty;
-    var __defNormalProp$n = (obj, key, value) => key in obj ? __defProp$n(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$n = (obj, key, value) => __defNormalProp$n(obj, typeof key !== "symbol" ? key + "" : key, value);
+    var __defProp$o = Object.defineProperty;
+    var __defNormalProp$o = (obj, key, value) => key in obj ? __defProp$o(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$o = (obj, key, value) => __defNormalProp$o(obj, typeof key !== "symbol" ? key + "" : key, value);
     function applyDomEffects(element) {
       if (typeof window === "undefined") return;
       const proceed = (() => {
@@ -4503,10 +4790,10 @@
     }
     class DomHTMLWriter {
       constructor(parent, elementFactory) {
-        __publicField$n(this, "_parent");
-        __publicField$n(this, "_stack");
-        __publicField$n(this, "_elementFactory");
-        __publicField$n(this, "_styles");
+        __publicField$o(this, "_parent");
+        __publicField$o(this, "_stack");
+        __publicField$o(this, "_elementFactory");
+        __publicField$o(this, "_styles");
         this._parent = parent;
         this._stack = new Stack();
         this._elementFactory = elementFactory;
@@ -4693,9 +4980,9 @@
       Chunks2.parse = parse;
     })(Chunks || (Chunks = {}));
 
-    var __defProp$m = Object.defineProperty;
-    var __defNormalProp$m = (obj, key, value) => key in obj ? __defProp$m(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-    var __publicField$m = (obj, key, value) => __defNormalProp$m(obj, typeof key !== "symbol" ? key + "" : key, value);
+    var __defProp$n = Object.defineProperty;
+    var __defNormalProp$n = (obj, key, value) => key in obj ? __defProp$n(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+    var __publicField$n = (obj, key, value) => __defNormalProp$n(obj, typeof key !== "symbol" ? key + "" : key, value);
     class TranslationsImpl {
       constructor(_data, _fallback) {
         this._data = _data;
@@ -4744,9 +5031,9 @@
       const _BuilderImpl = class _BuilderImpl {
         constructor() {
           //
-          __publicField$m(this, "_data", /* @__PURE__ */ new Map());
-          __publicField$m(this, "_fallback", _BuilderImpl.DEFAULT_FALLBACK);
-          __publicField$m(this, "_open", true);
+          __publicField$n(this, "_data", /* @__PURE__ */ new Map());
+          __publicField$n(this, "_fallback", _BuilderImpl.DEFAULT_FALLBACK);
+          __publicField$n(this, "_open", true);
         }
         //
         with(data) {
@@ -4778,7 +5065,7 @@
           throw new Error("Cannot use builder after #build");
         }
       };
-      __publicField$m(_BuilderImpl, "DEFAULT_FALLBACK", (s) => s);
+      __publicField$n(_BuilderImpl, "DEFAULT_FALLBACK", (s) => s);
       let BuilderImpl = _BuilderImpl;
       const EMPTY = new BuilderImpl().build();
       function builder() {
@@ -4794,6 +5081,702 @@
       }
       Translations2.of = of;
     })(exports.Translations || (exports.Translations = {}));
+
+    // DEFLATE is a complex format; to read this code, you should probably check the RFC first:
+    // https://tools.ietf.org/html/rfc1951
+    // You may also wish to take a look at the guide I made about this program:
+    // https://gist.github.com/101arrowz/253f31eb5abc3d9275ab943003ffecad
+    // Some of the following code is similar to that of UZIP.js:
+    // https://github.com/photopea/UZIP.js
+    // However, the vast majority of the codebase has diverged from UZIP.js to increase performance and reduce bundle size.
+    // Sometimes 0 will appear where -1 would be more appropriate. This is because using a uint
+    // is better for memory in most engines (I *think*).
+
+    // aliases for shorter compressed code (most minifers don't do this)
+    var u8 = Uint8Array, u16 = Uint16Array, i32 = Int32Array;
+    // fixed length extra bits
+    var fleb = new u8([0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0, /* unused */ 0, 0, /* impossible */ 0]);
+    // fixed distance extra bits
+    var fdeb = new u8([0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, /* unused */ 0, 0]);
+    // code length index map
+    var clim = new u8([16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15]);
+    // get base, reverse index map from extra bits
+    var freb = function (eb, start) {
+        var b = new u16(31);
+        for (var i = 0; i < 31; ++i) {
+            b[i] = start += 1 << eb[i - 1];
+        }
+        // numbers here are at max 18 bits
+        var r = new i32(b[30]);
+        for (var i = 1; i < 30; ++i) {
+            for (var j = b[i]; j < b[i + 1]; ++j) {
+                r[j] = ((j - b[i]) << 5) | i;
+            }
+        }
+        return { b: b, r: r };
+    };
+    var _a = freb(fleb, 2), fl = _a.b, revfl = _a.r;
+    // we can ignore the fact that the other numbers are wrong; they never happen anyway
+    fl[28] = 258, revfl[258] = 28;
+    var _b = freb(fdeb, 0), fd = _b.b;
+    // map of value to reverse (assuming 16 bits)
+    var rev = new u16(32768);
+    for (var i = 0; i < 32768; ++i) {
+        // reverse table algorithm from SO
+        var x = ((i & 0xAAAA) >> 1) | ((i & 0x5555) << 1);
+        x = ((x & 0xCCCC) >> 2) | ((x & 0x3333) << 2);
+        x = ((x & 0xF0F0) >> 4) | ((x & 0x0F0F) << 4);
+        rev[i] = (((x & 0xFF00) >> 8) | ((x & 0x00FF) << 8)) >> 1;
+    }
+    // create huffman tree from u8 "map": index -> code length for code index
+    // mb (max bits) must be at most 15
+    // TODO: optimize/split up?
+    var hMap = (function (cd, mb, r) {
+        var s = cd.length;
+        // index
+        var i = 0;
+        // u16 "map": index -> # of codes with bit length = index
+        var l = new u16(mb);
+        // length of cd must be 288 (total # of codes)
+        for (; i < s; ++i) {
+            if (cd[i])
+                ++l[cd[i] - 1];
+        }
+        // u16 "map": index -> minimum code for bit length = index
+        var le = new u16(mb);
+        for (i = 1; i < mb; ++i) {
+            le[i] = (le[i - 1] + l[i - 1]) << 1;
+        }
+        var co;
+        if (r) {
+            // u16 "map": index -> number of actual bits, symbol for code
+            co = new u16(1 << mb);
+            // bits to remove for reverser
+            var rvb = 15 - mb;
+            for (i = 0; i < s; ++i) {
+                // ignore 0 lengths
+                if (cd[i]) {
+                    // num encoding both symbol and bits read
+                    var sv = (i << 4) | cd[i];
+                    // free bits
+                    var r_1 = mb - cd[i];
+                    // start value
+                    var v = le[cd[i] - 1]++ << r_1;
+                    // m is end value
+                    for (var m = v | ((1 << r_1) - 1); v <= m; ++v) {
+                        // every 16 bit value starting with the code yields the same result
+                        co[rev[v] >> rvb] = sv;
+                    }
+                }
+            }
+        }
+        else {
+            co = new u16(s);
+            for (i = 0; i < s; ++i) {
+                if (cd[i]) {
+                    co[i] = rev[le[cd[i] - 1]++] >> (15 - cd[i]);
+                }
+            }
+        }
+        return co;
+    });
+    // fixed length tree
+    var flt = new u8(288);
+    for (var i = 0; i < 144; ++i)
+        flt[i] = 8;
+    for (var i = 144; i < 256; ++i)
+        flt[i] = 9;
+    for (var i = 256; i < 280; ++i)
+        flt[i] = 7;
+    for (var i = 280; i < 288; ++i)
+        flt[i] = 8;
+    // fixed distance tree
+    var fdt = new u8(32);
+    for (var i = 0; i < 32; ++i)
+        fdt[i] = 5;
+    // fixed length map
+    var flrm = /*#__PURE__*/ hMap(flt, 9, 1);
+    // fixed distance map
+    var fdrm = /*#__PURE__*/ hMap(fdt, 5, 1);
+    // find max of array
+    var max = function (a) {
+        var m = a[0];
+        for (var i = 1; i < a.length; ++i) {
+            if (a[i] > m)
+                m = a[i];
+        }
+        return m;
+    };
+    // read d, starting at bit p and mask with m
+    var bits = function (d, p, m) {
+        var o = (p / 8) | 0;
+        return ((d[o] | (d[o + 1] << 8)) >> (p & 7)) & m;
+    };
+    // read d, starting at bit p continuing for at least 16 bits
+    var bits16 = function (d, p) {
+        var o = (p / 8) | 0;
+        return ((d[o] | (d[o + 1] << 8) | (d[o + 2] << 16)) >> (p & 7));
+    };
+    // get end of byte
+    var shft = function (p) { return ((p + 7) / 8) | 0; };
+    // typed array slice - allows garbage collector to free original reference,
+    // while being more compatible than .slice
+    var slc = function (v, s, e) {
+        if (s == null || s < 0)
+            s = 0;
+        if (e == null || e > v.length)
+            e = v.length;
+        // can't use .constructor in case user-supplied
+        return new u8(v.subarray(s, e));
+    };
+    // error codes
+    var ec = [
+        'unexpected EOF',
+        'invalid block type',
+        'invalid length/literal',
+        'invalid distance',
+        'stream finished',
+        'no stream handler',
+        , // determined by compression function
+        'no callback',
+        'invalid UTF-8 data',
+        'extra field too long',
+        'date not in range 1980-2099',
+        'filename too long',
+        'stream finishing',
+        'invalid zip data'
+        // determined by unknown compression method
+    ];
+    var err = function (ind, msg, nt) {
+        var e = new Error(msg || ec[ind]);
+        e.code = ind;
+        if (Error.captureStackTrace)
+            Error.captureStackTrace(e, err);
+        if (!nt)
+            throw e;
+        return e;
+    };
+    // expands raw DEFLATE data
+    var inflt = function (dat, st, buf, dict) {
+        // source length       dict length
+        var sl = dat.length, dl = dict ? dict.length : 0;
+        if (!sl || st.f && !st.l)
+            return buf || new u8(0);
+        var noBuf = !buf;
+        // have to estimate size
+        var resize = noBuf || st.i != 2;
+        // no state
+        var noSt = st.i;
+        // Assumes roughly 33% compression ratio average
+        if (noBuf)
+            buf = new u8(sl * 3);
+        // ensure buffer can fit at least l elements
+        var cbuf = function (l) {
+            var bl = buf.length;
+            // need to increase size to fit
+            if (l > bl) {
+                // Double or set to necessary, whichever is greater
+                var nbuf = new u8(Math.max(bl * 2, l));
+                nbuf.set(buf);
+                buf = nbuf;
+            }
+        };
+        //  last chunk         bitpos           bytes
+        var final = st.f || 0, pos = st.p || 0, bt = st.b || 0, lm = st.l, dm = st.d, lbt = st.m, dbt = st.n;
+        // total bits
+        var tbts = sl * 8;
+        do {
+            if (!lm) {
+                // BFINAL - this is only 1 when last chunk is next
+                final = bits(dat, pos, 1);
+                // type: 0 = no compression, 1 = fixed huffman, 2 = dynamic huffman
+                var type = bits(dat, pos + 1, 3);
+                pos += 3;
+                if (!type) {
+                    // go to end of byte boundary
+                    var s = shft(pos) + 4, l = dat[s - 4] | (dat[s - 3] << 8), t = s + l;
+                    if (t > sl) {
+                        if (noSt)
+                            err(0);
+                        break;
+                    }
+                    // ensure size
+                    if (resize)
+                        cbuf(bt + l);
+                    // Copy over uncompressed data
+                    buf.set(dat.subarray(s, t), bt);
+                    // Get new bitpos, update byte count
+                    st.b = bt += l, st.p = pos = t * 8, st.f = final;
+                    continue;
+                }
+                else if (type == 1)
+                    lm = flrm, dm = fdrm, lbt = 9, dbt = 5;
+                else if (type == 2) {
+                    //  literal                            lengths
+                    var hLit = bits(dat, pos, 31) + 257, hcLen = bits(dat, pos + 10, 15) + 4;
+                    var tl = hLit + bits(dat, pos + 5, 31) + 1;
+                    pos += 14;
+                    // length+distance tree
+                    var ldt = new u8(tl);
+                    // code length tree
+                    var clt = new u8(19);
+                    for (var i = 0; i < hcLen; ++i) {
+                        // use index map to get real code
+                        clt[clim[i]] = bits(dat, pos + i * 3, 7);
+                    }
+                    pos += hcLen * 3;
+                    // code lengths bits
+                    var clb = max(clt), clbmsk = (1 << clb) - 1;
+                    // code lengths map
+                    var clm = hMap(clt, clb, 1);
+                    for (var i = 0; i < tl;) {
+                        var r = clm[bits(dat, pos, clbmsk)];
+                        // bits read
+                        pos += r & 15;
+                        // symbol
+                        var s = r >> 4;
+                        // code length to copy
+                        if (s < 16) {
+                            ldt[i++] = s;
+                        }
+                        else {
+                            //  copy   count
+                            var c = 0, n = 0;
+                            if (s == 16)
+                                n = 3 + bits(dat, pos, 3), pos += 2, c = ldt[i - 1];
+                            else if (s == 17)
+                                n = 3 + bits(dat, pos, 7), pos += 3;
+                            else if (s == 18)
+                                n = 11 + bits(dat, pos, 127), pos += 7;
+                            while (n--)
+                                ldt[i++] = c;
+                        }
+                    }
+                    //    length tree                 distance tree
+                    var lt = ldt.subarray(0, hLit), dt = ldt.subarray(hLit);
+                    // max length bits
+                    lbt = max(lt);
+                    // max dist bits
+                    dbt = max(dt);
+                    lm = hMap(lt, lbt, 1);
+                    dm = hMap(dt, dbt, 1);
+                }
+                else
+                    err(1);
+                if (pos > tbts) {
+                    if (noSt)
+                        err(0);
+                    break;
+                }
+            }
+            // Make sure the buffer can hold this + the largest possible addition
+            // Maximum chunk size (practically, theoretically infinite) is 2^17
+            if (resize)
+                cbuf(bt + 131072);
+            var lms = (1 << lbt) - 1, dms = (1 << dbt) - 1;
+            var lpos = pos;
+            for (;; lpos = pos) {
+                // bits read, code
+                var c = lm[bits16(dat, pos) & lms], sym = c >> 4;
+                pos += c & 15;
+                if (pos > tbts) {
+                    if (noSt)
+                        err(0);
+                    break;
+                }
+                if (!c)
+                    err(2);
+                if (sym < 256)
+                    buf[bt++] = sym;
+                else if (sym == 256) {
+                    lpos = pos, lm = null;
+                    break;
+                }
+                else {
+                    var add = sym - 254;
+                    // no extra bits needed if less
+                    if (sym > 264) {
+                        // index
+                        var i = sym - 257, b = fleb[i];
+                        add = bits(dat, pos, (1 << b) - 1) + fl[i];
+                        pos += b;
+                    }
+                    // dist
+                    var d = dm[bits16(dat, pos) & dms], dsym = d >> 4;
+                    if (!d)
+                        err(3);
+                    pos += d & 15;
+                    var dt = fd[dsym];
+                    if (dsym > 3) {
+                        var b = fdeb[dsym];
+                        dt += bits16(dat, pos) & (1 << b) - 1, pos += b;
+                    }
+                    if (pos > tbts) {
+                        if (noSt)
+                            err(0);
+                        break;
+                    }
+                    if (resize)
+                        cbuf(bt + 131072);
+                    var end = bt + add;
+                    if (bt < dt) {
+                        var shift = dl - dt, dend = Math.min(dt, end);
+                        if (shift + bt < 0)
+                            err(3);
+                        for (; bt < dend; ++bt)
+                            buf[bt] = dict[shift + bt];
+                    }
+                    for (; bt < end; ++bt)
+                        buf[bt] = buf[bt - dt];
+                }
+            }
+            st.l = lm, st.p = lpos, st.b = bt, st.f = final;
+            if (lm)
+                final = 1, st.m = lbt, st.d = dm, st.n = dbt;
+        } while (!final);
+        // don't reallocate for streams or user buffers
+        return bt != buf.length && noBuf ? slc(buf, 0, bt) : buf.subarray(0, bt);
+    };
+    // empty
+    var et = /*#__PURE__*/ new u8(0);
+    // read 2 bytes
+    var b2 = function (d, b) { return d[b] | (d[b + 1] << 8); };
+    // read 4 bytes
+    var b4 = function (d, b) { return (d[b] | (d[b + 1] << 8) | (d[b + 2] << 16) | (d[b + 3] << 24)) >>> 0; };
+    // read 8 bytes
+    var b8 = function (d, b) { return b4(d, b) + (b4(d, b + 4) * 4294967296); };
+    function inflateSync(data, opts) {
+        return inflt(data, { i: 2 }, opts && opts.out, opts && opts.dictionary);
+    }
+    // text decoder
+    var td = typeof TextDecoder != 'undefined' && /*#__PURE__*/ new TextDecoder();
+    // text decoder stream
+    var tds = 0;
+    try {
+        td.decode(et, { stream: true });
+        tds = 1;
+    }
+    catch (e) { }
+    // decode UTF8
+    var dutf8 = function (d) {
+        for (var r = '', i = 0;;) {
+            var c = d[i++];
+            var eb = (c > 127) + (c > 223) + (c > 239);
+            if (i + eb > d.length)
+                return { s: r, r: slc(d, i - 1) };
+            if (!eb)
+                r += String.fromCharCode(c);
+            else if (eb == 3) {
+                c = ((c & 15) << 18 | (d[i++] & 63) << 12 | (d[i++] & 63) << 6 | (d[i++] & 63)) - 65536,
+                    r += String.fromCharCode(55296 | (c >> 10), 56320 | (c & 1023));
+            }
+            else if (eb & 1)
+                r += String.fromCharCode((c & 31) << 6 | (d[i++] & 63));
+            else
+                r += String.fromCharCode((c & 15) << 12 | (d[i++] & 63) << 6 | (d[i++] & 63));
+        }
+    };
+    /**
+     * Converts a Uint8Array to a string
+     * @param dat The data to decode to string
+     * @param latin1 Whether or not to interpret the data as Latin-1. This should
+     *               not need to be true unless encoding to binary string.
+     * @returns The original UTF-8/Latin-1 string
+     */
+    function strFromU8(dat, latin1) {
+        if (latin1) {
+            var r = '';
+            for (var i = 0; i < dat.length; i += 16384)
+                r += String.fromCharCode.apply(null, dat.subarray(i, i + 16384));
+            return r;
+        }
+        else if (td) {
+            return td.decode(dat);
+        }
+        else {
+            var _a = dutf8(dat), s = _a.s, r = _a.r;
+            if (r.length)
+                err(8);
+            return s;
+        }
+    }
+    // skip local zip header
+    var slzh = function (d, b) { return b + 30 + b2(d, b + 26) + b2(d, b + 28); };
+    // read zip header
+    var zh = function (d, b, z) {
+        var fnl = b2(d, b + 28), efl = b2(d, b + 30), fn = strFromU8(d.subarray(b + 46, b + 46 + fnl), !(b2(d, b + 8) & 2048)), es = b + 46 + fnl;
+        var _a = z64hs(d, es, efl, z, b4(d, b + 20), b4(d, b + 24), b4(d, b + 42)), sc = _a[0], su = _a[1], off = _a[2];
+        return [b2(d, b + 10), sc, su, fn, es + efl + b2(d, b + 32), off];
+    };
+    // read zip64 header sizes
+    var z64hs = function (d, b, l, z, sc, su, off) {
+        var nsc = sc == 4294967295, nsu = su == 4294967295, noff = off == 4294967295, e = b + l;
+        var nf = nsc + nsu + noff;
+        if (z && nf) {
+            for (; b + 4 < e; b += 4 + b2(d, b + 2)) {
+                if (b2(d, b) == 1) {
+                    return [
+                        nsc ? b8(d, b + 4 + 8 * nsu) : sc,
+                        nsu ? b8(d, b + 4) : su,
+                        noff ? b8(d, b + 4 + 8 * (nsu + nsc)) : off,
+                        1
+                    ];
+                }
+            }
+            // z == 2 for unknown whether or not zip64
+            if (z < 2)
+                err(13);
+        }
+        return [sc, su, off, 0];
+    };
+    /**
+     * Synchronously decompresses a ZIP archive. Prefer using `unzip` for better
+     * performance with more than one file.
+     * @param data The raw compressed ZIP file
+     * @param opts The ZIP extraction options
+     * @returns The decompressed files
+     */
+    function unzipSync(data, opts) {
+        var files = {};
+        var e = data.length - 22;
+        for (; b4(data, e) != 0x6054B50; --e) {
+            if (!e || data.length - e > 65558)
+                err(13);
+        }
+        var c = b2(data, e + 8);
+        if (!c)
+            return {};
+        var o = b4(data, e + 16);
+        var z = b4(data, e - 20) == 0x7064B50;
+        if (z) {
+            var ze = b4(data, e - 12);
+            z = b4(data, ze) == 0x6064B50;
+            if (z) {
+                c = b4(data, ze + 32);
+                o = b4(data, ze + 48);
+            }
+        }
+        var fltr = opts && opts.filter;
+        for (var i = 0; i < c; ++i) {
+            var _a = zh(data, o, z), c_2 = _a[0], sc = _a[1], su = _a[2], fn = _a[3], no = _a[4], off = _a[5], b = slzh(data, off);
+            o = no;
+            if (!fltr || fltr({
+                name: fn,
+                size: sc,
+                originalSize: su,
+                compression: c_2
+            })) {
+                if (!c_2)
+                    files[fn] = slc(data, b, b + sc);
+                else if (c_2 == 8)
+                    files[fn] = inflateSync(data.subarray(b, b + sc), { out: new u8(su) });
+                else
+                    err(14, 'unknown compression type ' + c_2);
+            }
+        }
+        return files;
+    }
+
+    var __defProp$m = Object.defineProperty;
+    var __defNormalProp$m = (obj, key2, value) => key2 in obj ? __defProp$m(obj, key2, { enumerable: true, configurable: true, writable: true, value }) : obj[key2] = value;
+    var __publicField$m = (obj, key2, value) => __defNormalProp$m(obj, key2 + "" , value);
+    class ResourcePacksImpl {
+      constructor(_textures, _dimensions, _mcmeta, _atlases) {
+        this._textures = _textures;
+        this._dimensions = _dimensions;
+        this._mcmeta = _mcmeta;
+        this._atlases = _atlases;
+        __publicField$m(this, "_urlCache", /* @__PURE__ */ new Map());
+      }
+      //
+      texture(namespace, path) {
+        return this._textures.get(key(namespace, path)) ?? null;
+      }
+      textureUrl(namespace, path) {
+        const k = key(namespace, path);
+        const bytes = this._textures.get(k);
+        if (!bytes) return null;
+        return this._urlFor(k, bytes);
+      }
+      has(namespace, path) {
+        return this._textures.has(key(namespace, path));
+      }
+      resolveSprite(atlasNamespace, atlasId, spriteNamespace, spritePath) {
+        const spriteKey = key(spriteNamespace, spritePath);
+        const atlasKey = key(atlasNamespace, atlasId);
+        const atlasIndex = this._atlases.get(atlasKey);
+        let textureKey;
+        if (atlasIndex) {
+          const resolved = atlasIndex.get(spriteKey);
+          if (!resolved) return null;
+          textureKey = resolved;
+        } else {
+          textureKey = spriteKey;
+        }
+        const bytes = this._textures.get(textureKey);
+        if (!bytes) return null;
+        const dims = this._dimensions.get(textureKey);
+        if (!dims) return null;
+        const mcmeta = this._mcmeta.get(textureKey) ?? null;
+        const animation = mcmeta ? parseAnimation(mcmeta, dims.width, dims.height) : null;
+        return {
+          url: this._urlFor(textureKey, bytes),
+          width: dims.width,
+          height: dims.height,
+          animation
+        };
+      }
+      dispose() {
+        this._urlCache.forEach((url) => URL.revokeObjectURL(url));
+        this._urlCache.clear();
+      }
+      //
+      _urlFor(textureKey, bytes) {
+        const cached = this._urlCache.get(textureKey);
+        if (cached) return cached;
+        const url = URL.createObjectURL(new Blob([toOwnedArrayBuffer(bytes)], { type: "image/png" }));
+        this._urlCache.set(textureKey, url);
+        return url;
+      }
+    }
+    function key(namespace, path) {
+      return `${namespace.toLowerCase()}:${path.toLowerCase()}`;
+    }
+    function toOwnedArrayBuffer(view) {
+      if (view.buffer instanceof ArrayBuffer && view.byteOffset === 0 && view.byteLength === view.buffer.byteLength) {
+        return view.buffer;
+      }
+      return view.slice().buffer;
+    }
+    const PNG_SIGNATURE = [137, 80, 78, 71, 13, 10, 26, 10];
+    function readPngSize(bytes) {
+      if (bytes.length < 24) return null;
+      for (let i = 0; i < 8; i++) {
+        if (bytes[i] !== PNG_SIGNATURE[i]) return null;
+      }
+      const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+      return {
+        width: view.getUint32(16, false),
+        height: view.getUint32(20, false)
+      };
+    }
+    function parseAnimation(json, textureWidth, textureHeight) {
+      const anim = json.animation;
+      if (!anim) return null;
+      const frameWidth = anim.width ?? textureWidth;
+      const frameHeight = anim.height ?? frameWidth;
+      if (frameWidth <= 0 || frameHeight <= 0) return null;
+      const totalRows = Math.floor(textureHeight / frameHeight);
+      if (totalRows <= 0) return null;
+      const defaultFrametime = anim.frametime ?? 1;
+      let frames;
+      if (!anim.frames || anim.frames.length === 0) {
+        frames = [];
+        for (let r = 0; r < totalRows; r++) {
+          frames.push({ row: r, durationMs: defaultFrametime * 50 });
+        }
+      } else {
+        frames = anim.frames.map((f) => {
+          const row = typeof f === "number" ? f : f.index;
+          const ticks = typeof f === "number" ? defaultFrametime : f.time ?? defaultFrametime;
+          return { row, durationMs: ticks * 50 };
+        });
+      }
+      if (frames.length < 2) return null;
+      const durationMs = frames.reduce((sum, f) => sum + f.durationMs, 0);
+      return { frameWidth, frameHeight, totalRows, frames, durationMs, interpolate: anim.interpolate === true };
+    }
+    function sourceTypeId(rawType) {
+      if (!rawType) return null;
+      return exports.Key.key(rawType).value().toLowerCase();
+    }
+    function buildAtlasIndex(atlasNamespace, json, textureKeys) {
+      const allTextureKeys = [...textureKeys];
+      const result = /* @__PURE__ */ new Map();
+      for (const src of json.sources ?? []) {
+        const typeId = sourceTypeId(src.type);
+        if (typeId === "single" && src.resource) {
+          const resourceParsed = exports.Key.key(src.resource);
+          const textureKey = key(resourceParsed.namespace(), resourceParsed.value());
+          const spriteKey = src.sprite ? key(exports.Key.key(src.sprite).namespace(), exports.Key.key(src.sprite).value()) : textureKey;
+          result.set(spriteKey, textureKey);
+        } else if (typeId === "directory" && src.source) {
+          const dirPrefix = `${src.source.toLowerCase()}/`;
+          const spritePrefix = (src.prefix ?? "").toLowerCase();
+          for (const textureKey of allTextureKeys) {
+            const sep = textureKey.indexOf(":");
+            const ns = textureKey.substring(0, sep);
+            const path = textureKey.substring(sep + 1);
+            if (ns !== atlasNamespace) continue;
+            if (!path.startsWith(dirPrefix)) continue;
+            const rest = path.substring(dirPrefix.length);
+            result.set(`${ns}:${spritePrefix}${rest}`, textureKey);
+          }
+        }
+      }
+      return result;
+    }
+    const TEXTURE_PATH = /^assets\/([^/]+)\/textures\/(.+)\.png$/;
+    const MCMETA_PATH = /^assets\/([^/]+)\/textures\/(.+)\.png\.mcmeta$/;
+    const ATLAS_PATH = /^assets\/([^/]+)\/atlases\/(.+)\.json$/;
+    exports.ResourcePacks = void 0;
+    ((ResourcePacks2) => {
+      const EMPTY = new ResourcePacksImpl(/* @__PURE__ */ new Map(), /* @__PURE__ */ new Map(), /* @__PURE__ */ new Map(), /* @__PURE__ */ new Map());
+      function empty() {
+        return EMPTY;
+      }
+      ResourcePacks2.empty = empty;
+      async function fromZips(files) {
+        assertReal(files, "files");
+        const textures = /* @__PURE__ */ new Map();
+        const mcmetaRaw = /* @__PURE__ */ new Map();
+        const atlasRaw = /* @__PURE__ */ new Map();
+        for (const file of files) {
+          const bytes = await toBytes(file);
+          const entries = unzipSync(bytes, {
+            filter: (entry) => TEXTURE_PATH.test(entry.name) || MCMETA_PATH.test(entry.name) || ATLAS_PATH.test(entry.name)
+          });
+          for (const path of Object.keys(entries)) {
+            let m;
+            if (m = TEXTURE_PATH.exec(path)) {
+              textures.set(key(m[1], m[2]), entries[path]);
+              continue;
+            }
+            if (m = MCMETA_PATH.exec(path)) {
+              try {
+                mcmetaRaw.set(key(m[1], m[2]), JSON.parse(new TextDecoder().decode(entries[path])));
+              } catch {
+              }
+              continue;
+            }
+            if (m = ATLAS_PATH.exec(path)) {
+              try {
+                atlasRaw.set(key(m[1], m[2]), JSON.parse(new TextDecoder().decode(entries[path])));
+              } catch {
+              }
+              continue;
+            }
+          }
+        }
+        const dimensions = /* @__PURE__ */ new Map();
+        textures.forEach((bytes, k) => {
+          const size = readPngSize(bytes);
+          if (size) dimensions.set(k, size);
+        });
+        const atlases = /* @__PURE__ */ new Map();
+        atlasRaw.forEach((json, atlasKey) => {
+          const ns = atlasKey.substring(0, atlasKey.indexOf(":"));
+          atlases.set(atlasKey, buildAtlasIndex(ns, json, textures.keys()));
+        });
+        return new ResourcePacksImpl(textures, dimensions, mcmetaRaw, atlases);
+      }
+      ResourcePacks2.fromZips = fromZips;
+      async function toBytes(source) {
+        if (source instanceof Uint8Array) return source;
+        if (source instanceof ArrayBuffer) return new Uint8Array(source);
+        return new Uint8Array(await source.arrayBuffer());
+      }
+    })(exports.ResourcePacks || (exports.ResourcePacks = {}));
 
     const KEYBIND_TO_TRANSLATABLE = {
       "key.jump": "key.keyboard.space",
@@ -4882,15 +5865,17 @@
     var __defNormalProp$l = (obj, key, value) => key in obj ? __defProp$l(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
     var __publicField$l = (obj, key, value) => __defNormalProp$l(obj, typeof key !== "symbol" ? key + "" : key, value);
     const _HtmlComponentRenderer = class _HtmlComponentRenderer extends AbstractComponentRenderer {
-      constructor(translations) {
+      constructor(translations, resourcePacks) {
         super();
         //
         __publicField$l(this, "_translations");
+        __publicField$l(this, "_resourcePacks");
         __publicField$l(this, "renderBlock", this._renderMisc);
         __publicField$l(this, "renderEntity", this._renderMisc);
         __publicField$l(this, "renderStorage", this._renderMisc);
         __publicField$l(this, "renderScore", this._renderMisc);
         this._translations = translations;
+        this._resourcePacks = resourcePacks;
       }
       //
       renderText(component, writer) {
@@ -4929,6 +5914,7 @@
             break;
           case "sprite":
             exports.DomEffects.writeProperty(writer, "misc", component);
+            this._writeSprite(contents, writer);
             break;
           default:
             assertNever(contentsType);
@@ -4942,6 +5928,34 @@
         exports.DomEffects.writeProperty(writer, "misc", component);
         this._close(component, writer);
         return component;
+      }
+      _writeSprite(contents, writer) {
+        const atlas = contents.atlas();
+        const sprite = contents.sprite();
+        const info = this._resourcePacks.resolveSprite(
+          atlas.namespace(),
+          atlas.value(),
+          sprite.namespace(),
+          sprite.value()
+        );
+        if (info === null) {
+          writer.style(HtmlStyle.missingSprite());
+          writer.property("data-mc-sprite-missing", sprite.asString());
+          return;
+        }
+        if (info.animation && info.animation.interpolate) {
+          writer.style(HtmlStyle.spriteContainer());
+          exports.DomEffects.writeProperty(writer, "sprite-interp", {
+            url: info.url,
+            frameWidth: info.animation.frameWidth,
+            frameHeight: info.animation.frameHeight,
+            frames: info.animation.frames.map((f) => ({ row: f.row, durationMs: f.durationMs })),
+            durationMs: info.animation.durationMs
+          });
+        } else {
+          writer.style(HtmlStyle.sprite(info.url, info.animation));
+          exports.DomEffects.writeProperty(writer, "sprite-tint", { url: info.url });
+        }
       }
       _open(component, writer) {
         writer.openTag("span");
@@ -5045,10 +6059,10 @@
     })());
     exports.HtmlComponentRenderer = _HtmlComponentRenderer;
     ((HtmlComponentRenderer2) => {
-      const INSTANCE = new HtmlComponentRenderer2(exports.Translations.empty());
-      function renderer(translations = exports.Translations.empty()) {
+      const INSTANCE = new HtmlComponentRenderer2(exports.Translations.empty(), exports.ResourcePacks.empty());
+      function renderer(translations = exports.Translations.empty(), resourcePacks = exports.ResourcePacks.empty()) {
         if (arguments.length === 0) return INSTANCE;
-        return new HtmlComponentRenderer2(translations);
+        return new HtmlComponentRenderer2(translations, resourcePacks);
       }
       HtmlComponentRenderer2.renderer = renderer;
     })(exports.HtmlComponentRenderer || (exports.HtmlComponentRenderer = {}));
@@ -7812,12 +8826,13 @@
     var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
     var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
     class MiniMessageImpl {
-      constructor(tagResolver, _strict, _debugOutput, _preProcessor, _postProcessor, _translations) {
+      constructor(tagResolver, _strict, _debugOutput, _preProcessor, _postProcessor, _translations, _resourcePacks) {
         this._strict = _strict;
         this._debugOutput = _debugOutput;
         this._preProcessor = _preProcessor;
         this._postProcessor = _postProcessor;
         this._translations = _translations;
+        this._resourcePacks = _resourcePacks;
         __publicField(this, "_parser");
         this._parser = new MiniMessageParser(tagResolver);
       }
@@ -7830,6 +8845,9 @@
       }
       translations() {
         return this._translations;
+      }
+      resourcePacks() {
+        return this._resourcePacks;
       }
       deserialize(input, ...resolvers) {
         return this._parser.parseFormat(this._newContext(input, resolvers));
@@ -7847,7 +8865,7 @@
         return MiniMessageSerializer.serialize(this, component);
       }
       toHTML(component, target, elementFactory) {
-        const renderer = exports.HtmlComponentRenderer.renderer(this._translations);
+        const renderer = exports.HtmlComponentRenderer.renderer(this._translations, this._resourcePacks);
         if (target) {
           const writer2 = exports.HtmlWriter.dom(target, elementFactory);
           renderer.render(component, writer2);
@@ -7883,6 +8901,7 @@
         __publicField(this, "_preProcessor", ((x) => x));
         __publicField(this, "_postProcessor", ((x) => x.compact()));
         __publicField(this, "_translations", exports.Translations.empty());
+        __publicField(this, "_resourcePacks", exports.ResourcePacks.empty());
         if (serializer) {
           this._tagResolver = serializer._parser.tagResolver;
           this._strict = serializer._strict;
@@ -7890,6 +8909,7 @@
           this._preProcessor = serializer._preProcessor;
           this._postProcessor = serializer._postProcessor;
           this._translations = serializer._translations;
+          this._resourcePacks = serializer._resourcePacks;
         }
       }
       //
@@ -7929,6 +8949,11 @@
         this._translations = exports.Translations.of(translations);
         return this;
       }
+      resourcePacks(packs) {
+        assertReal(packs, "packs");
+        this._resourcePacks = packs;
+        return this;
+      }
       build() {
         return new MiniMessageImpl(
           this._tagResolver,
@@ -7936,7 +8961,8 @@
           this._debug,
           this._preProcessor,
           this._postProcessor,
-          this._translations
+          this._translations,
+          this._resourcePacks
         );
       }
     }
