@@ -141,6 +141,7 @@ export function createSearchableDropdown(options: {
   items: string[];
   initial?: string;
   placeholder?: string;
+  onSelect?: (value: string | null) => void;
 }) {
   let selected: string | null = options.initial ?? null;
   let filtered: string[] = options.items;
@@ -187,6 +188,7 @@ export function createSearchableDropdown(options: {
         searchInput.value = item;
         viewport.style.display = "none";
         renderRows();
+        options.onSelect?.(selected);
       };
     }
   }
@@ -230,6 +232,7 @@ export function createSearchableDropdown(options: {
         selected = null;
         applyFilter(searchInput.value);
         viewport.style.display = "block";
+        options.onSelect?.(null);
       });
 
       searchInput.addEventListener("keydown", (e) => {
@@ -279,6 +282,182 @@ export function createSearchableDropdown(options: {
 
     isValid() {
       return selected !== null && options.items.includes(selected);
+    },
+  };
+}
+
+export interface SpriteThumbnailInfo {
+  url: string;
+  width: number;
+  height: number;
+  animation: {
+    frameWidth: number;
+    frameHeight: number;
+    frames: readonly { row: number; durationMs: number }[];
+  } | null;
+}
+
+const SPRITE_THUMB_SIZE = 24; // px, longest edge
+
+export function createSpriteList<
+  T extends { namespace: string; path: string },
+>(options: {
+  items: readonly T[];
+  resolve: (item: T) => SpriteThumbnailInfo | null;
+  placeholder?: string;
+  initial?: T | null;
+}) {
+  let selected: T | null = options.initial ?? null;
+  let filtered: readonly T[] = options.items;
+
+  // Virtual scroll constants (same technique as createSearchableDropdown)
+  const ROW_HEIGHT = 40;
+  const VISIBLE_ROWS = 10;
+  const VIEWPORT_HEIGHT = ROW_HEIGHT * VISIBLE_ROWS;
+
+  let searchInput!: HTMLInputElement;
+  let viewport!: HTMLDivElement;
+  let innerTrack!: HTMLDivElement;
+  let rowsContainer!: HTMLDivElement;
+  let emptyState!: HTMLDivElement;
+
+  function itemLabel(item: T): string {
+    return item.namespace === "minecraft"
+      ? item.path
+      : `${item.namespace}:${item.path}`;
+  }
+
+  function applyThumbnail(thumb: HTMLDivElement, item: T) {
+    const info = options.resolve(item);
+    if (!info) {
+      thumb.style.backgroundImage = "";
+      thumb.style.width = `${SPRITE_THUMB_SIZE}px`;
+      thumb.style.height = `${SPRITE_THUMB_SIZE}px`;
+      return;
+    }
+
+    // Only the first frame is shown for animated sprites for now. When
+    // animated previews are added, this is the place to start a per-row
+    // timer that steps `backgroundPosition` through `info.animation.frames`
+    // using each frame's `durationMs`, instead of always using frame 0.
+    const frameWidth = info.animation?.frameWidth ?? info.width;
+    const frameHeight = info.animation?.frameHeight ?? info.height;
+    const firstRow = info.animation?.frames[0]?.row ?? 0;
+
+    const scale = SPRITE_THUMB_SIZE / Math.max(frameWidth, frameHeight);
+
+    thumb.style.width = `${frameWidth * scale}px`;
+    thumb.style.height = `${frameHeight * scale}px`;
+    thumb.style.backgroundImage = `url(${info.url})`;
+    thumb.style.backgroundSize = `${info.width * scale}px ${info.height * scale}px`;
+    thumb.style.backgroundPosition = `0 -${firstRow * frameHeight * scale}px`;
+  }
+
+  function renderRows() {
+    const scrollOffset = viewport.scrollTop;
+    const start = Math.floor(scrollOffset / ROW_HEIGHT);
+    const end = Math.min(start + VISIBLE_ROWS + 2, filtered.length);
+
+    innerTrack.style.height = `${filtered.length * ROW_HEIGHT}px`;
+    rowsContainer.style.top = `${start * ROW_HEIGHT}px`;
+
+    const needed = end - start;
+    while (rowsContainer.children.length > needed) {
+      rowsContainer.removeChild(rowsContainer.lastChild!);
+    }
+    while (rowsContainer.children.length < needed) {
+      const row = document.createElement("div");
+      row.style.height = `${ROW_HEIGHT}px`;
+      row.className =
+        "flex items-center gap-2 px-2 cursor-pointer rounded text-sm hover:bg-background-50 transition-colors";
+
+      const thumbWrap = document.createElement("div");
+      thumbWrap.className = "shrink-0 w-6 h-6 flex items-center justify-center";
+      const thumb = document.createElement("div");
+      thumb.className = "bg-no-repeat [image-rendering:pixelated]";
+      thumbWrap.appendChild(thumb);
+      row.appendChild(thumbWrap);
+
+      const label = document.createElement("span");
+      label.className = "truncate";
+      row.appendChild(label);
+
+      rowsContainer.appendChild(row);
+    }
+
+    for (let i = 0; i < needed; i++) {
+      const item = filtered[start + i];
+      const row = rowsContainer.children[i] as HTMLDivElement;
+      const thumb = row.querySelector("div > div") as HTMLDivElement;
+      const label = row.children[1] as HTMLSpanElement;
+
+      label.textContent = itemLabel(item);
+      row.classList.toggle("bg-background-50", item === selected);
+      applyThumbnail(thumb, item);
+
+      row.onclick = () => {
+        selected = item;
+        renderRows();
+      };
+    }
+
+    emptyState.classList.toggle("hidden", filtered.length > 0);
+  }
+
+  function applyFilter(query: string) {
+    const q = query.toLowerCase();
+    filtered = q
+      ? options.items.filter((item) =>
+          itemLabel(item).toLowerCase().includes(q),
+        )
+      : options.items;
+    viewport.scrollTop = 0;
+    renderRows();
+  }
+
+  return {
+    render(container: HTMLElement) {
+      searchInput = document.createElement("input");
+      searchInput.type = "text";
+      searchInput.placeholder = options.placeholder ?? "Search sprites...";
+      searchInput.className =
+        "bg-background w-full p-2 rounded-lg text-sm mb-2";
+      searchInput.addEventListener("input", () =>
+        applyFilter(searchInput.value),
+      );
+      container.appendChild(searchInput);
+
+      viewport = document.createElement("div");
+      viewport.style.height = `${VIEWPORT_HEIGHT}px`;
+      viewport.className =
+        "relative overflow-y-auto rounded-lg bg-background border border-background-50";
+      viewport.addEventListener("scroll", () => renderRows());
+      container.appendChild(viewport);
+
+      innerTrack = document.createElement("div");
+      innerTrack.style.position = "relative";
+      viewport.appendChild(innerTrack);
+
+      rowsContainer = document.createElement("div");
+      rowsContainer.style.position = "absolute";
+      rowsContainer.style.left = "0";
+      rowsContainer.style.right = "0";
+      innerTrack.appendChild(rowsContainer);
+
+      emptyState = document.createElement("div");
+      emptyState.className = "text-sm text-text-50 p-2 hidden";
+      emptyState.textContent = "No sprites match your search.";
+      container.appendChild(emptyState);
+
+      renderRows();
+    },
+
+    getValue() {
+      return selected;
+    },
+
+    isValid() {
+      return selected !== null;
     },
   };
 }

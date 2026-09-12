@@ -17,6 +17,7 @@ import { newlineTag } from "@scripts/minimessage/definitions/newline";
 import { insertionTag } from "@scripts/minimessage/definitions/insertion";
 import { translatableTag } from "@scripts/minimessage/definitions/translatable";
 import { keybindTag } from "@scripts/minimessage/definitions/keybind";
+import { spriteTag } from "@scripts/minimessage/definitions/sprite";
 
 const toolbarContent = {
   basic: {
@@ -41,7 +42,7 @@ const toolbarContent = {
 
   content: {
     display: "Content",
-    tags: [headTag, keybindTag, translatableTag],
+    tags: [headTag, keybindTag, translatableTag, spriteTag],
   },
 };
 

@@ -5626,6 +5626,17 @@
           animation
         };
       }
+      listAtlases() {
+        return [...this._atlases.keys()].map(splitKeyToAtlasId);
+      }
+      listAtlasSprites(atlasNamespace, atlasId) {
+        const atlasIndex = this._atlases.get(key(atlasNamespace, atlasId));
+        if (!atlasIndex) return null;
+        return [...atlasIndex.keys()].map(splitKeyToTextureId);
+      }
+      listTextures() {
+        return [...this._textures.keys()].map(splitKeyToTextureId);
+      }
       dispose() {
         this._urlCache.forEach((url) => URL.revokeObjectURL(url));
         this._urlCache.clear();
@@ -5641,6 +5652,18 @@
     }
     function key(namespace, path) {
       return `${namespace.toLowerCase()}:${path.toLowerCase()}`;
+    }
+    function splitKey(k) {
+      const sep = k.indexOf(":");
+      return [k.substring(0, sep), k.substring(sep + 1)];
+    }
+    function splitKeyToAtlasId(k) {
+      const [namespace, id] = splitKey(k);
+      return { namespace, id };
+    }
+    function splitKeyToTextureId(k) {
+      const [namespace, path] = splitKey(k);
+      return { namespace, path };
     }
     function toOwnedArrayBuffer(view) {
       if (view.buffer instanceof ArrayBuffer && view.byteOffset === 0 && view.byteLength === view.buffer.byteLength) {
@@ -5704,9 +5727,7 @@
           const dirPrefix = `${src.source.toLowerCase()}/`;
           const spritePrefix = (src.prefix ?? "").toLowerCase();
           for (const textureKey of allTextureKeys) {
-            const sep = textureKey.indexOf(":");
-            const ns = textureKey.substring(0, sep);
-            const path = textureKey.substring(sep + 1);
+            const [ns, path] = splitKey(textureKey);
             if (ns !== atlasNamespace) continue;
             if (!path.startsWith(dirPrefix)) continue;
             const rest = path.substring(dirPrefix.length);

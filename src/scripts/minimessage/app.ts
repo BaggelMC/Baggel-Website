@@ -99,6 +99,10 @@ export function initApp(): void {
     // Ordered list of File objects — array order == pack priority (later wins)
     let packFiles: File[] = [];
     let resourcePacks = ResourcePacks.empty();
+    // Bridge to definitions/sprite.ts, which runs in a separate module and
+    // needs the *current* ResourcePacks instance at the moment its modal is
+    // opened. Mirrors the __mcTranslations bridge above.
+    (window as any).__resourcePacks = resourcePacks;
 
     async function rebuildResourcePacks() {
       const old = resourcePacks;
@@ -106,6 +110,7 @@ export function initApp(): void {
         packFiles.length > 0
           ? await ResourcePacks.fromZips([...packFiles].reverse())
           : ResourcePacks.empty();
+      (window as any).__resourcePacks = resourcePacks;
       old.dispose(); // free old blob URLs only once the new set is ready
     }
 
