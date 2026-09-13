@@ -1,6 +1,6 @@
 import type { TagDefinition } from "./tags";
 import { openModal } from "./modal";
-import { insertAtSelection } from "./insert";
+import { captureSelectionOffsets, insertAtOffsets } from "./insert";
 
 export type TagCategory = {
   display: string;
@@ -13,7 +13,7 @@ export type ToolbarContent =
 
 export function renderToolbar(
   container: HTMLElement,
-  textarea: HTMLTextAreaElement,
+  input: HTMLElement,
   content: ToolbarContent
 ) {
   const categories: Record<string, TagCategory> = Array.isArray(content)
@@ -46,21 +46,25 @@ export function renderToolbar(
       button.title = tag.label;
       button.appendChild(appearance);
 
+      button.addEventListener("mousedown", (e) => e.preventDefault());
+
       button.onclick = () => {
+        const selection = captureSelectionOffsets(input);
+
         if (tag.modal) {
-          const modal = tag.modal({ textarea });
+          const modal = tag.modal({ textarea: input });
           openModal({
             title: modal.title,
             render: modal.render,
             onSubmit: () => {
               if (modal.validate && !modal.validate()) return false;
               const res = modal.submit();
-              insertAtSelection(textarea, res.start, res.end);
+              insertAtOffsets(input, selection, res.start, res.end);
               return true;
             },
           });
         } else if (tag.staticResult) {
-          insertAtSelection(textarea, tag.staticResult.start, tag.staticResult.end);
+          insertAtOffsets(input, selection, tag.staticResult.start, tag.staticResult.end);
         }
       };
 

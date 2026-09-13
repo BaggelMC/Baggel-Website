@@ -232,27 +232,18 @@ textarea::-webkit-resizer {
 
 #input {
   transition: border-color 0.6s;
-  position: relative;
-  z-index: 1;
-  color: transparent !important;
   caret-color: var(--color-text);
-}
-
-#input-highlight {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
-  color: #ffffff;
-}
-
-#input-highlight-content {
-  will-change: transform;
   white-space: pre-wrap;
   word-break: normal;
   overflow-wrap: break-word;
 }
+
+#input:empty::before {
+  content: attr(data-placeholder);
+  color: var(--color-background-100);
+  pointer-events: none;
+}
+
 .placeholder-color {
   color: var(--color-background-100);
 }

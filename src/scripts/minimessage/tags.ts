@@ -1,5 +1,5 @@
 export interface TagContext {
-  textarea: HTMLTextAreaElement;
+  textarea: HTMLElement;
 }
 
 export interface TagResult {

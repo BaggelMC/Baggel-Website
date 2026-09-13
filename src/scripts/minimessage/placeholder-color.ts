@@ -1,20 +1,20 @@
-export function initPlaceholderColor(): void {
-  const textarea = document.getElementById(
-    "input",
-  ) as HTMLTextAreaElement | null;
+import { getPlainText } from "./editable-highlight";
 
-  if (!textarea) return;
+export function initPlaceholderColor(): void {
+  const input = document.getElementById("input") as HTMLElement | null;
+
+  if (!input) return;
 
   const updateColor = () => {
-    if (textarea.value.trim() === "") {
-      textarea.classList.add("placeholder-color");
-      textarea.classList.remove("input-color");
+    if (getPlainText(input).trim() === "") {
+      input.classList.add("placeholder-color");
+      input.classList.remove("input-color");
     } else {
-      textarea.classList.add("input-color");
-      textarea.classList.remove("placeholder-color");
+      input.classList.add("input-color");
+      input.classList.remove("placeholder-color");
     }
   };
 
   updateColor();
-  textarea.addEventListener("input", updateColor);
+  input.addEventListener("input", updateColor);
 }

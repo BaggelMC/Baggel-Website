@@ -1,9 +1,17 @@
 // Consumes HighlightSpan[] from mini.highlight() (see
-// highlight-integration-guide.md) and turns it into colored HTML for the
-// backdrop div sitting behind the (now-transparent) input textarea.
+// highlight-integration-guide.md).
+//
+// Two consumers of the color logic below now exist:
+//   - renderHighlight(): builds an HTML string (the old backdrop-<div>
+//     approach)
+//   - applyHighlights() in editable-highlight.ts: paints colors directly
+//     onto a contenteditable element's own text via the CSS Custom
+//     Highlight API, no backdrop element needed
+// Both need the same "what color is this span" answer, so that logic is
+// split out into buildPairHueMap()/getSpanColor() rather than duplicated.
 //
 // Color scheme, per span.kind:
-//   - "text"        -> left alone (backdrop's own default text color is used)
+//   - "text"        -> left alone (host element's own default text color)
 //   - "punctuation" -> lightness 30%
 //   - "tag-name"    -> lightness 100%
 //   - "tag-arg"     -> saturation 50%
@@ -143,6 +151,49 @@ function styleForKind(kind: HighlightSpan["kind"], hue: number): string {
   }
 }
 
+/**
+ * One hue per pairId, preferring the opening tag-name's resolved color when
+ * it has one. Spans are sorted, and an opening tag's spans always precede
+ * its closing tag's spans, so the first tag-name span seen for a given
+ * pairId is the opening one.
+ */
+export function buildPairHueMap(spans: HighlightSpan[]): Map<number, number> {
+  const pairHue = new Map<number, number>();
+  for (const span of spans) {
+    if (span.kind !== "tag-name" || span.pairId === undefined) continue;
+    if (pairHue.has(span.pairId)) continue;
+    const hex = textColorToHex(span.color);
+    const hue = (hex && hexToHue(hex)) ?? hueFromPairId(span.pairId);
+    pairHue.set(span.pairId, hue);
+  }
+  return pairHue;
+}
+
+/**
+ * CSS color string for one span, or null for spans that shouldn't be
+ * colored (kind "text" - left as the host element's default color).
+ * `pairHue` should be built once per highlight pass via buildPairHueMap()
+ * and reused across all spans in that pass. `input` is the full source
+ * string the spans were computed from - only needed as a hash source for
+ * self-closing/unclosed tags that have no pairId to hash instead.
+ */
+export function getSpanColor(
+  span: HighlightSpan,
+  pairHue: Map<number, number>,
+  input: string,
+): string | null {
+  if (span.kind === "text") return null;
+
+  let hue: number;
+  if (span.pairId !== undefined) {
+    hue = pairHue.get(span.pairId)!;
+  } else {
+    const hex = span.kind === "tag-name" ? textColorToHex(span.color) : null;
+    hue = (hex && hexToHue(hex)) ?? hueFromString(input.slice(span.start, span.end));
+  }
+  return styleForKind(span.kind, hue);
+}
+
 function escapeHtml(str: string): string {
   return str
     .replace(/&/g, "&amp;")
@@ -154,25 +205,18 @@ function escapeHtml(str: string): string {
 
 /**
  * Renders HighlightSpan[] (from mini.highlight()) into colored HTML, meant
- * to be dropped into the backdrop div behind the (transparent-text) input.
+ * to be dropped into a backdrop div behind a (transparent-text) textarea.
+ *
+ * Kept for reference/back-compat; the contenteditable + CSS Custom
+ * Highlight approach (editable-highlight.ts's applyHighlights()) doesn't
+ * need this - it paints Ranges directly and never builds an HTML string.
  *
  * Relies on the guarantees from highlight-integration-guide.md: spans are
  * sorted by start and non-overlapping, so a single left-to-right walk
  * covers the whole input exactly once.
  */
 export function renderHighlight(input: string, spans: HighlightSpan[]): string {
-  // Pass 1: one hue per pairId, preferring the opening tag-name's resolved
-  // color when it has one. Spans are sorted, and an opening tag's spans
-  // always precede its closing tag's spans, so the first tag-name span seen
-  // for a given pairId is the opening one.
-  const pairHue = new Map<number, number>();
-  for (const span of spans) {
-    if (span.kind !== "tag-name" || span.pairId === undefined) continue;
-    if (pairHue.has(span.pairId)) continue;
-    const hex = textColorToHex(span.color);
-    const hue = (hex && hexToHue(hex)) ?? hueFromPairId(span.pairId);
-    pairHue.set(span.pairId, hue);
-  }
+  const pairHue = buildPairHueMap(spans);
 
   let html = "";
   let cursor = 0;
@@ -187,14 +231,8 @@ export function renderHighlight(input: string, spans: HighlightSpan[]): string {
     if (span.kind === "text") {
       html += escapeHtml(raw);
     } else {
-      let hue: number;
-      if (span.pairId !== undefined) {
-        hue = pairHue.get(span.pairId)!;
-      } else {
-        const hex = span.kind === "tag-name" ? textColorToHex(span.color) : null;
-        hue = (hex && hexToHue(hex)) ?? hueFromString(raw);
-      }
-      html += `<span style="color:${styleForKind(span.kind, hue)}">${escapeHtml(raw)}</span>`;
+      const color = getSpanColor(span, pairHue, input)!;
+      html += `<span style="color:${color}">${escapeHtml(raw)}</span>`;
     }
 
     cursor = Math.max(cursor, span.end);

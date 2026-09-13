@@ -1,3 +1,5 @@
+import { setCaretOffset } from "@scripts/minimessage/editable-highlight";
+
 export {};
 
 const DEBUG_TEXT = `Normal unformatted text
@@ -95,6 +97,7 @@ Heads:
 <head:NurLouis> NurLouis.
 <head:5f9d5824-75b2-43cd-8f5a-9a5e1deaf141> UUID.
 <head:player/wide/steve> Texture
+Player head in Hover: <hover:show_text:'<head:Darkylt> Darkylt'>Darkylt</hover>
 
 Sprites <gray><i>(requires default texture pack)</i></gray>:
 Normal Sprite: <sprite:blocks:block/grass_block_side>
@@ -105,6 +108,11 @@ Animated Fire Sprite: <sprite:blocks:block/fire_0>
 <green>Colored Animated Sprite with interpolation: <sprite:blocks:block/sculk_shrieker_can_summon_inner_top></green>
 <blue>Colored Animated Fire Sprite: <sprite:blocks:block/fire_0></blue>
 
+Hover sprite: <hover:show_text:'This is a Totem'><sprite:items:item/totem_of_undying></hover>
+Sprite in hover: <hover:show_text:'<sprite:paintings:aztec> Aztec Painting'>Hover me</hover>
+Colored Sprite in hover: <hover:show_text:'<red><sprite:paintings:aztec> Aztec Painting'><red>Hover me</red></hover>
+Sprite Open URL: <click:open_url:https://baggel.de><sprite:items:item/apple>
+
 Hover:
 <hover:show_text:'Normal text. <red>Colored text.</red> <obf>Obfuscated</obf>'>Text in hover</hover>
 <hover:show_text:'<red>Unclosed color tag'>Unclosed tags in hover</hover>
@@ -112,6 +120,15 @@ Hover:
 <hover:show_text:'<hover:show_text:"Y">Z</hover>'>Recursive hover</hover>
 <hover:show_text:'<red>A
 B'>Newline in hover</hover>
+
+Click Events:
+<click:open_url:'https://example.com'>Open URL</click>
+<click:open_file:'/path/to/file'>Open File</click>
+<click:run_command:'/say hi'>Run Command</click>
+<click:suggest_command:'/say '>Suggest Command</click>
+<click:change_page:3>Change Page</click>
+<click:copy_to_clipboard:'copied text'>Copy to Clipboard</click>
+<click:show_dialog:'minecraft:some_dialog'>Show Dialog</click>
 
 Stress tests:
 <bold>Bold <italic>Bold+Italic <underlined>Bold+Italic+Underlined</underlined> Still Bold+Italic</italic> Back to Bold</bold> Normal.
@@ -137,10 +154,10 @@ Empty arguments:
 <transition::0.5>
 
 Escaped tags:
-\<red>This should NOT be red\</red>
-\<blue>Backslash before tag</blue>
+\\<red>This should NOT be red\\</red>
+\\<blue>Backslash before tag</blue>
 Literal angle brackets: < not a tag > and </ not closing >
-Mixed escaping: \<bold><italic>text</italic></bold>
+Mixed escaping: \\<bold><italic>text</italic></bold>
 
 Explicit reset:
 <red>Red <bold>Red+Bold <reset>After reset (normal) <italic>Italic only</italic>
@@ -184,22 +201,19 @@ Adjacent tags:
 
 
 Unclosed at end:
-<green>Green <bold>Green+Bold <italic>Green+Bold+Italic
-`;
+<green>Green <bold>Green+Bold <italic>Green+Bold+Italic`;
 
 function insertDebugMiniMessage(): void {
-  const textarea = document.getElementById(
-    "input",
-  ) as HTMLTextAreaElement | null;
-  if (!textarea) {
-    console.warn("MiniMessage debug: #input textarea not found");
+  const input = document.getElementById("input") as HTMLElement | null;
+  if (!input) {
+    console.warn("MiniMessage debug: #input element not found");
     return;
   }
 
-  textarea.value = DEBUG_TEXT;
-  textarea.dispatchEvent(new Event("input", { bubbles: true }));
-  textarea.dispatchEvent(new Event("change", { bubbles: true }));
-  textarea.focus();
+  input.textContent = DEBUG_TEXT;
+  input.dispatchEvent(new Event("input", { bubbles: true }));
+  input.focus();
+  setCaretOffset(input, DEBUG_TEXT.length);
   console.info("MiniMessage debug text inserted.");
 }
 

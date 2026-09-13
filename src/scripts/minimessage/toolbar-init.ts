@@ -47,13 +47,11 @@ const toolbarContent = {
 };
 
 export function initToolbar(): void {
-  const textarea = document.getElementById("input");
+  // #input is now the contenteditable div, not a textarea.
+  const input = document.getElementById("input");
   const toolbar = document.getElementById("tag-toolbar");
 
-  if (
-    textarea instanceof HTMLTextAreaElement &&
-    toolbar instanceof HTMLDivElement
-  ) {
-    renderToolbar(toolbar, textarea, toolbarContent);
+  if (input instanceof HTMLElement && toolbar instanceof HTMLDivElement) {
+    renderToolbar(toolbar, input, toolbarContent);
   }
 }
