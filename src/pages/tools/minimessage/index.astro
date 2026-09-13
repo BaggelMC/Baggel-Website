@@ -39,6 +39,10 @@ import "../../../styles/MiniMessageTool.css";
         class="w-full min-h-[200px] rounded-2xl bg-background-10 focus-within:ring-2 focus-within:ring-primary transition duration-300"
         style="overflow: hidden;"
       >
+        <div id="input-highlight" aria-hidden="true">
+          <div id="input-highlight-content" class="p-4 font-sans"></div>
+        </div>
+
         <textarea
           id="input"
           spellcheck="false"

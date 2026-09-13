@@ -96,6 +96,14 @@ Heads:
 <head:5f9d5824-75b2-43cd-8f5a-9a5e1deaf141> UUID.
 <head:player/wide/steve> Texture
 
+Sprites <gray><i>(requires default texture pack)</i></gray>:
+Normal Sprite: <sprite:blocks:block/grass_block_side>
+Animated Sprite with interpolation: <sprite:blocks:block/sculk_shrieker_can_summon_inner_top>
+Animated Fire Sprite: <sprite:blocks:block/fire_0>
+
+<red>Colored Normal Sprite: <sprite:blocks:block/grass_block_side></red>
+<green>Colored Animated Sprite with interpolation: <sprite:blocks:block/sculk_shrieker_can_summon_inner_top></green>
+<blue>Colored Animated Fire Sprite: <sprite:blocks:block/fire_0></blue>
 
 Hover:
 <hover:show_text:'Normal text. <red>Colored text.</red> <obf>Obfuscated</obf>'>Text in hover</hover>
@@ -129,10 +137,10 @@ Empty arguments:
 <transition::0.5>
 
 Escaped tags:
-\\<red>This should NOT be red\\</red>
-\\<blue>Backslash before tag</blue>
+\<red>This should NOT be red\</red>
+\<blue>Backslash before tag</blue>
 Literal angle brackets: < not a tag > and </ not closing >
-Mixed escaping: \\<bold>\<italic>text\</italic></bold>
+Mixed escaping: \<bold><italic>text</italic></bold>
 
 Explicit reset:
 <red>Red <bold>Red+Bold <reset>After reset (normal) <italic>Italic only</italic>

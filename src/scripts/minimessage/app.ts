@@ -1,4 +1,5 @@
 import MinecraftTranslations from "@scripts/minimessage/translations";
+import { renderHighlight } from "@scripts/minimessage/highlight";
 
 // Files never leave the device; persisting them to IndexedDB just avoids
 // re-uploading them every refresh. localStorage can't hold binary Blob/File
@@ -87,6 +88,9 @@ export function initApp(): void {
     ) as HTMLInputElement | null;
     const packListEl = document.querySelector(
       "#resourcepack-list",
+    ) as HTMLElement | null;
+    const highlightContent = document.querySelector(
+      "#input-highlight-content",
     ) as HTMLElement | null;
 
     if (!input || !domOutput || !copyBtn) return;
@@ -202,6 +206,19 @@ export function initApp(): void {
 
     let mini = await buildMini();
 
+    function updateHighlight() {
+      if (!highlightContent) return;
+      try {
+        const spans = mini.highlight(input!.value);
+        highlightContent.innerHTML = renderHighlight(input!.value, spans);
+      } catch (e) {
+        // Same failure modes as deserialize() (unresolvable/malformed/unclosed
+        // tags in strict mode) - leave whatever last rendered highlighting in
+        // place rather than clearing it out from under the user mid-keystroke.
+        console.trace(e);
+      }
+    }
+
     function update() {
       domOutput!.innerHTML = "";
       try {
@@ -214,10 +231,19 @@ export function initApp(): void {
         copyBtn!.dataset.json = "";
         domOutput!.innerHTML = `<span style="color:#ff5555;font-family:monospace;font-size:0.85em;opacity:0.8">${e.message ?? "Parse error"}</span>`;
       }
+      updateHighlight();
     }
 
     input.addEventListener("input", update);
     update();
+
+    // The backdrop is a plain non-scrolling div; keep it lined up with
+    // whatever portion of the (possibly overflowing) textarea is in view.
+    if (highlightContent) {
+      input.addEventListener("scroll", () => {
+        highlightContent.style.transform = `translate(${-input.scrollLeft}px, ${-input.scrollTop}px)`;
+      });
+    }
 
     if (strictToggle && strictKnob && strictLabel) {
       strictToggle.addEventListener("click", async () => {

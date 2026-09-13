@@ -6680,8 +6680,10 @@
         //
         __publicField$9(this, "_parts");
         __publicField$9(this, "_tag");
+        __publicField$9(this, "_closeToken");
         this._parts = ArrayUtil.immutableView(TagNode.genParts(token, sourceMessage, tagProvider));
         this._tag = null;
+        this._closeToken = null;
         if (this._parts.length === 0) throw new Error(`Tag has no parts`);
       }
       static genParts(token, sourceMessage, tagProvider) {
@@ -6705,6 +6707,20 @@
         const token = super.token();
         if (token === null) throw new Error(`token is not set`);
         return token;
+      }
+      /**
+       * The matching `</tag>` (or `</tag:args>`) token that closed this tag, if any.
+       *
+       * This is `null` for self-closing tags (`<tag/>`), and for tags that were
+       * left open at the end of input in non-strict mode (or closed implicitly
+       * by a `<reset>`).
+       */
+      closeToken() {
+        return this._closeToken;
+      }
+      /** @internal — set once by the tree builder when a matching close tag is found. */
+      setCloseToken(token) {
+        this._closeToken = token;
       }
       tag(tag) {
         if (tag) {
@@ -7081,6 +7097,7 @@
                   if (parentNode !== node && strict) {
                     throw new Error(`Unclosed tag encountered: ${node.name()} is not closed, because ${closeValues[0]} was closed first.`);
                   }
+                  parentNode.setCloseToken(token);
                   const par = parentNode.parent();
                   if (par !== null) {
                     node = par;
@@ -8843,6 +8860,77 @@
       MiniMessageSerializer2.serialize = serialize;
     })(MiniMessageSerializer || (MiniMessageSerializer = {}));
 
+    function highlightTree(root, input) {
+      const spans = [];
+      let nextPairId = 0;
+      const pairIds = /* @__PURE__ */ new WeakMap();
+      function pairIdFor(node) {
+        if (node.closeToken() === null) return void 0;
+        let id = pairIds.get(node);
+        if (id === void 0) {
+          id = nextPairId++;
+          pairIds.set(node, id);
+        }
+        return id;
+      }
+      function pushTagTokenSpans(token, depth, pairId, color) {
+        const children = token.childTokens();
+        if (children === null || children.length === 0) {
+          spans.push({ start: token.startIndex(), end: token.endIndex(), kind: "punctuation", depth, pairId });
+          return;
+        }
+        let cursor = token.startIndex();
+        for (let i = 0; i < children.length; i++) {
+          const child = children[i];
+          if (child.startIndex() > cursor) {
+            spans.push({ start: cursor, end: child.startIndex(), kind: "punctuation", depth, pairId });
+          }
+          const kind = i === 0 ? "tag-name" : "tag-arg";
+          spans.push({
+            start: child.startIndex(),
+            end: child.endIndex(),
+            kind,
+            depth,
+            pairId,
+            color: kind === "tag-name" ? color : void 0
+          });
+          cursor = child.endIndex();
+        }
+        if (cursor < token.endIndex()) {
+          spans.push({ start: cursor, end: token.endIndex(), kind: "punctuation", depth, pairId });
+        }
+      }
+      function resolvedColorOf(node) {
+        const tag = node.tag();
+        if (tag.type !== "inserting") return void 0;
+        const color = tag.value().style().color();
+        return color ?? void 0;
+      }
+      function visit(node, depth) {
+        for (const child of node.children()) {
+          if (child instanceof TagNode) {
+            const pairId = pairIdFor(child);
+            const color = resolvedColorOf(child);
+            pushTagTokenSpans(child.token(), depth, pairId, color);
+            visit(child, depth + 1);
+            const closeToken = child.closeToken();
+            if (closeToken !== null) {
+              pushTagTokenSpans(closeToken, depth, pairId, color);
+            }
+          } else {
+            const token = child.token();
+            if (token !== null) {
+              spans.push({ start: token.startIndex(), end: token.endIndex(), kind: "text", depth });
+            }
+            visit(child, depth + 1);
+          }
+        }
+      }
+      visit(root, 0);
+      spans.sort((a, b) => a.start - b.start);
+      return spans;
+    }
+
     var __defProp = Object.defineProperty;
     var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
     var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
@@ -8875,6 +8963,10 @@
       }
       deserializeToTree(input, ...resolvers) {
         return this._parser.parseToTree(this._newContext(input, resolvers));
+      }
+      highlight(input, ...resolvers) {
+        const root = this._parser.parseToTree(this._newContext(input, resolvers));
+        return highlightTree(root);
       }
       escapeTags(input, ...resolvers) {
         return this._parser.escapeTokens(this._newContext(input, resolvers));
