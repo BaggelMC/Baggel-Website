@@ -373,6 +373,7 @@ export function createSpriteList<
 
       const thumbWrap = document.createElement("div");
       thumbWrap.className = "shrink-0 w-6 h-6 flex items-center justify-center";
+      thumbWrap.style = "image-rendering: pixelated;";
       const thumb = document.createElement("div");
       thumb.className = "bg-no-repeat [image-rendering:pixelated]";
       thumbWrap.appendChild(thumb);

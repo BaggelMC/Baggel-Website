@@ -21,40 +21,21 @@ import "../../../styles/MiniMessageTool.css";
       </style>
     </noscript>
   </Fragment>
-  <div class="max-w-5xl mx-auto px-8 py-20 text-text font-sans space-y-12">
-    <Headline text="MiniMessage Editor" class="text-center" />
-
-    <div class="flex flex-col relative">
-      <label
-        id="input-label"
-        class="text-text-50 mb-2 text-sm uppercase tracking-wide">Input</label
-      >
-
-      <div id="tag-toolbar" class="flex flex-wrap gap-2 mb-3 justify-center">
-      </div>
-
-      <div
-        data-simplebar
-        data-simplebar-auto-hide="false"
-        class="w-full min-h-50 rounded-2xl bg-background-10 focus-within:ring-2 focus-within:ring-primary transition duration-300"
-        style="overflow: hidden;"
-      >
-        <div
-          id="input"
-          contenteditable="true"
-          spellcheck="false"
-          class="px-4 py-4 min-h-50"
-          style="white-space: pre-wrap; word-break: break-word;"
-          data-placeholder="Type MiniMessage text here..."
-        >
-        </div>
-      </div>
+  <div
+    class="max-w-6xl mx-auto px-6 sm:px-8 py-16 sm:py-20 text-text font-sans space-y-8"
+  >
+    <div class="text-center space-y-3">
+      <Headline text="MiniMessage Editor" class="text-center" />
+      <p class="text-text-50 text-sm max-w-xl mx-auto">
+        Write, preview, and export MiniMessage-formatted text — live, right in
+        your browser.
+      </p>
     </div>
 
     <!-- Settings Panel -->
     <div
       id="settings-panel"
-      class="rounded-2xl bg-background-10 border border-background-50 overflow-hidden"
+      class="rounded-2xl bg-background-10 border border-background-50 overflow-hidden shadow-sm"
     >
       <button
         id="settings-toggle"
@@ -168,119 +149,104 @@ import "../../../styles/MiniMessageTool.css";
       </div>
     </div>
 
-    <div class="flex flex-col io relative">
-      <label
-        id="output-dom-label"
-        class="text-text-50 mb-2 text-sm uppercase tracking-wide">Output</label
-      >
+    <div
+      id="tag-toolbar"
+      class="flex flex-wrap items-center gap-x-1 gap-y-2 rounded-2xl bg-background-10 border border-background-50 px-3 py-2.5 shadow-sm"
+    >
+    </div>
 
-      <button
-        id="copy-json-btn"
-        class="absolute top right-0 bg-background-50 hover:bg-background-100 text-text text-xs px-2 py-1 rounded-lg cursor-pointer hover:scale-105"
-        title="Copy as JSON (for tellraw, etc.)"
-      >
-        <span class="btn-text">Copy JSON</span>
-      </button>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+      <div class="flex flex-col relative">
+        <label
+          id="input-label"
+          class="text-text-50 mb-2 text-sm uppercase tracking-wide">Input</label
+        >
 
-      <div class="relative">
         <div
-          id="output-dom"
-          class="content w-full min-h-[200px] p-4 bg-background-gradient text-[#FFFFFF] font-minecraft-minimessage rounded-2xl border border-background-50 wrap-break-word whitespace-pre-wrap"
+          data-simplebar
+          data-simplebar-auto-hide="false"
+          class="w-full min-h-50 rounded-2xl bg-background-10 focus-within:ring-2 focus-within:ring-primary transition duration-300"
+          style="overflow: hidden;"
+        >
+          <div
+            id="input"
+            contenteditable="true"
+            spellcheck="false"
+            class="px-4 py-4 min-h-50"
+            style="white-space: pre-wrap; word-break: break-word;"
+            data-placeholder="Type MiniMessage text here..."
+          >
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col io relative">
+        <div class="flex items-center justify-between mb-2">
+          <label
+            id="output-dom-label"
+            class="text-text-50 text-sm uppercase tracking-wide">Output</label
+          >
+
+          <button
+            id="copy-json-btn"
+            class="bg-background-50 hover:bg-background-100 text-text text-xs px-2 py-1 rounded-lg cursor-pointer transition-colors duration-200"
+            title="Copy as JSON (for tellraw, etc.)"
+          >
+            <span class="btn-text">Copy JSON</span>
+          </button>
+        </div>
+
+        <div class="relative">
+          <div
+            id="output-dom"
+            class="content w-full min-h-50 p-4 bg-background-gradient text-[#FFFFFF] font-minecraft-minimessage rounded-2xl border border-background-50 wrap-break-word whitespace-pre-wrap"
+          >
+          </div>
+        </div>
+        <div
+          id="mc-tooltip"
+          class="font-minecraft-minimessage"
+          aria-hidden="true"
         >
         </div>
       </div>
-      <div
-        id="mc-tooltip"
-        class="font-minecraft-minimessage"
-        aria-hidden="true"
-      >
-      </div>
     </div>
-    <section
-      class="bg-background rounded-xl max-w-5xl mx-auto px-8 p-8 text-text font-sans space-y-10"
+
+    <div
+      class="pt-6 border-t border-background-50 flex flex-wrap items-center justify-center gap-x-2 gap-y-2 text-xs text-text-50 text-center"
     >
-      <div class="space-y-4">
-        <h2 class="text-xl font-semibold">What is MiniMessage?</h2>
-
-        <p class="text-text-80 leading-relaxed">
-          <strong>MiniMessage</strong> is a modern text formatting language from the
-          <a
-            href="https://docs.papermc.io/adventure/minimessage/format"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-primary hover:opacity-80"
-          >
-            Adventure
-          </a>
-          library, widely used in Minecraft servers and plugins such as Paper, Velocity,
-          Fabric, and more.
-        </p>
-
-        <p class="text-text-80 leading-relaxed">
-          It allows you to format text using readable tags instead of legacy
-          color codes, supporting colors, gradients, text decorations, shadows,
-          fonts, and other advanced effects in a clean and future-proof way.
-        </p>
-      </div>
-
-      <div class="space-y-4">
-        <h2 class="text-xl font-semibold">Why use this editor?</h2>
-
-        <p class="text-text-80 leading-relaxed">
-          This MiniMessage Editor lets you write, preview, and export
-          MiniMessage text instantly directly in your browser.
-        </p>
-
-        <p class="text-text-80 leading-relaxed">
-          This tool runs
-          <strong>100% client-side</strong>. No data is sent to any server, and
-          nothing ever leaves your device.
-        </p>
-
-        <p class="text-text-80 leading-relaxed">
-          The renderer is based on an extended and customized version of the
-          original minimessage-js renderer by <strong>WasabiThumb</strong>:
-        </p>
-
-        <ul class="list-disc list-inside text-text-80 space-y-1">
-          <li>
-            <a
-              href="https://github.com/WasabiThumb/minimessage-js"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-primary underline hover:opacity-80"
-            >
-              Original
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://github.com/BaggelMC/minimessage-js"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-primary underline hover:opacity-80"
-            >
-              Our fork
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="space-y-4">
-        <h2 class="text-xl font-semibold">Server-only features</h2>
-
-        <p class="text-text-80 leading-relaxed">
-          Some MiniMessage features depend on live server data and cannot be
-          supported in an external editor:
-        </p>
-
-        <ul class="list-disc list-inside text-text-80 space-y-1">
-          <li>Selector</li>
-          <li>Score</li>
-          <li>NBT</li>
-        </ul>
-      </div>
-    </section>
+      <span
+        >Runs 100% client-side — nothing you type ever leaves your browser.</span
+      >
+      <span class="hidden sm:inline text-background-100">&bull;</span>
+      <a
+        href="https://docs.papermc.io/adventure/minimessage/format"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-primary hover:opacity-80 transition-opacity duration-200"
+      >
+        MiniMessage documentation ↗
+      </a>
+      <span class="hidden sm:inline text-background-100">&bull;</span>
+      <span>
+        Renderer based on a fork of
+        <a
+          href="https://github.com/WasabiThumb/minimessage-js"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-primary hover:opacity-80 transition-opacity duration-200"
+          >minimessage-js</a
+        >
+        by WasabiThumb —
+        <a
+          href="https://github.com/BaggelMC/minimessage-js"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-primary hover:opacity-80 transition-opacity duration-200"
+          >view our fork ↗</a
+        >
+      </span>
+    </div>
   </div>
 
   <script>
