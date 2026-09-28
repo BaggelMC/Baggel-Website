@@ -1,28 +1,30 @@
 const CODE_SNIPPETS = [
   String.raw`
-public void broadcast(String message) {
-    Component component = MiniMessage.miniMessage().deserialize(message);
-    arena.getPlayers().forEach(uuid -> {
-        Player player = Bukkit.getPlayer(uuid);
-        if (player != null) {
-            player.sendMessage(component);
-        }
-    });
-}
+  public void broadcast(String message) {
+      Component component = MiniMessage.miniMessage().deserialize(message);
+
+      arena.getPlayers().forEach(uuid -> {
+          Player player = Bukkit.getPlayer(uuid);
+
+          if (player != null) {
+              player.sendMessage(component);
+          }
+      });
+  }
   `,
 
   String.raw`
-if (player.getUniqueId().equals(UUID.fromString(
-    "64e43c68-4e6f-492b-9766-dc140ace844e"))) {
-    dice.setNextRoll(6);
-}
+  if (player.getUniqueId().equals(UUID.fromString(
+      "64e43c68-4e6f-492b-9766-dc140ace844e"))) {
+      dice.setNextRoll(6);
+  }
   `,
 
   String.raw`
-if (player.getUniqueId().equals(UUID.fromString(
-    "17b66df8-b8cf-4481-a2c7-2b79ec216be8"))) {
-    combat.setOutcome(CombatOutcome.VICTORY);
-}
+  if (player.getUniqueId().equals(UUID.fromString(
+          "17b66df8-b8cf-4481-a2c7-2b79ec216be8"))) {
+      combat.setOutcome(CombatOutcome.VICTORY);
+  }
   `,
 
   String.raw`
@@ -98,17 +100,10 @@ public void test(ProjectileLaunchEvent event) {
 public void balanceEconomy(Player player) {
     double balance = economy.getBalance(player);
 
-    if (balance < 0) {
-        economy.deposit(player, Math.abs(balance));
-        logger.warn("Fixed the economy.");
-    }
-
-    if (balance == 0) {
-        economy.deposit(player, 0.01);
-        player.sendMessage(
-            "The government has intervened."
-        );
-    }
+    if (balance < 0) economy.deposit(player, -balance);
+    if (balance == 0) player.sendMessage(
+        "The government has intervened."
+    );
 
     if (balance > 1_000_000_000) {
         economy.setBalance(player, 0);
@@ -135,10 +130,7 @@ public void checkForCheating(Player player) {
     double ping = player.getPing();
 
     if (ping < 0) {
-        anticheat.flag(
-            player,
-            "TIME TRAVEL"
-        );
+        anticheat.flag(player, "TIME TRAVEL");
     }
 }
   `,
@@ -146,13 +138,11 @@ public void checkForCheating(Player player) {
   String.raw`
 @EventHandler
 public void onChat(AsyncPlayerChatEvent event) {
-    Player player = event.getPlayer();
-    String message = event.getMessage();
+    String msg = event.getMessage();
 
-    if (message.toLowerCase().contains("ez")) {
+    if (msg.toLowerCase().contains("ez")) {
         event.setMessage("Thank you for playing.");
-
-        player.sendMessage(
+        event.getPlayer().sendMessage(
             "Toxicity has been automatically translated."
         );
     }
@@ -161,33 +151,22 @@ public void onChat(AsyncPlayerChatEvent event) {
 
   String.raw`
 private void summonTheCouncil(World world) {
-    Location center = world.getSpawnLocation();
-
     for (int i = 0; i < 7; i++) {
-        Entity chicken = world.spawnEntity(
-            center.clone().add(i, 0, 0),
+        Entity c = world.spawnEntity(
+            world.getSpawnLocation().add(i, 0, 0),
             EntityType.CHICKEN
         );
-
-        chicken.setCustomName(
-            "Council Member #" + (i + 1)
-        );
-
-        chicken.setCustomNameVisible(true);
+        c.setCustomName("Council Member #" + (i + 1));
+        c.setCustomNameVisible(true);
     }
-
-    world.getPlayers().forEach(player ->
-        player.sendMessage(
-            "The council has assembled."
-        )
-    );
+    broadcast("The council has assembled.");
 }
   `,
 ];
 
 const TYPE_MS_MIN = 28;
 const TYPE_MS_MAX = 55;
-const HOLD_MS = 2200; // pause after a snippet finishes typing, before it clears
+const HOLD_MS = 1100; // pause after a snippet finishes typing, before it clears
 const ERASE_PAUSE_MS = 250; // pause after clearing, before the next snippet starts
 
 function pickSnippetIndex(excludeIndex: number | null): number {
@@ -219,7 +198,7 @@ function initCodeTyper() {
 
       const index = pickSnippetIndex(lastIndex);
       lastIndex = index;
-      const text = CODE_SNIPPETS[index];
+      const text = CODE_SNIPPETS[index].trim();
 
       display.classList.add("is-typing");
       let charIndex = 0;

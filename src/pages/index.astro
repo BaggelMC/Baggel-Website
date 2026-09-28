@@ -20,11 +20,11 @@ import { LINKS } from "../config";
 // IMAGES
 
 //@ts-ignore
-import ImageDuelsLow from "../assets/images/gamemodes/1v1.png?format=webp&w=100";
+import ImageCrystalFightLow from "../assets/images/gamemodes/Crystalfight.png?format=webp&w=100";
 //@ts-ignore
-import ImageDuelsMed from "../assets/images/gamemodes/1v1.png?format=webp&w=800";
+import ImageCrystalFightMed from "../assets/images/gamemodes/Crystalfight.png?format=webp&w=800";
 //@ts-ignore
-import ImageDuelsHigh from "../assets/images/gamemodes/1v1.png?format=png&w=1400";
+import ImageCrystalFightHigh from "../assets/images/gamemodes/Crystalfight.png?format=png&w=1400";
 
 //@ts-ignore
 import ImageFFALow from "../assets/images/gamemodes/FFA.png?format=webp&w=100";
@@ -34,30 +34,78 @@ import ImageFFAMed from "../assets/images/gamemodes/FFA.png?format=webp&w=800";
 import ImageFFAHigh from "../assets/images/gamemodes/FFA.png?format=png&w=1400";
 
 //@ts-ignore
-import ImageFireballLow from "../assets/images/gamemodes/fireball.png?format=webp&w=100";
+import ImagePillarsLow from "../assets/images/gamemodes/Pillars.png?format=webp&w=100";
 //@ts-ignore
-import ImageFireballMed from "../assets/images/gamemodes/fireball.png?format=webp&w=800";
+import ImagePillarsMed from "../assets/images/gamemodes/Pillars.png?format=webp&w=800";
 //@ts-ignore
-import ImageFireballHigh from "../assets/images/gamemodes/fireball.png?format=png&w=1400";
+import ImagePillarsHigh from "../assets/images/gamemodes/Pillars.png?format=png&w=1400";
 
 //@ts-ignore
-import ImageTNTTagLow from "../assets/images/gamemodes/tnttag.png?format=webp&w=100";
+import ImageLudoLow from "../assets/images/gamemodes/Ludo.png?format=webp&w=100";
 //@ts-ignore
-import ImageTNTTagMed from "../assets/images/gamemodes/tnttag.png?format=webp&w=800";
+import ImageLudoMed from "../assets/images/gamemodes/Ludo.png?format=webp&w=800";
 //@ts-ignore
-import ImageTNTTagHigh from "../assets/images/gamemodes/tnttag.png?format=png&w=1400";
+import ImageLudoHigh from "../assets/images/gamemodes/Ludo.png?format=png&w=1400";
+
+//@ts-ignore
+import ImagePvPLow from "../assets/images/gamemodes/PvP.png?format=webp&w=100";
+//@ts-ignore
+import ImagePvPMed from "../assets/images/gamemodes/PvP.png?format=webp&w=800";
+//@ts-ignore
+import ImagePvPHigh from "../assets/images/gamemodes/PvP.png?format=png&w=1400";
+
+//@ts-ignore
+import ImageGolfLow from "../assets/images/gamemodes/Golf.png?format=webp&w=100";
+//@ts-ignore
+import ImageGolfMed from "../assets/images/gamemodes/Golf.png?format=webp&w=800";
+//@ts-ignore
+import ImageGolfHigh from "../assets/images/gamemodes/Golf.png?format=png&w=1400";
+
+//@ts-ignore
+import ImageMinigolfLow from "../assets/images/gamemodes/Minigolf.png?format=webp&w=100";
+//@ts-ignore
+import ImageMinigolfMed from "../assets/images/gamemodes/Minigolf.png?format=webp&w=800";
+//@ts-ignore
+import ImageMinigolfHigh from "../assets/images/gamemodes/Minigolf.png?format=png&w=1400";
+
+//@ts-ignore
+import ImageReplicaLow from "../assets/images/gamemodes/Replica.png?format=webp&w=100";
+//@ts-ignore
+import ImageReplicaMed from "../assets/images/gamemodes/Replica.png?format=webp&w=800";
+//@ts-ignore
+import ImageReplicaHigh from "../assets/images/gamemodes/Replica.png?format=png&w=1400";
+
+//@ts-ignore
+import ImageElytraLow from "../assets/images/gamemodes/Elytra.png?format=webp&w=100";
+//@ts-ignore
+import ImageElytraMed from "../assets/images/gamemodes/Elytra.png?format=webp&w=800";
+//@ts-ignore
+import ImageElytraHigh from "../assets/images/gamemodes/Elytra.png?format=png&w=1400";
 
 import Pronounciation from "../assets/audio/baggel.mp3";
 
+//@ts-ignore
+import IconBedWars from "../assets/images/gamemodes/icons/bedwars.png?format=webp&w=128";
+//@ts-ignore
+import IconSkyWars from "../assets/images/gamemodes/icons/skywars.png?format=webp&w=128";
+//@ts-ignore
+import IconChess from "../assets/images/gamemodes/icons/chess.png?format=webp&w=128";
+//@ts-ignore
+import IconHideAndSeek from "../assets/images/gamemodes/icons/hideandseek.png?format=webp&w=128";
+//@ts-ignore
+import IconLasertag from "../assets/images/gamemodes/icons/lasertag.png?format=webp&w=128";
+//@ts-ignore
+import IconTntTag from "../assets/images/gamemodes/icons/tnttag.png?format=webp&w=128";
+
 const finishedGames = [
   {
-    name: "Duels 1v1",
+    name: "CrystalFight",
     description:
-      "Tritt gegen einen anderen Spieler in intensiven, schnellen PvP-Duellen an. Wähle dein Kit, schärfe deine Reflexe und kämpfe um den Sieg in unseren Arenen! Nur die Besten werden bestehen.",
-    images: [ImageDuelsLow, ImageDuelsMed, ImageDuelsHigh],
+      "Katapultiere dich mit End-Kristallen und Respawn-Ankern über die Karte! Zerstöre das Bett deines Gegners und schalte ihn aus, bevor er dir zuvorkommt. Präzises Timing und mutige Sprünge entscheiden über Sieg oder Fall.",
+    images: [ImageCrystalFightLow, ImageCrystalFightMed, ImageCrystalFightHigh],
     image_alt:
-      "Zwei Spieler in Diamantrüstungen kämpfen mit Diamantschwertern und -schilden in einer felsigen Arena.",
-    tags: ["1v1", "PvP"],
+      "Ein Spieler wird durch die Explosion eines End-Kristalls über eine Arena mit Betten katapultiert.",
+    tags: ["PvP", "Bett zerstören"],
   },
   {
     name: "Knockback FFA",
@@ -69,83 +117,117 @@ const finishedGames = [
     tags: ["FFA", "Chaos"],
   },
   {
-    name: "Fireball Fight",
+    name: "Pillars of Fortune",
     description:
-      "Schieße, weiche aus und kämpfe dich mit Explosionen zum Sieg! Nutze Präzision und Timing, um deine Gegner mit gut gezielten Feuerbällen von der Karte zu befördern. Ein Treffer kann alles ändern.",
-    images: [ImageFireballLow, ImageFireballMed, ImageFireballHigh],
+      "Du spawnst auf einem Bedrock-Turm mitten im Nichts. Alle paar Sekunden gibt dir das Schicksal einen zufälligen Gegenstand, darunter eigens gebraute Custom-Potions. Improvisiere und mach das Beste aus dem, was das Glück dir gibt. Wer zuletzt übrig bleibt, gewinnt.",
+    images: [ImagePillarsLow, ImagePillarsMed, ImagePillarsHigh],
     image_alt:
-      "Zwei Spieler kämpfen. Einer befindet sich auf einem hohen Turm in blauer Rüstung und schleudert einen Feuerball auf einen Spieler in roter Rüstung.",
-    tags: ["Ranged", "Skillshots"],
+      "Ein Spieler steht auf einer schmalen Bedrock-Säule, die im Nichts schwebt, umgeben von treibenden Items.",
+    tags: ["Chaos", "Glück"],
   },
   {
-    name: "Hot Potato",
+    name: "Ludo",
     description:
-      "Du hast eine tickende Zeitbombe! Gib sie schnell weiter, bevor sie explodiert! Wer am Ende die Bombe hat, verliert. Geschwindigkeit und Strategie entscheiden über Sieg oder Niederlage.",
-    images: [ImageTNTTagLow, ImageTNTTagMed, ImageTNTTagHigh],
+      "Das klassische Brettspiel, neu erfunden in Minecraft! Nutze Items, um deine Gegner zu sabotieren, und tritt in Duellen an, um zu entscheiden, wessen Spielfigur bleiben darf und wer zurück nach Hause muss.",
+    images: [ImageLudoLow, ImageLudoMed, ImageLudoHigh],
     image_alt:
-      "Ein Spieler mit einem TNT-Kopf jagt einen anderen brennenden Spieler durch eine enge Arena.",
-
-    tags: ["Team", "Survival"],
+      "Ein farbenfrohes Ludo-Spielbrett aus Blöcken mit bunten Spielfiguren in Minecraft.",
+    tags: ["Brettspiel", "Sabotage"],
+  },
+  {
+    name: "Duels",
+    description:
+      "Kit-PvP in Reinform, ein echter Klassiker. Wähle dein Kit, schärfe deine Reflexe und kämpfe im 1v1 um den Sieg in unseren Arenen! Nur die Besten werden bestehen.",
+    images: [ImagePvPLow, ImagePvPMed, ImagePvPHigh],
+    image_alt:
+      "Zwei Spieler in Rüstungen kämpfen mit Schwertern und Schilden in einer Arena.",
+    tags: ["1v1", "PvP"],
+  },
+  {
+    name: "Golf",
+    description:
+      "Golf, wie du es kennst, jetzt in Minecraft! Schlage den Ball mit Bedacht über liebevoll gestaltete Bahnen und versuche, mit möglichst wenigen Schlägen ins Loch zu treffen.",
+    images: [ImageGolfLow, ImageGolfMed, ImageGolfHigh],
+    image_alt:
+      "Ein Spieler steht auf einer grünen Golfbahn aus Blöcken und zielt auf das Loch.",
+    tags: ["Geschicklichkeit", "Entspannt"],
+  },
+  {
+    name: "Minigolf",
+    description:
+      "Minigolf für zwischendurch! Meistere kreative, kniffelige Bahnen voller Hindernisse und Tricks und beweise, wer den ruhigsten Schwung hat.",
+    images: [ImageMinigolfLow, ImageMinigolfMed, ImageMinigolfHigh],
+    image_alt:
+      "Eine bunte Minigolfbahn mit Hindernissen und Kurven, gebaut aus Minecraft-Blöcken.",
+    tags: ["Geschicklichkeit", "Party"],
+  },
+  {
+    name: "Replica",
+    description:
+      "Pass genau auf! Ein Bild erscheint und es liegt an dir, es so schnell wie möglich originalgetreu nachzubauen. Geschwindigkeit und Präzision entscheiden, wer als Meisterbauer herrscht.",
+    images: [ImageReplicaLow, ImageReplicaMed, ImageReplicaHigh],
+    image_alt:
+      "Zwei nebeneinander stehende Bauwerke, eines als Vorlage und eines als Nachbau eines Spielers.",
+    tags: ["Bauen", "Speed"],
+  },
+  {
+    name: "Elytra Race",
+    description:
+      "Teste deine Flugkünste im Rennen gegen andere! Rase mit deiner Elytra durch anspruchsvolle Streckenabschnitte und Ringe und sichere dir als Erster die Ziellinie.",
+    images: [ImageElytraLow, ImageElytraMed, ImageElytraHigh],
+    image_alt:
+      "Mehrere Spieler fliegen mit Elytren durch eine Rennstrecke aus schwebenden Ringen.",
+    tags: ["Rennen", "Skill"],
   },
 ];
 
 const unfinishedGames = [
   {
-    name: "Pillars of Fortune",
+    name: "BedWars",
     description:
-      "Du bist auf einer winzigen Säule gestrandet, die im Nichts schwebt. Alle paar Sekunden gibt dir das Schicksal zufällige Gegenstände, manchmal hilfreich, manchmal tödlich. Überlebe alle anderen in diesem Spiel aus purem Chaos und Glück!",
-
-    icon: "pillar",
+      "Verteidige dein Bett und zerstöre die deiner Gegner! Sammle Ressourcen von deinem Generator, rüste dein Team aus und kämpfe um das letzte stehende Bett.",
+    icon: "bedwars",
+  },
+  {
+    name: "SkyWars",
+    description:
+      "Kämpfe auf schwebenden Inseln ums Überleben! Plündere Truhen nach Ausrüstung, überbrücke die Leere und sei der letzte Spieler, der noch in der Luft steht.",
+    icon: "skywars",
   },
   {
     name: "Chess",
     description:
       "Das klassische Strategiespiel im Minecraft-Stil. Bewege deine Armee über das Brett, plane jeden Angriff und setze deinen Gegner schachmatt!",
-
     icon: "chess",
   },
   {
-    name: "TNT Run",
+    name: "Hide and Seek",
     description:
-      "Beweg dich oder falle! Der Boden verschwindet unter deinen Füßen, während du rennst. Ein falscher Schritt und das Spiel ist vorbei. Überlebe alle anderen in diesem explosiven Test für Reflexe und Kontrolle.",
-    icon: "tnt",
+      "Verstecke dich gut oder finde alle anderen! Ein Spieler sucht, während sich der Rest als Blöcke getarnt irgendwo auf der Karte versteckt. Wer zuletzt entdeckt wird, gewinnt.",
+    icon: "hideandseek",
   },
   {
-    name: "Baggel Clicker",
+    name: "Lasertag",
     description:
-      "Jeder Klick zählt! Sammle Münzen, kaufe Upgrades und klettere die Bestenliste hinauf in diesem süchtig machenden Idle-Clicker-Erlebnis, inspiriert von Cookie Clicker, aber mit diesem Baggel-Flair.",
-    icon: "bagel",
+      "Schnapp dir deinen Blaster und ballere dich zum Sieg! Schnelle Reflexe, gute Deckung und Teamarbeit entscheiden, wer das Feld am Ende dominiert.",
+    icon: "lasertag",
   },
   {
-    name: "Replica",
+    name: "TNT Tag",
     description:
-      "Pass genau auf! Eine Struktur erscheint und es liegt an dir, sie perfekt nachzubauen. Geschwindigkeit und Präzision entscheiden, wer als Meisterbauer herrscht.",
-    icon: "replica",
-  },
-  {
-    name: "SpeedCrafter",
-    description:
-      "Bastele oder werde gebastelt! Rase darum, zufällige Rezepte so schnell wie möglich zu vervollständigen. Je schneller deine Hände und dein Gedächtnis, desto höher deine Punktzahl und dein Recht zu prahlen.",
-    icon: "craft",
-  },
-  {
-    name: "Cow Pong",
-    description:
-      "Klassisches Pong... aber mit Kühen! Schnell zu sein ist der Schlüssel! (Ich schwöre, die Kühe mögen es!)",
-    icon: "pong",
+      "Wer zuletzt die tickende TNT in der Hand hält, verliert! Gib sie rechtzeitig an einen anderen Spieler weiter, bevor sie hochgeht. Geschwindigkeit und Strategie entscheiden über Sieg oder Niederlage.",
+    icon: "tnttag",
   },
 ];
 
-// Hand-drawn style line icons for games that don't have artwork yet.
-// Each is a small sketch-like SVG, colored via the game's accent through `currentColor`.
-const ICONS: Record<string, string> = {
-  pillar: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 40h20"/><path d="M16 40V16h16v24"/><path d="M13 16h22"/><path d="M24 4v5"/><path d="M18 7l2.5 2.5"/><path d="M30 7l-2.5 2.5"/></svg>`,
-  chess: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6v7"/><path d="M20 10h8"/><path d="M18 18c0 3 2 5 2 5h8s2-2 2-5-3-4-6-4-6 1-6 4z"/><path d="M16 40c0-6 3-9 3-9h10s3 3 3 9"/><path d="M14 40h20"/></svg>`,
-  tnt: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="16" width="20" height="16" rx="1.5"/><path d="M24 16v-4"/><path d="M24 12c2-2 2-4 0-6"/><path d="M14 24h20"/><path d="M9 38l6-4 4 4 6-5 6 3 6-4" opacity="0.55"/></svg>`,
-  bagel: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="21" cy="24" r="12"/><circle cx="21" cy="24" r="4.5"/><path d="M34.5 11.5l3.5 3.5"/><path d="M39 18.5h5"/><path d="M35 24.5h4.5"/></svg>`,
-  replica: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="9" width="18" height="18" rx="2" stroke-dasharray="3 3.5"/><rect x="23" y="21" width="18" height="18" rx="2"/><path d="M28 30l3 3 6-6"/></svg>`,
-  craft: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="24" height="24" rx="2"/><path d="M7 15h24M7 23h24M15 7v24M23 7v24"/><path d="M37 13l-6 10h5l-6 10" stroke-width="3"/></svg>`,
-  pong: `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 8v32"/><path d="M39 8v32"/><circle cx="24" cy="24" r="4" fill="currentColor" stroke="none"/><path d="M17 14c2 1 3 3 2 5" opacity="0.55"/><path d="M31 34c-2-1-3-3-2-5" opacity="0.55"/></svg>`,
+// Tiny square PNG icons for games that don't have artwork yet.
+const ICONS: Record<string, ImageMetadata> = {
+  bedwars: IconBedWars,
+  skywars: IconSkyWars,
+  chess: IconChess,
+  hideandseek: IconHideAndSeek,
+  lasertag: IconLasertag,
+  tnttag: IconTntTag,
 };
 ---
 
@@ -346,10 +428,11 @@ const ICONS: Record<string, string> = {
 
               <div class="blueprint-grid relative z-10 h-52 sm:h-56 overflow-hidden flex items-center justify-center">
                 <pre class="code-typer" aria-hidden="true" />
-                <div
-                  class="icon-visual w-16 h-16"
-                  style={`color:#d6904f`}
-                  set:html={ICONS[game.icon]}
+                {/* @ts-ignore */}
+                <img
+                  src={ICONS[game.icon]}
+                  alt={`${game.name} Icon`}
+                  class="icon-visual w-16 h-16 object-contain [image-rendering:pixelated]"
                 />
                 <span
                   class="absolute top-4 right-4 z-2 font-minecraft text-[10px] tracking-normal px-2 py-1 rounded backdrop-blur-sm"
