@@ -2,7 +2,7 @@
 title: Status
 ---
 
-![Status Showcase](/src/assets/docs/images/status/showcase.png)
+![Status Showcase](src/assets/docs/images/status/showcase.png)
 
 Ein **Status** ist ein kleiner Text, der vor deinem Namen im Spiel angezeigt wird. Du kannst dir einen Status mit `/status set <status>` zuweisen und ihn wieder entfernen mit `/status remove`.
 
@@ -21,4 +21,4 @@ Hier ist ein Status-Beispiel:
 > **Hinweis:** Nicht alle Statuse stehen dir vielleicht zur Verfügung. Die Admins bestimmen, welche Tags von allen, von bestimmten Teams oder von Spielern mit bestimmten Berechtigungen verwendet werden können. Nutzen kannst du nur die Statuse, die für dein Account erlaubt sind.
 
 **Fun Fact:** Administratoren können auch im Konsolenbereich alle wunderschönen Status-Tags einsehen:
-![Status Console](/src/assets/docs/images/status/console.png)
+![Status Console](src/assets/docs/images/status/console.png)

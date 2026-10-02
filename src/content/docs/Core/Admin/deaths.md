@@ -2,7 +2,7 @@
 title: Deaths
 ---
 
-![Deaths](/src/assets/docs/images/deaths/showcase.png)
+![Deaths](src/assets/docs/images/deaths/showcase.png)
 
 The Deaths system records every player death on the server. For each death, the plugin stores:
 

@@ -2,7 +2,7 @@
 title: Spielerköpfe
 ---
 
-![Player Head](/src/assets/docs/images/player-heads/showcase.png)
+![Player Head](src/assets/docs/images/player-heads/showcase.png)
 
 Wenn ein Spieler von einem anderen besiegt wird, lässt das Opfer seinen Spielerkopf fallen. Der Kopf zeigt den Skin des Spielers zum Zeitpunkt seines Todes, trägt den Benutzernamen als Name des Gegenstands und beinhaltet die Todesnachricht in der Lore.
 

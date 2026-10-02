@@ -2,7 +2,7 @@
 title: Spawn Elytra
 ---
 
-![Elytra Showcase](/src/assets/docs/images/spawn-elytra/showcase.png)
+![Elytra Showcase](src/assets/docs/images/spawn-elytra/showcase.png)
 
 Das **Spawn Elytra** System gibt Spielern vorübergehenden Flug innerhalb einer definierten **Elytra Zone**. Das ist ein Bereich, der normalerweise von den Serveradministratoren eingerichtet wird – meistens rund um den Spawn oder die Startinsel. Dieses Feature hilft den Spielern, zu Beginn einer Saison oder eines Events **komfortabel einen größeren Bereich auszubreiten**, ohne dass sie zuerst ihre eigenen Flügel verdienen müssen.
 

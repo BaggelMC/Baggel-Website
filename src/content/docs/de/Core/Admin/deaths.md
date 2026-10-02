@@ -2,7 +2,7 @@
 title: Tode
 ---
 
-![Tode](/src/assets/docs/images/deaths/showcase.png)
+![Tode](src/assets/docs/images/deaths/showcase.png)
 
 Das Deaths-System speichert jeden Tod eines Spielers auf dem Server. Für jeden Todesfall werden folgende Daten gespeichert:
 
