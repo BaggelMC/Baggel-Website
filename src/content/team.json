@@ -88,7 +88,7 @@
             "id": "perry",
             "name": "Perry",
             "role": "Admin",
-            "bio": "<p>Administrator auf Baggel.de</p>",
+            "bio": "<p>Ich bin zuständig für die Socials von Baggel und Programmiere auch Gamemodes.<br>Folgt mir auf <a href='https://www.twitch.tv/perrytheplatypus1252' target='_blank' style='color: #009DFF; text-decoration: underline;'>Twitch</a>.</p>",
             "teams": [
                 "media",
                 "c_admin",
