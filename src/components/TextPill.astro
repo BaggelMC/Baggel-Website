@@ -1,0 +1,15 @@
+---
+const { content = ""} = Astro.props;
+---
+<span
+  class="pill font-minecraft text-[10px] tracking-normal px-2 py-1 rounded backdrop-blur-sm"
+>
+  {content}
+</span>
+<style>
+  .pill {
+    color: var(--color-accent);
+    background: color-mix(in srgb, var(--color-accent) 18%, rgb(0 0 0 / 35%));
+    border: 1px solid color-mix(in srgb, var(--color-accent) 40%, transparent);
+  }
+</style>
