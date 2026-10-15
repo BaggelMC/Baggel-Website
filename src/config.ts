@@ -4,6 +4,8 @@ export const LINKS = {
     tiktok: "https://www.tiktok.com/@baggel.de",
     youtube: "https://www.youtube.com/@baggel-de/",
     instagram: "https://www.instagram.com/baggelmc/",
+    forgejo_beast: "https://git.shxdowcrafter.de/Baggel",
+    forgejo_mat: "https://git.mathias2246.net/BuildMC",
 
     server_address: "baggel.de",
     email: "mail@baggel.de",
