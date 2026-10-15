@@ -105,7 +105,6 @@ const finishedGames = [
     images: [ImageCrystalFightLow, ImageCrystalFightMed, ImageCrystalFightHigh],
     image_alt:
       "Ein Spieler wird durch die Explosion eines End-Kristalls über eine Arena mit Betten katapultiert.",
-    tags: ["PvP", "Bett zerstören"],
   },
   {
     name: "Knockback FFA",
@@ -114,7 +113,6 @@ const finishedGames = [
     images: [ImageFFALow, ImageFFAMed, ImageFFAHigh],
     image_alt:
       "Zwei Spieler kämpfen in einer Ebenenlandschaft mit Lederrüstungen und Knockback Sticks.",
-    tags: ["FFA", "Chaos"],
   },
   {
     name: "Pillars of Fortune",
@@ -123,7 +121,6 @@ const finishedGames = [
     images: [ImagePillarsLow, ImagePillarsMed, ImagePillarsHigh],
     image_alt:
       "Ein Spieler steht auf einer schmalen Bedrock-Säule, die im Nichts schwebt, umgeben von treibenden Items.",
-    tags: ["Chaos", "Glück"],
   },
   {
     name: "Ludo",
@@ -132,7 +129,6 @@ const finishedGames = [
     images: [ImageLudoLow, ImageLudoMed, ImageLudoHigh],
     image_alt:
       "Ein farbenfrohes Ludo-Spielbrett aus Blöcken mit bunten Spielfiguren in Minecraft.",
-    tags: ["Brettspiel", "Sabotage"],
   },
   {
     name: "Duels",
@@ -141,7 +137,6 @@ const finishedGames = [
     images: [ImagePvPLow, ImagePvPMed, ImagePvPHigh],
     image_alt:
       "Zwei Spieler in Rüstungen kämpfen mit Schwertern und Schilden in einer Arena.",
-    tags: ["1v1", "PvP"],
   },
   {
     name: "Golf",
@@ -150,7 +145,6 @@ const finishedGames = [
     images: [ImageGolfLow, ImageGolfMed, ImageGolfHigh],
     image_alt:
       "Ein Spieler steht auf einer grünen Golfbahn aus Blöcken und zielt auf das Loch.",
-    tags: ["Geschicklichkeit", "Entspannt"],
   },
   {
     name: "Minigolf",
@@ -159,7 +153,6 @@ const finishedGames = [
     images: [ImageMinigolfLow, ImageMinigolfMed, ImageMinigolfHigh],
     image_alt:
       "Eine bunte Minigolfbahn mit Hindernissen und Kurven, gebaut aus Minecraft-Blöcken.",
-    tags: ["Geschicklichkeit", "Party"],
   },
   {
     name: "Replica",
@@ -168,7 +161,6 @@ const finishedGames = [
     images: [ImageReplicaLow, ImageReplicaMed, ImageReplicaHigh],
     image_alt:
       "Zwei nebeneinander stehende Bauwerke, eines als Vorlage und eines als Nachbau eines Spielers.",
-    tags: ["Bauen", "Speed"],
   },
   {
     name: "Elytra Race",
@@ -177,7 +169,6 @@ const finishedGames = [
     images: [ImageElytraLow, ImageElytraMed, ImageElytraHigh],
     image_alt:
       "Mehrere Spieler fliegen mit Elytren durch eine Rennstrecke aus schwebenden Ringen.",
-    tags: ["Rennen", "Skill"],
   },
 ];
 
@@ -396,11 +387,6 @@ const ICONS: Record<string, ImageMetadata> = {
 
               <div class="relative z-10 p-6 text-left space-y-3">
                 <h3 class="text-xl font-bold text-primary">{game.name}</h3>
-                <div class="flex flex-wrap gap-2">
-                  {game.tags.map((tag) => (
-                    <span class="tag-chip">{tag}</span>
-                  ))}
-                </div>
                 <p class="text-text-50">{game.description}</p>
               </div>
 

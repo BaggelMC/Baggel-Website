@@ -241,17 +241,6 @@
   transform: translateX(45%);
 }
 
-.tag-chip {
-  display: inline-block;
-  font-size: 0.7rem;
-  line-height: 1;
-  padding: 0.35rem 0.6rem;
-  border-radius: 999px;
-  color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 15%, transparent);
-  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
-}
-
 .blueprint-grid {
   background-image:
     linear-gradient(
