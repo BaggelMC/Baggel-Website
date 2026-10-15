@@ -5,7 +5,7 @@ import { RESOURCES } from "../config";
 import "../styles/global.css";
 
 // @ts-ignore
-import Background from "../assets/images/background/background_dark_1.png?format=webp&w=800";
+import Background from "../assets/images/background/background_dark_1.png?format=webp&w=320&quality=70";
 // @ts-ignore
 import metaImage from "../assets/largehero.png?format=webp";
 
@@ -53,6 +53,8 @@ const fullTitle = title ? `${title} | ${titleSuffix}` : titleSuffix;
     <meta name="twitter:image" content={metaImage} />
 
     <link href={RESOURCES.fontURL} rel="stylesheet" />
+
+    <link rel="preload" as="image" href={Background} fetchpriority="high" />
 
     {enableAlpine && <script src="https://unpkg.com/alpinejs" defer />}
 
