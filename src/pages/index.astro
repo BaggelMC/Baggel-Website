@@ -1,225 +1,23 @@
 ---
 import "../styles/index.css";
-import Headline from "../components/Headline.astro";
 import DefaultLayout from "../layouts/DefaultLayout.astro";
 import Separator from "../components/Separator.astro";
 import CopyServerAddressButton from "../components/CopyServerAddressButton.astro";
-
-//@ts-ignore
-import TextLogo from "../assets/largehero.png?format=webp&w=1000";
+import GameCard from "../components/GameCard.astro";
 
 import DirtTexture from "../assets/images/textures/dirt.png";
 import PlayButtonTexture from "../assets/images/textures/play.png";
 import PlayButtonHoverTexture from "../assets/images/textures/play_hover.png";
 import Click from "../assets/audio/click.ogg";
+import Pronounciation from "../assets/audio/baggel.mp3";
+
+//@ts-ignore
+import TextLogo from "../assets/largehero.png?format=webp&w=1000";
 //@ts-ignore
 import Screenshot from "../assets/server_status_background_1.png?format=webp&w=100";
 
 import { LINKS } from "../config";
-
-// IMAGES
-
-//@ts-ignore
-import ImageCrystalFightLow from "../assets/images/gamemodes/Crystalfight.png?format=webp&w=100";
-//@ts-ignore
-import ImageCrystalFightMed from "../assets/images/gamemodes/Crystalfight.png?format=webp&w=800";
-//@ts-ignore
-import ImageCrystalFightHigh from "../assets/images/gamemodes/Crystalfight.png?format=png&w=1400";
-
-//@ts-ignore
-import ImageFFALow from "../assets/images/gamemodes/FFA.png?format=webp&w=100";
-//@ts-ignore
-import ImageFFAMed from "../assets/images/gamemodes/FFA.png?format=webp&w=800";
-//@ts-ignore
-import ImageFFAHigh from "../assets/images/gamemodes/FFA.png?format=png&w=1400";
-
-//@ts-ignore
-import ImagePillarsLow from "../assets/images/gamemodes/Pillars.png?format=webp&w=100";
-//@ts-ignore
-import ImagePillarsMed from "../assets/images/gamemodes/Pillars.png?format=webp&w=800";
-//@ts-ignore
-import ImagePillarsHigh from "../assets/images/gamemodes/Pillars.png?format=png&w=1400";
-
-//@ts-ignore
-import ImageLudoLow from "../assets/images/gamemodes/Ludo.png?format=webp&w=100";
-//@ts-ignore
-import ImageLudoMed from "../assets/images/gamemodes/Ludo.png?format=webp&w=800";
-//@ts-ignore
-import ImageLudoHigh from "../assets/images/gamemodes/Ludo.png?format=png&w=1400";
-
-//@ts-ignore
-import ImagePvPLow from "../assets/images/gamemodes/PvP.png?format=webp&w=100";
-//@ts-ignore
-import ImagePvPMed from "../assets/images/gamemodes/PvP.png?format=webp&w=800";
-//@ts-ignore
-import ImagePvPHigh from "../assets/images/gamemodes/PvP.png?format=png&w=1400";
-
-//@ts-ignore
-import ImageGolfLow from "../assets/images/gamemodes/Golf.png?format=webp&w=100";
-//@ts-ignore
-import ImageGolfMed from "../assets/images/gamemodes/Golf.png?format=webp&w=800";
-//@ts-ignore
-import ImageGolfHigh from "../assets/images/gamemodes/Golf.png?format=png&w=1400";
-
-//@ts-ignore
-import ImageMinigolfLow from "../assets/images/gamemodes/Minigolf.png?format=webp&w=100";
-//@ts-ignore
-import ImageMinigolfMed from "../assets/images/gamemodes/Minigolf.png?format=webp&w=800";
-//@ts-ignore
-import ImageMinigolfHigh from "../assets/images/gamemodes/Minigolf.png?format=png&w=1400";
-
-//@ts-ignore
-import ImageReplicaLow from "../assets/images/gamemodes/Replica.png?format=webp&w=100";
-//@ts-ignore
-import ImageReplicaMed from "../assets/images/gamemodes/Replica.png?format=webp&w=800";
-//@ts-ignore
-import ImageReplicaHigh from "../assets/images/gamemodes/Replica.png?format=png&w=1400";
-
-//@ts-ignore
-import ImageElytraLow from "../assets/images/gamemodes/Elytra.png?format=webp&w=100";
-//@ts-ignore
-import ImageElytraMed from "../assets/images/gamemodes/Elytra.png?format=webp&w=800";
-//@ts-ignore
-import ImageElytraHigh from "../assets/images/gamemodes/Elytra.png?format=png&w=1400";
-
-import Pronounciation from "../assets/audio/baggel.mp3";
-
-//@ts-ignore
-import IconBedWars from "../assets/images/gamemodes/icons/bedwars.png?format=webp&w=128";
-//@ts-ignore
-import IconSkyWars from "../assets/images/gamemodes/icons/skywars.png?format=webp&w=128";
-//@ts-ignore
-import IconChess from "../assets/images/gamemodes/icons/chess.png?format=webp&w=128";
-//@ts-ignore
-import IconHideAndSeek from "../assets/images/gamemodes/icons/hideandseek.png?format=webp&w=128";
-//@ts-ignore
-import IconLasertag from "../assets/images/gamemodes/icons/lasertag.png?format=webp&w=128";
-//@ts-ignore
-import IconTntTag from "../assets/images/gamemodes/icons/tnttag.png?format=webp&w=128";
-
-const finishedGames = [
-  {
-    name: "CrystalFight",
-    description:
-      "Katapultiere dich mit End-Kristallen und Respawn-Ankern über die Karte! Zerstöre das Bett deines Gegners und schalte ihn aus, bevor er dir zuvorkommt. Präzises Timing und mutige Sprünge entscheiden über Sieg oder Fall.",
-    images: [ImageCrystalFightLow, ImageCrystalFightMed, ImageCrystalFightHigh],
-    image_alt:
-      "Ein Spieler wird durch die Explosion eines End-Kristalls über eine Arena mit Betten katapultiert.",
-  },
-  {
-    name: "Knockback FFA",
-    description:
-      "Keine Teams, keine Gnade! Jeder Spieler für sich selbst! Springe in chaotische Free-for-All-Kämpfe, bei denen schnelles Denken und Geschick entscheiden, wer das Schlachtfeld dominiert.",
-    images: [ImageFFALow, ImageFFAMed, ImageFFAHigh],
-    image_alt:
-      "Zwei Spieler kämpfen in einer Ebenenlandschaft mit Lederrüstungen und Knockback Sticks.",
-  },
-  {
-    name: "Pillars of Fortune",
-    description:
-      "Du spawnst auf einem Bedrock-Turm mitten im Nichts. Alle paar Sekunden gibt dir das Schicksal einen zufälligen Gegenstand, darunter eigens gebraute Custom-Potions. Improvisiere und mach das Beste aus dem, was das Glück dir gibt. Wer zuletzt übrig bleibt, gewinnt.",
-    images: [ImagePillarsLow, ImagePillarsMed, ImagePillarsHigh],
-    image_alt:
-      "Ein Spieler steht auf einer schmalen Bedrock-Säule, die im Nichts schwebt, umgeben von treibenden Items.",
-  },
-  {
-    name: "Ludo",
-    description:
-      "Das klassische Brettspiel, neu erfunden in Minecraft! Nutze Items, um deine Gegner zu sabotieren, und tritt in Duellen an, um zu entscheiden, wessen Spielfigur bleiben darf und wer zurück nach Hause muss.",
-    images: [ImageLudoLow, ImageLudoMed, ImageLudoHigh],
-    image_alt:
-      "Ein farbenfrohes Ludo-Spielbrett aus Blöcken mit bunten Spielfiguren in Minecraft.",
-  },
-  {
-    name: "Duels",
-    description:
-      "Kit-PvP in Reinform, ein echter Klassiker. Wähle dein Kit, schärfe deine Reflexe und kämpfe im 1v1 um den Sieg in unseren Arenen! Nur die Besten werden bestehen.",
-    images: [ImagePvPLow, ImagePvPMed, ImagePvPHigh],
-    image_alt:
-      "Zwei Spieler in Rüstungen kämpfen mit Schwertern und Schilden in einer Arena.",
-  },
-  {
-    name: "Golf",
-    description:
-      "Golf, wie du es kennst, jetzt in Minecraft! Schlage den Ball mit Bedacht über liebevoll gestaltete Bahnen und versuche, mit möglichst wenigen Schlägen ins Loch zu treffen.",
-    images: [ImageGolfLow, ImageGolfMed, ImageGolfHigh],
-    image_alt:
-      "Ein Spieler steht auf einer grünen Golfbahn aus Blöcken und zielt auf das Loch.",
-  },
-  {
-    name: "Minigolf",
-    description:
-      "Minigolf für zwischendurch! Meistere kreative, kniffelige Bahnen voller Hindernisse und Tricks und beweise, wer den ruhigsten Schwung hat.",
-    images: [ImageMinigolfLow, ImageMinigolfMed, ImageMinigolfHigh],
-    image_alt:
-      "Eine bunte Minigolfbahn mit Hindernissen und Kurven, gebaut aus Minecraft-Blöcken.",
-  },
-  {
-    name: "Replica",
-    description:
-      "Pass genau auf! Ein Bild erscheint und es liegt an dir, es so schnell wie möglich originalgetreu nachzubauen. Geschwindigkeit und Präzision entscheiden, wer als Meisterbauer herrscht.",
-    images: [ImageReplicaLow, ImageReplicaMed, ImageReplicaHigh],
-    image_alt:
-      "Zwei nebeneinander stehende Bauwerke, eines als Vorlage und eines als Nachbau eines Spielers.",
-  },
-  {
-    name: "Elytra Race",
-    description:
-      "Teste deine Flugkünste im Rennen gegen andere! Rase mit deiner Elytra durch anspruchsvolle Streckenabschnitte und Ringe und sichere dir als Erster die Ziellinie.",
-    images: [ImageElytraLow, ImageElytraMed, ImageElytraHigh],
-    image_alt:
-      "Mehrere Spieler fliegen mit Elytren durch eine Rennstrecke aus schwebenden Ringen.",
-  },
-];
-
-const unfinishedGames = [
-  {
-    name: "BedWars",
-    description:
-      "Verteidige dein Bett und zerstöre die deiner Gegner! Sammle Ressourcen von deinem Generator, rüste dein Team aus und kämpfe um das letzte stehende Bett.",
-    icon: "bedwars",
-  },
-  {
-    name: "SkyWars",
-    description:
-      "Kämpfe auf schwebenden Inseln ums Überleben! Plündere Truhen nach Ausrüstung, überbrücke die Leere und sei der letzte Spieler, der noch in der Luft steht.",
-    icon: "skywars",
-  },
-  {
-    name: "Chess",
-    description:
-      "Das klassische Strategiespiel im Minecraft-Stil. Bewege deine Armee über das Brett, plane jeden Angriff und setze deinen Gegner schachmatt!",
-    icon: "chess",
-  },
-  {
-    name: "Hide and Seek",
-    description:
-      "Verstecke dich gut oder finde alle anderen! Ein Spieler sucht, während sich der Rest als Blöcke getarnt irgendwo auf der Karte versteckt. Wer zuletzt entdeckt wird, gewinnt.",
-    icon: "hideandseek",
-  },
-  {
-    name: "Lasertag",
-    description:
-      "Schnapp dir deinen Blaster und ballere dich zum Sieg! Schnelle Reflexe, gute Deckung und Teamarbeit entscheiden, wer das Feld am Ende dominiert.",
-    icon: "lasertag",
-  },
-  {
-    name: "TNT Tag",
-    description:
-      "Wer zuletzt die tickende TNT in der Hand hält, verliert! Gib sie rechtzeitig an einen anderen Spieler weiter, bevor sie hochgeht. Geschwindigkeit und Strategie entscheiden über Sieg oder Niederlage.",
-    icon: "tnttag",
-  },
-];
-
-// Tiny square PNG icons for games that don't have artwork yet.
-const ICONS: Record<string, ImageMetadata> = {
-  bedwars: IconBedWars,
-  skywars: IconSkyWars,
-  chess: IconChess,
-  hideandseek: IconHideAndSeek,
-  lasertag: IconLasertag,
-  tnttag: IconTntTag,
-};
+import { finishedGames, unfinishedGames } from "../content/games";
 ---
 
 <DefaultLayout>
@@ -351,90 +149,21 @@ const ICONS: Record<string, ImageMetadata> = {
       <audio id="pronunciationAudio" src={Pronounciation}></audio>
     </section>
 
-    <!-- Finished Games Section -->
     <section class="finished-games text-center">
       <h2 class="text-2xl font-bold mb-8 text-primary">Verfügbare Spiele</h2>
 
       <div class="flex flex-wrap justify-center gap-8">
-        {
-          finishedGames.map((game) => (
-            <div
-              class="tilt-card game-card w-full sm:w-[45%] lg:w-[45%] max-w-xl relative rounded-2xl overflow-hidden bg-background-10 border border-background-50 transition-colors duration-500 shadow-lg"
-              style={`--accent:#d6904f`}
-            >
-              <div class="cursor-glow" />
-              <span class="corner corner-tl" />
-              <span class="corner corner-br" />
-
-              <div class="relative z-10 h-52 sm:h-56 overflow-hidden">
-                <div class="progressive-img-wrapper w-full h-full">
-                  <img
-                    src={game.images[0]}
-                    data-images={JSON.stringify(game.images)}
-                    alt={game.image_alt}
-                    loading="lazy"
-                    decoding="async"
-                    class="progressive-img w-full h-full object-cover"
-                  />
-                </div>
-                <span
-                  class="absolute top-4 right-4 z-2 font-minecraft text-[10px] tracking-normal px-2 py-1 rounded backdrop-blur-sm"
-                  style={`background:color-mix(in srgb, #d6904f 18%, transparent); color:#d6904f; border:1px solid color-mix(in srgb, #d6904f 40%, transparent);`}
-                >
-                  Verfügbar
-                </span>
-              </div>
-
-              <div class="relative z-10 p-6 text-left space-y-3">
-                <h3 class="text-xl font-bold text-primary">{game.name}</h3>
-                <p class="text-text-50">{game.description}</p>
-              </div>
-
-              <div class="card-shine" />
-            </div>
-          ))
-        }
+        {finishedGames.map((game) => <GameCard game={game} />)}
       </div>
     </section>
 
     <Separator />
 
-    <!-- Coming Soon Section -->
     <section class="unfinished-games text-center">
       <h2 class="text-2xl font-bold mb-8 text-primary">Demnächst</h2>
 
       <div class="flex flex-wrap justify-center gap-8">
-        {
-          unfinishedGames.map((game) => (
-            <div
-              class="tilt-card game-card game-card--concept w-full sm:w-[45%] lg:w-[45%] max-w-xl relative rounded-2xl overflow-hidden bg-background-10 border-2 border-dashed border-background-50 transition-colors duration-500"
-              style={`--accent:#d6904f`}
-            >
-              <div class="cursor-glow" />
-
-              <div class="blueprint-grid relative z-10 h-52 sm:h-56 overflow-hidden flex items-center justify-center">
-                <pre class="code-typer" aria-hidden="true" />
-                {/* @ts-ignore */}
-                <img
-                  src={ICONS[game.icon]}
-                  alt={`${game.name} Icon`}
-                  class="icon-visual w-16 h-16 object-contain [image-rendering:pixelated]"
-                />
-                <span
-                  class="absolute top-4 right-4 z-2 font-minecraft text-[10px] tracking-normal px-2 py-1 rounded backdrop-blur-sm"
-                  style={`background:color-mix(in srgb, #d6904f 18%, transparent); color:#d6904f; border:1px solid color-mix(in srgb, #d6904f 40%, transparent);`}
-                >
-                  In Entwicklung
-                </span>
-              </div>
-
-              <div class="relative z-10 p-6 text-left space-y-3">
-                <h3 class="text-xl font-bold text-primary">{game.name}</h3>
-                <p class="text-text-50">{game.description}</p>
-              </div>
-            </div>
-          ))
-        }
+        {unfinishedGames.map((game) => <GameCard game={game} />)}
       </div>
     </section>
 

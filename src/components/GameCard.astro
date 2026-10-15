@@ -1,0 +1,85 @@
+---
+import type { Game, ConceptGame } from "../content/games";
+import { getGameImages, getGameIcon } from "../scripts/index/gameImages";
+
+interface Props {
+  game: Game | ConceptGame;
+}
+
+const { game } = Astro.props;
+
+const available = "image" in game;
+const images = "image" in game ? getGameImages(game.image) : [];
+const icon = "icon" in game ? getGameIcon(game.icon) : undefined;
+---
+
+<div
+  class:list={[
+    "tilt-card game-card w-full sm:w-[45%] max-w-xl relative rounded-2xl overflow-hidden bg-background-10 transition-colors duration-500",
+    available
+      ? "border border-background-50 shadow-lg"
+      : "game-card--concept border-2 border-dashed border-background-50",
+  ]}
+  style="--accent:#d6904f"
+>
+  <div class="cursor-glow"></div>
+  {
+    available && (
+      <>
+        <span class="corner corner-tl" />
+        <span class="corner corner-br" />
+      </>
+    )
+  }
+
+  <div
+    class:list={[
+      "relative z-10 h-52 sm:h-56 overflow-hidden",
+      !available && "blueprint-grid flex items-center justify-center",
+    ]}
+  >
+    {
+      "image" in game ? (
+        <div class="progressive-img-wrapper w-full h-full">
+          <img
+            src={images[0]}
+            data-images={JSON.stringify(images)}
+            alt={game.imageAlt}
+            loading="lazy"
+            decoding="async"
+            class="progressive-img w-full h-full object-cover"
+          />
+        </div>
+      ) : (
+        <>
+          <pre class="code-typer" aria-hidden="true" />
+          <img
+            src={icon}
+            alt={`${game.name} Icon`}
+            class="icon-visual w-16 h-16 object-contain [image-rendering:pixelated]"
+          />
+        </>
+      )
+    }
+    <span
+      class="badge absolute top-4 right-4 z-2 font-minecraft text-[10px] tracking-normal px-2 py-1 rounded backdrop-blur-sm"
+    >
+      {available ? "Verfügbar" : "In Entwicklung"}
+    </span>
+  </div>
+
+  <div class="relative z-10 p-6 text-left space-y-3">
+    <h3 class="text-xl font-bold text-primary">{game.name}</h3>
+    <p class="text-text-50">{game.description}</p>
+  </div>
+
+  {available && <div class="card-shine" />}
+</div>
+
+<style>
+  .badge {
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 18%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  }
+</style>
