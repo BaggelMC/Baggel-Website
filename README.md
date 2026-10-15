@@ -2,6 +2,8 @@
 
 This is the official website for Baggel. Built with **Astro**, **TypeScript**, and **Tailwind CSS**, it is a mostly static site.
 
+The website repository lives on our [Forgejo](https://git.mathias2246.net/BuildMC/Baggel-Website).
+
 ## 🛠 Tech Stack
 
 - **Astro** – static site generator
