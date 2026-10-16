@@ -4,15 +4,44 @@ import logoSrc from "../assets/logo.png?format=webp&w=64&h=64";
 // @ts-ignore
 import texture from "../assets/header-texture.png?format=webp&h=200";
 
-const home_url = "/";
-const buildmc_url = "/projects/buildmc";
-const core_url = "/tools/core";
-const minimessage_url = "/tools/minimessage";
-const gallery_url = "/gallery";
-const team_url = "/team";
+type NavLink = { label: string; href: string };
+type NavGroup = { label: string; children: NavLink[] };
+type NavItem = NavLink | NavGroup;
+
+const nav: NavItem[] = [
+  { label: "Home", href: "/" },
+  {
+    label: "Projekte",
+    children: [{ label: "BuildMC", href: "/projects/buildmc" }],
+  },
+  {
+    label: "Tools",
+    children: [
+      { label: "Core-Plugin", href: "/tools/core" },
+      { label: "MiniMessage", href: "/tools/minimessage" },
+    ],
+  },
+  { label: "Gallerie", href: "/gallery" },
+  { label: "Team", href: "/team" },
+];
+
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isCurrent = (href: string) =>
+  href === "/" ? currentPath === "/" : currentPath.startsWith(href);
+const ariaCurrent = (href: string) => (isCurrent(href) ? "page" : undefined);
+
+const ring =
+  "rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 ---
 
 <header class="relative text-text shadow-lg">
+  <a
+    href="#main-content"
+    class="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-999999 focus:rounded-md focus:bg-background focus:px-4 focus:py-2 focus:text-accent focus:outline-2 focus:outline-accent"
+  >
+    Zum Inhalt springen
+  </a>
+
   <div
     class="relative"
     style={`background-image: url(${texture}); background-size: cover; background-position: center; image-rendering: pixelated;`}
@@ -25,309 +54,313 @@ const team_url = "/team";
     <div
       class="max-w-6xl mx-auto flex justify-between items-center p-(--space-4)"
     >
-      <!-- Logo -->
       <a
         href="/"
-        class="flex items-center gap-2 text-lg font-bold font-minecraft z-2"
+        class:list={[
+          "flex items-center gap-2 text-lg font-bold font-minecraft z-2",
+          ring,
+        ]}
       >
-        <img src={logoSrc} alt="Logo" class="h-[2em] w-auto" />
+        <img src={logoSrc} alt="" class="h-[2em] w-auto" />
         Baggel
       </a>
 
       <!-- Desktop Navigation -->
-      <nav class="hidden md:block">
-        <ul class="flex space-x-6 items-center">
-          <li>
-            <a href={home_url} class="hover:text-accent transition">Home</a>
-          </li>
+      <nav class="hidden md:block" aria-label="Hauptnavigation">
+        <ul class="flex space-x-6 items-center" data-popup-group>
+          {
+            nav.map((item, i) =>
+              "children" in item ? (
+                <li class="relative" data-dropdown data-popup>
+                  <button
+                    type="button"
+                    class:list={[
+                      "flex items-center gap-1 hover:text-accent transition",
+                      ring,
+                    ]}
+                    aria-expanded="false"
+                    aria-controls={`submenu-${i}`}
+                  >
+                    {item.label}
+                    <svg
+                      aria-hidden="true"
+                      focusable="false"
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-4 w-4 transition-transform"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </button>
 
-          <!-- Projects Dropdown -->
-          <li class="dropdown relative">
-            <button
-              class="flex items-center gap-1 hover:text-accent transition"
-              aria-expanded="false"
-            >
-              Projekte
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19 9l-7 7-7-7"></path>
-              </svg>
-            </button>
-
-            <ul
-              class="dropdown-menu hidden absolute left-0 mt-2 rounded-2xl p-px bg-linear-to-br from-background via-accent to-background z-999999"
-              role="menu"
-            >
-              <div class="bg-background rounded-[inherit] overflow-hidden">
+                  <div
+                    id={`submenu-${i}`}
+                    class="hidden absolute left-0 mt-2 rounded-2xl p-px bg-linear-to-br from-background via-accent to-background z-999999"
+                  >
+                    <ul class="bg-background rounded-[inherit] overflow-hidden">
+                      {item.children.map((child) => (
+                        <li>
+                          <a
+                            href={child.href}
+                            aria-current={ariaCurrent(child.href)}
+                            class="block px-4 py-2 hover:bg-accent-light hover:text-accent focus-visible:bg-accent-light focus-visible:text-accent focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-accent aria-[current=page]:text-accent"
+                          >
+                            {child.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </li>
+              ) : (
                 <li>
                   <a
-                    href={buildmc_url}
-                    role="menuitem"
-                    class="block px-4 py-2 hover:bg-accent-light hover:text-accent"
-                    >BuildMC</a>
+                    href={item.href}
+                    aria-current={ariaCurrent(item.href)}
+                    class:list={[
+                      "hover:text-accent transition aria-[current=page]:text-accent",
+                      ring,
+                    ]}
+                  >
+                    {item.label}
+                  </a>
                 </li>
-              </div>
-            </ul>
-          </li>
-
-          <!-- Tools Dropdown -->
-          <li class="dropdown relative">
-            <button
-              class="flex items-center gap-1 hover:text-accent transition"
-              aria-expanded="false"
-            >
-              Tools
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19 9l-7 7-7-7"></path>
-              </svg>
-            </button>
-
-            <ul
-              class="dropdown-menu hidden absolute left-0 mt-2 rounded-2xl p-px bg-linear-to-br from-background via-accent to-background z-999999"
-              role="menu"
-            >
-              <div class="bg-background rounded-[inherit] overflow-hidden">
-                <li>
-                  <a
-                    href={core_url}
-                    role="menuitem"
-                    class="block px-4 py-2 hover:bg-accent-light hover:text-accent"
-                    >Core-Plugin</a>
-                </li>
-                <li>
-                  <a
-                    href={minimessage_url}
-                    role="menuitem"
-                    class="block px-4 py-2 hover:bg-accent-light hover:text-accent"
-                    >MiniMessage</a>
-                </li>
-              </div>
-            </ul>
-          </li>
-
-          <li>
-            <a href={gallery_url} class="hover:text-accent transition"
-              >Gallerie</a>
-          </li>
-          <li>
-            <a href={team_url} class="hover:text-accent transition">Team</a>
-          </li>
+              ),
+            )
+          }
         </ul>
       </nav>
 
       <!-- Mobile Menu Button -->
       <button
         id="mobile-menu-toggle"
-        class="md:hidden flex flex-col gap-1 p-2"
+        type="button"
+        class:list={["md:hidden flex flex-col gap-1 p-2", ring]}
         aria-expanded="false"
         aria-controls="mobile-menu"
-        aria-label="Toggle menu"
+        aria-label="Menü"
       >
-        <span class="block w-6 h-0.5 bg-current"></span>
-        <span class="block w-6 h-0.5 bg-current"></span>
-        <span class="block w-6 h-0.5 bg-current"></span>
+        <span class="block w-6 h-0.5 bg-current" aria-hidden="true"></span>
+        <span class="block w-6 h-0.5 bg-current" aria-hidden="true"></span>
+        <span class="block w-6 h-0.5 bg-current" aria-hidden="true"></span>
       </button>
     </div>
   </div>
 
-  <!-- Mobile Navigation -->
+
   <nav
     id="mobile-menu"
-    class="md:hidden max-h-0 overflow-hidden transition-all duration-300 bg-background/95 backdrop-blur-md"
+    aria-label="Mobile Navigation"
+    inert
+    class="md:hidden max-h-0 overflow-hidden transition-all duration-300 motion-reduce:transition-none bg-background/95 backdrop-blur-md"
   >
     <ul class="flex flex-col p-4 space-y-2 border-t border-background-50">
-      <li><a href={home_url} class="block py-2">Home</a></li>
-
-      <li class="dropdown">
-        <button
-          class="w-full flex justify-between items-center py-2"
-          aria-expanded="false"
-        >
-          Projekte
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-4 w-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M19 9l-7 7-7-7"></path>
-          </svg>
-        </button>
-        <ul class="dropdown-menu hidden pl-4" role="menu">
-          <li>
-            <a href={buildmc_url} role="menuitem" class="block py-1">BuildMC</a>
-          </li>
-        </ul>
-      </li>
-
-      <li class="dropdown">
-        <button
-          class="w-full flex justify-between items-center py-2"
-          aria-expanded="false"
-        >
-          Tools
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-4 w-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M19 9l-7 7-7-7"></path>
-          </svg>
-        </button>
-        <ul class="dropdown-menu hidden pl-4" role="menu">
-          <li>
-            <a href={core_url} role="menuitem" class="block py-1"
-              >Core-Plugin</a>
-          </li>
-          <li>
-            <a href={minimessage_url} role="menuitem" class="block py-1"
-              >MiniMessage</a>
-          </li>
-        </ul>
-      </li>
-
-      <li><a href={gallery_url} class="block py-2">Gallerie</a></li>
-      <li><a href={team_url} class="block py-2">Team</a></li>
+      {
+        nav.map((item, i) =>
+          "children" in item ? (
+            <li data-dropdown>
+              <button
+                type="button"
+                class:list={[
+                  "w-full flex justify-between items-center py-2",
+                  ring,
+                ]}
+                aria-expanded="false"
+                aria-controls={`m-submenu-${i}`}
+              >
+                {item.label}
+                <svg
+                  aria-hidden="true"
+                  focusable="false"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4 transition-transform"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              <ul id={`m-submenu-${i}`} class="hidden pl-4">
+                {item.children.map((child) => (
+                  <li>
+                    <a
+                      href={child.href}
+                      aria-current={ariaCurrent(child.href)}
+                      class:list={[
+                        "block py-2 aria-[current=page]:text-accent",
+                        ring,
+                      ]}
+                    >
+                      {child.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ) : (
+            <li>
+              <a
+                href={item.href}
+                aria-current={ariaCurrent(item.href)}
+                class:list={[
+                  "block py-2 aria-[current=page]:text-accent",
+                  ring,
+                ]}
+              >
+                {item.label}
+              </a>
+            </li>
+          ),
+        )
+      }
     </ul>
   </nav>
 
   <script>
-    const dropdowns = document.querySelectorAll<HTMLElement>(".dropdown");
+    const dropdowns = [
+      ...document.querySelectorAll<HTMLElement>("[data-dropdown]"),
+    ];
 
-    function closeAll(except?: HTMLElement | null) {
+    const getParts = (root: HTMLElement) => {
+      const button = root.querySelector<HTMLButtonElement>(":scope > button");
+      const menu = button
+        ? document.getElementById(button.getAttribute("aria-controls") ?? "")
+        : null;
+      const links = menu
+        ? [...menu.querySelectorAll<HTMLAnchorElement>("a[href]")]
+        : [];
+      return { button, menu, links };
+    };
+
+    const setOpen = (root: HTMLElement, open: boolean) => {
+      const { button, menu } = getParts(root);
+      if (!button || !menu) return;
+      button.setAttribute("aria-expanded", String(open));
+      menu.classList.toggle("hidden", !open);
+      button.querySelector("svg")?.classList.toggle("rotate-180", open);
+    };
+
+    const isOpen = (root: HTMLElement) =>
+      getParts(root).button?.getAttribute("aria-expanded") === "true";
+
+    const closeSiblings = (root: HTMLElement) => {
+      const group = root.parentElement;
       dropdowns.forEach((d) => {
-        if (d === except) return;
-
-        const btn = d.querySelector<HTMLButtonElement>("button");
-        const menu = d.querySelector<HTMLElement>(".dropdown-menu");
-        if (!btn || !menu) return;
-
-        btn.setAttribute("aria-expanded", "false");
-        menu.classList.add("hidden");
-
-        menu
-          .querySelectorAll<HTMLElement>('[role="menuitem"]')
-          .forEach((i) => i.setAttribute("tabindex", "-1"));
+        if (d !== root && d.parentElement === group) setOpen(d, false);
       });
-    }
+    };
 
-    dropdowns.forEach((dropdown) => {
-      const button = dropdown.querySelector<HTMLButtonElement>("button");
-      const menu = dropdown.querySelector<HTMLElement>(".dropdown-menu");
-      const items = menu?.querySelectorAll<HTMLElement>('[role="menuitem"]');
+    dropdowns.forEach((root) => {
+      const { button, links } = getParts(root);
+      if (!button) return;
 
-      if (!button || !menu || !items) return;
-
-      const open = () => {
-        closeAll(dropdown);
-        button.setAttribute("aria-expanded", "true");
-        menu.classList.remove("hidden");
-        items.forEach((i) => i.removeAttribute("tabindex"));
-      };
-
-      const close = () => {
-        button.setAttribute("aria-expanded", "false");
-        menu.classList.add("hidden");
-        items.forEach((i) => i.setAttribute("tabindex", "-1"));
-      };
-
-      button.addEventListener("click", (e: MouseEvent) => {
-        e.stopPropagation();
-        button.getAttribute("aria-expanded") === "true" ? close() : open();
+      button.addEventListener("click", () => {
+        const willOpen = !isOpen(root);
+        if (willOpen) closeSiblings(root);
+        setOpen(root, willOpen);
       });
 
-      button.addEventListener("keydown", (e: KeyboardEvent) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          button.click();
-        }
+      root.addEventListener("keydown", (e: KeyboardEvent) => {
+        const target = e.target as HTMLElement;
 
-        if (e.key === "ArrowDown") {
+        if (e.key === "Escape" && isOpen(root)) {
           e.preventDefault();
-          open();
-          items[0]?.focus();
-        }
-
-        if (e.key === "Escape") {
-          close();
+          e.stopPropagation(); // don't also close the whole mobile menu
+          setOpen(root, false);
           button.focus();
+          return;
         }
-      });
 
-      items.forEach((item, i) => {
-        item.addEventListener("keydown", (e: KeyboardEvent) => {
-          if (e.key === "Escape") {
-            e.preventDefault();
-            close();
-            button.focus();
-          }
-
+        if (target === button) {
           if (e.key === "ArrowDown") {
             e.preventDefault();
-            items[(i + 1) % items.length].focus();
+            closeSiblings(root);
+            setOpen(root, true);
+            links[0]?.focus();
           }
+          return;
+        }
 
-          if (e.key === "ArrowUp") {
+        const index = links.indexOf(target as HTMLAnchorElement);
+        if (index === -1) return;
+
+        switch (e.key) {
+          case "ArrowDown":
             e.preventDefault();
-            i === 0 ? button.focus() : items[i - 1].focus();
-          }
-        });
+            links[(index + 1) % links.length].focus();
+            break;
+          case "ArrowUp":
+            e.preventDefault();
+            index === 0 ? button.focus() : links[index - 1].focus();
+            break;
+          case "Home":
+            e.preventDefault();
+            links[0].focus();
+            break;
+          case "End":
+            e.preventDefault();
+            links[links.length - 1].focus();
+            break;
+        }
       });
     });
 
-    document.addEventListener("click", () => closeAll());
+    const popups = dropdowns.filter((d) => d.hasAttribute("data-popup"));
+    const closePopups = (except?: Node | null) =>
+      popups.forEach((p) => {
+        if (!except || !p.contains(except)) setOpen(p, false);
+      });
 
-    document.addEventListener("focusin", (e: FocusEvent) => {
-      const target = e.target as Node | null;
-      if (!target) return;
+    document.addEventListener("click", (e) => closePopups(e.target as Node));
+    document.addEventListener("focusin", (e) => closePopups(e.target as Node));
 
-      if (![...dropdowns].some((d) => d.contains(target))) {
-        closeAll();
-      }
-    });
+    /* ---------- Mobile menu ---------- */
 
     const toggle = document.getElementById(
       "mobile-menu-toggle",
     ) as HTMLButtonElement | null;
-    const mobileMenu = document.getElementById(
-      "mobile-menu",
-    ) as HTMLElement | null;
+    const mobileMenu = document.getElementById("mobile-menu");
 
-    toggle?.addEventListener("click", () => {
-      if (!mobileMenu) return;
+    if (toggle && mobileMenu) {
+      const setMobileOpen = (open: boolean) => {
+        mobileMenu.classList.toggle("max-h-[100vh]", open);
+        mobileMenu.inert = !open;
+        toggle.setAttribute("aria-expanded", String(open));
+      };
 
-      const isOpen = mobileMenu.classList.toggle("max-h-[100vh]");
-      toggle.setAttribute("aria-expanded", String(isOpen));
-    });
+      toggle.addEventListener("click", () =>
+        setMobileOpen(toggle.getAttribute("aria-expanded") !== "true"),
+      );
+
+      document.addEventListener("keydown", (e) => {
+        if (
+          e.key === "Escape" &&
+          toggle.getAttribute("aria-expanded") === "true"
+        ) {
+          setMobileOpen(false);
+          toggle.focus();
+        }
+      });
+
+      // Don't leave the mobile menu "open" when resizing up to desktop
+      window
+        .matchMedia("(min-width: 48rem)")
+        .addEventListener("change", (e) => {
+          if (e.matches) setMobileOpen(false);
+        });
+    }
   </script>
 </header>
