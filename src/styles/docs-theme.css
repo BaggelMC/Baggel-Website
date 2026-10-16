@@ -73,12 +73,12 @@
 
 .simplebar-track.simplebar-vertical {
   width: 8px;
-  background: #25211E;
+  background: var(--sl-color-gray-5);
   border-radius: 12px;
 }
 
 .simplebar-scrollbar::before {
-  background-color: #dfc798;
+  background-color: var(--sl-color-accent-high);
   border-radius: 12px;
 }
 
@@ -89,26 +89,22 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #0b0a09;
+  background: var(--sl-color-black);
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #dfc798;
+  background: var(--sl-color-accent-high);
   border-radius: 9999px;
-  border: 2px solid #0b0a09;
+  border: 2px solid var(--sl-color-black);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #d6904f;
+  background: var(--sl-color-accent);
 }
 
-/* Firefox has to be extra ofc */
+/* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color:#dfc798 #0b0a09;
-}
-
-img {
-    border-radius: 1rem;
+  scrollbar-color: var(--sl-color-accent-high) var(--sl-color-black);
 }
