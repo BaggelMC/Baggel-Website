@@ -51,10 +51,21 @@ const socials = [
   },
 ];
 
+interface Props {
+  enableBackground?: boolean;
+}
+
+const { enableBackground = true } = Astro.props;
+
 const year = new Date().getFullYear();
 ---
 
-<footer class="bg-background py-6 mt-12 shadow-xl">
+<footer
+  class:list={[
+    "bg-background py-6 mt-12 shadow-xl",
+    !enableBackground && "border-t-2 border-background-50",
+  ]}
+>
   <div
     class="container mx-auto flex flex-col md:flex-row items-center justify-between text-text-50 px-5 max-w-6xl"
   >

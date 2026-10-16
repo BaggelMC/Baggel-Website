@@ -15,7 +15,7 @@ const {
   meta_description = "BaggelMC - eine Minecraft server community",
   keywords = "Minecraft, Server, BaggelMC, BuildMC, Minigames, Community",
   titleSuffix = "BaggelMC",
-  enableAlpine = true,
+  enableAlpine = false,
   enableBackground = true,
   extraHead = null,
 } = Astro.props;
@@ -65,14 +65,16 @@ const fullTitle = title ? `${title} | ${titleSuffix}` : titleSuffix;
     class="relative min-h-screen text-text font-sans flex flex-col overflow-x-hidden bg-background"
     style={enableBackground ? `--page-bg: url(${Background});` : ""}
   >
-    {enableBackground && (
-      <div class="background-image pointer-events-none" aria-hidden="true"></div>
-    )}
+    {
+      enableBackground && (
+        <div class="background-image pointer-events-none" aria-hidden="true" />
+      )
+    }
 
     <Header title="BaggelMC" />
     <main class="grow relative z-10" id="main-content" tabindex="-1">
       <slot />
     </main>
-    <Footer />
+    <Footer enableBackground={enableBackground} />
   </body>
 </html>
