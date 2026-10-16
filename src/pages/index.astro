@@ -5,10 +5,6 @@ import Separator from "../components/Separator.astro";
 import CopyServerAddressButton from "../components/CopyServerAddressButton.astro";
 import GameCard from "../components/GameCard.astro";
 
-import DirtTexture from "../assets/images/textures/dirt.png";
-import PlayButtonTexture from "../assets/images/textures/play.png";
-import PlayButtonHoverTexture from "../assets/images/textures/play_hover.png";
-import Click from "../assets/audio/click.ogg";
 import Pronounciation from "../assets/audio/baggel.mp3";
 
 //@ts-ignore
@@ -62,37 +58,6 @@ import { finishedGames, unfinishedGames } from "../content/games";
             <span id="server-players" class="text-neutral-400">0 / 0</span>
           </li>
         </ul>
-
-        <div class="mt-4 text-center hidden md:block">
-          <div
-            class="motd-box mt-2 items-center gap-4 font-minecraft text-xs group inline-flex"
-            style={`background-image: url('${DirtTexture.src}');`}
-          >
-            <div
-              class="icon-container relative w-16 h-16 shrink-0 hidden select-none"
-              id="serverIconContainer"
-            >
-              <img
-                id="server-icon"
-                alt="Server Icon"
-                class="icon-image w-full h-full object-cover"
-              />
-              <img
-                src={PlayButtonTexture.src}
-                alt="Play Button Overlay"
-                class="icon-overlay absolute inset-0 w-full h-full object-cover"
-              />
-              <img
-                src={PlayButtonHoverTexture.src}
-                alt="Play Button Hover Overlay"
-                class="icon-overlay-hover absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100"
-              />
-              <audio id="clickAudio" src={Click}></audio>
-            </div>
-
-            <span id="server-motd" class="text-text-50">Lädt MOTD...</span>
-          </div>
-        </div>
 
         <div class="mt-4 flex justify-center">
           <CopyServerAddressButton
