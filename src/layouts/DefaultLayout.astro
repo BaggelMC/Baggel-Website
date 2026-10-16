@@ -5,7 +5,9 @@ import { RESOURCES } from "../config";
 import "../styles/global.css";
 
 // @ts-ignore
-import Background from "../assets/images/background/background_dark_1.png?format=webp&w=320&quality=70";
+import BackgroundDark from "../assets/images/background/background_dark_1.png?format=webp&w=320&quality=70";
+// @ts-ignore
+import BackgroundLight from "../assets/images/background/background_light.png?format=webp&w=320&quality=70";
 // @ts-ignore
 import metaImage from "../assets/largehero.png?format=webp";
 
@@ -54,20 +56,58 @@ const fullTitle = title ? `${title} | ${titleSuffix}` : titleSuffix;
 
     <link href={RESOURCES.fontURL} rel="stylesheet" />
 
-    <link rel="preload" as="image" href={Background} fetchpriority="high" />
-
     {enableAlpine && <script src="https://unpkg.com/alpinejs" defer />}
 
     <slot name="head" />
+    <script
+      is:inline
+      define:vars={{
+        bg: enableBackground
+          ? { dark: BackgroundDark, light: BackgroundLight }
+          : null,
+      }}
+    >
+      (() => {
+        let t;
+        try {
+          t = localStorage.getItem("starlight-theme");
+        } catch {}
+        if (t !== "light" && t !== "dark")
+          t = matchMedia("(prefers-color-scheme: light)").matches
+            ? "light"
+            : "dark";
+        document.documentElement.dataset.theme = t;
+
+        // Only preload the background of the active theme
+        if (bg) {
+          const link = document.createElement("link");
+          link.rel = "preload";
+          link.as = "image";
+          link.href = bg[t];
+          link.fetchPriority = "high";
+          document.head.append(link);
+        }
+      })();
+    </script>
   </head>
 
   <body
     class="relative min-h-screen text-text font-sans flex flex-col overflow-x-hidden bg-background"
-    style={enableBackground ? `--page-bg: url(${Background});` : ""}
+    style={enableBackground
+      ? `--page-bg-dark: url(${BackgroundDark}); --page-bg-light: url(${BackgroundLight});`
+      : ""}
   >
     {
       enableBackground && (
-        <div class="background-image pointer-events-none" aria-hidden="true" />
+        <div
+          class="background-image pointer-events-none"
+          aria-hidden="true"
+          data-bg-dark={BackgroundDark}
+          data-bg-light={BackgroundLight}
+        >
+          <div class="bg-layer" data-bg-layer="dark" />
+          <div class="bg-layer" data-bg-layer="light" />
+        </div>
       )
     }
 

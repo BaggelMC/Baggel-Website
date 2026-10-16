@@ -2,57 +2,60 @@
 
 @import "simplebar/dist/simplebar.css";
 
-
 @font-face {
   font-family: MinecraftStandard;
-  src: url(../assets/fonts/minecraft_standard/MinecraftStandard.otf)
+  src: url(../assets/fonts/minecraft_standard/MinecraftStandard.otf);
 }
 
 @font-face {
   font-family: MinecraftStandardBold;
-  src: url(../assets/fonts/minecraft_standard/MinecraftStandardBold.otf)
+  src: url(../assets/fonts/minecraft_standard/MinecraftStandardBold.otf);
 }
 
 @font-face {
-    font-family: "MinecraftMiniMessage";
-    src: url("../assets/fonts/minecraft_minimessage_editor/1_Minecraft-Regular.woff") format("woff");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: "MinecraftMiniMessage";
+  src: url("../assets/fonts/minecraft_minimessage_editor/1_Minecraft-Regular.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 @font-face {
-    font-family: "MinecraftMiniMessage";
-    src: url("../assets/fonts/minecraft_minimessage_editor/2_Minecraft-Italic.woff") format("woff");
-    font-weight: normal;
-    font-style: italic;
-    font-display: swap;
+  font-family: "MinecraftMiniMessage";
+  src: url("../assets/fonts/minecraft_minimessage_editor/2_Minecraft-Italic.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
 }
 @font-face {
-    font-family: "MinecraftMiniMessage";
-    src: url("../assets/fonts/minecraft_minimessage_editor/3_Minecraft-Bold.woff") format("woff");
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
+  font-family: "MinecraftMiniMessage";
+  src: url("../assets/fonts/minecraft_minimessage_editor/3_Minecraft-Bold.woff")
+    format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
 }
 @font-face {
-    font-family: "MinecraftMiniMessage";
-    src: url("../assets/fonts/minecraft_minimessage_editor/4_Minecraft-BoldItalic.woff") format("woff");
-    font-weight: bold;
-    font-style: italic;
-    font-display: swap;
+  font-family: "MinecraftMiniMessage";
+  src: url("../assets/fonts/minecraft_minimessage_editor/4_Minecraft-BoldItalic.woff")
+    format("woff");
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
 }
 
 @theme {
   /* Colors */
   --color-text: #f1e4db;
-  --color-text-50: #928A85;
-  --color-text-100: #514D4B;
+  --color-text-50: #928a85;
+  --color-text-100: #514d4b;
 
   --color-background: #0b0a09;
   --color-background-gradient: #121212;
-  --color-background-10: #25211E;
-  --color-background-50: #3E3933;
-  --color-background-100: #8B7E72;
+  --color-background-10: #25211e;
+  --color-background-50: #3e3933;
+  --color-background-100: #8b7e72;
 
   --color-primary: #dfc798;
   --color-secondary: #8b4d25;
@@ -64,6 +67,9 @@
   --color-error-gradient: #b91c1c;
 
   --color-separator: #666666;
+
+  --color-header-1: #dfc798;
+  --color-header-2: #d6904f;
 
   /* Font Family */
   --font-sans: "Cascadia Code", monospace;
@@ -116,7 +122,53 @@
   --transition-duration-base: 800ms;
   --transition-duration-fast: 300ms;
   --transition-timing-default: cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-timing-soft: cubic-bezier(0,.34,.15,.99);
+  --transition-timing-soft: cubic-bezier(0, 0.34, 0.15, 0.99);
+}
+
+/* Light theme: overrides the @theme tokens, so every utility
+   (bg-background, text-text, border-background-50, ...) follows automatically.
+   Values are derived from docs-theme.css so site and docs match. */
+:root {
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --color-text: #0b0a09;
+  --color-text-50: #514d4b;
+  --color-text-100: #8b7e72;
+
+  --color-background: #f7f0eb;
+  --color-background-gradient: #f2e8e2;
+  --color-background-10: #e8d8ce;
+  --color-background-50: #d3c2b6;
+  --color-background-100: #a09288;
+
+  --color-primary: #5a3018;
+  --color-secondary: #8b4d25;
+  --color-accent: #a06030;
+
+  --color-success: #16a34a;
+  --color-success-gradient: #15803d;
+  --color-error: #dc2626;
+  --color-error-gradient: #991b1b;
+
+  --color-separator: #a09288;
+
+  --color-header-1: #dfc798;
+  --color-header-2: #d6904f;
+}
+
+/* Theme toggle icons: sun in dark mode (-> go light), moon in light mode */
+.theme-toggle .icon-moon {
+  display: none;
+}
+:root[data-theme="light"] .theme-toggle .icon-sun {
+  display: none;
+}
+:root[data-theme="light"] .theme-toggle .icon-moon {
+  display: block;
 }
 
 .transition-smooth {
@@ -162,14 +214,63 @@
   scrollbar-color: var(--color-primary) var(--color-background);
 }
 
+/* Background: two stacked layers (dark/light) that crossfade.
+   A layer only gets its image when its theme is active, or once it has been
+   preloaded by the theme toggle (.is-loaded), so the unused image is never
+   downloaded unless someone actually switches themes. */
+body {
+  --page-bg: var(--page-bg-dark);
+}
+:root[data-theme="light"] body {
+  --page-bg: var(--page-bg-light);
+}
+
+/* Layers read their images from --layer-dark / --layer-light, set by whichever
+   element owns the layers (page background here, the header inline). */
 .background-image {
+  --layer-dark: var(--page-bg-dark);
+  --layer-light: var(--page-bg-light);
   position: fixed;
   inset: -5%;
   height: auto;
-  background-image: var(--page-bg);
-  background-size: cover;
-  background-position: center;
   filter: blur(24px);
   z-index: -1;
   will-change: transform;
+}
+
+.bg-layer {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-image: none;
+  opacity: 0;
+  transition: opacity 500ms var(--transition-timing-default);
+}
+
+/* dark is the default; light only when explicitly set (matches the tokens) */
+:root:not([data-theme="light"]) .bg-layer[data-bg-layer="dark"],
+.bg-layer[data-bg-layer="dark"].is-loaded {
+  background-image: var(--layer-dark);
+}
+:root:not([data-theme="light"]) .bg-layer[data-bg-layer="dark"] {
+  opacity: 1;
+}
+
+:root[data-theme="light"] .bg-layer[data-bg-layer="light"],
+.bg-layer[data-bg-layer="light"].is-loaded {
+  background-image: var(--layer-light);
+}
+:root[data-theme="light"] .bg-layer[data-bg-layer="light"] {
+  opacity: 1;
+}
+
+.image-rendering-pixelated {
+  image-rendering: pixelated;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-layer {
+    transition: none;
+  }
 }
