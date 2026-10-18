@@ -2,7 +2,7 @@
 title: Spawn Elytra
 ---
 
-![Elytra Showcase](src/assets/docs/images/spawn-elytra/showcase.png)
+![Elytra Showcase](@assets/docs/images/spawn-elytra/showcase.png)
 
 The **Spawn Elytra** system gives players temporary elytra flight inside a defined **elytra zone**. An area set up by the server administrators, usually around spawn or the starting island. The feature helps players **comfortably spread out across a larger area** at the beginning of a season or event, without needing to first earn their own elytra.
 

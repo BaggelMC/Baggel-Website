@@ -4,17 +4,17 @@
 
 @font-face {
   font-family: MinecraftStandard;
-  src: url(../assets/fonts/minecraft_standard/MinecraftStandard.otf);
+  src: url(@assets/fonts/minecraft_standard/MinecraftStandard.otf);
 }
 
 @font-face {
   font-family: MinecraftStandardBold;
-  src: url(../assets/fonts/minecraft_standard/MinecraftStandardBold.otf);
+  src: url(@assets/fonts/minecraft_standard/MinecraftStandardBold.otf);
 }
 
 @font-face {
   font-family: "MinecraftMiniMessage";
-  src: url("../assets/fonts/minecraft_minimessage_editor/1_Minecraft-Regular.woff")
+  src: url("@assets/fonts/minecraft_minimessage_editor/1_Minecraft-Regular.woff")
     format("woff");
   font-weight: normal;
   font-style: normal;
@@ -22,7 +22,7 @@
 }
 @font-face {
   font-family: "MinecraftMiniMessage";
-  src: url("../assets/fonts/minecraft_minimessage_editor/2_Minecraft-Italic.woff")
+  src: url("@assets/fonts/minecraft_minimessage_editor/2_Minecraft-Italic.woff")
     format("woff");
   font-weight: normal;
   font-style: italic;
@@ -30,7 +30,7 @@
 }
 @font-face {
   font-family: "MinecraftMiniMessage";
-  src: url("../assets/fonts/minecraft_minimessage_editor/3_Minecraft-Bold.woff")
+  src: url("@assets/fonts/minecraft_minimessage_editor/3_Minecraft-Bold.woff")
     format("woff");
   font-weight: bold;
   font-style: normal;
@@ -38,7 +38,7 @@
 }
 @font-face {
   font-family: "MinecraftMiniMessage";
-  src: url("../assets/fonts/minecraft_minimessage_editor/4_Minecraft-BoldItalic.woff")
+  src: url("@assets/fonts/minecraft_minimessage_editor/4_Minecraft-BoldItalic.woff")
     format("woff");
   font-weight: bold;
   font-style: italic;

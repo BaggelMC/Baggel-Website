@@ -11,13 +11,14 @@ export interface GallerySection {
 }
 
 const full = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/gallery/**/*.{png,jpg,jpeg,webp,gif,avif}",
+  // @assets does not work here
+  "@assets/gallery/**/*.{png,jpg,jpeg,webp,gif,avif}",
   { eager: true },
 );
 
-// 160px wide = 2x for the 80px thumbnails, so they stay crisp on hi-dpi screens.
 const thumbs = import.meta.glob<string>(
-  "/src/assets/gallery/**/*.{png,jpg,jpeg,webp,gif,avif}",
+  // @assets does not work here
+  "@assets/gallery/**/*.{png,jpg,jpeg,webp,gif,avif}",
   {
     eager: true,
     import: "default",

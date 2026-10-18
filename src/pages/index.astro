@@ -5,12 +5,12 @@ import Separator from "../components/Separator.astro";
 import CopyServerAddressButton from "../components/CopyServerAddressButton.astro";
 import GameCard from "../components/GameCard.astro";
 
-import Pronounciation from "../assets/audio/baggel.mp3";
+import Pronounciation from "@assets/audio/baggel.mp3";
 
 //@ts-ignore
-import TextLogo from "../assets/largehero.png?format=webp&w=1000";
+import TextLogo from "@assets/largehero.png?format=webp&w=1000";
 //@ts-ignore
-import Screenshot from "../assets/server_status_background_1.png?format=webp&w=100";
+import Screenshot from "@assets/server_status_background_1.png?format=webp&w=100";
 
 import { LINKS } from "../config";
 import { finishedGames, unfinishedGames } from "../content/games";
@@ -145,12 +145,12 @@ import { finishedGames, unfinishedGames } from "../content/games";
   </div>
 </DefaultLayout>
 
-<script src="../scripts/index/pronounciationButton.ts"></script>
+<script src="@scripts/index/pronounciationButton.ts"></script>
 
-<script src="../scripts/index/serverStatus.ts"></script>
+<script src="@scripts/index/serverStatus.ts"></script>
 
-<script src="../scripts/index/progressiveImages.ts"></script>
+<script src="@scripts/index/progressiveImages.ts"></script>
 
-<script src="../scripts/index/cardTilt.ts"></script>
+<script src="@scripts/index/cardTilt.ts"></script>
 
-<script src="../scripts/index/codeTyper.ts"></script>
+<script src="@scripts/index/codeTyper.ts"></script>

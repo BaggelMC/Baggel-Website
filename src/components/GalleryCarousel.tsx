@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import type { GallerySection } from "../scripts/gallery";
+import type { GallerySection } from "@scripts/gallery";
 
 const SWIPE_THRESHOLD = 50; // px a drag must travel to change slide
 const DRAG_START = 6; // px of movement before a press counts as a drag

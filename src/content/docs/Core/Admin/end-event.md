@@ -2,7 +2,7 @@
 title: End Event System
 ---
 
-![End Showcase](src/assets/docs/images/end-event/end-portal.png)
+![End Showcase](@assets/docs/images/end-event/end-portal.png)
 
 In most BuildMC events, the **End Dimension** is closed at the beginning of the project. A specific date is later chosen for the community to open the End and fight the Ender Dragon together.
 

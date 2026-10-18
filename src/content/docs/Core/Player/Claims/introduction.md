@@ -4,7 +4,7 @@ sidebar:
   order: 2
 ---
 
-![Claim Showcase](src/assets/docs/images/claims/claim-showcase.png)
+![Claim Showcase](@assets/docs/images/claims/claim-showcase.png)
 
 The **Claim System** exists to protect your builds and prevent griefing. In previous BuildMC servers, griefing was a recurring issue. To ensure fair play and preserve creativity, BuildMC introduced a powerful claim system that allows **players** and **teams** to claim areas of chunks that others cannot access or modify.
 
@@ -12,7 +12,7 @@ The **Claim System** exists to protect your builds and prevent griefing. In prev
 
 To create a claim, you first need to define the area to be claimed. We got a tool for that! Use the `/claim claimtool` command to obtain the **Claim Tool**.
 
-![Claim Tool Demo](src/assets/docs/images/claims/claimtool-demo-2.png)
+![Claim Tool Demo](@assets/docs/images/claims/claimtool-demo-2.png)
 
 You can use the Claim Tool to select which chunks of the world you want to claim.
 
@@ -29,7 +29,7 @@ Now you can use the `/claim create` command to create your claim.
 
 Running the command will open the **Claim creation UI**.
 
-![Claim Create UI](src/assets/docs/images/claims/claim-create-ui.png)
+![Claim Create UI](@assets/docs/images/claims/claim-create-ui.png)
 
 Here you can select your Claim Type (See: [Claim Types](/core/player/claims/claim-types)) and enter a name for your claim.
 
@@ -67,21 +67,21 @@ The claim system includes and easy to use graphical interface for editing the se
 
 Once you open the UI, you will be presented with all the claims you have access to.
 
-![Claim Select UI](src/assets/docs/images/claims/claim-select-ui.png)
+![Claim Select UI](@assets/docs/images/claims/claim-select-ui.png)
 
 From there you can select the claim you want to modify by clicking on the item.
 Here you are presented with information about your claim and three settings.
 
 > Clicking the `Back` button in the bottom right always takes you back to the previous page.
 
-![Claim Edit UI](src/assets/docs/images/claims/claim-edit-ui.png)
-![Claim Edit UI Info](src/assets/docs/images/claims/claim-edit-ui-info.png)
+![Claim Edit UI](@assets/docs/images/claims/claim-edit-ui.png)
+![Claim Edit UI Info](@assets/docs/images/claims/claim-edit-ui-info.png)
 
 ### Protections
 
 Clicking on the shield takes you to the Protections Menu.
 
-![Claim Protections UI](src/assets/docs/images/claims/claim-protections.png)
+![Claim Protections UI](@assets/docs/images/claims/claim-protections.png)
 
 Each protection has an item representing it. Hovering over it reveals it's name and a small description of what it does.
 Below each item is red or green glass. That represents if the current protection is active or not. **Red means the action will be blocked** and players are not allowed to perform it. **Green means the action is allowed** and anyone can perform it on your claim. Clicking on the glass allows you to toggle the active state for that protection. Changes are applied immediately.
@@ -90,11 +90,11 @@ Below each item is red or green glass. That represents if the current protection
 
 Clicking on the player head takes you to the Whitelist Menu. (See: [Whitelist](/core/player/claims/whitelist))
 
-![Claim Whitelist UI](src/assets/docs/images/claims/claim-whitelist.png)
+![Claim Whitelist UI](@assets/docs/images/claims/claim-whitelist.png)
 
 Here you can see all players that are currently whitelisted on the claim. Below each player head is a red glass pane. Clicking on it will allow you to remove that player from the whitelist. In the middle of the UI is a green glass pane. Clicking on it allows you to add a new player to the whitelist.
 
-![Claim Whitelist Add UI](src/assets/docs/images/claims/whitelist-add-ui.png)
+![Claim Whitelist Add UI](@assets/docs/images/claims/whitelist-add-ui.png)
 
 You will be asked to enter the player name into the input field.
 

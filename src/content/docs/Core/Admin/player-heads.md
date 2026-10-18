@@ -2,7 +2,7 @@
 title: Player Heads
 ---
 
-![Player Head](src/assets/docs/images/player-heads/showcase.png)
+![Player Head](@assets/docs/images/player-heads/showcase.png)
 
 When a player is killed by another player, the victim will drop their Player Head. The head uses the player’s skin at the time of their death, displays their username as the item name, and includes the death message as the lore.
 

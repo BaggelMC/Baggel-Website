@@ -9,7 +9,7 @@ const isDev = import.meta.env.DEV;
 
 export async function getTeamMembers(): Promise<TeamMember[]> {
   const modules = import.meta.glob<Record<string, any>>(
-    "../assets/team/*/data.json",
+    "@assets/team/*/data.json",
     { eager: true }
   );
 
@@ -21,14 +21,14 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
   if (!isDev) {
     imageModules = import.meta.glob<
       Record<string, { url: string }>
-    >("../assets/team/*/*.{png,jpg,jpeg,gif}", {
+    >("@assets/team/*/*.{png,jpg,jpeg,gif}", {
       query: { format: "webp", lossless: true },
       eager: true,
     });
   } else {
     imageModules = import.meta.glob<
       Record<string, string | { default: string }>
-    >("../assets/team/*/*.{png,jpg,jpeg,gif}", {
+    >("@assets/team/*/*.{png,jpg,jpeg,gif}", {
       eager: true,
       query: "?url",
       import: "default",

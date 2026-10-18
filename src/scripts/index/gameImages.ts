@@ -1,34 +1,38 @@
-const GAMEMODES = "/src/assets/images/gamemodes";
+const lowAndMed = import.meta.glob<string[]>("@assets/images/gamemodes/*.png", {
+  eager: true,
+  import: "default",
+  query: { w: "100;800", format: "webp" },
+});
 
-const lowAndMed = import.meta.glob<string[]>(
-  "/src/assets/images/gamemodes/*.png",
-  {
-    eager: true,
-    import: "default",
-    query: { w: "100;800", format: "webp" },
-  },
-);
-
-const high = import.meta.glob<string>("/src/assets/images/gamemodes/*.png", {
+const high = import.meta.glob<string>("@assets/images/gamemodes/*.png", {
   eager: true,
   import: "default",
   query: { w: "1400", format: "png" },
 });
 
-const icons = import.meta.glob<string>(
-  "/src/assets/images/gamemodes/icons/*.png",
-  {
-    eager: true,
-    import: "default",
-    query: { w: "128", format: "webp" },
-  },
-);
+const icons = import.meta.glob<string>("@assets/images/gamemodes/icons/*.png", {
+  eager: true,
+  import: "default",
+  query: { w: "128", format: "webp" },
+});
 
-/** Returns [low, medium, high] quality URLs, in the order progressiveImages.ts expects. */
+/** Re-key a glob result by bare filename (without extension). */
+function byName<T>(glob: Record<string, T>): Record<string, T> {
+  return Object.fromEntries(
+    Object.entries(glob).map(([path, value]) => [
+      path.split("/").pop()!.replace(/\.png$/, ""),
+      value,
+    ]),
+  );
+}
+
+const lowAndMedByName = byName(lowAndMed);
+const highByName = byName(high);
+const iconsByName = byName(icons);
+
 export function getGameImages(name: string): [string, string, string] {
-  const key = `${GAMEMODES}/${name}.png`;
-  const [low, med] = lowAndMed[key] ?? [];
-  const full = high[key];
+  const [low, med] = lowAndMedByName[name] ?? [];
+  const full = highByName[name];
   if (!low || !med || !full) {
     throw new Error(
       `Missing game image "${name}.png" in src/assets/images/gamemodes/`,
@@ -38,7 +42,7 @@ export function getGameImages(name: string): [string, string, string] {
 }
 
 export function getGameIcon(name: string): string {
-  const icon = icons[`${GAMEMODES}/icons/${name}.png`];
+  const icon = iconsByName[name];
   if (!icon) {
     throw new Error(
       `Missing game icon "${name}.png" in src/assets/images/gamemodes/icons/`,

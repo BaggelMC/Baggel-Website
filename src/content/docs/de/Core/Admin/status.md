@@ -2,7 +2,7 @@
 title: Status
 ---
 
-![Status Showcase](src/assets/docs/images/status/showcase.png)
+![Status Showcase](@assets/docs/images/status/showcase.png)
 
 Das **Status System** ermöglicht es Spielern, kurze, farbige Tags vor ihrem Namen anzuzeigen. Auf dieser Seite erfahren Sie, wie Sie als Administrator die Status konfigurieren und verwalten können. Erfahren Sie mehr über die Nutzung von Status in unserer [Player Status Documentation](/core/player/status).
 
@@ -27,11 +27,11 @@ Alternativ können Sie auch den [Official MiniMessage Viewer](https://webui.advn
 
 Der Spielername wird direkt an Ende des `display-name` angehängt. Das bedeutet, dass Formatierungen aus dem `display-name` auch in den Namen des Spielers übertragen werden können. Dies ist beabsichtigt und kann genutzt werden, um coole Effekte zu kreieren:
 
-![No Reset Example](src/assets/docs/images/status/no-reset-example-2.png)
+![No Reset Example](@assets/docs/images/status/no-reset-example-2.png)
 
 Dennoch erwarten die meisten Spieler eine Standardformatierung ihres Namen. Das heißt, wenn Administratoren einen Tag hinzufügen, sollten sie immer ein `<reset>` Tag und ein abschließendes Leerzeichen (` `) am Ende des `display-name` einfügen, damit es für die Spieler wie beabsichtigt aussieht:
 
-![Proper Reset Example](src/assets/docs/images/status/reset-example.png)
+![Proper Reset Example](@assets/docs/images/status/reset-example.png)
 
 ---
 

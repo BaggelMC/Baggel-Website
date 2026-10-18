@@ -12,6 +12,8 @@ import react from "@astrojs/react";
 import starlight from "@astrojs/starlight";
 import starlightLinksValidator from 'starlight-links-validator'
 
+import { fileURLToPath } from "node:url";
+
 // https://astro.build/config
 export default defineConfig({
   output: "static",
@@ -19,7 +21,8 @@ export default defineConfig({
     plugins: [imagetools(), tailwindcss()],
     resolve: {
       alias: {
-        "@scripts": "/src/scripts",
+        "@scripts": fileURLToPath(new URL("./src/scripts", import.meta.url)),
+        "@assets": fileURLToPath(new URL("./src/assets", import.meta.url)),
       },
     },
   },

@@ -5,14 +5,14 @@ import Headline from "../components/Headline.astro";
 import TeamGraph from "../components/TeamGraph";
 
 //@ts-ignore
-import AururmLogo from "../assets/images/aurum_logo_resized.png?format=webp";
+import AururmLogo from "@assets/images/aurum_logo_resized.png?format=webp";
 //@ts-ignore
-import OrgLogo from "../assets/logo.png?format=webp";
+import OrgLogo from "@assets/logo.png?format=webp";
 
 import teamDataRaw from "../content/team.json";
 
 const avatars = import.meta.glob<{ default: string }>(
-  "../assets/team/*/avatar.png",
+  "@assets/team/*/avatar.png",
   {
     eager: true,
     query: { w: 160, format: "webp", imagetools: true },
@@ -23,7 +23,7 @@ const teamData = {
   ...teamDataRaw,
   members: teamDataRaw.members.map((member) => ({
     ...member,
-    image: avatars[`../assets/team/${member.id}/avatar.png`]?.default ?? "",
+    image: avatars[`@assets/team/${member.id}/avatar.png`]?.default ?? "",
   })),
 };
 ---

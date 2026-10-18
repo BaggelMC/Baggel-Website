@@ -1,6 +1,6 @@
 {
     "orgName": "Das Baggel Team",
-    "orgLogo": "/src/assets/logo.png",
+    "orgLogo": "@assets/logo.png",
     "teams": [
         {
             "id": "dev",
