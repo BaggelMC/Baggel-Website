@@ -7,7 +7,7 @@ import TeamGraph from "../components/TeamGraph";
 //@ts-ignore
 import AururmLogo from "@assets/images/aurum_logo_resized.png?format=webp";
 //@ts-ignore
-import OrgLogo from "@assets/logo.png?format=webp";
+import OrgLogo from "@assets/logo_small.png?format=png";
 
 import teamDataRaw from "../content/team.json";
 
@@ -19,11 +19,18 @@ const avatars = import.meta.glob<{ default: string }>(
   },
 );
 
+const avatarById = Object.fromEntries(
+  Object.entries(avatars).map(([path, mod]) => [
+    path.split("/").at(-2)!,
+    mod.default,
+  ]),
+);
+
 const teamData = {
   ...teamDataRaw,
   members: teamDataRaw.members.map((member) => ({
     ...member,
-    image: avatars[`@assets/team/${member.id}/avatar.png`]?.default ?? "",
+    image: avatarById[member.id] ?? "",
   })),
 };
 ---

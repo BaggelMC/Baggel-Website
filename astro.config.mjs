@@ -10,9 +10,13 @@ import sitemap from "@astrojs/sitemap";
 import react from "@astrojs/react";
 
 import starlight from "@astrojs/starlight";
-import starlightLinksValidator from 'starlight-links-validator'
+import starlightLinksValidator from "starlight-links-validator";
 
 import { fileURLToPath } from "node:url";
+
+/** @param {string} p */
+const fromRoot = (p) =>
+  fileURLToPath(new URL(p, import.meta.url)).replace(/\\/g, "/");
 
 // https://astro.build/config
 export default defineConfig({
@@ -21,8 +25,8 @@ export default defineConfig({
     plugins: [imagetools(), tailwindcss()],
     resolve: {
       alias: {
-        "@scripts": fileURLToPath(new URL("./src/scripts", import.meta.url)),
-        "@assets": fileURLToPath(new URL("./src/assets", import.meta.url)),
+        "@scripts": fromRoot("./src/scripts"),
+        "@assets": fromRoot("./src/assets"),
       },
     },
   },
@@ -36,11 +40,9 @@ export default defineConfig({
       title: "Baggel",
       favicon: "favicon.ico",
       logo: {
-        src: "./src/assets/logo.png"
+        src: "./src/assets/logo.png",
       },
-      customCss: [
-        "./src/styles/docs-theme.css"
-      ],
+      customCss: ["./src/styles/docs-theme.css"],
       locales: {
         root: {
           label: "English",
@@ -53,13 +55,19 @@ export default defineConfig({
       },
       defaultLocale: "root",
       social: [
-        { icon: 'github', label: 'GitHub', href: 'https://github.com/BaggelMC' },
-        { icon: 'discord', label: 'Discord', href: 'https://discord.gg/p8wBMZXAfb' },
+        {
+          icon: "github",
+          label: "GitHub",
+          href: "https://github.com/BaggelMC",
+        },
+        {
+          icon: "discord",
+          label: "Discord",
+          href: "https://discord.gg/p8wBMZXAfb",
+        },
       ],
 
-      plugins: [
-        starlightLinksValidator(),
-      ]
-    })
+      plugins: [starlightLinksValidator()],
+    }),
   ],
 });

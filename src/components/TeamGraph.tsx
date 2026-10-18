@@ -425,6 +425,7 @@ export default function TeamGraph({ data, logoSrc }: TeamGraphProps) {
       ctx.beginPath();
       ctx.arc(node.x, node.y, r - 4, 0, Math.PI * 2);
       ctx.clip();
+      ctx.imageSmoothingEnabled = false;
       ctx.drawImage(
         logo,
         node.x - r + 4,

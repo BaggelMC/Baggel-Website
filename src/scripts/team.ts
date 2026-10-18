@@ -5,60 +5,32 @@ export interface TeamMember {
   image: string;
 }
 
-const isDev = import.meta.env.DEV;
+const dataFiles = import.meta.glob<{ default: Omit<TeamMember, "image"> }>(
+  "@assets/team/*/data.json",
+  { eager: true },
+);
+
+const images = import.meta.glob<string>(
+  "@assets/team/*/*.{png,jpg,jpeg,gif,webp,avif,PNG,JPG,JPEG}",
+  {
+    eager: true,
+    import: "default",
+    query: { format: "webp", lossless: true },
+  },
+);
+
+const folderOf = (path: string) => path.split("/").at(-2) ?? "";
 
 export async function getTeamMembers(): Promise<TeamMember[]> {
-  const modules = import.meta.glob<Record<string, any>>(
-    "@assets/team/*/data.json",
-    { eager: true }
-  );
+  return Object.entries(dataFiles).map(([path, mod]) => {
+    const folder = folderOf(path);
+    const own = Object.entries(images).filter(([p]) => folderOf(p) === folder);
 
-  let imageModules: Record<
-    string,
-    { default?: string; url?: string } | string
-  > = {};
+    const [, image = ""] =
+      own.find(([p]) => p.toLowerCase().includes("avatar")) ?? own[0] ?? [];
 
-  if (!isDev) {
-    imageModules = import.meta.glob<
-      Record<string, { url: string }>
-    >("@assets/team/*/*.{png,jpg,jpeg,gif}", {
-      query: { format: "webp", lossless: true },
-      eager: true,
-    });
-  } else {
-    imageModules = import.meta.glob<
-      Record<string, string | { default: string }>
-    >("@assets/team/*/*.{png,jpg,jpeg,gif}", {
-      eager: true,
-      query: "?url",
-      import: "default",
-    });
-  }
+    if (!image) console.warn(`No image found for team member folder "${folder}"`);
 
-  const members: TeamMember[] = [];
-
-  for (const path in modules) {
-    const data = (modules[path] as { default: Omit<TeamMember, "image"> }).default;
-
-    const folderMatch = path.match(/\/team\/([^/]+)\//);
-    const folderName = folderMatch ? folderMatch[1] : "";
-
-    const imageKey = Object.keys(imageModules).find((imgPath) => {
-      return imgPath.includes(`/team/${folderName}/`) && imgPath.toLowerCase().includes("avatar");
-    });
-
-    const imageModule = imageKey ? imageModules[imageKey] : undefined;
-
-    const imageUrl =
-      typeof imageModule === "string"
-        ? imageModule
-        : imageModule?.url || (imageModule as any)?.default || "";
-
-    members.push({
-      ...data,
-      image: imageUrl,
-    });
-  }
-
-  return members;
+    return { ...mod.default, image };
+  });
 }
