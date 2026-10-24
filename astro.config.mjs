@@ -27,7 +27,9 @@ export default defineConfig({
       alias: {
         "@scripts": fromRoot("./src/scripts"),
         "@assets": fromRoot("./src/assets"),
+        "@content": fromRoot("./src/content"),
       },
+      dedupe: ["three"],
     },
   },
 

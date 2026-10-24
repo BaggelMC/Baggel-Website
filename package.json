@@ -15,6 +15,8 @@
     "@astrojs/starlight": "^0.42.6",
     "@jaames/iro": "^5.5.2",
     "@minimessage-js/fetch-translations": "^2.0.1",
+    "@react-three/drei": "^10.7.9",
+    "@react-three/fiber": "^9.8.2",
     "@tailwindcss/vite": "^4.3.0",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
@@ -25,11 +27,19 @@
     "react-dom": "^19.2.7",
     "sharp": "^0.35.5",
     "simplebar": "^6.3.3",
+    "skinview3d": "^3.4.2",
     "starlight-links-validator": "^0.14.3",
-    "tailwindcss": "^4.3.0"
+    "tailwindcss": "^4.3.0",
+    "three": "^0.186.1"
   },
   "devDependencies": {
     "@types/jszip": "^3.4.0",
+    "@types/three": "^0.186.0",
     "vite-imagetools": "^10.0.0"
+  },
+  "overrides": {
+    "skinview3d": {
+      "three": "$three"
+    }
   }
 }
