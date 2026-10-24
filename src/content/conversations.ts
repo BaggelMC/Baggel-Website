@@ -255,7 +255,7 @@ export const conversations: Conversation[] = [
   {
     id: "dev-documentation",
     lines: [
-      { who: 0, text: "Hast du dine Arbeit dokumentiert?" },
+      { who: 0, text: "Hast du deine Arbeit dokumentiert?" },
       { who: 1, text: "Natürlich." },
       { who: 0, text: "Wo?" },
       { who: 1, text: "In meinem Kopf." },
@@ -467,6 +467,7 @@ export const BUMP_LINES: Record<BumpEmote, readonly string[]> = {
     "Pass doch auf!",
     "Geht's noch?!",
     "Hey, was soll das?",
+    "Sag mal!"
   ],
   sorry: [
     "Oh, sorry!",
