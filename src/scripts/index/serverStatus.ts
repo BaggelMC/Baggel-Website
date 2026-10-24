@@ -3,11 +3,10 @@ const SERVER_ADDRESS = "baggel.de";
 const API_URL = `https://api.mcsrvstat.us/3/${SERVER_ADDRESS}`;
 const statusEl = document.getElementById("server-status");
 const playersEl = document.getElementById("server-players");
-const motdEl = document.getElementById("server-motd");
 const iconContainer = document.getElementById("serverIconContainer");
 const iconImg = document.getElementById("server-icon");
 const clickAudio = document.getElementById("clickAudio");
-if (!statusEl || !playersEl || !motdEl) {
+if (!statusEl || !playersEl) {
   console.warn("Server status elements not found in DOM.");
   return;
 }
@@ -29,12 +28,6 @@ try {
     statusEl.className = "text-error";
     playersEl.textContent = "-";
   }
-  // MOTD
-  if (data.motd?.html && Array.isArray(data.motd.html)) {
-    motdEl.innerHTML = data.motd.html.join("<br>");
-  } else {
-    motdEl.textContent = "Kein MOTD verfügbar.";
-  }
   // Icon
   if (data.icon && iconContainer && iconImg) {
     iconContainer.classList.remove("hidden");
@@ -53,6 +46,5 @@ try {
   statusEl.textContent = "Fehler";
   statusEl.className = "text-error";
   playersEl.textContent = "-";
-  motdEl.textContent = "Server-Informationen konnten nicht geladen werden.";
 }
 });

@@ -1,4 +1,3 @@
-# Both files are loaded from OTHER websites, so browsers require CORS headers.
 /embed.js
   Access-Control-Allow-Origin: *
   Cache-Control: public, max-age=300
