@@ -4,13 +4,13 @@ This is the official website for Baggel. Built with **Astro**, **TypeScript**, a
 
 The website repository lives on our [Forgejo](https://git.mathias2246.net/BuildMC/Baggel-Website).
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - **Astro** – static site generator
 - **TypeScript** – type-safe JavaScript
 - **Tailwind CSS** – utility-first styling
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -42,7 +42,7 @@ npm run dev
 
 ---
 
-## 📝 Available Scripts
+## Available Scripts
 
 * `npm run dev` – Start the dev server
 * `npm run build` – Build the site for production (static files in `dist/`)
