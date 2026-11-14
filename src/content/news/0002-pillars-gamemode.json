@@ -1,0 +1,12 @@
+{
+  "$schema": "../../../.astro/collections/news.schema.json",
+  "title": "Pillars of Fortune",
+  "tag": "Minigame",
+  "date": "2026-11-14",
+  "image": "../../assets/images/news/0002-2.png",
+  "points": [
+    "Überlebe",
+    "Improvisieren",
+    "PvP"
+  ]
+}

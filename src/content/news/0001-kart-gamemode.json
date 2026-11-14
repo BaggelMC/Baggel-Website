@@ -1,0 +1,11 @@
+{
+  "$schema": "../../../.astro/collections/news.schema.json",
+  "title": "Kart Gamemode",
+  "tag": "Minigame",
+  "date": "2026-11-14",
+  "image": "../../assets/images/news/0001-2.png",
+  "points": [
+    "Kart Minigame",
+    "Chaotische Items"
+  ]
+}

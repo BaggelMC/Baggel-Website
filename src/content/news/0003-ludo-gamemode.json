@@ -1,0 +1,12 @@
+{
+  "$schema": "../../../.astro/collections/news.schema.json",
+  "title": "Ludo",
+  "tag": "Minigame",
+  "date": "2026-11-14",
+  "image": "../../assets/images/news/0003.png",
+  "points": [
+    "Brettspiel",
+    "Mensch ärgere Dich nicht",
+    "Strategie"
+  ]
+}

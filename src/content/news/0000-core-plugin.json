@@ -1,0 +1,10 @@
+{
+  "$schema": "../../../.astro/collections/news.schema.json",
+  "title": "Neue Lobby!",
+  "tag": "Maps",
+  "date": "2026-11-14",
+  "image": "../../assets/images/news/0000.png",
+  "points": [
+    "Größere Map"
+  ]
+}
