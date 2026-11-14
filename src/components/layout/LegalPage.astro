@@ -1,0 +1,99 @@
+---
+/**
+ * Renders a legal page (privacy policy, imprint, ...) from an MDX file
+ * in src/content/legal/. Pass the file name without extension as `id`.
+ */
+import { getEntry, render } from "astro:content";
+import Headline from "@components/ui/Headline.astro";
+import DefaultLayout from "../../layouts/DefaultLayout.astro";
+
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+
+const entry = await getEntry("legal", id);
+if (!entry) throw new Error(`Missing src/content/legal/${id}.mdx`);
+
+const { Content } = await render(entry);
+
+const lastUpdated = entry.data.lastUpdated?.toLocaleDateString("de-DE", {
+  day: "2-digit",
+  month: "2-digit",
+  year: "numeric",
+  timeZone: "UTC",
+});
+---
+
+<DefaultLayout title={entry.data.title} enableBackground={false}>
+  <div class="max-w-6xl mx-auto px-8 py-20 text-text font-sans">
+    <Headline text={entry.data.title} />
+
+    <section class="legal-content plain-font text-sm leading-base text-text-50">
+      {lastUpdated && <p class="mb-8 text-text-100">Last updated: {lastUpdated}</p>}
+      <Content />
+    </section>
+  </div>
+</DefaultLayout>
+
+<style>
+  .legal-content :global(h2) {
+    font-size: var(--type-prose-heading);
+    line-height: 1.3;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .legal-content :global(h3) {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-top: 1.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .legal-content :global(h4) {
+    font-weight: 600;
+    color: var(--color-text);
+    margin-top: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .legal-content :global(p) {
+    margin-bottom: 1rem;
+  }
+
+  /* Lead-in sentence directly before a list sits closer to it */
+  .legal-content :global(p:has(+ ul)) {
+    margin-bottom: 0.5rem;
+  }
+
+  .legal-content :global(ul) {
+    list-style: disc;
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .legal-content :global(li + li) {
+    margin-top: 0.25rem;
+  }
+
+  .legal-content :global(a) {
+    color: var(--color-primary);
+  }
+
+  .legal-content :global(a:hover) {
+    text-decoration: underline;
+  }
+
+  .legal-content :global(strong) {
+    color: var(--color-text);
+  }
+
+  .legal-content :global(code) {
+    color: var(--color-primary);
+  }
+</style>

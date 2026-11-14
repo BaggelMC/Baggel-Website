@@ -40,8 +40,17 @@ const news = defineCollection({
     }),
 });
 
+const legal = defineCollection({
+  loader: glob({ pattern: "*.mdx", base: "./src/content/legal" }),
+  schema: z.object({
+    title: z.string().min(1),
+    lastUpdated: z.coerce.date().optional(),
+  }),
+});
+
 export const collections = {
   webBadges,
   news,
+  legal,
   docs: defineCollection({ loader: docsLoader(), schema: docsSchema() })
 };

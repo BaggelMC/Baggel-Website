@@ -10,5 +10,7 @@ export default new Map([
 ["src/content/docs/de/Core/Admin/index.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fdocs%2Fde%2FCore%2FAdmin%2Findex.mdx&astroContentModuleFlag=true")],
 ["src/content/docs/de/Core/Admin/install.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fdocs%2Fde%2FCore%2FAdmin%2Finstall.mdx&astroContentModuleFlag=true")],
 ["src/content/docs/de/Core/index.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fdocs%2Fde%2FCore%2Findex.mdx&astroContentModuleFlag=true")],
-["src/content/docs/de/Core/Player/index.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fdocs%2Fde%2FCore%2FPlayer%2Findex.mdx&astroContentModuleFlag=true")]]);
+["src/content/docs/de/Core/Player/index.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Fdocs%2Fde%2FCore%2FPlayer%2Findex.mdx&astroContentModuleFlag=true")],
+["src/content/legal/imprint.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Flegal%2Fimprint.mdx&astroContentModuleFlag=true")],
+["src/content/legal/privacy.mdx", () => import("astro:content-layer-deferred-module?astro%3Acontent-layer-deferred-module=&fileName=src%2Fcontent%2Flegal%2Fprivacy.mdx&astroContentModuleFlag=true")]]);
 		
