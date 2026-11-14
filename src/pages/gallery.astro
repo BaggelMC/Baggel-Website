@@ -1,9 +1,9 @@
 ---
 import DefaultLayout from "../layouts/DefaultLayout.astro";
-import Headline from "../components/Headline.astro";
-import GalleryCarousel from "../components/GalleryCarousel";
+import Headline from "@components/ui/Headline.astro";
+import GalleryCarousel from "@components/gallery/GalleryCarousel";
 import { loadGallery } from "@scripts/gallery";
-import Separator from "../components/Separator.astro";
+import Separator from "@components/ui/Separator.astro";
 
 const sections = await loadGallery();
 ---

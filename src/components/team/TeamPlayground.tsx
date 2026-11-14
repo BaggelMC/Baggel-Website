@@ -16,7 +16,7 @@ import {
   useRef,
   useState,
 } from "react";
-import type { Member } from "../content/team";
+import type { Member } from "../../content/team";
 import {
   conversations,
   reactions,
@@ -28,7 +28,7 @@ import {
   BUMP_LINES,
   BUMP_FORGIVE,
   BUMP_GRUMBLE
-} from "../content/conversations";
+} from "../../content/conversations";
 
 /* ────────────────────────────────────────────────────────────────────────
  * Tuning. 1 world unit = 1 Minecraft block, so a player is 2 units tall.

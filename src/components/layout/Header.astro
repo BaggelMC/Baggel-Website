@@ -6,8 +6,8 @@ import textureDark from "@assets/header-texture-dark.png?format=webp&h=200";
 // @ts-ignore
 import textureLight from "@assets/header-texture-light.png?format=webp&h=200";
 
-import "../styles/header.css";
-import { LINKS } from "../config";
+import "../../styles/header.css";
+import { LINKS } from "../../config";
 
 type Icon = keyof typeof icons;
 type NavLink = { label: string; href: string; icon?: Icon };
@@ -234,7 +234,7 @@ const svgAttrs = {
   </nav>
 
   <script>
-    import { getServerStatus } from "../scripts/serverStatus";
+    import { getServerStatus } from "../../scripts/serverStatus";
 
     /* ---------- Dropdowns (desktop popups + mobile accordions) ---------- */
 

@@ -1,10 +1,3 @@
-// Generates /web_badges.json at build time. This is the file embed.js downloads.
-//
-// Output shape (version 1):
-//   { "version": 1, "members": [ { id, name, url, badge, alt }, ... ] }
-//
-// Requires `site` to be set in astro.config.mjs, because the badge URLs in the
-// output are absolute (e.g. https://baggel.de/web_badges/alice.gif).
 import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
 import { existsSync } from "node:fs";
