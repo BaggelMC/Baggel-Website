@@ -1,0 +1,78 @@
+:root {
+  --type-title: clamp(2rem, 1.35rem + 2.6vw, 3.25rem);
+  --type-section: clamp(1.6rem, 1.2rem + 1.6vw, 2.5rem);
+  --type-card: clamp(1.2rem, 1rem + 0.6vw, 1.55rem);
+  --type-prose-heading: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+}
+
+main :is(p, li) {
+  line-height: 1.7;
+}
+
+main :is(h1, h2, h3, h4, h5, h6, strong, b, button, .pill, .badge),
+main :is(p, li, span).text-accent,
+main a[class*="bg-"],
+.copy-button {
+  font-family: var(--font-minecraft);
+}
+
+main :is(p, li) :is(strong, b, span.text-accent),
+main :is(p, li).text-accent {
+  font-size: 0.9em;
+  font-weight: 400;
+}
+
+main :is(button, a[class*="bg-"]),
+.copy-button {
+  font-weight: 400;
+}
+
+.game-card .pill {
+  font-size: 0.75rem;
+}
+
+main h1 {
+  font-size: var(--type-title);
+  line-height: 1.4;
+}
+
+main h2 {
+  font-size: var(--type-section);
+  line-height: 1.35;
+}
+
+main h3 {
+  font-size: var(--type-card);
+  line-height: 1.3;
+}
+
+.finished-games > h2,
+.unfinished-games > h2 {
+  font-weight: 400;
+}
+
+main h2.font-semibold {
+  font-size: var(--type-prose-heading);
+  line-height: 1.3;
+}
+
+main h3.font-semibold {
+  font-size: 1.1rem;
+}
+
+main nav h2 {
+  font-size: 1.1rem;
+}
+
+main :is(h1, h2, h3) {
+  text-wrap: balance;
+}
+
+.plain-font :is(h1, h2, h3, h4, h5, h6, strong, b, button, span) {
+  font-family: var(--font-sans);
+}
+
+.plain-font :is(strong, b) {
+  font-size: inherit;
+  font-weight: 700;
+}

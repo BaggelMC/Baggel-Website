@@ -1,0 +1,12 @@
+{
+  "$schema": "../../../.astro/collections/news.schema.json",
+  "title": "Minigame-Update",
+  "tag": "Update",
+  "date": "2026-01-20",
+  "image": "../../assets/gallery/Baggel/2026-01-10T21_02_36.webp",
+  "points": [
+    "Neue Maps für Knockback FFA",
+    "Überarbeitetes Elytra Race",
+    "Bugfixes und mehr Performance"
+  ]
+}

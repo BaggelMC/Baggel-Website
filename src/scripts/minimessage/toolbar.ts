@@ -57,6 +57,16 @@ export function renderToolbar(
           ? tag.appearance()
           : tag.appearance;
       button.title = tag.label;
+
+      // Text icons ("B", "\n", "Obf") are set in the wide pixel font:
+      // shrink them by length so they fit the square button
+      if (!(appearance instanceof SVGElement) && !appearance.querySelector?.("svg, img")) {
+        const length = appearance.textContent?.trim().length ?? 0;
+        if (length > 0) {
+          iconWrap.style.fontSize = length === 1 ? "0.85rem" : length === 2 ? "0.7rem" : "0.55rem";
+        }
+      }
+
       iconWrap.appendChild(appearance);
       button.appendChild(iconWrap);
 

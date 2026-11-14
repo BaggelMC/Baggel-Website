@@ -1,50 +1,22 @@
-document.addEventListener("DOMContentLoaded", async () => {
-const SERVER_ADDRESS = "baggel.de";
-const API_URL = `https://api.mcsrvstat.us/3/${SERVER_ADDRESS}`;
+import { getServerStatus } from "../serverStatus";
+
 const statusEl = document.getElementById("server-status");
 const playersEl = document.getElementById("server-players");
-const iconContainer = document.getElementById("serverIconContainer");
-const iconImg = document.getElementById("server-icon");
-const clickAudio = document.getElementById("clickAudio");
-if (!statusEl || !playersEl) {
-  console.warn("Server status elements not found in DOM.");
-  return;
-}
-statusEl.textContent = "Lädt...";
-statusEl.className = "text-neutral-400";
-try {
-  const res = await fetch(API_URL);
-  if (!res.ok) {
-    throw new Error(`HTTP error ${res.status}`);
-  }
-  const data = await res.json();
-  // Status
-  if (data.online) {
-    statusEl.textContent = "Online";
-    statusEl.className = "text-success";
-    playersEl.textContent = `${data.players?.online ?? 0} / ${data.players?.max ?? 0}`;
-  } else {
-    statusEl.textContent = "Offline";
-    statusEl.className = "text-error";
-    playersEl.textContent = "-";
-  }
-  // Icon
-  if (data.icon && iconContainer && iconImg) {
-    iconContainer.classList.remove("hidden");
-    iconImg.setAttribute("src", data.icon);
-    if (clickAudio instanceof HTMLAudioElement) {
-      iconContainer.addEventListener("click", () => {
-        clickAudio.volume = 0.3;
-        clickAudio.play().catch(() => {});
-      });
+
+if (statusEl && playersEl) {
+  getServerStatus().then((s) => {
+    if (!s) {
+      statusEl.textContent = "Fehler";
+      statusEl.className = "text-error";
+      playersEl.textContent = "-";
+    } else if (s.online) {
+      statusEl.textContent = "Online";
+      statusEl.className = "text-success";
+      playersEl.textContent = `${s.players} / ${s.maxPlayers}`;
+    } else {
+      statusEl.textContent = "Offline";
+      statusEl.className = "text-error";
+      playersEl.textContent = "-";
     }
-  } else if (iconContainer) {
-    iconContainer.classList.add("hidden");
-  }
-} catch (err) {
-  console.error("Error fetching server info:", err);
-  statusEl.textContent = "Fehler";
-  statusEl.className = "text-error";
-  playersEl.textContent = "-";
+  });
 }
-});

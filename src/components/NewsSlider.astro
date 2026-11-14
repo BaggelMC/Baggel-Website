@@ -1,0 +1,181 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import "../styles/news.css";
+
+interface Props {
+  entries: CollectionEntry<"news">[];
+}
+
+const { entries } = Astro.props;
+const total = entries.length;
+const pad = (n: number) => String(n).padStart(2, "0");
+---
+
+<section class="news" data-news aria-roledescription="Karussell" aria-label="Neuigkeiten">
+  <div class="news-viewport" aria-live="off">
+    {
+      entries.map(({ data }, i) => (
+        <div
+          class:list={["news-slide", i === 0 && "is-active"]}
+          role="group"
+          aria-roledescription="Folie"
+          aria-label={`${i + 1} von ${total}`}
+        >
+          <Image
+            src={data.image}
+            alt={data.imageAlt}
+            widths={[640, 1024, 1600]}
+            sizes="(min-width: 64rem) 60vw, 100vw"
+            class="news-image"
+            draggable="false"
+            loading={i === 0 ? "eager" : "lazy"}
+            fetchpriority={i === 0 ? "high" : undefined}
+          />
+          <div class="news-info">
+            {data.tag && <span class="news-tag">{data.tag}</span>}
+            <h2 class="news-title">{data.title}</h2>
+            {data.points.length > 0 && (
+              <ul class="news-points">
+                {data.points.map((p) => (
+                  <li>{p}</li>
+                ))}
+              </ul>
+            )}
+            {data.link && (
+              <a
+                href={data.link.href}
+                class="news-more"
+                {...(/^https?:/.test(data.link.href) && {
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                })}
+              >
+                {data.link.label}
+                <svg
+                  aria-hidden="true"
+                  focusable="false"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </a>
+            )}
+          </div>
+        </div>
+      ))
+    }
+
+    {
+      total > 1 && (
+        <>
+          <div class="news-controls">
+            <span class="news-counter" aria-hidden="true">
+              <span class="news-current">01</span> / {pad(total)}
+            </span>
+            <button type="button" class="news-arrow news-prev" aria-label="Vorherige Neuigkeit">
+              <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m15 18-6-6 6-6" />
+              </svg>
+            </button>
+            <button type="button" class="news-arrow news-next" aria-label="Nächste Neuigkeit">
+              <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="news-progress">
+            {entries.map(({ data }, i) => (
+              <button
+                type="button"
+                class="news-seg"
+                aria-label={`Zu Neuigkeit ${i + 1}: ${data.title}`}
+                aria-current={i === 0 ? "true" : undefined}
+              >
+                <span class="news-seg-fill" />
+              </button>
+            ))}
+          </div>
+        </>
+      )
+    }
+  </div>
+</section>
+
+<script>
+  const root = document.querySelector<HTMLElement>("[data-news]");
+  const slides = root ? [...root.querySelectorAll<HTMLElement>(".news-slide")] : [];
+
+  if (root && slides.length > 1) {
+    const segs = [...root.querySelectorAll<HTMLElement>(".news-seg")];
+    const counter = root.querySelector(".news-current");
+    const viewport = root.querySelector(".news-viewport")!;
+    let index = 0;
+
+    const show = (i: number, manual = false) => {
+      index = (i + slides.length) % slides.length;
+      root.classList.add("is-animated");
+      slides.forEach((s, n) => s.classList.toggle("is-active", n === index));
+      segs.forEach((seg, n) => {
+        if (n === index) seg.setAttribute("aria-current", "true");
+        else seg.removeAttribute("aria-current");
+        seg.classList.toggle("is-done", n < index);
+        // Restart the progress bar animation
+        const fill = seg.firstElementChild as HTMLElement;
+        fill.style.animation = "none";
+        void fill.offsetWidth;
+        fill.style.animation = "";
+      });
+      if (counter) counter.textContent = String(index + 1).padStart(2, "0");
+      if (manual) viewport.setAttribute("aria-live", "polite");
+    };
+
+    const pause = (state: boolean) => root.classList.toggle("is-paused", state);
+
+    // Autoplay: the progress bar animation ends -> next slide
+    // (no animation with reduced motion, so no autoplay either)
+    segs.forEach((seg, n) => {
+      seg.addEventListener("click", () => show(n, true));
+      seg.firstElementChild?.addEventListener(
+        "animationend",
+        () => n === index && show(index + 1),
+      );
+    });
+
+    root.querySelector(".news-prev")?.addEventListener("click", () => show(index - 1, true));
+    root.querySelector(".news-next")?.addEventListener("click", () => show(index + 1, true));
+
+    root.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") show(index - 1, true);
+      if (e.key === "ArrowRight") show(index + 1, true);
+    });
+
+    root.addEventListener("pointerenter", (e) => e.pointerType === "mouse" && pause(true));
+    root.addEventListener("pointerleave", () => pause(false));
+    root.addEventListener("focusin", () => pause(true));
+    root.addEventListener("focusout", (e) => {
+      if (!root.contains(e.relatedTarget as Node)) pause(false);
+    });
+
+    // Swipe on touch devices
+    let startX: number | null = null;
+    viewport.addEventListener("pointerdown", (e) => {
+      const ev = e as PointerEvent;
+      if (ev.pointerType !== "mouse") startX = ev.clientX;
+    });
+    viewport.addEventListener("pointerup", (e) => {
+      if (startX === null) return;
+      const dx = (e as PointerEvent).clientX - startX;
+      startX = null;
+      if (Math.abs(dx) > 40) show(index + (dx < 0 ? 1 : -1), true);
+    });
+  }
+</script>

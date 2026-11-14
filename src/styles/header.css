@@ -1,0 +1,546 @@
+/* Site header: navigation row + server bar, beveled pixel corners.
+   Always dark (independent of the theme). */
+.bh {
+  --bh-overlay: rgba(18, 13, 10, 0.84);
+  --bh-subbar: rgba(0, 0, 0, 0.35);
+  --bh-text: var(--color-text);
+  --bh-muted: var(--color-text-50);
+  --bh-line: rgba(241, 228, 219, 0.12);
+  --bh-accent: #d6904f;
+  --bh-accent-soft: rgba(214, 144, 79, 0.16);
+  --bh-accent-text: #1a0f08;
+  --bh-chip: rgba(241, 228, 219, 0.08);
+  --bh-notch: 5px;
+  position: relative;
+  z-index: 50;
+  color: var(--bh-text);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+/* Beveled corners, like a Minecraft button */
+.bh-link,
+.bh-cta,
+.bh-ip,
+.bh-status,
+.bh-menu {
+  clip-path: polygon(
+    var(--bh-notch) 0,
+    calc(100% - var(--bh-notch)) 0,
+    100% var(--bh-notch),
+    100% calc(100% - var(--bh-notch)),
+    calc(100% - var(--bh-notch)) 100%,
+    var(--bh-notch) 100%,
+    0 calc(100% - var(--bh-notch)),
+    0 var(--bh-notch)
+  );
+}
+
+.bh-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.bh-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--bh-overlay);
+}
+
+.bh-inner {
+  position: relative;
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.bh-top {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  min-height: 4.75rem;
+}
+
+/* Brand */
+.bh-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.bh-brand-logo {
+  height: 3rem;
+  width: auto;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.45));
+  transition: transform 0.2s;
+}
+
+.bh-brand:hover .bh-brand-logo {
+  transform: rotate(-8deg) scale(1.05);
+}
+
+.bh-brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  line-height: 1.2;
+}
+
+.bh-brand-name {
+  font-family: var(--font-minecraft);
+  font-size: 1.6rem;
+  letter-spacing: 0.02em;
+}
+
+.bh-brand-tagline {
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--bh-muted);
+}
+
+/* Main navigation */
+.bh-nav {
+  margin-left: auto;
+}
+
+.bh-nav > ul {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.bh-nav > ul > li {
+  position: relative;
+  display: flex;
+}
+
+.bh-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.85rem;
+  border: 0;
+  background: transparent;
+  font-family: var(--font-minecraft);
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+  color: var(--bh-text);
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+}
+
+.bh-link > svg:first-child {
+  width: 1.1rem;
+  height: 1.1rem;
+  flex-shrink: 0;
+  color: var(--bh-muted);
+  transition: color 0.15s;
+}
+
+.bh-link .bh-chevron {
+  width: 0.9rem;
+  height: 0.9rem;
+  transition: transform 0.15s;
+}
+
+.bh-link:hover {
+  background: var(--bh-chip);
+}
+
+.bh-link:hover > svg:first-child,
+.bh-link[aria-current="page"] > svg:first-child,
+.bh-link.is-active > svg:first-child {
+  color: var(--bh-accent);
+}
+
+.bh-link[aria-current="page"],
+.bh-link.is-active {
+  background: var(--bh-accent-soft);
+  color: var(--bh-accent);
+}
+
+.bh-link:focus-visible,
+.bh-cta:focus-visible,
+.bh-ip:focus-visible,
+.bh-brand:focus-visible,
+.bh-burger:focus-visible,
+.bh-mobile :is(a, button):focus-visible {
+  outline: 2px solid var(--bh-accent);
+  outline-offset: -3px;
+}
+
+.bh-menu {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  left: 0;
+  min-width: 12rem;
+  padding: 0.35rem;
+  background: var(--color-background);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+  border-top: 3px solid var(--color-accent);
+  z-index: 100;
+}
+
+.bh-menu a {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  color: var(--color-text);
+  font-family: var(--font-minecraft);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.bh-menu a:hover,
+.bh-menu a:focus-visible,
+.bh-menu a[aria-current="page"] {
+  background: var(--color-background-10);
+  color: var(--color-accent);
+  outline: none;
+}
+
+/* Server bar */
+.bh-subbar {
+  position: relative;
+  background: var(--bh-subbar);
+  border-top: 1px solid var(--bh-line);
+}
+
+.bh-sub {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 3rem;
+}
+
+.bh-server {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.bh-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.3rem 0.75rem;
+  background: var(--bh-chip);
+  font-size: 0.85rem;
+  white-space: nowrap;
+  color: var(--bh-muted);
+}
+
+.bh-status strong {
+  font-family: var(--font-minecraft);
+  font-weight: 400;
+  color: var(--bh-text);
+}
+
+.bh-status strong:empty {
+  display: none;
+}
+
+.bh-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--bh-muted);
+  flex-shrink: 0;
+}
+
+.bh-status[data-state="online"] .bh-dot {
+  background: var(--color-success);
+  animation: bh-pulse 2s ease-in-out infinite;
+}
+
+.bh-status[data-state="offline"] .bh-dot {
+  background: var(--color-error);
+}
+
+@keyframes bh-pulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.bh-ip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.3rem 0.75rem 0.3rem 0.3rem;
+  border: 0;
+  background: var(--bh-chip);
+  font-family: var(--font-minecraft);
+  font-size: 0.85rem;
+  color: var(--bh-text);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+.bh-ip-prefix {
+  padding: 0.05rem 0.4rem;
+  background: var(--bh-accent);
+  color: var(--bh-accent-text);
+  font-size: 0.7rem;
+}
+
+.bh-ip svg {
+  width: 0.9rem;
+  height: 0.9rem;
+  color: var(--bh-muted);
+}
+
+.bh-ip:hover {
+  background: var(--bh-accent-soft);
+}
+
+.bh-ip.is-copied {
+  color: var(--color-success);
+}
+
+.bh-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.bh-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.95rem;
+  background: var(--bh-accent);
+  color: var(--bh-accent-text);
+  font-family: var(--font-minecraft);
+  font-size: 0.85rem;
+  text-decoration: none;
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.25);
+  transition: filter 0.15s;
+}
+
+.bh-cta:hover {
+  filter: brightness(1.12);
+}
+
+.bh-cta svg {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+/* Mobile menu */
+.bh-burger {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0.6rem;
+  border: 0;
+  background: none;
+  color: var(--bh-text);
+  cursor: pointer;
+}
+
+.bh-burger span {
+  display: block;
+  width: 1.5rem;
+  height: 3px;
+  background: currentColor;
+}
+
+.bh-burger span:nth-child(2) {
+  width: 1rem;
+  margin-left: auto;
+}
+
+/* Overlays the page below the header instead of pushing it down, so the header
+   (and its background texture) keeps its size when the menu opens. */
+.bh-mobile {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s;
+  background: var(--color-background);
+  color: var(--color-text);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.45);
+}
+
+.bh-mobile.is-open {
+  max-height: calc(100vh - 7rem);
+  max-height: calc(100dvh - 7rem);
+  overflow-y: auto;
+}
+
+.bh-mobile ul {
+  list-style: none;
+}
+
+.bh-mobile > ul {
+  padding: 0.75rem 1rem 1rem;
+  border-top: 3px solid var(--color-accent);
+}
+
+.bh-mobile a,
+.bh-mobile button {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.65rem 0;
+  border: 0;
+  background: none;
+  font-family: var(--font-minecraft);
+  font-size: 1rem;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.bh-mobile a > svg:first-child,
+.bh-mobile button > svg:first-child {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex-shrink: 0;
+}
+
+.bh-mobile button .bh-chevron {
+  width: 1rem;
+  height: 1rem;
+  margin-left: auto;
+  transition: transform 0.15s;
+}
+
+.bh-mobile ul ul {
+  padding-left: 1.75rem;
+}
+
+.bh-mobile a[aria-current="page"],
+.bh-mobile .is-active {
+  color: var(--color-accent);
+}
+
+.bh [data-dropdown] > button[aria-expanded="true"] .bh-chevron {
+  transform: rotate(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bh-mobile,
+  .bh-brand-logo,
+  .bh-chevron {
+    transition: none;
+  }
+
+  .bh-status[data-state="online"] .bh-dot {
+    animation: none;
+  }
+}
+
+/* Breakpoints */
+@media (max-width: 63.99rem) {
+  .bh-top {
+    gap: 0.75rem;
+  }
+
+  .bh-link {
+    padding: 0.55rem 0.6rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* The pixel font is wide: nav icons only from 72rem, text only below */
+@media (max-width: 71.99rem) {
+  .bh-link > svg:first-child {
+    display: none;
+  }
+}
+
+/* Below 60rem the navigation no longer fits in one row: burger menu */
+@media (max-width: 59.99rem) {
+  .bh-nav {
+    display: none;
+  }
+}
+
+@media (min-width: 60rem) {
+  .bh-burger,
+  .bh-mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .bh-cta {
+    display: none;
+  }
+
+  .bh-top {
+    min-height: 4rem;
+  }
+
+  .bh-brand-logo {
+    height: 2.5rem;
+  }
+
+  .bh-brand-name {
+    font-size: 1.15rem;
+  }
+
+  .bh-brand-tagline {
+    font-size: 0.55rem;
+  }
+
+  .bh-sub {
+    min-height: 2.75rem;
+    gap: 0.5rem;
+  }
+
+  .bh-status,
+  .bh-ip {
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 24rem) {
+  .bh-ip-prefix {
+    display: none;
+  }
+
+  .bh-ip {
+    padding-left: 0.6rem;
+  }
+}
+
+/* Very narrow phones (e.g. 320px) */
+@media (max-width: 22.5rem) {
+  .bh-brand-logo {
+    height: 2.1rem;
+  }
+
+  .bh-brand-name {
+    font-size: 1rem;
+  }
+
+  .bh-brand-tagline {
+    display: none;
+  }
+
+  /* Player count and IP may wrap onto two lines */
+  .bh-sub {
+    align-items: flex-start;
+    padding-block: 0.4rem;
+  }
+
+  .bh-server {
+    flex-wrap: wrap;
+    row-gap: 0.4rem;
+  }
+}

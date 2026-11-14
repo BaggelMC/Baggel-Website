@@ -22,6 +22,8 @@ const {
   extraHead = null,
 } = Astro.props;
 
+const FORCE_DARK_THEME = true;
+
 const fullTitle = title ? `${title} | ${titleSuffix}` : titleSuffix;
 ---
 
@@ -62,6 +64,7 @@ const fullTitle = title ? `${title} | ${titleSuffix}` : titleSuffix;
     <script
       is:inline
       define:vars={{
+        forceDark: FORCE_DARK_THEME,
         bg: enableBackground
           ? { dark: BackgroundDark, light: BackgroundLight }
           : null,
@@ -70,9 +73,10 @@ const fullTitle = title ? `${title} | ${titleSuffix}` : titleSuffix;
       (() => {
         let t;
         try {
-          t = localStorage.getItem("starlight-theme");
+          if (!forceDark) t = localStorage.getItem("starlight-theme");
         } catch {}
-        if (t !== "light" && t !== "dark")
+        if (forceDark) t = "dark";
+        else if (t !== "light" && t !== "dark")
           t = matchMedia("(prefers-color-scheme: light)").matches
             ? "light"
             : "dark";

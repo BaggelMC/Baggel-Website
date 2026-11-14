@@ -20,7 +20,28 @@ const webBadges = defineCollection({
   }),
 });
 
+const news = defineCollection({
+  loader: glob({ pattern: "*.json", base: "./src/content/news" }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string().min(1),
+      tag: z.string().optional(),
+      date: z.coerce.date(),
+      image: image(),
+      imageAlt: z.string().default(""),
+      points: z.array(z.string()).max(4).default([]),
+      link: z
+        .object({
+          href: z.string(),
+          label: z.string().default("Mehr erfahren"),
+        })
+        .optional(),
+      draft: z.boolean().default(false),
+    }),
+});
+
 export const collections = {
   webBadges,
+  news,
   docs: defineCollection({ loader: docsLoader(), schema: docsSchema() })
 };

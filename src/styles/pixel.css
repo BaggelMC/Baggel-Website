@@ -1,0 +1,56 @@
+@supports (corner-shape: bevel) {
+  *,
+  *::before,
+  *::after {
+    corner-shape: bevel;
+  }
+}
+
+@supports not (corner-shape: bevel) {
+  *,
+  *::before,
+  *::after {
+    border-radius: 0 !important;
+  }
+}
+
+:root {
+  --px-shadow: 0.5rem;
+  --px-shadow-stripes: repeating-linear-gradient(-45deg, #8b4d25 0 5px, #d6904f 5px 10px);
+}
+
+.px-shadow {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+}
+
+.px-shadow::before {
+  content: "";
+  position: absolute;
+  inset: var(--px-shadow) calc(var(--px-shadow) * -1) calc(var(--px-shadow) * -1) var(--px-shadow);
+  z-index: -1;
+  border-radius: var(--px-r, var(--radius-4xl));
+  background: var(--px-shadow-stripes);
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.px-shadow > * {
+  flex: 1 0 auto;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.rounded-full {
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-thumb,
+.simplebar-track.simplebar-vertical,
+.simplebar-scrollbar::before {
+  border-radius: 0;
+}

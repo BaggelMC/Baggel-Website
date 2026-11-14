@@ -39,7 +39,8 @@
   },
   "overrides": {
     "skinview3d": {
-      "three": "$three"
+      "three": "$three",
+      "@types/three": "$@types/three"
     }
   }
 }

@@ -1,0 +1,16 @@
+{
+  "$schema": "../../../.astro/collections/news.schema.json",
+  "title": "BuildMC Season-Start",
+  "tag": "BuildMC",
+  "date": "2026-01-15",
+  "image": "../../assets/gallery/BuildMC/1.webp",
+  "points": [
+    "Frische Welt zum Bauen",
+    "Neue Claim-Funktionen",
+    "Start-Event mit Belohnungen"
+  ],
+  "link": {
+    "href": "/projects/buildmc",
+    "label": "Zu BuildMC"
+  }
+}

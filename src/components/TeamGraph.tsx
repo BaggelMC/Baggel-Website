@@ -895,7 +895,6 @@ function MemberPopup({
             style={{
               width: 56,
               height: 56,
-              borderRadius: "50%",
               border: "2px solid rgba(255,255,255,0.15)",
               flexShrink: 0,
             }}
