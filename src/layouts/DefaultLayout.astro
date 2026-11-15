@@ -19,6 +19,7 @@ const {
   titleSuffix = "BaggelMC",
   enableAlpine = false,
   enableBackground = true,
+  showHeaderSubbar = true,
   extraHead = null,
 } = Astro.props;
 
@@ -115,7 +116,7 @@ const fullTitle = title ? `${title} | ${titleSuffix}` : titleSuffix;
       )
     }
 
-    <Header title="BaggelMC" />
+    <Header title="BaggelMC" showSubbar={showHeaderSubbar} />
     <main class="grow relative z-10" id="main-content" tabindex="-1">
       <slot />
     </main>

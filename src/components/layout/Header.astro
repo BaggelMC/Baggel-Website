@@ -9,6 +9,13 @@ import textureLight from "@assets/header-texture-light.png?format=webp&h=200";
 import "../../styles/header.css";
 import { LINKS } from "../../config";
 
+interface Props {
+  title?: string;
+  showSubbar?: boolean;
+}
+
+const { showSubbar = true } = Astro.props;
+
 type Icon = keyof typeof icons;
 type NavLink = { label: string; href: string; icon?: Icon };
 type NavGroup = { label: string; icon?: Icon; children: NavLink[] };
@@ -155,6 +162,7 @@ const svgAttrs = {
   </div>
 
   <!-- Server bar -->
+  {showSubbar && (
   <div class="bh-subbar">
     <div class="bh-inner bh-sub">
       <div class="bh-server">
@@ -184,6 +192,7 @@ const svgAttrs = {
       </div>
     </div>
   </div>
+  )}
 
   <!-- Mobile Navigation -->
   <nav id="mobile-menu" aria-label="Mobile Navigation" inert class="bh-mobile">
