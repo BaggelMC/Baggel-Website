@@ -15,20 +15,20 @@ export interface ConceptGame {
 
 export const finishedGames: Game[] = [
   {
+    name: "Kart",
+    description:
+      "Tritt in rasanten Rennen gegen andere Spieler an! Drifte durch Kurven, setze Items ein, weiche Hindernissen aus und kämpfe dich auf den ersten Platz. Nur die Schnellsten schaffen es aufs Podium!",
+    image: "Kart",
+    imageAlt:
+      "Drei Spieler driften mit Karts in einem Rennen.",
+  },
+  {
     name: "CrystalFight",
     description:
       "Katapultiere dich mit End-Kristallen und Respawn-Ankern über die Karte! Zerstöre das Bett deines Gegners und schalte ihn aus, bevor er dir zuvorkommt. Präzises Timing und mutige Sprünge entscheiden über Sieg oder Fall.",
     image: "Crystalfight",
     imageAlt:
       "Ein Spieler wird durch die Explosion eines End-Kristalls über eine Arena mit Betten katapultiert.",
-  },
-  {
-    name: "Knockback FFA",
-    description:
-      "Keine Teams, keine Gnade! Jeder Spieler für sich selbst! Springe in chaotische Free-for-All-Kämpfe, bei denen schnelles Denken und Geschick entscheiden, wer das Schlachtfeld dominiert.",
-    image: "FFA",
-    imageAlt:
-      "Zwei Spieler kämpfen in einer Ebenenlandschaft mit Lederrüstungen und Knockback Sticks.",
   },
   {
     name: "Pillars of Fortune",
@@ -44,7 +44,7 @@ export const finishedGames: Game[] = [
       "Das klassische Brettspiel, neu erfunden in Minecraft! Nutze Items, um deine Gegner zu sabotieren, und tritt in Duellen an, um zu entscheiden, wessen Spielfigur bleiben darf und wer zurück nach Hause muss.",
     image: "Ludo",
     imageAlt:
-      "Ein farbenfrohes Ludo-Spielbrett aus Blöcken mit bunten Spielfiguren in Minecraft.",
+      "Ein farbenfrohes Ludo-Spielbrett aus Blöcken mit bunten Spielfiguren.",
   },
   {
     name: "Duels",
@@ -54,52 +54,14 @@ export const finishedGames: Game[] = [
     imageAlt:
       "Zwei Spieler in Rüstungen kämpfen mit Schwertern und Schilden in einer Arena.",
   },
-  {
-    name: "Golf",
-    description:
-      "Golf, wie du es kennst, jetzt in Minecraft! Schlage den Ball mit Bedacht über liebevoll gestaltete Bahnen und versuche, mit möglichst wenigen Schlägen ins Loch zu treffen.",
-    image: "Golf",
-    imageAlt:
-      "Ein Spieler steht auf einer grünen Golfbahn aus Blöcken und zielt auf das Loch.",
-  },
-  {
-    name: "Minigolf",
-    description:
-      "Minigolf für zwischendurch! Meistere kreative, kniffelige Bahnen voller Hindernisse und Tricks und beweise, wer den ruhigsten Schwung hat.",
-    image: "Minigolf",
-    imageAlt:
-      "Eine bunte Minigolfbahn mit Hindernissen und Kurven, gebaut aus Minecraft-Blöcken.",
-  },
-  {
-    name: "Replica",
-    description:
-      "Pass genau auf! Ein Bild erscheint und es liegt an dir, es so schnell wie möglich originalgetreu nachzubauen. Geschwindigkeit und Präzision entscheiden, wer als Meisterbauer herrscht.",
-    image: "Replica",
-    imageAlt:
-      "Zwei nebeneinander stehende Bauwerke, eines als Vorlage und eines als Nachbau eines Spielers.",
-  },
-  {
-    name: "Elytra Race",
-    description:
-      "Teste deine Flugkünste im Rennen gegen andere! Rase mit deiner Elytra durch anspruchsvolle Streckenabschnitte und Ringe und sichere dir als Erster die Ziellinie.",
-    image: "Elytra",
-    imageAlt:
-      "Mehrere Spieler fliegen mit Elytren durch eine Rennstrecke aus schwebenden Ringen.",
-  },
 ];
 
 export const unfinishedGames: ConceptGame[] = [
   {
-    name: "BedWars",
+    name: "Elytra Race",
     description:
-      "Verteidige dein Bett und zerstöre die deiner Gegner! Sammle Ressourcen von deinem Generator, rüste dein Team aus und kämpfe um das letzte stehende Bett.",
-    icon: "bedwars",
-  },
-  {
-    name: "SkyWars",
-    description:
-      "Kämpfe auf schwebenden Inseln ums Überleben! Plündere Truhen nach Ausrüstung, überbrücke die Leere und sei der letzte Spieler, der noch in der Luft steht.",
-    icon: "skywars",
+      "Hast du die Flügel schon gemeistert? Messe deine Flugkünste in einem rasantem Wettrennen!",
+    icon: "elytra",
   },
   {
     name: "Chess",
@@ -108,21 +70,15 @@ export const unfinishedGames: ConceptGame[] = [
     icon: "chess",
   },
   {
-    name: "Hide and Seek",
+    name: "Golf",
     description:
-      "Verstecke dich gut oder finde alle anderen! Ein Spieler sucht, während sich der Rest als Blöcke getarnt irgendwo auf der Karte versteckt. Wer zuletzt entdeckt wird, gewinnt.",
-    icon: "hideandseek",
+      "Ab auf den Platz! Meistere anspruchsvolle Löcher und tritt an, um mit möglichst wenigen Schlägen ins Ziel zu kommen!",
+    icon: "golf",
   },
   {
-    name: "Lasertag",
+    name: "Minigolf",
     description:
-      "Schnapp dir deinen Blaster und ballere dich zum Sieg! Schnelle Reflexe, gute Deckung und Teamarbeit entscheiden, wer das Feld am Ende dominiert.",
-    icon: "lasertag",
-  },
-  {
-    name: "TNT Tag",
-    description:
-      "Wer zuletzt die tickende TNT in der Hand hält, verliert! Gib sie rechtzeitig an einen anderen Spieler weiter, bevor sie hochgeht. Geschwindigkeit und Strategie entscheiden über Sieg oder Niederlage.",
-    icon: "tnttag",
+      "Spiele dich durch kreative Bahnen voller Hindernisse und kniffliger Herausforderungen. Wie viele Schläge wirst du brauchen?",
+    icon: "minigolf",
   },
 ];
